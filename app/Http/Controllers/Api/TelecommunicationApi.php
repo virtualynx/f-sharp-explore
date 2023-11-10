@@ -14,12 +14,12 @@ class TelecommunicationApi extends Controller{
     {
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => config('api.msisdn_track'),
+            'base_uri' => config('api.endpoint.msisdn_track'),
             // You can set any number of default request options.
             // 'timeout'  => 2.0,
             'headers' => [
                 'User-Agent' => 'insomnia/8.3.0',
-                'auth_key' => '97ebd8b107af40fe7cd2e63b2abe42413ad43e3f'
+                'auth_key' => config('api.key.msisdn_track')
             ]
         ]);
 
