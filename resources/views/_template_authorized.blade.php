@@ -1,7 +1,7 @@
 @extends('__template_base')
 
 @section('page-template')
-    <div class="wrapper theme-6-active pimary-color-blue">
+    <div class="wrapper theme-5-active pimary-color-blue">
         @include('_navbar')
         @include('_sidebar')
         
