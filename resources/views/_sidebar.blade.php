@@ -48,7 +48,7 @@
             <i class="zmdi zmdi-more"></i>
         </li>
         <li>
-            <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-phone-setting mr-20"></i><span class="right-nav-text">Tracking Number</span></div><div class="clearfix"></div></a>
+            <a href="/telecommunication/tracking-number"><div class="pull-left"><i class="zmdi zmdi-phone-setting mr-20"></i><span class="right-nav-text">Tracking Number</span></div><div class="clearfix"></div></a>
         </li>
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-male-female mr-20"></i><span class="right-nav-text">Profile Tracking</span></div><div class="clearfix"></div></a>

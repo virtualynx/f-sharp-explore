@@ -18,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', 'HomeController@index');
+
+Route::prefix('/telecommunication')->group(function() {
+    Route::get('/tracking-number', 'TelecommunicationController@tracking_number');
+    // Route::post('/save', 'KtpController@save');
+});
