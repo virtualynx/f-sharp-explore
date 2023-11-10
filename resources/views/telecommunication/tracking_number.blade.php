@@ -29,7 +29,7 @@
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
                 <li>Telekomunikasi</li>
-                <li><a href="_f_search_ktp.html"><span>Tracking Number</span></a></li>
+                <li><a href="/telecommunication/tracking-number"><span>Tracking Number</span></a></li>
             </ol>
         </div>
         <!-- /Breadcrumb -->
@@ -45,9 +45,9 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">Input Phone Number</div>
-                                        <input type="text" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Tracking Phone Number">
+                                        <input type="text" id="example-input2-group2" name="msisdn" class="form-control" placeholder="Tracking Phone Number">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-primary btn-icon left-icon"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
+                                            <button class="btn btn-primary btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
                                         </span> 
                                     </div>
                                  </div>
@@ -80,35 +80,35 @@
                                             <tbody>
                                                 <tr>
                                                     <td width="30%">MSISDN</td>
-                                                    <td>081234123</td>
+                                                    <td name="td-msisdn">081234123</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">IMSI</td>
-                                                    <td>081234123</td>
+                                                    <td name="td-imsi">081234123</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">IMEI</td>
-                                                    <td>081234123</td>
+                                                    <td name="td-imei">081234123</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">PROVIDER</td>
-                                                    <td>TELKOMSEL</td>
+                                                    <td name="td-provider">TELKOMSEL</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">ADDRESS</td>
-                                                    <td>Indonesia, Jabodetabek, DKI Jakarta, Jakarta Selatan</td>
+                                                    <td name="td-address">Indonesia, Jabodetabek, DKI Jakarta, Jakarta Selatan</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">PHONE</td>
-                                                    <td>XIAOMI, REDMI 9</td>
+                                                    <td name="td-phone">XIAOMI, REDMI 9</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">LATITUDE</td>
-                                                    <td>-6.23234</td>
+                                                    <td name="td-lat">-6.23234</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">LONGITUDE</td>
-                                                    <td>106.22433</td>
+                                                    <td name="td-long">106.22433</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -139,19 +139,63 @@
                     <div class="panel-body">
                         <div id="map" style="height:600px;"></div>
                     </div>
-                    <script>
-                        var map = L.map('map').setView([51.505, -0.09], 13);
-
-                        L.tileLayer(
-                            'https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
-                            {
-                                maxZoom: 19,
-                                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                            }
-                        ).addTo(map);
-                    </script>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('page-footer')
+    <script>
+        // setMap([-1.269160, 116.825264]);
+        var map = L.map('map').setView([-1.269160, 116.825264], 16);
+
+        L.tileLayer(
+            'https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
+            {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }
+        ).addTo(map);
+
+        function searchMsisdn(){
+            let msisdn = $('[name="msisdn"]').val();
+
+            $.get(
+                "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
+                function(response, status){
+                    if(response.status == 0){
+                        $('[name="td-msisdn"]').html(response.data.msisdn);
+                        $('[name="td-imsi"]').html(response.data.imsi);
+                        $('[name="td-imei"]').html(response.data.imei);
+                        $('[name="td-provider"]').html(response.data.provider);
+                        $('[name="td-address"]').html(response.data.address);
+                        $('[name="td-phone"]').html(response.data.phone);
+                        $('[name="td-lat"]').html(response.data.lat);
+                        $('[name="td-long"]').html(response.data.long);
+                        
+                        // map.panTo(new L.LatLng(response.data.lat, response.data.long));
+                        map.flyTo([response.data.lat, response.data.long], 16);
+                        let marker = L.marker([response.data.lat, response.data.long]).addTo(map);
+                    }else{
+                        alert(response.message);
+                    }
+                }
+            );
+        }
+
+        function setMap(latLang){
+            var map = L.map('map').setView(latLang, 16);
+
+            L.tileLayer(
+                'https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
+                {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }
+            ).addTo(map);
+        }
+
+        // map.setView([51.505, -0.09], 16);
+    </script>
 @endsection
