@@ -12,19 +12,22 @@ class TelecommunicationApi extends Controller{
 
     public function tracking_msisdn(string $msisdn)
     {
+        $api_key = config('api.key.msisdn_track');
+        $base_uri = config('api.base_uri.msisdn_track');
+        $uri = config('api.uri.msisdn_track');
         $client = new Client([
             // Base URI is used with relative requests
-            'base_uri' => config('api.endpoint.msisdn_track'),
+            'base_uri' => $base_uri,
             // You can set any number of default request options.
             // 'timeout'  => 2.0,
             'headers' => [
                 'User-Agent' => 'insomnia/8.3.0',
-                'auth_key' => config('api.key.msisdn_track')
+                'auth_key' => $api_key
             ]
         ]);
 
         try{
-            $response = $client->request('GET', '/cekpos/'.$msisdn);
+            $response = $client->request('GET', $uri.'/'.$msisdn);
             if($response->getStatusCode() == 200){
                 $resp_arr = json_decode($response->getBody(), true);
                 if($resp_arr['status']==1 && $resp_arr['statusCode']==200){
