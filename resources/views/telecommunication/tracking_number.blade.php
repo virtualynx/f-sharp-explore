@@ -45,7 +45,7 @@
     </div>
     <!-- /Title -->
     <div class="row reorder form-group">
-        <div class="col-md-3 cold-xs-12">
+        <div class="col-md-3 cold-xs-12 text-left">
             <label class="input-group-addon">Input Phone Number</label>
         </div>
         <div class="col-md-6 cold-xs-12">
