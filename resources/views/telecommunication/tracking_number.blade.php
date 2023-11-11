@@ -80,35 +80,35 @@
                                             <tbody>
                                                 <tr>
                                                     <td width="30%">MSISDN</td>
-                                                    <td name="td-msisdn">081234123</td>
+                                                    <td name="td-msisdn">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">IMSI</td>
-                                                    <td name="td-imsi">081234123</td>
+                                                    <td name="td-imsi">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">IMEI</td>
-                                                    <td name="td-imei">081234123</td>
+                                                    <td name="td-imei">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">PROVIDER</td>
-                                                    <td name="td-provider">TELKOMSEL</td>
+                                                    <td name="td-provider">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">ADDRESS</td>
-                                                    <td name="td-address">Indonesia, Jabodetabek, DKI Jakarta, Jakarta Selatan</td>
+                                                    <td name="td-address">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">PHONE</td>
-                                                    <td name="td-phone">XIAOMI, REDMI 9</td>
+                                                    <td name="td-phone">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">LATITUDE</td>
-                                                    <td name="td-lat">-6.23234</td>
+                                                    <td name="td-lat">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
                                                     <td width="30%">LONGITUDE</td>
-                                                    <td name="td-long">106.22433</td>
+                                                    <td name="td-long">[NO DATA]</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -149,6 +149,7 @@
     <script>
         // setMap([-1.269160, 116.825264]);
         var map = L.map('map').setView([-1.269160, 116.825264], 16);
+        var marker = null;
 
         L.tileLayer(
             'https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
@@ -176,7 +177,10 @@
                         
                         // map.panTo(new L.LatLng(response.data.lat, response.data.long));
                         map.flyTo([response.data.lat, response.data.long], 16);
-                        let marker = L.marker([response.data.lat, response.data.long]).addTo(map);
+                        if(marker!=null){
+                            map.removeLayer(marker);
+                        }
+                        marker = L.marker([response.data.lat, response.data.long]).addTo(map);
                     }else{
                         alert(response.message);
                     }
