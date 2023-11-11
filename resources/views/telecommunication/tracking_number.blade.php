@@ -17,6 +17,15 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin="">
     </script>
+
+    <style>
+        @media (max-width: 768px) {
+            .reorder {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
 @endsection
 
 @section('page-content')
@@ -35,28 +44,18 @@
         <!-- /Breadcrumb -->
     </div>
     <!-- /Title -->
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-12 p-0 m-0">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">Input Phone Number</div>
-                                        <input type="text" id="example-input2-group2" name="msisdn" class="form-control" placeholder="Tracking Phone Number">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
-                                        </span> 
-                                    </div>
-                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>			
-        </div>	
+    <div class="row reorder form-group">
+        <div class="col-md-3 cold-xs-12">
+            <label class="input-group-addon">Input Phone Number</label>
+        </div>
+        <div class="col-md-6 cold-xs-12">
+            <input type="text" id="example-input2-group2" name="msisdn" class="form-control" placeholder="Tracking Phone Number">
+        </div>
+        <div class="col-md-3 cold-xs-12">
+            <span class="input-group-btn">
+                <button class="btn btn-primary btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
+            </span> 
+        </div>
     </div>
 
     <div class="row">
