@@ -45,8 +45,8 @@
     </div>
     <!-- /Title -->
     <div class="row reorder form-group">
-        <div class="col-md-3 cold-xs-12 text-left">
-            <label class="input-group-addon">Input Phone Number</label>
+        <div class="col-md-3 cold-xs-12">
+            <label class="input-group-addon text-left">Input Phone Number</label>
         </div>
         <div class="col-md-6 cold-xs-12">
             <input type="text" id="example-input2-group2" name="msisdn" class="form-control" placeholder="Tracking Phone Number">
@@ -148,7 +148,7 @@
     <script>
         // setMap([-1.269160, 116.825264]);
         var map = L.map('map').setView([-1.269160, 116.825264], 16);
-        var marker = null;
+        var markers = [];
 
         L.tileLayer(
             'https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
@@ -161,44 +161,84 @@
         function searchMsisdn(){
             let msisdn = $('[name="msisdn"]').val();
 
-            $.get(
-                "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
-                function(response, status){
-                    if(response.status == 0){
-                        $('[name="td-msisdn"]').html(response.data.msisdn);
-                        $('[name="td-imsi"]').html(response.data.imsi);
-                        $('[name="td-imei"]').html(response.data.imei);
-                        $('[name="td-provider"]').html(response.data.provider);
-                        $('[name="td-address"]').html(response.data.address);
-                        $('[name="td-phone"]').html(response.data.phone);
-                        $('[name="td-lat"]').html(response.data.lat);
-                        $('[name="td-long"]').html(response.data.long);
+            $(".preloader-it").show();
+
+            // $.get(
+            //     "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
+            //     function(response, status){
+            //         if(response.status == 0){
+            //             setData(response.data);
+            //         }else{
+            //             alert(response.message);
+            //         }
+            //     }
+            // );
+
+            $.ajax({
+                type: "post",
+                data: {msisdns: msisdn.split(',').map(item=>item.trim())},
+                cache: false,
+                // url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
+                url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn",
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        $([document.documentElement, document.body]).animate({
+                            scrollTop: $("#map").offset().top
+                        }, 150);
                         
-                        // map.panTo(new L.LatLng(response.data.lat, response.data.long));
-                        map.flyTo([response.data.lat, response.data.long], 16);
-                        if(marker!=null){
-                            map.removeLayer(marker);
+                        let datas = response.data;
+
+                        if(datas.length > 0){
+                            if(markers.length > 0){
+                                markers.forEach(marker => {
+                                    map.removeLayer(marker);
+                                });
+
+                                markers = [];
+                            }
+                            
+                            datas.forEach(data => {
+                                setData(data);
+                                let marker = L.marker([data.lat, data.long]).addTo(map);
+                                markers.push(marker);
+                            });
+                            if(datas.length == 1){
+                                map.flyTo(
+                                    [datas[0].lat, datas[0].long], 
+                                    16, 
+                                    {
+                                        animate: true,
+                                        duration: 2 // in seconds
+                                    }
+                                );
+                            }else{
+                                var group = new L.featureGroup(markers);
+                                map.fitBounds(group.getBounds());
+                            }
                         }
-                        marker = L.marker([response.data.lat, response.data.long]).addTo(map);
                     }else{
                         alert(response.message);
                     }
+                    $(".preloader-it").hide();
+                },
+                error: function (request, error) {
+                    console.log(arguments);
+                    alert(" Can't do because: " + error);
+                    $(".preloader-it").hide();
                 }
-            );
+            });
         }
 
-        function setMap(latLang){
-            var map = L.map('map').setView(latLang, 16);
-
-            L.tileLayer(
-                'https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
-                {
-                    maxZoom: 19,
-                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                }
-            ).addTo(map);
+        function setData(data){
+            $('[name="td-msisdn"]').html(data.msisdn);
+            $('[name="td-imsi"]').html(data.imsi);
+            $('[name="td-imei"]').html(data.imei);
+            $('[name="td-provider"]').html(data.provider);
+            $('[name="td-address"]').html(data.address);
+            $('[name="td-phone"]').html(data.phone);
+            $('[name="td-lat"]').html(data.lat);
+            $('[name="td-long"]').html(data.long);
         }
-
-        // map.setView([51.505, -0.09], 16);
     </script>
 @endsection
