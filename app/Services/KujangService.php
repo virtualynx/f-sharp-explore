@@ -7,7 +7,7 @@ use kamermans\OAuth2\OAuth2Middleware;
 use kamermans\OAuth2\GrantType\PasswordCredentials;
 use GuzzleHttp\HandlerStack;
 
-class SiliwangiService
+class KujangService
 {
     private string $url_kujang;
 
