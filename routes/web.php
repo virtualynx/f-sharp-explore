@@ -17,9 +17,15 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/login', 'AuthController@login');
+Route::get('/register', 'AuthController@register');
+
 Route::get('/', 'HomeController@index');
 
 Route::prefix('/telecommunication')->group(function() {
     Route::get('/tracking-number', 'TelecommunicationController@tracking_number');
     // Route::post('/save', 'KtpController@save');
+});
+
+Route::middleware('authorized')->group(function() {
 });
