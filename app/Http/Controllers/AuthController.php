@@ -27,13 +27,13 @@ class AuthController extends Controller
     }
 
     public function doLogin(Request $request){
-        $validated = $request->validate([
-            'username' => ['required', 'username'],
-            'password' => ['required'],
-        ]);
+        // $validated = $request->validate([
+        //     'username' => ['required', 'username'],
+        //     'password' => ['required'],
+        // ]);
 
         $credentials = [
-            'username' => $request['username'],
+            'name' => $request['username'],
             'password' => $request['password']
         ];
  

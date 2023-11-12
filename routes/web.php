@@ -17,18 +17,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/login', 'AuthController@login');
+Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/do-login', 'AuthController@doLogin');
 
 Route::get('/register', 'AuthController@register');
 Route::post('/do-register', 'AuthController@doRegister');
 
-Route::get('/', 'HomeController@index');
+Route::middleware('auth')->group(function() {
+    Route::get('/', 'HomeController@index');
 
-Route::prefix('/telecommunication')->group(function() {
-    Route::get('/tracking-number', 'TelecommunicationController@tracking_number');
-    // Route::post('/save', 'KtpController@save');
-});
-
-Route::middleware('authorized')->group(function() {
+    Route::prefix('/telecommunication')->group(function() {
+        Route::get('/tracking-number', 'TelecommunicationController@tracking_number');
+        // Route::post('/save', 'KtpController@save');
+    });
 });
