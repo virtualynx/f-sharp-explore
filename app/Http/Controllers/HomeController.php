@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
  
-class HomeController extends Controller
+class HomeController extends _Controller
 {
     public function __construct(){
         // $this->middleware('auth');
