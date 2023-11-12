@@ -9,13 +9,4 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-
-    protected function getInsomniaHeader(){
-        $api_key = config('api.key.msisdn_track');
-
-        return [
-            'User-Agent' => 'insomnia/8.3.0',
-            'auth_key' => $api_key
-        ];
-    }
 }
