@@ -16,20 +16,21 @@
                             <h6 class="text-center nonecase-font txt-grey">Register your credentials below</h6>
                         </div>	
                         <div class="form-wrap mb-20">
-                            <form action="index.html">
+                            <form method="POST" action="{{ url("do-register") }}">
+                                {{ csrf_field() }}
                                 <div class="form-group">
                                     <label class="control-label mb-10" for="exampleInputUsername_2">Username</label>
-                                    <input type="username" class="form-control" required="" id="exampleInputUsername_2" placeholder="Enter username">
+                                    <input name="username" type="username" class="form-control" required="" id="exampleInputUsername_2" placeholder="Enter username">
                                 </div>
                                 <div class="form-group">
                                     <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Password</label>
                                     {{-- <a class="capitalize-font text-danger block mb-10 pull-right font-12" href="forgot-password.html">forgot password ?</a>
                                     <div class="clearfix"></div> --}}
-                                    <input type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Enter password">
+                                    <input name="password" type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Enter password">
                                 </div>
                                 <div class="form-group">
                                     <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Confirm Password</label>
-                                    <input type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Confirm password">
+                                    <input name="password2" type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Confirm password">
                                 </div>
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn btn-danger btn-block">Register Me</button>

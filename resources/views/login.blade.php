@@ -16,16 +16,17 @@
                             <h6 class="text-center nonecase-font txt-grey">Enter your credentials below</h6>
                         </div>	
                         <div class="form-wrap mb-20">
-                            <form action="index.html">
+                            <form method="POST" action="{{ url("do-login") }}">
+                                {{ csrf_field() }}
                                 <div class="form-group">
                                     <label class="control-label mb-10" for="exampleInputUsername_2">Username</label>
-                                    <input type="username" class="form-control" required="" id="exampleInputUsername_2" placeholder="Enter username">
+                                    <input name="username" type="username" class="form-control" required="" id="exampleInputUsername_2" placeholder="Enter username">
                                 </div>
                                 <div class="form-group">
                                     <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Password</label>
                                     <a class="capitalize-font text-danger block mb-10 pull-right font-12" href="forgot-password.html">forgot password ?</a>
                                     <div class="clearfix"></div>
-                                    <input type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Enter pwd">
+                                    <input name="password" type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Enter pwd">
                                 </div>
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn btn-danger btn-block">sign in</button>

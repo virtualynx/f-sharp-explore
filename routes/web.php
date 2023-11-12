@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/login', 'AuthController@login');
+Route::post('/do-login', 'AuthController@doLogin');
+
 Route::get('/register', 'AuthController@register');
+Route::post('/do-register', 'AuthController@doRegister');
 
 Route::get('/', 'HomeController@index');
 
