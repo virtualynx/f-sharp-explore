@@ -24,9 +24,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Password</label>
+                                    <input name="password" type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Enter pwd">
+                                </div>
+                                <div class="form-group">
                                     <a class="capitalize-font text-danger block mb-10 pull-right font-12" href="forgot-password.html">forgot password ?</a>
                                     <div class="clearfix"></div>
-                                    <input name="password" type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Enter pwd">
                                 </div>
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn btn-danger btn-block">sign in</button>

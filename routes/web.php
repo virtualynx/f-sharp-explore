@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/do-login', 'AuthController@doLogin');
+Route::get('/do-logout', 'AuthController@logout')->name('logout');
 
 Route::get('/register', 'AuthController@register');
 Route::post('/do-register', 'AuthController@doRegister');
