@@ -29,21 +29,6 @@
 @endsection
 
 @section('page-content')
-    <!-- Title -->
-    <div class="row heading-bg">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h5 class="txt-dark">Tracking Number</h5>
-        </div>
-        <!-- Breadcrumb -->
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <ol class="breadcrumb">
-                <li>Telekomunikasi</li>
-                <li><a href="/telecommunication/tracking-number"><span>Tracking Number(s)</span></a></li>
-            </ol>
-        </div>
-        <!-- /Breadcrumb -->
-    </div>
-    <!-- /Title -->
     <div class="row reorder form-group">
         <div class="col-md-3 cold-xs-12">
             <label class="input-group-addon text-left">Input Phone Number</label>
