@@ -163,22 +163,10 @@
 
             $(".preloader-it").show();
 
-            // $.get(
-            //     "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
-            //     function(response, status){
-            //         if(response.status == 0){
-            //             setData(response.data);
-            //         }else{
-            //             alert(response.message);
-            //         }
-            //     }
-            // );
-
             $.ajax({
                 type: "post",
                 data: {msisdns: msisdn.split(',').map(item=>item.trim())},
                 cache: false,
-                // url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
                 url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn",
                 dataType: "json",
                 success: function (response, status) {
@@ -198,21 +186,25 @@
                                 markers = [];
                             }
                             
+                            let successDatas = [];
                             datas.forEach(data => {
-                                setData(data);
-                                let marker = L.marker([data.lat, data.long]).addTo(map);
-                                markers.push(marker);
+                                if(data.status == 'success'){
+                                    setData(data);
+                                    let marker = L.marker([data.lat, data.long]).addTo(map);
+                                    markers.push(marker);
+                                    successDatas.push(data);
+                                }
                             });
-                            if(datas.length == 1){
+                            if(successDatas.length == 1){
                                 map.flyTo(
-                                    [datas[0].lat, datas[0].long], 
+                                    [successDatas[0].lat, successDatas[0].long], 
                                     16, 
                                     {
                                         animate: true,
                                         duration: 2 // in seconds
                                     }
                                 );
-                            }else{
+                            }else if(successDatas.length > 1){
                                 var group = new L.featureGroup(markers);
                                 map.fitBounds(group.getBounds());
                             }
