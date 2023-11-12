@@ -15,7 +15,6 @@ class TelecommunicationApi extends Controller{
         $payloadRequest = $request->all();
         $msisdns = $payloadRequest['msisdns'];
 
-        $api_key = config('api.key.msisdn_track');
         $base_uri = config('api.base_uri.msisdn_track');
         $uri = config('api.uri.msisdn_track');
         $client = new Client([
@@ -23,10 +22,7 @@ class TelecommunicationApi extends Controller{
             'base_uri' => $base_uri,
             // You can set any number of default request options.
             // 'timeout'  => 2.0,
-            'headers' => [
-                'User-Agent' => 'insomnia/8.3.0',
-                'auth_key' => $api_key
-            ]
+            'headers' => $this->getInsomniaHeader()
         ]);
 
         try{
