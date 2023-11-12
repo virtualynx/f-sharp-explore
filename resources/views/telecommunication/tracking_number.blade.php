@@ -38,7 +38,7 @@
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
                 <li>Telekomunikasi</li>
-                <li><a href="/telecommunication/tracking-number"><span>Tracking Number</span></a></li>
+                <li><a href="/telecommunication/tracking-number"><span>Tracking Number(s)</span></a></li>
             </ol>
         </div>
         <!-- /Breadcrumb -->
@@ -49,7 +49,7 @@
             <label class="input-group-addon text-left">Input Phone Number</label>
         </div>
         <div class="col-md-6 cold-xs-12">
-            <input type="text" id="example-input2-group2" name="msisdn" class="form-control" placeholder="Tracking Phone Number">
+            <input type="text" id="example-input2-group2" name="msisdn" class="form-control" placeholder="6281211112222, 6281233334444">
         </div>
         <div class="col-md-3 cold-xs-12">
             <span class="input-group-btn">
