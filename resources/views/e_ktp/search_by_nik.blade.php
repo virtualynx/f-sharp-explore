@@ -144,8 +144,11 @@
                 dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
-                        let data = response.data;
-                        setData(response.data.id_data);
+                        if(response.data.status === 'data_ok'){
+                            setData(response.data.id_data);
+                        }else if(response.data.status === 'diterima'){
+                            alert('Data Nik tidak ditemukan dengan status: "diterima"');
+                        }
                     }else{
                         alert(response.message);
                     }
