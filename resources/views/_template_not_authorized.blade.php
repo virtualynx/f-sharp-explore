@@ -1,10 +1,10 @@
 @extends('__template_base')
 
 @section('page-template')
-    <div class="wrapper theme-5-active pimary-color-blue">
+    <div class="wrapper  pa-0">
         <!-- Main Content -->
-		<div class="page-wrapper auth-page">
-            <div class="container-fluid pt-25">
+		<div class="page-wrapper pa-0 ma-0 auth-page">
+            <div class="container-fluid">
                 @yield('page-content')
 			</div>
             
