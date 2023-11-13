@@ -12,7 +12,7 @@ class KujangService
     private string $url_kujang;
 
     public function __construct(){
-        $this->url_kujang = config('api.base_uri.kujang').'/'.config('api.uri.kujang');
+        $this->url_kujang = config('api.base_uri.kujang').config('api.uri.kujang');
     }
 
     private function getClient(){
@@ -53,6 +53,27 @@ class KujangService
                 'ehlo' => base64_encode(json_encode($payload))
             ]
         );
+    }
+
+    public function askForNik(string $nik){
+        $payload = [
+            'ask_for' => 'nik',
+            'wtk' => $nik
+        ];
+
+        $response = $this->getClient()->request(
+            'POST', 
+            $this->url_kujang, 
+            ['body' => $this->encodeRequestPayload($payload)]
+        );
+
+        if($response->getStatusCode() == 200){
+            $result = json_decode($response->getBody()->getContents(), true);
+
+            return $result;
+        }else{
+            throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
+        }
     }
 
     public function getIdDataByNik(string $nik){

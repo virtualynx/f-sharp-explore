@@ -27,6 +27,11 @@ Route::post('/do-register', 'AuthController@doRegister');
 Route::middleware('auth')->group(function() {
     Route::get('/', 'HomeController@index');
 
+    Route::prefix('/e-ktp')->group(function() {
+        Route::get('/search-by-nkk', 'EKtpController@search_by_nkk');
+        Route::get('/search-by-nik', 'EKtpController@search_by_nik');
+    });
+
     Route::prefix('/telecommunication')->group(function() {
         Route::get('/tracking-number', 'TelecommunicationController@tracking_number');
         // Route::post('/save', 'KtpController@save');

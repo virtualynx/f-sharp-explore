@@ -33,10 +33,10 @@
                     <a href="panels-wells.html">Search By Profile</a>
                 </li> --}}
                 <li>
-                    <a href="modals.html">Search By NKK</a>
+                    <a href="{{ url('e-ktp/search-by-nkk') }}">Search By NKK</a>
                 </li>
                 <li>
-                    <a href="sweetalert.html">Search By NIK</a>
+                    <a href="{{ url('e-ktp/search-by-nik') }}">Search By NIK</a>
                 </li>
             </ul>
         </li>
@@ -75,7 +75,7 @@
         </li> --}}
         <li><hr class="light-grey-hr mb-10"/></li>
 
-        <li class="navigation-header">
+        {{-- <li class="navigation-header">
             <span>Transportasi</span> 
             <i class="zmdi zmdi-more"></i>
         </li>
@@ -88,9 +88,9 @@
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-time-restore mr-20"></i><span class="right-nav-text">History</span></div><div class="clearfix"></div></a>
         </li>
-        <li><hr class="light-grey-hr mb-10"/></li>
+        <li><hr class="light-grey-hr mb-10"/></li> --}}
 
-        <li class="navigation-header">
+        {{-- <li class="navigation-header">
             <span>E-Commerce</span> 
             <i class="zmdi zmdi-more"></i>
         </li>
@@ -100,9 +100,9 @@
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-time-restore mr-20"></i><span class="right-nav-text">History</span></div><div class="clearfix"></div></a>
         </li>
-        <li><hr class="light-grey-hr mb-10"/></li>
+        <li><hr class="light-grey-hr mb-10"/></li> --}}
 
-        <li class="navigation-header">
+        {{-- <li class="navigation-header">
             <span>Bank</span> 
             <i class="zmdi zmdi-more"></i>
         </li>
@@ -112,9 +112,9 @@
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-time-restore mr-20"></i><span class="right-nav-text">History</span></div><div class="clearfix"></div></a>
         </li>
-        <li><hr class="light-grey-hr mb-10"/></li>
+        <li><hr class="light-grey-hr mb-10"/></li> --}}
 
-        <li class="navigation-header">
+        {{-- <li class="navigation-header">
             <span>Face Detection</span> 
             <i class="zmdi zmdi-more"></i>
         </li>
@@ -127,7 +127,7 @@
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-time-restore mr-20"></i><span class="right-nav-text">History</span></div><div class="clearfix"></div></a>
         </li>
-        <li><hr class="light-grey-hr mb-30"/></li>
+        <li><hr class="light-grey-hr mb-30"/></li> --}}
     </ul>
 </div>
 <!-- /Left Sidebar Menu -->
