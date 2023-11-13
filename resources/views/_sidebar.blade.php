@@ -32,9 +32,9 @@
                 {{-- <li>
                     <a href="panels-wells.html">Search By Profile</a>
                 </li> --}}
-                <li>
+                {{-- <li>
                     <a href="{{ url('e-ktp/search-by-nkk') }}">Search By NKK</a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{ url('e-ktp/search-by-nik') }}">Search By NIK</a>
                 </li>
