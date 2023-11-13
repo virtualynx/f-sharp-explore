@@ -6,7 +6,7 @@
             <i class="zmdi zmdi-more"></i>
         </li>
         <li>
-            <a class="active" href="{{ url('/') }}"><div class="pull-left"><i class="zmdi zmdi-view-dashboard mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="clearfix"></div></a>
+            <a class="{{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}"><div class="pull-left"><i class="zmdi zmdi-view-dashboard mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="clearfix"></div></a>
         </li>
         {{-- <li>
             <a href="#"><div class="pull-left"><i class="zmdi zmdi-trending-up mr-20"></i><span class="right-nav-text">Monitoring</span></div><div class="clearfix"></div></a>
@@ -27,7 +27,7 @@
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-accounts-list mr-20"></i><span class="right-nav-text">Data E-KTP</span></div><div class="clearfix"></div></a>
         </li> --}}
         <li>
-            <a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="zmdi zmdi-accounts mr-20"></i><span class="right-nav-text">Search Dukcapil</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <a class="{{ request()->is('e-ktp/*') ? 'active' : '' }}" href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="zmdi zmdi-accounts mr-20"></i><span class="right-nav-text">Search Dukcapil</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
                 {{-- <li>
                     <a href="panels-wells.html">Search By Profile</a>
@@ -50,7 +50,7 @@
             <i class="zmdi zmdi-more"></i>
         </li>
         <li>
-            <a href="/telecommunication/tracking-number"><div class="pull-left"><i class="zmdi zmdi-phone-setting mr-20"></i><span class="right-nav-text">Tracking Number</span></div><div class="clearfix"></div></a>
+            <a class="{{ request()->is('telecommunication/tracking-number/*') ? 'active' : '' }}" href="/telecommunication/tracking-number"><div class="pull-left"><i class="zmdi zmdi-phone-setting mr-20"></i><span class="right-nav-text">Tracking Number</span></div><div class="clearfix"></div></a>
         </li>
         {{-- <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-male-female mr-20"></i><span class="right-nav-text">Profile Tracking</span></div><div class="clearfix"></div></a>

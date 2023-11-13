@@ -3,8 +3,8 @@
     <div class="mobile-only-brand pull-left">
         <div class="nav-header pull-left pl-0">
             <div class="logo-wrap text-center">
-                <a href="login.html">
-                    <img class="logo-brand-img" src="dist/img/logo.jpg" alt="logo f#explore" />
+                <a href="{{ url('/') }}">
+                    <img class="logo-brand-img" src="{{asset('dist/img/logo.jpg')}}" alt="logo f#explore" />
                 </a>
             </div>
         </div>	
@@ -81,7 +81,7 @@
                             <div class="sl-item">
                                 <a href="javascript:void(0)">
                                     <div class="sl-avatar">
-                                        <img class="img-responsive" src="dist/img/avatar.jpg" alt="avatar"/>
+                                        <img class="img-responsive" src="{{asset('dist/img/avatar.jpg')}}" alt="avatar"/>
                                     </div>
                                     <div class="sl-content">
                                         <span class="inline-block capitalize-font  pull-left truncate head-notifications">Sandy Doe</span>
@@ -117,7 +117,7 @@
                 </ul>
             </li>
             <li class="dropdown auth-drp">
-                <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="dist/img/user1.png" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
+                <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="{{asset('dist/img/user1.png')}}" alt="user_auth" class="user-auth-img img-circle"/><span class="user-online-status"></span></a>
                 <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
                     <li>
                         <a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
