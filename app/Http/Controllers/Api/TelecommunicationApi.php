@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
 use Exception;
-use GuzzleHttp\Client;
 use App\Services\TelecommunicationService;
 
-class TelecommunicationApi extends Controller{
+class TelecommunicationApi extends _Controller{
     private TelecommunicationService $service;
 
     public function __construct(TelecommunicationService $service){
