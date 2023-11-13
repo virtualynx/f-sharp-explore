@@ -80,7 +80,7 @@
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-bike mr-20"></i><span class="right-nav-text">Gojek</span></div><div class="clearfix"></div></a>
         </li>
         <li>
-            <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-car mr-20"></i><span class="right-nav-text">Cek Kendaraan</span></div><div class="clearfix"></div></a>
+            <a href="/transportasi/cek_kendaraan"><div class="pull-left"><i class="zmdi zmdi-car mr-20"></i><span class="right-nav-text">Cek Kendaraan</span></div><div class="clearfix"></div></a>
         </li>
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-time-restore mr-20"></i><span class="right-nav-text">History</span></div><div class="clearfix"></div></a>
