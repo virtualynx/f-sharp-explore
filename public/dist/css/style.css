@@ -3733,7 +3733,7 @@ a#toggle_mobile_nav {
   margin-right: 10px;
   position: relative;
   top: 1px;
-  width: 43%;
+  width: 15%;
 }
 .navbar.navbar-inverse.navbar-fixed-top .nav-header .logo-wrap .brand-text {
   display: inline-block;
@@ -9433,13 +9433,13 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 @media (min-width: 600px) {
   .logo-wrap .logo-brand-img {
     top: 0px !important;
-    width: 24% !important;
+    width: 8% !important;
   }
 }
 @media (min-width: 821px) {
   .logo-wrap .logo-brand-img {
     top: 7px !important;
-    width: 65% !important;
+    width: 22% !important;
   }
 }
 @media (min-width: 768px) {
