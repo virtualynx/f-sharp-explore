@@ -8,21 +8,35 @@
 @endsection
 
 @section('page-content')
-    {{-- <div class="row reorder form-group">
-        <div class="col-md-3 cold-xs-12">
-            <label class="input-group-addon text-left">Input Phone Number</label>
-        </div>
-        <div class="col-md-6 cold-xs-12">
-            <input type="text" id="example-input2-group2" name="msisdn" class="form-control" placeholder="6281211112222, 6281233334444">
-        </div>
-        <div class="col-md-3 cold-xs-12">
-            <span class="input-group-btn">
-                <button class="btn btn-primary btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
-            </span> 
-        </div>
-    </div> --}}
-    
+    <!-- Search bar -->
     <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12 p-0 m-0">
+                                <form method="POST" action="{{ url('api/e-ktp/search-by-nik') }}">
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">Search NIK</div>
+                                            <input type="text" name="nik" id="nik" class="form-control" placeholder="Enter NIK" required />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-danger btn-icon left-icon" onclick="searchData()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
+                                            </span> 
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>			
+        </div>	
+    </div>
+    
+    {{-- <div class="row">
         <form method="POST" action="{{ url('api/e-ktp/search-by-nik') }}">
             {{ csrf_field() }}
             <div class="col-md-8 cold-xs-12 form-group">
@@ -33,7 +47,7 @@
                 <button type="button" onclick="searchData()" class="btn btn-danger btn-block">Search</button>
             </div>
         </form>
-    </div>
+    </div> --}}
 
     <div class="row">
         <div class="col-lg-12">

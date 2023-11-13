@@ -29,7 +29,32 @@
 @endsection
 
 @section('page-content')
-    <div class="row reorder form-group">
+    <!-- Search bar -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12 p-0 m-0">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Input Phone Number</div>
+                                        <input type="text" name="msisdn" id="msisdn" class="form-control" placeholder="6281211112222, 6281233334444" required />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-danger btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
+                                        </span> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>			
+        </div>	
+    </div>
+
+    {{-- <div class="row reorder form-group">
         <div class="col-md-3 cold-xs-12">
             <label class="input-group-addon text-left">Input Phone Number</label>
         </div>
@@ -41,7 +66,7 @@
                 <button class="btn btn-primary btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
             </span> 
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
         <div class="col-lg-12">
