@@ -17,11 +17,25 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', 'HomeController@index');
+Route::get('/login', 'AuthController@login')->name('login');
+Route::post('/do-login', 'AuthController@doLogin');
+Route::get('/do-logout', 'AuthController@logout')->name('logout');
 
-Route::prefix('/telecommunication')->group(function() {
-    Route::get('/tracking-number', 'TelecommunicationController@tracking_number');
-    // Route::post('/save', 'KtpController@save');
+Route::get('/register', 'AuthController@register');
+Route::post('/do-register', 'AuthController@doRegister');
+
+Route::middleware('auth')->group(function() {
+    Route::get('/', 'HomeController@index');
+
+    Route::prefix('/e-ktp')->group(function() {
+        Route::get('/search-by-nkk', 'EKtpController@search_by_nkk');
+        Route::get('/search-by-nik', 'EKtpController@search_by_nik');
+    });
+
+    Route::prefix('/telecommunication')->group(function() {
+        Route::get('/tracking-number', 'TelecommunicationController@tracking_number');
+        // Route::post('/save', 'KtpController@save');
+    });
 });
 
 Route::prefix('/transportasi')->group(function() {

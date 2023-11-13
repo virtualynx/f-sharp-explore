@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/';
     
     /**
      * https://laracasts.com/discuss/channels/laravel/laravel-8-error-target-class-homecontroller-does-not-exist

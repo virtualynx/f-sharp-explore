@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
  
-class TelecommunicationController extends Controller
+class TelecommunicationController extends _Controller
 {
+    public function __construct(){
+        // $this->middleware('auth');
+    }
+
     public function index(){
         $data = array();
 

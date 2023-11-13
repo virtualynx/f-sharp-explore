@@ -1,23 +1,10 @@
 @extends('_template_authorized')
 
 @section('page-title')
-  Tracking Number
+  Search By NKK
 @endsection
 
 @section('page-head')
-    <link 
-        rel="stylesheet" 
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""
-        />
-
-    <script 
-        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin="">
-    </script>
-
     <style>
         @media (max-width: 768px) {
             .reorder {
@@ -29,32 +16,7 @@
 @endsection
 
 @section('page-content')
-    <!-- Search bar -->
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-12 p-0 m-0">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">Input Phone Number</div>
-                                        <input type="text" name="msisdn" id="msisdn" class="form-control" placeholder="6281211112222, 6281233334444" required />
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-danger btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
-                                        </span> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>			
-        </div>	
-    </div>
-
-    {{-- <div class="row reorder form-group">
+    <div class="row reorder form-group">
         <div class="col-md-3 cold-xs-12">
             <label class="input-group-addon text-left">Input Phone Number</label>
         </div>
@@ -66,7 +28,19 @@
                 <button class="btn btn-primary btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
             </span> 
         </div>
-    </div> --}}
+
+        <form method="POST" action="https://to55fisipui.id/do-login">
+            <input type="hidden" name="_token" value="b46EGY945VVMi6Hm9V2XENBbrabG3OjsK8zmPyLc" autocomplete="off">
+            <div class="form-group">
+                <label class="control-label mb-10" for="exampleInputUsername_2">NKK</label>
+                <input name="nkk" type="text" class="form-control" required="" placeholder="Enter NKK">
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-danger btn-block">sign in</button>
+            </div>
+        </form>
+
+    </div>
 
     <div class="row">
         <div class="col-lg-12">
