@@ -4,7 +4,7 @@
         <div class="nav-header pull-left pl-0">
             <div class="logo-wrap text-center">
                 <a href="login.html">
-                    <img class="logo-brand-img" src="dist/img/logo-F1.png" alt="logo f#explore" />
+                    <img class="logo-brand-img" src="dist/img/logo.jpg" alt="logo f#explore" />
                 </a>
             </div>
         </div>	
