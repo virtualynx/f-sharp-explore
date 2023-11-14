@@ -73,19 +73,22 @@
             <div class="panel panel-default card-view">
                 <div class="panel-heading">
                     <div class="pull-left">
-                        <h6 class="panel-title txt-dark">Maps</h6>
+                        <h6 class="panel-title txt-dark">Detail Information And Maps</h6>
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-wrapper collapse in">
-                    <!-- Panel Overlay-->
-                    <div class="row mt-15 ml-5" id="panel-overlay-gmaps">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="well well-sm card-view">
-                                <h6 class="mb-15">Detail Information Target</h6>
-                                <div class="table-wrap mt-10">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="table-wrap">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered mb-0">
+                                        <table class="table table-striped table-bordered mb-20">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="2"><h6>Detail Information Target</h6></td>
+                                                </tr>
+                                            </thead>
                                             <tbody>
                                                 <tr>
                                                     <td width="30%">MSISDN</td>
@@ -124,29 +127,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="panel panel-default card-view">
-                                <div  class="panel-wrapper collapse in">
-                                    <div  class="panel-body">
-                                        <h6>Detail Information Target</h6>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="exampleInputuname_3" class="col-sm-3 control-label">MMISDN</label>
-                                                    <div class="col-sm-9">
-                                                            asdsdsad
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div> -->
+                            <div class="col-lg-8">
+                                <div id="map" style="height:600px;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- End Panel Overlay-->
-                    <div class="panel-body">
-                        <div id="map" style="height:600px;"></div>
                     </div>
                 </div>
             </div>

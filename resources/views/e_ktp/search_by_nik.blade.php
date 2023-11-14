@@ -35,6 +35,121 @@
             </div>			
         </div>	
     </div>
+
+    <!-- Response Search -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">Data Dukcapil</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="item-big">
+                                    <div class="carousel slide">
+                                        <div class="carousel-inner">
+                                           <div class="item active"> <img src="{{asset('dist/img/gallery/mock1.jpg')}}" alt="Image Personal Dukcapil"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-detail-wrap text-center">
+                                    <h5 class="mb-20 mt-10 weight-500" name="td-name">[NO DATA]</h5>
+                                </div>
+                            </div>
+                                
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
+                                              <table class="table mb-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="border-none pl-0">Jenis Kelamin</td>
+                                                        <td class="border-none pl-0" name="td-sex">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Pekerjaan</td>
+                                                        <td class="pl-0" name="td-job">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Martial</td>
+                                                        <td class="pl-0" name="td-martial">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Agama</td>
+                                                        <td class="pl-0" name="td-religion">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Ayah</td>
+                                                        <td class="pl-0" name="td-father">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Ibu</td>
+                                                        <td class="pl-0" name="td-mother">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Alamat</td>
+                                                        <td class="pl-0" name="td-address">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="pa-0"></td>
+                                                    </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="table-wrap">
+                                            <div class="table-responsive">
+                                              <table class="table mb-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="border-none pl-0">RT</td>
+                                                        <td class="border-none pl-0" name="td-rt">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">RW</td>
+                                                        <td class="pl-0" name="td-rw">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Nomor KK</td>
+                                                        <td class="pl-0" name="td-nkk">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Tempat/Tgl Lahir</td>
+                                                        <td class="pl-0" name="td-ttl">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Pendidikan Terakhir</td>
+                                                        <td class="pl-0" name="td-lastedu">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-0">Golongan Darah</td>
+                                                        <td class="pl-0" name="td-bloodtype">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2"></td>
+                                                    </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     {{-- <div class="row">
         <form method="POST" action="{{ url('api/e-ktp/search-by-nik') }}">
@@ -49,7 +164,7 @@
         </form>
     </div> --}}
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default card-view">
                 <div class="panel-heading">
@@ -132,14 +247,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Panel Overlay-->
-                    {{-- <div class="panel-body">
-                        <div id="map" style="height:600px;"></div>
-                    </div> --}}
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @section('page-footer')
