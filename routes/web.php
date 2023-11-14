@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::prefix('/telecommunication')->group(function() {
+        Route::get('/locate-number', 'TelecommunicationController@locate_number');
         Route::get('/tracking-number', 'TelecommunicationController@tracking_number');
         // Route::post('/save', 'KtpController@save');
     });

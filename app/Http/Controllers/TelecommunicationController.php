@@ -16,6 +16,10 @@ class TelecommunicationController extends _Controller
     	return view('home')->with('data', $data);
     }
 
+    public function locate_number(){
+    	return view('telecommunication/locate_number');
+    }
+
     public function tracking_number(){
     	return view('telecommunication/tracking_number');
     }

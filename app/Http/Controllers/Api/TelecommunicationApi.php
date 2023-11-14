@@ -15,7 +15,7 @@ class TelecommunicationApi extends _Controller{
         $this->service = $service;
     }
 
-    public function tracking_msisdn(Request $request)
+    public function locate_msisdn(Request $request)
     {
         $payloadRequest = $request->all();
         $msisdns = $payloadRequest['msisdns'];
