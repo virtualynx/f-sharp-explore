@@ -38,7 +38,7 @@ class TransportasiService
         if($response->getStatusCode() == 200){
             $resp_arr = json_decode($response->getBody(), true);
            
-            if(isset($resp_arr['status']) && $resp_arr['status']=="data_ok"){
+            if(isset($resp_arr['status'])){
                 if($resp_arr['status']=="data_ok"){
                     if($type === 'nopol'){
                         return [$resp_arr['vehicle']];
