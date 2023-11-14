@@ -26,3 +26,8 @@ Route::prefix('/telecommunication')->group(function() {
     // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
     Route::post('/tracking-msisdn', 'Api\TelecommunicationApi@tracking_msisdn');
 });
+
+Route::prefix('/transportasi')->group(function() {
+    // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
+    Route::post('/tracking_kendaraan', 'Api\TransportasiApi@tracking_kendaraan');
+});

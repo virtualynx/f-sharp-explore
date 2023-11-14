@@ -37,3 +37,9 @@ Route::middleware('auth')->group(function() {
         // Route::post('/save', 'KtpController@save');
     });
 });
+
+Route::prefix('/transportasi')->group(function() {
+    Route::get('/cek_kendaraan', 'TransportasiController@cek_kendaraan');
+    // Route::post('/save', 'KtpController@save');
+});
+
