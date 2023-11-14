@@ -157,14 +157,32 @@
 @section('page-footer')
     <script>
         // setMap([-1.269160, 116.825264]);
-        var map = L.map('map').setView([-1.269160, 116.825264], 16);
+        // var map = L.map('map').setView([-1.269160, 116.825264], 16);
+        var map = L.map(
+            "map",
+            {
+                center: [-6.268333, 106.955],
+                crs: L.CRS.EPSG3857,
+                zoom: 14,
+                zoomControl: true,
+                preferCanvas: false,
+            }
+        );
         var markers = [];
 
         L.tileLayer(
             'https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
             {
                 maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                "detectRetina": false, 
+                "maxNativeZoom": 18, 
+                "maxZoom": 18, 
+                "minZoom": 0, 
+                "noWrap": false, 
+                "opacity": 1, 
+                "subdomains": "abc", 
+                "tms": false
             }
         ).addTo(map);
 
