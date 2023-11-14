@@ -23,7 +23,7 @@
                                             <div class="input-group-addon">Search NIK</div>
                                             <input type="text" name="nik" id="nik" class="form-control" placeholder="Enter NIK" required />
                                             <span class="input-group-btn">
-                                                <button class="btn btn-danger btn-icon left-icon" onclick="searchData()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
+                                                <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchData()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
                                             </span> 
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@
                                 <div class="item-big">
                                     <div class="carousel slide">
                                         <div class="carousel-inner">
-                                           <div class="item active"> <img src="{{asset('dist/img/gallery/mock1.jpg')}}" alt="Image Personal Dukcapil"></div>
+                                           <div class="item active"> <img name="photo" src="{{asset('dist/img/gallery/mock1.jpg')}}" alt="Image Personal Dukcapil"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -260,15 +260,9 @@
 
             $(".preloader-it").show();
 
-            let test = $('[name="search_by_nik_form"]').serialize();
-            console.log(test);
-
             $.ajax({
                 type: "post",
-                data: {
-                    nik: $('[name="nik"]').val(),
-                    // _token: '{{ csrf_token() }}'
-                },
+                data: {nik: $('[name="nik"]').val()},
                 // data: $('[name="search_by_nik_form"]').serialize(),
                 cache: false,
                 // url: "{{config('app.url')}}/api/e-ktp/search-by-nik",
@@ -276,11 +270,7 @@
                 dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
-                        if(response.data.status === 'data_ok'){
-                            setData(response.data.id_data);
-                        }else if(response.data.status === 'diterima'){
-                            alert('Data Nik tidak ditemukan dengan status: "diterima"');
-                        }
+                        setData(response.data);
                     }else{
                         alert(response.message);
                     }

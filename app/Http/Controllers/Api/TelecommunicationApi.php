@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
+use App\Services\GeneralService;
 use Exception;
 use App\Services\TelecommunicationService;
 
 class TelecommunicationApi extends _Controller{
-    private TelecommunicationService $service;
+    private GeneralService $service;
 
-    public function __construct(TelecommunicationService $service){
+    public function __construct(GeneralService $service){
         $this->service = $service;
     }
 
@@ -24,7 +25,7 @@ class TelecommunicationApi extends _Controller{
             $datas = array();
             foreach($msisdns as $msisdn){
                 try{
-                    $response = $this->service->getMsisdnsPosition($msisdn);
+                    $response = $this->service->locateMsisdn($msisdn);
                     $response['status'] = 'success';
                     array_push($datas, $response);
                 }catch(Exception $e){
