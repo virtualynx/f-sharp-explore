@@ -1,6 +1,7 @@
 @php
     $breadcrumbs_parents = [
         'Telekomunikasi' => [
+            'Search Number',
             'Tracking Number'
         ],
         'Search Dukcapil' => [
@@ -10,6 +11,7 @@
     ];
 
     $breadcrumbs_links = [
+        'Search Number' => 'telecommunication/search-number',
         'Tracking Number' => 'telecommunication/tracking-number'
     ];
 

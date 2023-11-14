@@ -16,7 +16,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-12 p-0 m-0">
-                                <form method="POST" action="{{ url('api/e-ktp/search-by-nik') }}">
+                                <form name="search_by_nik_form" method="POST" action="{{ url('api/e-ktp/search-by-nik') }}">
                                     {{ csrf_field() }}
                                     <div class="form-group">
                                         <div class="input-group">
@@ -260,12 +260,19 @@
 
             $(".preloader-it").show();
 
+            let test = $('[name="search_by_nik_form"]').serialize();
+            console.log(test);
+
             $.ajax({
                 type: "post",
-                data: {nik: $('[name="nik"]').val()},
+                data: {
+                    nik: $('[name="nik"]').val(),
+                    // _token: '{{ csrf_token() }}'
+                },
+                // data: $('[name="search_by_nik_form"]').serialize(),
                 cache: false,
-                // url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn",
-                url: "{{route('api_ektp_searchbynik')}}",
+                // url: "{{config('app.url')}}/api/e-ktp/search-by-nik",
+                url: "{{route('api_ektp_search_by_nik')}}",
                 dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
@@ -277,13 +284,14 @@
                     }else{
                         alert(response.message);
                     }
-                    $(".preloader-it").hide();
                 },
                 error: function (request, error) {
                     console.log(arguments);
                     alert(" Can't do because: " + error);
+                },
+                complete: function() {
                     $(".preloader-it").hide();
-                }
+                },
             });
         }
 

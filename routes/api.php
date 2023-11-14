@@ -19,12 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('/e-ktp')->group(function() {
-    Route::post('/search-by-nik', 'Api\EKtpApi@search_by_nik')->name('api_ektp_searchbynik');
+    Route::post('/search-by-nik', 'Api\EKtpApi@search_by_nik')->name('api_ektp_search_by_nik');
 });
 
 Route::prefix('/telecommunication')->group(function() {
     // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
-    Route::post('/tracking-msisdn', 'Api\TelecommunicationApi@tracking_msisdn');
+    Route::post('/locate-msisdn', 'Api\TelecommunicationApi@locate_msisdn')->name('api_locate_number');
 });
 
 Route::prefix('/transportasi')->group(function() {
