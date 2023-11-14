@@ -75,7 +75,7 @@
         </li> --}}
         <li><hr class="light-grey-hr mb-10"/></li>
 
-        {{-- <li class="navigation-header">
+        <li class="navigation-header">
             <span>Transportasi</span> 
             <i class="zmdi zmdi-more"></i>
         </li>
@@ -88,7 +88,7 @@
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-time-restore mr-20"></i><span class="right-nav-text">History</span></div><div class="clearfix"></div></a>
         </li>
-        <li><hr class="light-grey-hr mb-10"/></li> --}}
+        <li><hr class="light-grey-hr mb-10"/></li>
 
         {{-- <li class="navigation-header">
             <span>E-Commerce</span> 

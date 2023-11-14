@@ -2,60 +2,45 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
 use Exception;
-use GuzzleHttp\Client;
+use App\Services\TransportasiService;
 
-class TransportasiApi extends Controller{
+class TransportasiApi extends _Controller{
+    private TransportasiService $service;
 
-    public function cek_kendaraan(Request $request)
+    public function __construct(TransportasiService $service){
+        $this->service = $service;
+    }
+
+    public function tracking_kendaraan(Request $request)
     {
         $payloadRequest = $request->all();
-        $msisdns = $payloadRequest['msisdns'];
-
-        $base_uri = config('api.base_uri.msisdn_track');
-        $uri = config('api.uri.msisdn_track');
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => $base_uri,
-            // You can set any number of default request options.
-            // 'timeout'  => 2.0,
-            'headers' => $this->getInsomniaHeader()
-        ]);
-
+        $nopol = $request->nopol;
+        $type = $request->type;
+       
         try{
             $datas = array();
-            foreach($msisdns as $msisdn){
-                $response = $client->request('GET', $uri.'/'.$msisdn);
-                if($response->getStatusCode() == 200){
-                    $resp_arr = json_decode($response->getBody(), true);
-                    if(isset($resp_arr['status']) && $resp_arr['status']==1 && $resp_arr['statusCode']==200){
-                        $resp_respon = $resp_arr['respon'][0];
-                        $data = [
-                            'msisdn' => $msisdn,
-                            'imsi' => $resp_respon['imsi'],
-                            'imei' => $resp_respon['imei'],
-                            'provider' => $resp_respon['net_provider'],
-                            'address' => $resp_respon['address'],
-                            'phone' => $resp_respon['phone'],
-                            'lat' => (float)$resp_respon['latitude'],
-                            'long' => (float)$resp_respon['longitude']
-                        ];
-
-                        array_push($datas, $data);
-                    }else if(isset($resp_arr['res'])){
-                        if($resp_arr['res'] == 'success'){
-                            return new ApiResponse(null, 1, $resp_arr['msg']."(msisdn: ".$msisdn.")");
-                        }else if($resp_arr['res'] == 'failed'){
-                            return new ApiResponse(null, 99, $resp_arr['msg']."(msisdn: ".$msisdn.")");
-                        }
+                try{
+                    $response = $this->service->getVehicleNumber($nopol, $type);
+                    $response['status'] = 'success';
+                    array_push($datas, $response);
+                }catch(Exception $e){
+                    if($e->getCode() == 99){
+                        throw $e;
                     }else{
-                        return new ApiResponse(null, $response->getStatusCode(), "Unknown Error");
+                        //business error
+                        $response = [
+                            'msisdn' => $nopol,
+                            'status' => 'failed',
+                            'error' => $e->getMessage()
+                        ];
+                        array_push($datas, $response);
                     }
                 }
-            }
+            
     
             return new ApiResponse($datas);
         }catch(Exception $e){

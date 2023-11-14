@@ -17,6 +17,7 @@ return [
         'kujang' => env('API_BASE_URI_KUJANG'),
     ],
     'uri' => [
+        'kendaraan_track' => env('API_URI_KENDARAAN_TRACK'),
         'msisdn_track' => env('API_URI_MSISDN_TRACK'),
         'kujang' => env('API_URI_KUJANG'),
     ]
