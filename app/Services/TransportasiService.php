@@ -13,20 +13,20 @@ class TransportasiService
     private string $base_uri;
 
     public function __construct(){
-        $this->base_uri = config('api.base_uri.msisdn_track');
+        $this->base_uri = config('api.base_uri.general');
     }
 
     private function generateHeader(){
-        $api_key = config('api.key.msisdn_track');
+        $api_key = config('api.key.general');
 
         return [
-            'User-Agent' => 'insomnia/8.3.0',
+            // 'User-Agent' => 'insomnia/8.3.0',
             'auth_key' => $api_key
         ];
     }
 
     public function getVehicleNumber(string $nopol, string $type){
-        $uri = config('api.uri.kendaraan_track');
+        $uri = config('api.uri.general.kendaraan_track');
 
         $client = new Client([
             'base_uri' => $this->base_uri,
@@ -39,25 +39,14 @@ class TransportasiService
             $resp_arr = json_decode($response->getBody(), true);
            
             if(isset($resp_arr['status']) && $resp_arr['status']=="data_ok"){
-                $resp_respon = $resp_arr['vehicle'];
-                //$data = "hai";
-                // $data = [
-                //     'msisdn' => $nopol,
-                //     'imsi' => $resp_respon['imsi'],
-                //     'imei' => $resp_respon['imei'],
-                //     'provider' => $resp_respon['net_provider'],
-                //     'address' => $resp_respon['address'],
-                //     'phone' => $resp_respon['phone'],
-                //     'lat' => (float)$resp_respon['latitude'],
-                //     'long' => (float)$resp_respon['longitude']
-                // ];
-
-                return $resp_respon;
-            }else if(isset($resp_arr['res'])){
-                if($resp_arr['res'] == 'success'){
-                    throw new Exception($resp_arr['msg'], 1);
-                }else if($resp_arr['res'] == 'failed'){
-                    throw new Exception($resp_arr['msg'], 2);
+                if($resp_arr['status']=="data_ok"){
+                    if($type === 'nopol'){
+                        return [$resp_arr['vehicle']];
+                    }else if($type === 'nik'){
+                        return $resp_arr['vehicle'];
+                    }
+                }else if($resp_arr['status']=="data_tidak_ada"){
+                    return [];
                 }
             }else{
                 throw new Exception("Unknown Error", 99);
