@@ -16,7 +16,9 @@
 	<!-- Data table CSS -->
 	<link href="{{asset('vendors/bower_components/datatables/media/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
 	<link href="{{asset('vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css')}}" rel="stylesheet" type="text/css">
-		
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css">
+	
 	<!-- Custom CSS -->
 	<link href="{{asset('dist/css/style.css')}}" rel="stylesheet" type="text/css">
 
@@ -136,7 +138,9 @@
 	<!-- Init JavaScript -->
 	<script src="{{asset('dist/js/init.js')}}"></script>
 	{{-- <script src="{{asset('dist/js/dashboard-data.js')}}"></script> --}}
-
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+	
     @yield('page-footer')
 </body>
 </html>
