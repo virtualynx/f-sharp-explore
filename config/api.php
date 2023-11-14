@@ -19,6 +19,7 @@ return [
     'uri' => [
         'general' => [
             'msisdn_track' => env('API_URI_GENERAL_MSISDN_TRACK'),
+            'ktp_data' => env('API_URI_GENERAL_KTP_DATA'),
             'kendaraan_track' => env('API_URI_GENERAL_KENDARAAN_TRACK')
         ],
         'kujang' => env('API_URI_KUJANG'),

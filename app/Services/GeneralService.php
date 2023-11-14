@@ -63,4 +63,29 @@ class GeneralService
             throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
         }
     }
+    
+    public function getKtpDataByNik(string $nik){
+        $uri = config('api.uri.general.ktp_data');
+
+        $client = new Client([
+            'base_uri' => $this->base_uri,
+            'headers' => $this->generateHeader()
+        ]);
+
+        $response = $client->request('GET', $uri.'/nik/'.$nik);
+        if($response->getStatusCode() == 200){
+            $resp_arr = json_decode($response->getBody(), true);
+            if(isset($resp_arr['status'])){
+                if($resp_arr['status']=='data_ok'){
+                    return $resp_arr['id_data'];
+                }else{
+                    throw new Exception($resp_arr['status'], 1);
+                }
+            }else{
+                throw new Exception(json_encode($resp_arr), 99);
+            }
+        }else{
+            throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
+        }
+    }
 }
