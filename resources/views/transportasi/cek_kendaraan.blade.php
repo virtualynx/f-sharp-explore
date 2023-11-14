@@ -59,7 +59,7 @@ Cek Kendaraan
             </div>
             <div class="form-group col-md-4">
                 <label for="selectTypeKendaraan">Type</label>
-                <select id="selectTypeKendaraan" class="form-control">
+                <select id="selectTypeKendaraan" class="form-control" onchange="changeType()">
                     <option value="" selected disabled>--SELECT--</option>
                     <option value="nik">NIK</option>
                     <option value="nopol">Nomor Polisi</option>
@@ -89,40 +89,120 @@ Cek Kendaraan
                         <div class="well well-sm card-view">
                             <h6 class="mb-15">Detail Information Target</h6>
                             <div class="table-wrap mt-10">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered mb-0">
+                                <div class="table-responsive" id="table-kendaraan-div">
+                                    <table class="table table-striped table-bordered mb-0" id="kendaraan_nopol" style="display: none;">
                                         <tbody>
                                             <tr>
-                                                <td width="30%">MSISDN</td>
-                                                <td name="td-msisdn">[NO DATA]</td>
+                                                <td width="30%">NO_MESIN</td>
+                                                <td name="td-nopol-no_mesin">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">IMSI</td>
-                                                <td name="td-imsi">[NO DATA]</td>
+                                                <td width="30%">NO_POLISI</td>
+                                                <td name="td-nopol-no_polisi">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">IMEI</td>
-                                                <td name="td-imei">[NO DATA]</td>
+                                                <td width="30%">NO_RANGKA</td>
+                                                <td name="td-nopol-no_rangka">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">PROVIDER</td>
-                                                <td name="td-provider">[NO DATA]</td>
+                                                <td width="30%">PEMILIK</td>
+                                                <td name="td-nopol-pemilik">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">ADDRESS</td>
-                                                <td name="td-address">[NO DATA]</td>
+                                                <td width="30%">RAKIT</td>
+                                                <td name="td-nopol-rakit">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">PHONE</td>
-                                                <td name="td-phone">[NO DATA]</td>
+                                                <td width="30%">SAMSAT_BAYAR</td>
+                                                <td name="td-nopol-samsat_bayar">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">LATITUDE</td>
-                                                <td name="td-lat">[NO DATA]</td>
+                                                <td width="30%">TGL_DAFTAR</td>
+                                                <td name="td-nopol-tgl_daftar">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">LONGITUDE</td>
-                                                <td name="td-long">[NO DATA]</td>
+                                                <td width="30%">TGL_MATI_YAD</td>
+                                                <td name="td-nopol-tgl_mati_yad">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">TGL_STNK</td>
+                                                <td name="td-nopol-stnk">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">WARNA</td>
+                                                <td name="td-nopol-warna">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">ALAMAT</td>
+                                                <td name="td-nopol-alamat">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">BBM</td>
+                                                <td name="td-nopol-bbm">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">GOL_KEND</td>
+                                                <td name="td-nopol-gol_kend">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">JENIS_KEND</td>
+                                                <td name="td-nopol-jenis_kend">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">KODE_GOLONGAN</td>
+                                                <td name="td-nopol-kode_golongan">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">KODE_JENIS</td>
+                                                <td name="td-nopol-kode_jenis">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">MERK</td>
+                                                <td name="td-nopol-merk">[NO DATA]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-striped table-bordered mb-0" id="kendaraan_nik" style="display: none;">
+                                        <tbody>
+                                            <tr>
+                                                <td width="30%">NO_POLISI</td>
+                                                <td name="td-nik-no_polisi">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">NO_RANGKA</td>
+                                                <td name="td-nik-no_rangka">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">PEMILIK</td>
+                                                <td name="td-nik-pemilik">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">ALAMAT</td>
+                                                <td name="td-nik-alamat">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">MERK</td>
+                                                <td name="td-nik-merk">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">NIK</td>
+                                                <td name="td-nik-nik">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">NO_BPKB</td>
+                                                <td name="td-nik-no_bpkb">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">WARNA</td>
+                                                <td name="td-nik-warna">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">NO_MESIN</td>
+                                                <td name="td-nik-no_mesin">[NO DATA]</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="30%">TIPE_KEND</td>
+                                                <td name="td-nik-tipe_kend">[NO DATA]</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -172,10 +252,30 @@ Cek Kendaraan
         }
     ).addTo(map);
 
+    function changeType() {
+
+        var e = document.getElementById("selectTypeKendaraan");
+        var valueType = e.value;
+        var nomorkendaraan = document.getElementById("vehicleNumber").value;
+        if (valueType == "nik") {
+            console.log("masuk if")
+            var idDiv = document.getElementById("kendaraan_nik");
+            var idDiv2 = document.getElementById("kendaraan_nopol");
+            idDiv.style.display = "table";
+            idDiv2.style.display = "none";
+        } else {
+            var idDiv = document.getElementById("kendaraan_nopol");
+            var idDiv2 = document.getElementById("kendaraan_nik");
+            idDiv.style.display = "table";
+            idDiv2.style.display = "none";
+        }
+    }
+
     function searchKendaraan() {
         var e = document.getElementById("selectTypeKendaraan");
         var valueType = e.value;
         var nomorkendaraan = document.getElementById("vehicleNumber").value;
+
         $.ajax({
             type: "post",
             data: {
@@ -187,37 +287,32 @@ Cek Kendaraan
             url: "{{config('app.url')}}/api/transportasi/tracking_kendaraan",
             dataType: "json",
             success: function(response, status) {
-                if (status == 'success' && response.status == 0) {
-                  
+                console.log("isi response " + JSON.stringify(response));
+                if (status == 'success' && response.message == "success") {
+
                     let datas = response.data;
 
-                    if (datas.length > 0) {
-                        if (markers.length > 0) {
-                            markers.forEach(marker => {
-                                map.removeLayer(marker);
+                    if (valueType == "nik") {
+                        if (datas.length > 0) {
+                            console.log("length: " + datas.length);
+
+                            datas.forEach(data => {
+                                console.log("data i " + JSON.stringify(data[0]["NO_POLISI"]));
+                                setDataKendaraan(data, valueType);
                             });
-
-                            markers = [];
                         }
+                    } else {
+                        console.log("nopol bos");
+                        if (datas.length > 0) {
+                            console.log("length: " + datas.length);
 
-                        datas.forEach(data => {
-                            setData(data);
-                            let marker = L.marker([data.lat, data.long]).addTo(map);
-                            markers.push(marker);
-                        });
-                        if (datas.length == 1) {
-                            map.flyTo(
-                                [datas[0].lat, datas[0].long],
-                                16, {
-                                    animate: true,
-                                    duration: 2 // in seconds
-                                }
-                            );
-                        } else {
-                            var group = new L.featureGroup(markers);
-                            map.fitBounds(group.getBounds());
+                            datas.forEach(data => {
+                                console.log("data i " + JSON.stringify(data["NO_POLISI"]));
+                                setDataKendaraan(data, valueType);
+                            });
                         }
                     }
+
                 } else {
                     alert(response.message);
                 }
@@ -231,88 +326,42 @@ Cek Kendaraan
         });
     }
 
-    function searchKendaraan2() {
-        let nopol = $('[name="vehicle-number"]').val();
 
-        $(".preloader-it").show();
 
-        // $.get(
-        //     "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
-        //     function(response, status){
-        //         if(response.status == 0){
-        //             setData(response.data);
-        //         }else{
-        //             alert(response.message);
-        //         }
-        //     }
-        // );
+    function setDataKendaraan(data, valueType) {
+        console.log("masuk set");
+        if (valueType == "nik") {
+            $('[name="td-nik-no_polisi"]').html(data[0]["NO_POLISI"]);
+            $('[name="td-nik-no_rangka"]').html(data[0]["NO_RANGKA"]);
+            $('[name="td-nik-pemilik"]').html(data[0]["PEMILIK"]);
+            $('[name="td-nik-alamat"]').html(data[0]["ALAMAT"]);
+            $('[name="td-nik-merk"]').html(data[0]["MERK"]);
+            $('[name="td-nik-nik"]').html(data[0]["NIK"]);
+            $('[name="td-nik-no_bpkb"]').html(data[0]["NO_BPKB"]);
+            $('[name="td-nik-warna"]').html(data[0]["WARNA"]);
+            $('[name="td-nik-no_mesin"]').html(data[0]["NO_MESIN"]);
+            $('[name="td-nik-tipe_kend"]').html(data[0]["TIPE_KEND"]);
 
-        $.ajax({
-            type: "post",
-            data: {
-                msisdns: msisdn.split(',').map(item => item.trim())
-            },
-            cache: false,
-            // url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
-            url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn",
-            dataType: "json",
-            success: function(response, status) {
-                if (status == 'success' && response.status == 0) {
-                    $([document.documentElement, document.body]).animate({
-                        scrollTop: $("#map").offset().top
-                    }, 150);
+        } else {
+            $('[name="td-nopol-no_mesin"]').html(data["NO_MESIN"]);
+            $('[name="td-nopol-no_polisi"]').html(data["NO_POLISI"]);
+            $('[name="td-nopol-pemilik"]').html(data["PEMILIK"]);
+            $('[name="td-nopol-no_rangka"]').html(data["NO_RANGKA"]);
+            $('[name="td-nopol-rakit"]').html(data["RAKIT"]);
+            $('[name="td-nopol-samsat_bayar"]').html(data["SAMSAT_BAYAR"]);
+            $('[name="td-nopol-tgl_daftar"]').html(data["TGL_DAFTAR"]);
+            $('[name="td-nopol-tgl_mati_yad"]').html(data["TGL_MATI_YAD"]);
+            $('[name="td-nopol-stnk"]').html(data["TGL_STNK"]);
+            $('[name="td-nopol-warna"]').html(data["WARNA"]);
+            $('[name="td-nopol-alamat"]').html(data["ALAMAT"]);
+            $('[name="td-nopol-bbm"]').html(data["BBM"]);
+            $('[name="td-nopol-gol_kend"]').html(data["GOL_KEND"]);
+            $('[name="td-nopol-jenis_kend"]').html(data["JENIS_KEND"]);
+            $('[name="td-nopol-kode_golongan"]').html(data["KODE_GOLONGAN"]);
+            $('[name="td-nopol-kode_jenis"]').html(data["KODE_JENIS"]);
+            $('[name="td-nopol-merk"]').html(data["MERK"]);
+        }
 
-                    let datas = response.data;
-
-                    if (datas.length > 0) {
-                        if (markers.length > 0) {
-                            markers.forEach(marker => {
-                                map.removeLayer(marker);
-                            });
-
-                            markers = [];
-                        }
-
-                        datas.forEach(data => {
-                            setData(data);
-                            let marker = L.marker([data.lat, data.long]).addTo(map);
-                            markers.push(marker);
-                        });
-                        if (datas.length == 1) {
-                            map.flyTo(
-                                [datas[0].lat, datas[0].long],
-                                16, {
-                                    animate: true,
-                                    duration: 2 // in seconds
-                                }
-                            );
-                        } else {
-                            var group = new L.featureGroup(markers);
-                            map.fitBounds(group.getBounds());
-                        }
-                    }
-                } else {
-                    alert(response.message);
-                }
-                $(".preloader-it").hide();
-            },
-            error: function(request, error) {
-                console.log(arguments);
-                alert(" Can't do because: " + error);
-                $(".preloader-it").hide();
-            }
-        });
-    }
-
-    function setData(data) {
-        $('[name="td-msisdn"]').html(data.msisdn);
-        $('[name="td-imsi"]').html(data.imsi);
-        $('[name="td-imei"]').html(data.imei);
-        $('[name="td-provider"]').html(data.provider);
-        $('[name="td-address"]').html(data.address);
-        $('[name="td-phone"]').html(data.phone);
-        $('[name="td-lat"]').html(data.lat);
-        $('[name="td-long"]').html(data.long);
     }
 </script>
 @endsection

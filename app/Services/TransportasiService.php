@@ -38,9 +38,9 @@ class TransportasiService
         if($response->getStatusCode() == 200){
             $resp_arr = json_decode($response->getBody(), true);
            
-            if(isset($resp_arr['status']) && $resp_arr['status']==1 && $resp_arr['statusCode']==200){
-                $resp_respon = $resp_arr['respon'][0];
-                $data = "hai";
+            if(isset($resp_arr['status']) && $resp_arr['status']=="data_ok"){
+                $resp_respon = $resp_arr['vehicle'];
+                //$data = "hai";
                 // $data = [
                 //     'msisdn' => $nopol,
                 //     'imsi' => $resp_respon['imsi'],
@@ -52,7 +52,7 @@ class TransportasiService
                 //     'long' => (float)$resp_respon['longitude']
                 // ];
 
-                return $data;
+                return $resp_respon;
             }else if(isset($resp_arr['res'])){
                 if($resp_arr['res'] == 'success'){
                     throw new Exception($resp_arr['msg'], 1);
