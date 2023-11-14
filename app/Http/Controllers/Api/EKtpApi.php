@@ -6,14 +6,13 @@ use App\Enum\KujangAskforEnum;
 use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
-use App\Services\GeneralService;
+use App\Services\KtpService;
 use Exception;
-use App\Services\KujangService;
 
 class EKtpApi extends _Controller{
-    private GeneralService $service;
+    private KtpService $service;
 
-    public function __construct(GeneralService $service){
+    public function __construct(KtpService $service){
         $this->service = $service;
     }
 
