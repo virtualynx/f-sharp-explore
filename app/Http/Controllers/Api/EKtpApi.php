@@ -31,4 +31,19 @@ class EKtpApi extends _Controller{
             return new ApiResponse(null, $e->getCode(), $e->getMessage());
         }
     }
+
+    public function search_by_nkk(Request $request)
+    {
+        $nkk = $request->nkk;
+
+        try{
+            // $response = $this->service->ask($nik, KujangAskforEnum::NIK);
+            $response = $this->service->getKtpDataByNkk($nkk);
+    
+            return new ApiResponse($response);
+        }catch(Exception $e){
+            // print_r($e);exit;
+            return new ApiResponse(null, $e->getCode(), $e->getMessage());
+        }
+    }
 }

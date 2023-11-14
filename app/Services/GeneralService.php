@@ -88,4 +88,43 @@ class GeneralService
             throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
         }
     }
+
+    public function getKtpDataByNkk(string $nkk){
+        $datas = [];
+        $uri = config('api.uri.general.ktp_data');
+
+        $client = new Client([
+            'base_uri' => $this->base_uri,
+            'headers' => $this->generateHeader()
+        ]);
+
+        $response = $client->request('GET', $uri.'/nkk/'.$nkk);
+        if($response->getStatusCode() == 200){
+            $resp_arr = json_decode($response->getBody(), true);
+            if(isset($resp_arr['status'])){
+                if($resp_arr['status']=='data_ok'){
+                    $responCount = count($resp_arr['family_data']);
+                    if ($responCount > 0){
+                        $respons = $resp_arr['family_data'];
+                        foreach($respons as $respon){
+                            $datas[] = [
+                                "kode_pos" => $respon["KODE_POS"],
+                                "tgl_lhr" => $respon["TGL_LHR"],
+                                "tmpt_lhr" => $respon["TMPT_LHR"],
+                                "foto" => base64_decode($respon["FOTO"])
+                            ];
+                        }
+                    }
+
+                    return $resp_arr['family_data'];
+                }else{
+                    throw new Exception($resp_arr['status'], 1);
+                }
+            }else{
+                throw new Exception(json_encode($resp_arr), 99);
+            }
+        }else{
+            throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
+        }
+    }
 }
