@@ -60,7 +60,11 @@
                                     <th>Name</th>
                                     <th>Group</th>
                                     <th>Status</th>
-                                    <th>Last Tracked</th>
+                                    <th>Success</th>
+                                    <th>Failed</th>
+                                    <th>Last Error</th>
+                                    <th>Last Updated</th>
+                                    <th>Cron Info</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,9 +83,16 @@
                                     <td>
                                         <span class="label label-success">Running</span>
                                     </td>
+                                    <td>15</td>
+                                    <td>0</td>
+                                    <td></td>
                                     <td>
                                         13 November 2023
                                     </td>
+                                    <td>
+                                        <button><i class="fa-solid fa-eye"></i></button>
+                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -102,8 +113,14 @@
                                     <td>
                                         <span class="label label-danger">Stopped</span>
                                     </td>
+                                    <td>15</td>
+                                    <td>0</td>
+                                    <td>Can't track number</td>
                                     <td>
                                         11 November 2023
+                                    </td>
+                                    <td>
+                                        <i class="fa-solid fa-eye"></i>
                                     </td>
                                 </tr>
                             </tbody>
