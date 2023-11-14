@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enum\KujangAskforEnum;
 use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
@@ -21,7 +22,7 @@ class EKtpApi extends _Controller{
         $nik = $request['nik'];
 
         try{
-            $response = $this->service->askForNik($nik);
+            $response = $this->service->ask($nik, KujangAskforEnum::NIK);
     
             return new ApiResponse($response);
         }catch(Exception $e){

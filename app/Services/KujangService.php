@@ -2,20 +2,39 @@
 
 namespace App\Services;
 
+use App\Enum\KujangAskforEnum;
 use GuzzleHttp\Client;
 use kamermans\OAuth2\OAuth2Middleware;
 use kamermans\OAuth2\GrantType\PasswordCredentials;
+use kamermans\OAuth2\Persistence\FileTokenPersistence;
 use GuzzleHttp\HandlerStack;
 
 class KujangService
 {
     private string $url_kujang;
+    private OAuth2Middleware $oauth_middleware;
 
     public function __construct(){
         $this->url_kujang = config('api.base_uri.kujang').config('api.uri.kujang');
+        $this->oauth_middleware = $this->generateOauthMiddleware(true);
     }
 
     private function getClient(){
+        $stack = HandlerStack::create();
+        $stack->push($this->oauth_middleware);
+        
+        $client = new Client([
+            'handler' => $stack,
+            'auth' => 'oauth',
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+
+        return $client;
+    }
+
+    private function generateOauthMiddleware(bool $persistToken = false): OAuth2Middleware{
         $base_uri = config('api.oauth.url');
         $username = config('api.oauth.username');
         $password = config('api.oauth.password');
@@ -33,18 +52,14 @@ class KujangService
         $grant_type = new PasswordCredentials($reauth_client, $reauth_config);
         $oauth = new OAuth2Middleware($grant_type);
 
-        $stack = HandlerStack::create();
-        $stack->push($oauth);
-        
-        $client = new Client([
-            'handler' => $stack,
-            'auth' => 'oauth',
-            'headers' => [
-                'Content-Type' => 'application/json'
-            ]
-        ]);
+        if($persistToken){
+            $token_path = 'tmp/kujang_token.json';
+            $token_persistence = new FileTokenPersistence($token_path);
+    
+            $oauth->setTokenPersistence($token_persistence);
+        }
 
-        return $client;
+        return $oauth;
     }
 
     private function encodeRequestPayload(array $payload){
@@ -53,6 +68,27 @@ class KujangService
                 'ehlo' => base64_encode(json_encode($payload))
             ]
         );
+    }
+
+    public function ask(string $wtk, KujangAskforEnum $ask_for){
+        $payload = [
+            'ask_for' => $ask_for->value,
+            'wtk' => $wtk
+        ];
+
+        $response = $this->getClient()->request(
+            'POST', 
+            $this->url_kujang, 
+            ['body' => $this->encodeRequestPayload($payload)]
+        );
+
+        if($response->getStatusCode() == 200){
+            $result = json_decode($response->getBody()->getContents(), true);
+
+            return $result;
+        }else{
+            throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
+        }
     }
 
     public function askForNik(string $nik){
