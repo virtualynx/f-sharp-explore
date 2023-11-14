@@ -22,30 +22,11 @@ class TransportasiApi extends _Controller{
         $type = $request->type;
        
         try{
-            $datas = array();
-                try{
-                    $response = $this->service->getVehicleNumber($nopol, $type);
-                    $response['status'] = 'success';
-                    array_push($datas, $response);
-                }catch(Exception $e){
-                    if($e->getCode() == 99){
-                        throw $e;
-                    }else{
-                        //business error
-                        $response = [
-                            'msisdn' => $nopol,
-                            'status' => 'failed',
-                            'error' => $e->getMessage()
-                        ];
-                        array_push($datas, $response);
-                    }
-                }
+            $response = $this->service->getVehicleNumber($nopol, $type);
             
-    
-            return new ApiResponse($datas);
+            return new ApiResponse($response);
         }catch(Exception $e){
-            // print_r($e);exit;
-            return new ApiResponse(null, 99, $e->getMessage());
+            return new ApiResponse(null, $e->getCode(), $e->getMessage());
         }
     }
 }
