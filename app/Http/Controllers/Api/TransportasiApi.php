@@ -6,25 +6,25 @@ use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
 use Exception;
-use App\Services\TelecommunicationService;
+use App\Services\TransportasiService;
 
-class TelecommunicationApi extends _Controller{
-    private TelecommunicationService $service;
+class TransportasiApi extends _Controller{
+    private TransportasiService $service;
 
-    public function __construct(TelecommunicationService $service){
+    public function __construct(TransportasiService $service){
         $this->service = $service;
     }
 
-    public function locate_msisdn(Request $request)
+    public function tracking_kendaraan(Request $request)
     {
         $payloadRequest = $request->all();
-        $msisdns = $payloadRequest['msisdns'];
-
+        $nopol = $request->nopol;
+        $type = $request->type;
+       
         try{
             $datas = array();
-            foreach($msisdns as $msisdn){
                 try{
-                    $response = $this->service->getMsisdnsPosition($msisdn);
+                    $response = $this->service->getVehicleNumber($nopol, $type);
                     $response['status'] = 'success';
                     array_push($datas, $response);
                 }catch(Exception $e){
@@ -33,14 +33,14 @@ class TelecommunicationApi extends _Controller{
                     }else{
                         //business error
                         $response = [
-                            'msisdn' => $msisdn,
+                            'msisdn' => $nopol,
                             'status' => 'failed',
                             'error' => $e->getMessage()
                         ];
                         array_push($datas, $response);
                     }
                 }
-            }
+            
     
             return new ApiResponse($datas);
         }catch(Exception $e){

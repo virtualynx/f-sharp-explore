@@ -16,7 +16,9 @@
 	<!-- Data table CSS -->
 	<link href="{{asset('vendors/bower_components/datatables/media/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
 	<link href="{{asset('vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css')}}" rel="stylesheet" type="text/css">
-		
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css">
+	
 	<!-- Custom CSS -->
 	<link href="{{asset('dist/css/style.css')}}" rel="stylesheet" type="text/css">
 
@@ -108,35 +110,37 @@
     <script src="{{asset('vendors/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     
 	<!-- Data table JavaScript -->
-	<script src="{{asset('vendors/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+	{{-- <script src="{{asset('vendors/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script> --}}
 	
 	<!-- Slimscroll JavaScript -->
 	<script src="{{asset('dist/js/jquery.slimscroll.js')}}"></script>
 	
 	<!-- Progressbar Animation JavaScript -->
-	<script src="{{asset('vendors/bower_components/waypoints/lib/jquery.waypoints.min.js')}}"></script>
-	<script src="{{asset('vendors/bower_components/jquery.counterup/jquery.counterup.min.js')}}"></script>
+	{{-- <script src="{{asset('vendors/bower_components/waypoints/lib/jquery.waypoints.min.js')}}"></script>
+	<script src="{{asset('vendors/bower_components/jquery.counterup/jquery.counterup.min.js')}}"></script> --}}
 	
 	<!-- Fancy Dropdown JS -->
-	<script src="{{asset('dist/js/dropdown-bootstrap-extended.js')}}"></script>
+	{{-- <script src="{{asset('dist/js/dropdown-bootstrap-extended.js')}}"></script> --}}
 	
 	<!-- Sparkline JavaScript -->
-	<script src="{{asset('vendors/jquery.sparkline/dist/jquery.sparkline.min.js')}}"></script>
+	{{-- <script src="{{asset('vendors/jquery.sparkline/dist/jquery.sparkline.min.js')}}"></script> --}}
 	
 	<!-- Switchery JavaScript -->
-	<script src="{{asset('vendors/bower_components/switchery/dist/switchery.min.js')}}"></script>
+	{{-- <script src="{{asset('vendors/bower_components/switchery/dist/switchery.min.js')}}"></script> --}}
 	
 	<!-- EChartJS JavaScript -->
-	<script src="{{asset('vendors/bower_components/echarts/dist/echarts-en.min.js')}}"></script>
-	<script src="{{asset('vendors/echarts-liquidfill.min.js')}}"></script>
+	{{-- <script src="{{asset('vendors/bower_components/echarts/dist/echarts-en.min.js')}}"></script>
+	<script src="{{asset('vendors/echarts-liquidfill.min.js')}}"></script> --}}
 	
 	<!-- Toast JavaScript -->
 	<script src="{{asset('vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js')}}"></script>
 	
 	<!-- Init JavaScript -->
 	<script src="{{asset('dist/js/init.js')}}"></script>
-	<script src="{{asset('dist/js/dashboard-data.js')}}"></script>
-
+	{{-- <script src="{{asset('dist/js/dashboard-data.js')}}"></script> --}}
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+	
     @yield('page-footer')
 </body>
 </html>
