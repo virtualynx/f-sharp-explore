@@ -92,20 +92,15 @@
                                     <td>
                                         <button><i class="fa-solid fa-eye"></i></button>
                                     </td>
-                                    
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div class="row">
-                                            <div class="col-sm-1">
-                                                <button><i class="fa-solid fa-xmark"></i></button>
-                                                <button><i class="fa-solid fa-pen"></i></button>
-                                                <button><i class="fa-solid fa-list"></i></i></button>
-                                                <button><i class="fa-regular fa-calendar-days"></i></button>
-                                                <button><i class="fa-solid fa-map-location-dot"></i></button>
-                                                <button><i class="fa-solid fa-play"></i></button>
-                                            </div>
-                                        </div>
+                                        <button><i class="fa-solid fa-xmark"></i></button>
+                                        <button><i class="fa-solid fa-pen"></i></button>
+                                        <button><i class="fa-solid fa-list"></i></i></button>
+                                        <button><i class="fa-regular fa-calendar-days"></i></button>
+                                        <button><i class="fa-solid fa-map-location-dot"></i></button>
+                                        <button><i class="fa-solid fa-play"></i></button>
                                     </td>
                                     <td>6281133335555</td>
                                     <td>Taulany</td>
@@ -120,7 +115,7 @@
                                         11 November 2023
                                     </td>
                                     <td>
-                                        <i class="fa-solid fa-eye"></i>
+                                        <button><i class="fa-solid fa-eye"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
