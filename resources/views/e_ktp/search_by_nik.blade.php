@@ -57,12 +57,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="product-detail-wrap text-center">
+                                    <h5 class="mb-20 mt-10 weight-500" name="td-name">[NO DATA]</h5>
+                                </div>
                             </div>
                                 
                             <div class="col-md-9">
-                                <div class="product-detail-wrap">
-                                    <h3 class="mb-20 weight-500" name="td-name">[NO DATA]</h3>
-                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="table-wrap">
@@ -97,6 +97,9 @@
                                                         <td class="pl-0">Alamat</td>
                                                         <td class="pl-0" name="td-address">[No Data]</td>
                                                     </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="pa-0"></td>
+                                                    </tr>
                                                 </tbody>
                                               </table>
                                             </div>
@@ -130,6 +133,9 @@
                                                     <tr>
                                                         <td class="pl-0">Golongan Darah</td>
                                                         <td class="pl-0" name="td-bloodtype">[No Data]</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2"></td>
                                                     </tr>
                                                 </tbody>
                                               </table>
