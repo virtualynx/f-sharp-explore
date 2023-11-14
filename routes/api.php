@@ -30,6 +30,7 @@ Route::prefix('/telecommunication')->group(function() {
     Route::get('/tracking', 'Api\TelecommunicationApi@get_tracked_number')->name('api_tracked_number_get');
     Route::delete('/tracking', 'Api\TelecommunicationApi@delete_tracked_number')->name('api_tracked_number_delete');
     Route::get('/tracking-log-datatable/{msisdn}', 'Api\TelecommunicationApi@datatable_tracking_log');
+    Route::post('/tracking-toggle', 'Api\TelecommunicationApi@toggle_tracking_number')->name('api_tracking_toggle');
 });
 
 Route::prefix('/transportasi')->group(function() {

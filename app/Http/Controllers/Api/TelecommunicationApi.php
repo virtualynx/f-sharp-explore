@@ -106,4 +106,10 @@ class TelecommunicationApi extends _Controller{
             ])
             ->make(true);
     }
+
+    public function toggle_tracking_number(Request $request){
+        $this->service->toggleTracking($request->msisdn);
+
+        return new ApiResponse(null);
+    }
 }

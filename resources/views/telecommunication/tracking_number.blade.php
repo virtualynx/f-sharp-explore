@@ -307,5 +307,29 @@
 
             map_log.panTo([lat, long]);
         }
+        
+        function toggleTracking(msisdn){
+            $(".preloader-it").show();
+
+            $.ajax({
+                type: "post",
+                data: {msisdn: msisdn},
+                cache: false,
+                url: "{{ route('api_tracking_toggle') }}",
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success'){
+                    }
+                },
+                error: function (request, error) {
+                    console.log(arguments);
+                    alert(" Can't do because: " + error);
+                },
+                complete: function(){
+                    $(".preloader-it").hide();
+                    table_tracked.draw();
+                }
+            });
+        }
     </script>
 @endsection

@@ -95,4 +95,14 @@ class TelecommunicationService extends _GeneralService
 
         return $datas;
     }
+
+    public function toggleTracking(string $msisdn){
+        $existing = TrackedNumber::where('msisdn', $msisdn)->first();
+        
+        $running = $existing->running == 0? 1: 0;
+
+        $existing->running = $running;
+
+        return $existing->save();;
+    }
 }

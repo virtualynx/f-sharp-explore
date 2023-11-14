@@ -32,14 +32,14 @@ class TelecommunicationController extends _Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    // $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                    
+                    $btnRunning = $row->running == 1? 'stop': 'play';
+
                     $actionBtn = <<<HEREDOC
                         <button onclick="deleteNumber('$row->msisdn')"><i class="fa-solid fa-xmark"></i></i></button>
                         <button onclick="editNumber('$row->msisdn')" data-toggle="modal" data-target="#modal_add_edit_number"><i class="fa-solid fa-pen"></i></i></button>
                         <button onclick="trackingLog('$row->msisdn')" data-toggle="modal" data-target="#modal_tracking_log"><i class="fa-solid fa-list"></i></i></button>
                         <button><i class="fa-solid fa-map-location-dot"></i></button>
-                        <button><i class="fa-solid fa-play"></i></button>
+                        <button onclick="toggleTracking('$row->msisdn')"><i class="fa-solid fa-$btnRunning"></i></button>
                     HEREDOC;
 
                     // <button><i class="fa-regular fa-calendar-days"></i></button>
@@ -47,7 +47,13 @@ class TelecommunicationController extends _Controller
                     return $actionBtn;
                 })
                 ->addColumn('status', function($row){
-                    return $row->running == 1? 'Running': 'Stopped';
+                    $color = $row->running == 1? 'success': 'danger';
+                    $status = $row->running == 1? 'Running': 'Stopped';
+                    $pstatus = <<<HEREDOC
+                        <p class="text-$color">$status</p>
+                    HEREDOC;
+
+                    return $pstatus;
                 })
                 ->addColumn('success_count', function($row){
                     $logs = $row->logs->toArray();
