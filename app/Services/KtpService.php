@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class KtpService extends _GeneralService
 {
@@ -20,12 +21,15 @@ class KtpService extends _GeneralService
                 if($resp_arr['status']=='data_ok'){
                     return $resp_arr['id_data'];
                 }else{
+                    Log::error($resp_arr['status']);
                     throw new Exception($resp_arr['status'], 1);
                 }
             }else{
+                Log::error(json_encode($resp_arr));
                 throw new Exception(json_encode($resp_arr), 99);
             }
         }else{
+            Log::error($response->getReasonPhrase());
             throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\TrackedNumber;
 use Exception;
 
 class TelecommunicationService extends _GeneralService
@@ -42,5 +43,10 @@ class TelecommunicationService extends _GeneralService
         }else{
             throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
         }
+    }
+
+    public function getTrackedList(){
+        // $result = TrackedNumber::get();
+        return TrackedNumber::all();
     }
 }

@@ -48,4 +48,10 @@ class TelecommunicationApi extends _Controller{
             return new ApiResponse(null, 99, $e->getMessage());
         }
     }
+
+    public function get_tracked_list(Request $request){
+        $datas = $this->service->getTrackedList();
+
+        return new ApiResponse($datas);
+    }
 }

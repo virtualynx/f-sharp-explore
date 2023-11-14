@@ -18,6 +18,8 @@
         crossorigin="">
     </script>
 
+    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    
     <style>
         @media (max-width: 768px) {
             .reorder {
@@ -52,7 +54,7 @@
                 
                 <div class="table-wrap">
                     <div class="table-responsive">
-                        <table class="table table-hover mb-0">
+                        <table name="tracked-table" class="table table-hover table-striped mb-0">
                             <thead>
                                 <tr>
                                     <th>Actions</th>
@@ -68,7 +70,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                {{-- <tr>
                                     <td>
                                         <button><i class="fa-solid fa-xmark"></i></button>
                                         <button><i class="fa-solid fa-pen"></i></button>
@@ -117,7 +119,7 @@
                                     <td>
                                         <button><i class="fa-solid fa-eye"></i></button>
                                     </td>
-                                </tr>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>
@@ -140,56 +142,67 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="form-group ml-5 mr-5">
-                            <label class="control-label mb-10" for="exampleInputUsername_2">Phone</label>
-                            <input name="phone" type="text" class="form-control" placeholder="Enter phone">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group ml-5 mr-5">
-                            <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Name</label>
-                            <input name="name" type="text" class="form-control" placeholder="Enter name">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group ml-5 mr-5">
-                            <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Group</label>
-                            <input name="group" type="text" class="form-control" placeholder="Enter group">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Minutes</label>
-                                <input name="" type="text" class="form-control" placeholder="Enter name">
+                    <form action="#" name="form_add_cron">
+                        <div class="row">
+                            <div class="form-group ml-5 mr-5">
+                                <label class="control-label mb-10" for="exampleInputUsername_2">Phone</label>
+                                <input name="phone" type="text" class="form-control" placeholder="Enter phone">
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Hour</label>
-                                <input name="" type="text" class="form-control" placeholder="Enter name">
+                        <div class="row">
+                            <div class="form-group ml-5 mr-5">
+                                <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Name</label>
+                                <input name="name" type="text" class="form-control" placeholder="Enter name">
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Date</label>
-                                <input name="" type="text" class="form-control" placeholder="Enter name">
+                        <div class="row">
+                            <div class="form-group ml-5 mr-5">
+                                <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Group</label>
+                                <input name="group" type="text" class="form-control" placeholder="Enter group">
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Month</label>
-                                <input name="" type="text" class="form-control" placeholder="Enter name">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Minutes</label>
+                                    <input name="cron_minute" value="*" type="text" class="form-control" placeholder="* or 0-59">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Hour</label>
+                                    <input name="cron_hour" value="*" type="text" class="form-control" placeholder="* or 0-23">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Day of Month</label>
+                                    <input name="cron_day_of_month" value="*" type="text" class="form-control" placeholder="* or 1-31">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">  
+                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Month</label>
+                                    <input name="cron_month" value="*" type="text" class="form-control" placeholder="* or 1-12">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Day Of Week</label>
+                                    <select class="form-control" id="sel1" name="select_day_of_week">
+                                        <option value="*">*</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Day</label>
-                                <input name="" type="text" class="form-control" placeholder="Enter name">
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" onclick="addNumber()" class="btn btn-primary">Save</button>
@@ -201,7 +214,141 @@
 @endsection
 
 @section('page-footer')
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+
     <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $("p").slideToggle();
+            });
+        });
+        
+        // <th>Actions</th>
+        // <th>Phone</th>
+        // <th>Name</th>
+        // <th>Group</th>
+        // <th>Status</th>
+        // <th>Success</th>
+        // <th>Failed</th>
+        // <th>Last Error</th>
+        // <th>Last Updated</th>
+        // <th>Cron Info</th>
+
+        $(function() {
+            var table = $('[name="tracked-table"]').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ url('/telecommunication/tracking-number') }}",
+                columns: [
+                    {data: 'action', orderable: false, searchable: false},
+                    {data: 'msisdn'},
+                    {data: 'name'},
+                    {data: 'group'},
+                    {data: 'status'},
+                    {data: 'success_count'},
+                    {data: 'failed_count'},
+                    {data: 'last_error'},
+                    {data: 'last_tracked'},
+                    {data: 'cron_info'},
+                ]
+            });
+        });
+
+        function getTrackedNumbers(){
+            $(".preloader-it").show();
+
+            $.ajax({
+                type: "get",
+                data: {},
+                cache: false,
+                url: "{{route('api_tracked_number_list')}}",
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        $([document.documentElement, document.body]).animate({
+                            scrollTop: $("#map").offset().top
+                        }, 150);
+                        
+                        let datas = response.data;
+
+                        if(datas.length > 0){
+                            if(markers.length > 0){
+                                markers.forEach(marker => {
+                                    map.removeLayer(marker);
+                                });
+
+                                markers = [];
+                            }
+                            
+                            let successDatas = [];
+                            datas.forEach(data => {
+                                if(data.status == 'success'){
+                                    setData(data);
+                                    let marker = L.marker([data.lat, data.long]).addTo(map);
+                                    markers.push(marker);
+                                    successDatas.push(data);
+                                }
+                            });
+                            if(successDatas.length == 1){
+                                map.flyTo(
+                                    [successDatas[0].lat, successDatas[0].long], 
+                                    16, 
+                                    {
+                                        animate: true,
+                                        duration: 2 // in seconds
+                                    }
+                                );
+                            }else if(successDatas.length > 1){
+                                var group = new L.featureGroup(markers);
+                                map.fitBounds(group.getBounds());
+                            }
+                        }
+                    }else{
+                        alert(response.message);
+                    }
+                },
+                error: function (request, error) {
+                    console.log(arguments);
+                    alert(" Can't do because: " + error);
+                },
+                complete: function() {
+                    $(".preloader-it").hide();
+                },
+            });
+        }
+
+        function addTrackedNumberRow(data){
+            let template = `
+                <tr>
+                    <td>
+                        <button><i class="fa-solid fa-xmark"></i></button>
+                        <button><i class="fa-solid fa-pen"></i></button>
+                        <button><i class="fa-solid fa-list"></i></i></button>
+                        <button><i class="fa-regular fa-calendar-days"></i></button>
+                        <button><i class="fa-solid fa-map-location-dot"></i></button>
+                        <button><i class="fa-solid fa-play"></i></button>
+                    </td>
+                    <td>{msisdn}</td>
+                    <td>{name}</td>
+                    <td>{group}</td>
+                    <td>
+                        <span class="label label-success">{status}</span>
+                    </td>
+                    <td>{success}</td>
+                    <td>{failed}</td>
+                    <td>{last_error}</td>
+                    <td>
+                        {last_tracked}
+                    </td>
+                    <td>
+                        <button><i class="fa-solid fa-eye"></i></button>
+                    </td>
+                </tr>
+            `;
+
+
+        }
 
         function addNumber(){
             // $('#myModal').on('shown.bs.modal', function () {

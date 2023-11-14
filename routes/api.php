@@ -24,8 +24,8 @@ Route::prefix('/e-ktp')->group(function() {
 });
 
 Route::prefix('/telecommunication')->group(function() {
-    // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
     Route::post('/locate-msisdn', 'Api\TelecommunicationApi@locate_msisdn')->name('api_locate_number');
+    Route::get('/tracking', 'Api\TelecommunicationApi@get_tracked_list')->name('api_tracked_number_list');
 });
 
 Route::prefix('/transportasi')->group(function() {
