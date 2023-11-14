@@ -276,6 +276,8 @@ Cek Kendaraan
         var valueType = e.value;
         var nomorkendaraan = document.getElementById("vehicleNumber").value;
 
+        $(".preloader-it").show();
+
         $.ajax({
             type: "post",
             data: {
@@ -289,40 +291,24 @@ Cek Kendaraan
             success: function(response, status) {
                 console.log("isi response " + JSON.stringify(response));
                 if (status == 'success' && response.message == "success") {
-
                     let datas = response.data;
 
-                    if (valueType == "nik") {
-                        if (datas.length > 0) {
-                            console.log("length: " + datas.length);
-
-                            datas.forEach(data => {
-                                console.log("data i " + JSON.stringify(data[0]["NO_POLISI"]));
-                                setDataKendaraan(data, valueType);
-                            });
-                        }
-                    } else {
-                        console.log("nopol bos");
-                        if (datas.length > 0) {
-                            console.log("length: " + datas.length);
-
-                            datas.forEach(data => {
-                                console.log("data i " + JSON.stringify(data["NO_POLISI"]));
-                                setDataKendaraan(data, valueType);
-                            });
-                        }
+                    if (datas.length > 0) {
+                        setDataKendaraan(datas[0], valueType);
+                    }else{
+                        alert('Data tidak ditemukan');
                     }
-
                 } else {
                     alert(response.message);
                 }
-                $(".preloader-it").hide();
             },
             error: function(request, error) {
                 console.log(arguments);
                 alert(" Can't do because: " + error);
+            },
+            complete: function() {
                 $(".preloader-it").hide();
-            }
+            },
         });
     }
 
@@ -331,16 +317,27 @@ Cek Kendaraan
     function setDataKendaraan(data, valueType) {
         console.log("masuk set");
         if (valueType == "nik") {
-            $('[name="td-nik-no_polisi"]').html(data[0]["NO_POLISI"]);
-            $('[name="td-nik-no_rangka"]').html(data[0]["NO_RANGKA"]);
-            $('[name="td-nik-pemilik"]').html(data[0]["PEMILIK"]);
-            $('[name="td-nik-alamat"]').html(data[0]["ALAMAT"]);
-            $('[name="td-nik-merk"]').html(data[0]["MERK"]);
-            $('[name="td-nik-nik"]').html(data[0]["NIK"]);
-            $('[name="td-nik-no_bpkb"]').html(data[0]["NO_BPKB"]);
-            $('[name="td-nik-warna"]').html(data[0]["WARNA"]);
-            $('[name="td-nik-no_mesin"]').html(data[0]["NO_MESIN"]);
-            $('[name="td-nik-tipe_kend"]').html(data[0]["TIPE_KEND"]);
+            // $('[name="td-nik-no_polisi"]').html(data[0]["NO_POLISI"]);
+            // $('[name="td-nik-no_rangka"]').html(data[0]["NO_RANGKA"]);
+            // $('[name="td-nik-pemilik"]').html(data[0]["PEMILIK"]);
+            // $('[name="td-nik-alamat"]').html(data[0]["ALAMAT"]);
+            // $('[name="td-nik-merk"]').html(data[0]["MERK"]);
+            // $('[name="td-nik-nik"]').html(data[0]["NIK"]);
+            // $('[name="td-nik-no_bpkb"]').html(data[0]["NO_BPKB"]);
+            // $('[name="td-nik-warna"]').html(data[0]["WARNA"]);
+            // $('[name="td-nik-no_mesin"]').html(data[0]["NO_MESIN"]);
+            // $('[name="td-nik-tipe_kend"]').html(data[0]["TIPE_KEND"]);
+            
+            $('[name="td-nik-no_polisi"]').html(data["NO_POLISI"]);
+            $('[name="td-nik-no_rangka"]').html(data["NO_RANGKA"]);
+            $('[name="td-nik-pemilik"]').html(data["PEMILIK"]);
+            $('[name="td-nik-alamat"]').html(data["ALAMAT"]);
+            $('[name="td-nik-merk"]').html(data["MERK"]);
+            $('[name="td-nik-nik"]').html(data["NIK"]);
+            $('[name="td-nik-no_bpkb"]').html(data["NO_BPKB"]);
+            $('[name="td-nik-warna"]').html(data["WARNA"]);
+            $('[name="td-nik-no_mesin"]').html(data["NO_MESIN"]);
+            $('[name="td-nik-tipe_kend"]').html(data["TIPE_KEND"]);
 
         } else {
             $('[name="td-nopol-no_mesin"]').html(data["NO_MESIN"]);
@@ -361,7 +358,6 @@ Cek Kendaraan
             $('[name="td-nopol-kode_jenis"]').html(data["KODE_JENIS"]);
             $('[name="td-nopol-merk"]').html(data["MERK"]);
         }
-
     }
 </script>
 @endsection
