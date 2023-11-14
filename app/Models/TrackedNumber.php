@@ -11,6 +11,8 @@ class TrackedNumber extends Model
     use HasFactory;
 
     protected $table = 'tracking_number_jobs';
+
+    protected $primaryKey = 'msisdn';
     
     protected $fillable = [
         'msisdn',

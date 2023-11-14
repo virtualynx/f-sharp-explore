@@ -39,7 +39,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-3 mr-10 pull-right">
-                                <button class="btn btn-success btn-icon left-icon" data-toggle="modal" data-target="#modal-add-number"><i class="fa fa-search"></i><span class="btn-text">Add Number</span></button>
+                                <button onclick="addNumber()" class="btn btn-success btn-icon left-icon" data-toggle="modal" data-target="#modal_add_edit_number"><i class="fa fa-search"></i><span class="btn-text">Add Number</span></button>
                             </div>
                         </div>
                     </div>
@@ -94,31 +94,6 @@
                                     <td>
                                         <button><i class="fa-solid fa-eye"></i></button>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button><i class="fa-solid fa-xmark"></i></button>
-                                        <button><i class="fa-solid fa-pen"></i></button>
-                                        <button><i class="fa-solid fa-list"></i></i></button>
-                                        <button><i class="fa-regular fa-calendar-days"></i></button>
-                                        <button><i class="fa-solid fa-map-location-dot"></i></button>
-                                        <button><i class="fa-solid fa-play"></i></button>
-                                    </td>
-                                    <td>6281133335555</td>
-                                    <td>Taulany</td>
-                                    <td>Artis</td>
-                                    <td>
-                                        <span class="label label-danger">Stopped</span>
-                                    </td>
-                                    <td>15</td>
-                                    <td>0</td>
-                                    <td>Can't track number</td>
-                                    <td>
-                                        11 November 2023
-                                    </td>
-                                    <td>
-                                        <button><i class="fa-solid fa-eye"></i></button>
-                                    </td>
                                 </tr> --}}
                             </tbody>
                         </table>
@@ -129,88 +104,8 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modal-add-number" role="dialog">
-        <div class="modal-dialog">
-    
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Number</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="#" name="form_add_cron">
-                        <div class="row">
-                            <div class="form-group ml-5 mr-5">
-                                <label class="control-label mb-10" for="exampleInputUsername_2">Phone</label>
-                                <input name="phone" type="text" class="form-control" placeholder="Enter phone">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group ml-5 mr-5">
-                                <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Name</label>
-                                <input name="name" type="text" class="form-control" placeholder="Enter name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group ml-5 mr-5">
-                                <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Group</label>
-                                <input name="group" type="text" class="form-control" placeholder="Enter group">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Minutes</label>
-                                    <input name="cron_minute" value="*" type="text" class="form-control" placeholder="* or 0-59">
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Hour</label>
-                                    <input name="cron_hour" value="*" type="text" class="form-control" placeholder="* or 0-23">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Day of Month</label>
-                                    <input name="cron_day_of_month" value="*" type="text" class="form-control" placeholder="* or 1-31">
-                                </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="form-group">  
-                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Month</label>
-                                    <input name="cron_month" value="*" type="text" class="form-control" placeholder="* or 1-12">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Day Of Week</label>
-                                    <select class="form-control" id="sel1" name="select_day_of_week">
-                                        <option value="*">*</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" onclick="addNumber()" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('telecommunication.tracking_number.modal_add_edit_number')
+    @include('telecommunication.tracking_number.modal_tracking_log')
 @endsection
 
 @section('page-footer')
@@ -218,25 +113,13 @@
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
-        $(document).ready(function(){
-            $("button").click(function(){
-                $("p").slideToggle();
-            });
-        });
-        
-        // <th>Actions</th>
-        // <th>Phone</th>
-        // <th>Name</th>
-        // <th>Group</th>
-        // <th>Status</th>
-        // <th>Success</th>
-        // <th>Failed</th>
-        // <th>Last Error</th>
-        // <th>Last Updated</th>
-        // <th>Cron Info</th>
+        var table_tracked = null;
+        var table_log = null;
+        var map_log = null;
+        var marker_log = null;
 
-        $(function() {
-            var table = $('[name="tracked-table"]').DataTable({
+        $(function(){
+            table_tracked = $('[name="tracked-table"]').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('/telecommunication/tracking-number') }}",
@@ -253,179 +136,176 @@
                     {data: 'cron_info'},
                 ]
             });
+
+            // $('[name="btn_add_number"]').click(function(){
+            //     $data = $('[name="form_add_number"]').serialize();
+            //     console.log($data);
+            // });
+            $('[name="btn_save_number"]').click(addOrSaveNumber);
+
+            map_log = L.map(
+                "map_log",
+                {
+                    center: [-6.268333, 106.955],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 14,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            L.tileLayer(
+                'https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
+                {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    "detectRetina": false, 
+                    "maxNativeZoom": 18, 
+                    "maxZoom": 18, 
+                    "minZoom": 0, 
+                    "noWrap": false, 
+                    "opacity": 1, 
+                    "subdomains": "abc", 
+                    "tms": false
+                }
+            ).addTo(map_log);
         });
 
-        function getTrackedNumbers(){
+        function addNumber(){
+            $('[name="mode"]').val('add');
+        }
+
+        function editNumber(msisdn){
+            $('[name="mode"]').val('edit');
+
             $(".preloader-it").show();
 
             $.ajax({
                 type: "get",
-                data: {},
+                data: {msisdn: msisdn},
                 cache: false,
-                url: "{{route('api_tracked_number_list')}}",
+                url: "{{ route('api_tracked_number_get') }}",
                 dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
-                        $([document.documentElement, document.body]).animate({
-                            scrollTop: $("#map").offset().top
-                        }, 150);
-                        
-                        let datas = response.data;
-
-                        if(datas.length > 0){
-                            if(markers.length > 0){
-                                markers.forEach(marker => {
-                                    map.removeLayer(marker);
-                                });
-
-                                markers = [];
-                            }
-                            
-                            let successDatas = [];
-                            datas.forEach(data => {
-                                if(data.status == 'success'){
-                                    setData(data);
-                                    let marker = L.marker([data.lat, data.long]).addTo(map);
-                                    markers.push(marker);
-                                    successDatas.push(data);
-                                }
-                            });
-                            if(successDatas.length == 1){
-                                map.flyTo(
-                                    [successDatas[0].lat, successDatas[0].long], 
-                                    16, 
-                                    {
-                                        animate: true,
-                                        duration: 2 // in seconds
-                                    }
-                                );
-                            }else if(successDatas.length > 1){
-                                var group = new L.featureGroup(markers);
-                                map.fitBounds(group.getBounds());
-                            }
-                        }
-                    }else{
-                        alert(response.message);
+                        let data = response.data;
+                        $('[name="phone"]').val(data.msisdn);
+                        $('[name="name"]').val(data.name);
+                        $('[name="group"]').val(data.group);
+                        $('[name="cron_minute"]').val(data.cron_minute);
+                        $('[name="cron_hour"]').val(data.cron_hour);
+                        $('[name="cron_dayofmonth"]').val(data.cron_dayofmonth);
+                        $('[name="cron_month"]').val(data.cron_month);
+                        $('[name="cron_dayofweek"]').val(data.cron_dayofweek);
                     }
                 },
                 error: function (request, error) {
                     console.log(arguments);
                     alert(" Can't do because: " + error);
                 },
-                complete: function() {
+                complete: function(){
                     $(".preloader-it").hide();
-                },
+                }
             });
         }
 
-        function addTrackedNumberRow(data){
-            let template = `
-                <tr>
-                    <td>
-                        <button><i class="fa-solid fa-xmark"></i></button>
-                        <button><i class="fa-solid fa-pen"></i></button>
-                        <button><i class="fa-solid fa-list"></i></i></button>
-                        <button><i class="fa-regular fa-calendar-days"></i></button>
-                        <button><i class="fa-solid fa-map-location-dot"></i></button>
-                        <button><i class="fa-solid fa-play"></i></button>
-                    </td>
-                    <td>{msisdn}</td>
-                    <td>{name}</td>
-                    <td>{group}</td>
-                    <td>
-                        <span class="label label-success">{status}</span>
-                    </td>
-                    <td>{success}</td>
-                    <td>{failed}</td>
-                    <td>{last_error}</td>
-                    <td>
-                        {last_tracked}
-                    </td>
-                    <td>
-                        <button><i class="fa-solid fa-eye"></i></button>
-                    </td>
-                </tr>
-            `;
+        function deleteNumber(msisdn){
+            if (confirm('Delete number '+msisdn+' from tracking?')) {
+                $(".preloader-it").show();
 
-
+                $.ajax({
+                    type: "delete",
+                    data: {msisdn: msisdn},
+                    cache: false,
+                    url: "{{ route('api_tracked_number_delete') }}",
+                    dataType: "json",
+                    success: function (response, status) {
+                        if(status == 'success' && response.status == 0){
+                            alert('Hapus nomor berhasil');
+                        }
+                    },
+                    error: function (request, error) {
+                        console.log(arguments);
+                        alert(" Can't do because: " + error);
+                    },
+                    complete: function(){
+                        $(".preloader-it").hide();
+                        table_tracked.draw();
+                    }
+                });
+            }
         }
 
-        function addNumber(){
-            // $('#myModal').on('shown.bs.modal', function () {
-            //     $('#myInput').trigger('focus');
-            // });
-            // $('#myModal').show();
+        function addOrSaveNumber(a){
+            let data = $('[name="form_add_edit_number"]').serialize();
 
-            // $(".preloader-it").show();
+            $(".preloader-it").show();
 
-            // $.ajax({
-            //     type: "post",
-            //     data: {msisdns: msisdn.split(',').map(item=>item.trim())},
-            //     cache: false,
-            //     url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn",
-            //     dataType: "json",
-            //     success: function (response, status) {
-            //         if(status == 'success' && response.status == 0){
-            //             $([document.documentElement, document.body]).animate({
-            //                 scrollTop: $("#map").offset().top
-            //             }, 150);
-                        
-            //             let datas = response.data;
+            $.ajax({
+                type: "post",
+                data: $('[name="form_add_edit_number"]').serialize(),
+                cache: false,
+                url: "{{ route('api_tracked_number_save') }}",
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success'){
+                        alert('Penyimpanan berhasil');
+                    }
+                },
+                error: function (request, error) {
+                    console.log(arguments);
+                    alert(" Can't do because: " + error);
+                },
+                complete: function(){
+                    $(".preloader-it").hide();
+                    // $('[name="modal_add_edit_number"]').hide();
+                    $('[name="modal_add_edit_number"]').modal('hide');
+                    table_tracked.draw();
+                }
+            });
+        }
 
-            //             if(datas.length > 0){
-            //                 if(markers.length > 0){
-            //                     markers.forEach(marker => {
-            //                         map.removeLayer(marker);
-            //                     });
+        function trackingLog(msisdn){
+            if(table_log !== null){
+                table_log.clear().destroy();
+            }
 
-            //                     markers = [];
-            //                 }
-                            
-            //                 let successDatas = [];
-            //                 datas.forEach(data => {
-            //                     if(data.status == 'success'){
-            //                         setData(data);
-            //                         let marker = L.marker([data.lat, data.long]).addTo(map);
-            //                         markers.push(marker);
-            //                         successDatas.push(data);
-            //                     }
-            //                 });
-            //                 if(successDatas.length == 1){
-            //                     map.flyTo(
-            //                         [successDatas[0].lat, successDatas[0].long], 
-            //                         16, 
-            //                         {
-            //                             animate: true,
-            //                             duration: 2 // in seconds
-            //                         }
-            //                     );
-            //                 }else if(successDatas.length > 1){
-            //                     var group = new L.featureGroup(markers);
-            //                     map.fitBounds(group.getBounds());
-            //                 }
-            //             }
-            //         }else{
-            //             alert(response.message);
-            //         }
-            //         $(".preloader-it").hide();
-            //     },
-            //     error: function (request, error) {
-            //         console.log(arguments);
-            //         alert(" Can't do because: " + error);
-            //         $(".preloader-it").hide();
+            table_log = $('[name="table_log"]').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{config('app.url')}}/api/telecommunication/tracking-log-datatable/"+msisdn,
+                columns: [
+                    // {data: 'action', orderable: false, searchable: false},
+                    {data: 'time'},
+                    {data: 'see_button'},
+                    {data: 'lat_long'},
+                    {data: 'status'},
+                ]
+            });
+        }
+
+        function seeCoordinateOnMap(lat, long){
+            if(map_log !== null){
+                // map_log.off();
+                // map_log.remove();
+            }
+
+            if(marker_log !== null){
+                map_log.removeLayer(marker_log);
+            }
+
+            marker_log = L.marker([lat, long]).addTo(map_log);
+
+            // map_log.flyTo(
+            //     [lat, long], 
+            //     16, 
+            //     {
+            //         animate: true,
+            //         duration: 2 // in seconds
             //     }
-            // });
-        }
+            // );
 
-        function setData(data){
-            $('[name="td-msisdn"]').html(data.msisdn);
-            $('[name="td-imsi"]').html(data.imsi);
-            $('[name="td-imei"]').html(data.imei);
-            $('[name="td-provider"]').html(data.provider);
-            $('[name="td-address"]').html(data.address);
-            $('[name="td-phone"]').html(data.phone);
-            $('[name="td-lat"]').html(data.lat);
-            $('[name="td-long"]').html(data.long);
+            map_log.panTo([lat, long]);
         }
     </script>
 @endsection

@@ -35,13 +35,14 @@ class TelecommunicationController extends _Controller
                     // $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
                     
                     $actionBtn = <<<HEREDOC
-                        <button onclick="deleteTracked('$row->msisdn')"><i class="fa-solid fa-xmark"></i></i></button>
-                        <button onclick="editTracked('$row->msisdn')"><i class="fa-solid fa-pen"></i></i></button>
-                        <button><i class="fa-solid fa-list"></i></i></button>
-                        <button><i class="fa-regular fa-calendar-days"></i></button>
+                        <button onclick="deleteNumber('$row->msisdn')"><i class="fa-solid fa-xmark"></i></i></button>
+                        <button onclick="editNumber('$row->msisdn')" data-toggle="modal" data-target="#modal_add_edit_number"><i class="fa-solid fa-pen"></i></i></button>
+                        <button onclick="trackingLog('$row->msisdn')" data-toggle="modal" data-target="#modal_tracking_log"><i class="fa-solid fa-list"></i></i></button>
                         <button><i class="fa-solid fa-map-location-dot"></i></button>
                         <button><i class="fa-solid fa-play"></i></button>
                     HEREDOC;
+
+                    // <button><i class="fa-regular fa-calendar-days"></i></button>
                     
                     return $actionBtn;
                 })
