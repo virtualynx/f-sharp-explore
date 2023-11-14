@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
-use App\Services\GeneralService;
 use Exception;
 use App\Services\TelecommunicationService;
 
 class TelecommunicationApi extends _Controller{
-    private GeneralService $service;
+    private TelecommunicationService $service;
 
-    public function __construct(GeneralService $service){
+    public function __construct(TelecommunicationService $service){
         $this->service = $service;
     }
 
