@@ -78,7 +78,7 @@
                                                         <td class="pl-0" name="td-job">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0">Martial</td>
+                                                        <td class="pl-0">Marital</td>
                                                         <td class="pl-0" name="td-martial">[No Data]</td>
                                                     </tr>
                                                     <tr>
