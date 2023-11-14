@@ -73,12 +73,66 @@
             <div class="panel panel-default card-view">
                 <div class="panel-heading">
                     <div class="pull-left">
-                        <h6 class="panel-title txt-dark">Maps</h6>
+                        <h6 class="panel-title txt-dark">Detail Information And Maps</h6>
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-wrapper collapse in">
-                    <!-- Panel Overlay-->
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="table-wrap">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered mb-20">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="2"><h6>Detail Information Target</h6></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td width="30%">MSISDN</td>
+                                                    <td name="td-msisdn">[NO DATA]</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="30%">IMSI</td>
+                                                    <td name="td-imsi">[NO DATA]</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="30%">IMEI</td>
+                                                    <td name="td-imei">[NO DATA]</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="30%">PROVIDER</td>
+                                                    <td name="td-provider">[NO DATA]</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="30%">ADDRESS</td>
+                                                    <td name="td-address">[NO DATA]</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="30%">PHONE</td>
+                                                    <td name="td-phone">[NO DATA]</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="30%">LATITUDE</td>
+                                                    <td name="td-lat">[NO DATA]</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="30%">LONGITUDE</td>
+                                                    <td name="td-long">[NO DATA]</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div id="map" style="height:600px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <!-- Panel Overlay-->
                     <div class="row mt-15 ml-5" id="panel-overlay-gmaps">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="well well-sm card-view">
@@ -147,7 +201,7 @@
                     <!-- End Panel Overlay-->
                     <div class="panel-body">
                         <div id="map" style="height:600px;"></div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
