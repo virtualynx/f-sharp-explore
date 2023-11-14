@@ -10,15 +10,18 @@ return [
         'password' => env('OAUTH2_PASSWORD'),
     ],
     'key' => [
-        'msisdn_track' => env('API_KEY_MSISDN_TRACK'),
+        'general' => env('API_KEY_GENERAL'),
     ],
     'base_uri' => [
-        'msisdn_track' => env('API_BASE_URI_MSISDN_TRACK'),
+        'general' => env('API_BASE_URI_GENERAL'),
         'kujang' => env('API_BASE_URI_KUJANG'),
     ],
     'uri' => [
-        'kendaraan_track' => env('API_URI_KENDARAAN_TRACK'),
-        'msisdn_track' => env('API_URI_MSISDN_TRACK'),
+        'general' => [
+            'msisdn_track' => env('API_URI_GENERAL_MSISDN_TRACK'),
+            'ktp_data' => env('API_URI_GENERAL_KTP_DATA'),
+            'kendaraan_track' => env('API_URI_GENERAL_KENDARAAN_TRACK')
+        ],
         'kujang' => env('API_URI_KUJANG'),
     ]
 ];

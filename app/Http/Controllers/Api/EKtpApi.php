@@ -6,28 +6,29 @@ use App\Enum\KujangAskforEnum;
 use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
+use App\Services\GeneralService;
 use Exception;
 use App\Services\KujangService;
 
 class EKtpApi extends _Controller{
-    private KujangService $service;
+    private GeneralService $service;
 
-    public function __construct(KujangService $service){
+    public function __construct(GeneralService $service){
         $this->service = $service;
     }
 
     public function search_by_nik(Request $request)
     {
-        $payloadRequest = $request->all();
         $nik = $request['nik'];
 
         try{
-            $response = $this->service->ask($nik, KujangAskforEnum::NIK);
+            // $response = $this->service->ask($nik, KujangAskforEnum::NIK);
+            $response = $this->service->getKtpDataByNik($nik);
     
             return new ApiResponse($response);
         }catch(Exception $e){
             // print_r($e);exit;
-            return new ApiResponse(null, 99, $e->getMessage());
+            return new ApiResponse(null, $e->getCode(), $e->getMessage());
         }
     }
 }
