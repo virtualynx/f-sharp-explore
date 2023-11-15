@@ -22,11 +22,21 @@
 	<!-- Custom CSS -->
 	<link href="{{asset('dist/css/style_v_0_1.css')}}" rel="stylesheet" type="text/css">
 
-	<style>
+	<style type="text/css"> 
+		.lds-spinner,
+		.lds-spinner div,
+		.lds-spinner div:after {
+			box-sizing: border-box;
+		}
+
 		.lds-spinner {
-			color: official;
+			color: black;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			/* bring your own prefixes */
+			transform: translate(-50%, -50%);
 			display: inline-block;
-			position: relative;
 			width: 80px;
 			height: 80px;
 		}
@@ -40,12 +50,12 @@
 			content: " ";
 			display: block;
 			position: absolute;
-			top: 3px;
-			left: 37px;
-			width: 6px;
-			height: 18px;
+			top: 3.2px;
+			left: 36.8px;
+			width: 6.4px;
+			height: 17.6px;
 			border-radius: 20%;
-			background: #fff;
+			background: currentColor;
 		}
 
 		.lds-spinner div:nth-child(1) {
@@ -117,68 +127,6 @@
 				opacity: 0;
 			}
 		}
-		/* .opacity70 {
-			opacity: 70%;
-		}
-
-		.loading {
-			font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
-			text-transform:uppercase;
-			
-			width:150px;
-			text-align:center;
-			line-height:50px;
-			
-			position:fixed;
-			left:0;right:0;top:50%;
-			margin:auto;
-			transform:translateY(-50%);
-		}
-
-		.loading span {
-			position:relative;
-			z-index:999;
-			color:#fff;
-		}
-
-		.loading:before {
-			content:'';
-			background:#61bdb6;
-			width:128px;
-			height:36px;
-			display:block;
-			position:absolute;
-			top:0;left:0;right:0;bottom:0;
-			margin:auto;
-			
-			animation:2s loadingBefore infinite ease-in-out;
-		}
-
-		@keyframes loadingBefore {
-			0%   {transform:translateX(-14px);}
-			50%  {transform:translateX(14px);}
-			100% {transform:translateX(-14px);}
-		}
-
-		.loading:after {
-			content:'';
-			background:#ff3600;
-			width:14px;
-			height:60px;
-			display:block;
-			position:absolute;
-			top:0;left:0;right:0;bottom:0;
-			margin:auto;
-			opacity:.5;
-			
-			animation:2s loadingAfter infinite ease-in-out;
-		}
-
-		@keyframes loadingAfter {
-			0%   {transform:translateX(-50px);}
-			50%  {transform:translateX(50px);}
-			100% {transform:translateX(-50px);}
-		} */
 	</style>
 	
     @yield('page-head')
