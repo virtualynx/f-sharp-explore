@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\TrackedNumber;
+use App\Models\TrackedNumberGeofence;
 use App\Models\TrackedNumberLog;
 use Exception;
 
@@ -59,18 +60,6 @@ class TelecommunicationService extends _GeneralService
 
     public function addTrackedNumber(array $data){
         $newdata = new TrackedNumber();
-        // $newdata->fill([
-        //     'msisdn' => $data['phone'],
-        //     'name' => $data['name'],
-        //     'group' => $data['group'],
-        //     'cron_minute' => $data['cron_minute'],
-        //     'cron_hour' => $data['cron_hour'],
-        //     'cron_dayofmonth' => $data['cron_dayofmonth'],
-        //     'cron_month' => $data['cron_month'],
-        //     'cron_dayofweek' => $data['cron_dayofweek']
-        // ]);
-        $data['msisdn'] = $data['phone'];
-        unset($data['phone']);
         $newdata->fill($data);
 
         $newdata->save();
@@ -78,7 +67,6 @@ class TelecommunicationService extends _GeneralService
 
     public function saveTrackedNumber(string $msisdn, array $data): bool{
         $existing = TrackedNumber::where('msisdn', $msisdn)->first();
-        unset($data['phone']);
         $existing->fill($data);
 
         return $existing->save();
@@ -104,5 +92,29 @@ class TelecommunicationService extends _GeneralService
         $existing->running = $running;
 
         return $existing->save();;
+    }
+
+    public function getGeofence(string $msisdn){
+        $datas = TrackedNumberGeofence::where('msisdn', $msisdn)->get();
+
+        return $datas;
+    }
+
+    public function saveGeofence(string $msisdn, string $action, string $geojson){
+        $datas = TrackedNumberGeofence::where('msisdn', $msisdn)->get();
+
+        $data = null;
+        if(count($datas) == 0){
+            $data = new TrackedNumberGeofence();
+            $data->msisdn = $msisdn;
+        }else if(count($datas) == 1){
+            $data = $datas[0];
+        }else if(count($datas) > 1){
+            throw new Exception('Multiple Geofence is not supported yet');
+        }
+        $data->action = $action;
+        $data->geojson = $geojson;
+
+        return $data->save();
     }
 }

@@ -49,7 +49,9 @@ Search By NKK
         <div class="panel panel-info card-view red-border">
             <div class="panel-heading">
                 <div class="pull-left">
-                    <h6 class="panel-title txt-dark">Data Dukcapil</h6>
+                    <h6 class="panel-title txt-dark">
+                        Lakukan pencarian data terlebih dahulu pada "Search Box" diatas
+                    </h6>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -80,6 +82,7 @@ Search By NKK
                 var content = "";
                 var dataArr = response.data;
 
+                $('.panel-title').html('Data Dukcapil');
                 $("#resultsNKK").html('');
                 if(dataArr !== null){
                     for (var i = 0; i < dataArr.length; i++) {
@@ -214,9 +217,8 @@ Search By NKK
                
                 $(".preloader-it").hide();
             },
-            error: function(request, error) {
-                console.log(arguments);
-                alert(" Can't do because: " + error);
+            error: ajaxErrorHandler,
+            complete: function(){
                 $(".preloader-it").hide();
             }
         });
