@@ -1,7 +1,7 @@
 @extends('_template_authorized')
 
 @section('page-title')
-SEARCH BY NKK
+Search By NKK
 @endsection
 
 @section('page-head')
