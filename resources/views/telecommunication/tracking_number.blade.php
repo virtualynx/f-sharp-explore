@@ -270,6 +270,11 @@
                 table_log.clear().destroy();
             }
 
+            //force trigger map calibration upon hidden, in-tab map
+            setTimeout(function () {
+                window.dispatchEvent(new Event("resize"));
+            }, 750);
+
             table_log = $('[name="table_log"]').DataTable({
                 processing: true,
                 serverSide: true,
@@ -296,16 +301,16 @@
 
             marker_log = L.marker([lat, long]).addTo(map_log);
 
-            // map_log.flyTo(
-            //     [lat, long], 
-            //     16, 
-            //     {
-            //         animate: true,
-            //         duration: 2 // in seconds
-            //     }
-            // );
+            map_log.flyTo(
+                [lat, long], 
+                16, 
+                {
+                    animate: true,
+                    duration: 2 // in seconds
+                }
+            );
 
-            map_log.panTo([lat, long]);
+            // map_log.panTo([lat, long]);
         }
         
         function toggleTracking(msisdn){
