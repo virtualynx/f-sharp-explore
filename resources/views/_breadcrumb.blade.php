@@ -1,15 +1,12 @@
 @php
     $breadcrumbs_parents = [
         'Telekomunikasi' => [
-            'Locate Number',
+            'Search Number',
             'Tracking Number'
         ],
         'Search Dukcapil' => [
             'Search By NKK',
             'Search By NIK'
-        ],
-        'Transportation' => [
-            'Cek Kendaraan'
         ]
     ];
 
