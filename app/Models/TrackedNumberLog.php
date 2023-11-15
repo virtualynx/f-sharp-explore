@@ -10,6 +10,8 @@ class TrackedNumberLog extends Model
     use HasFactory;
 
     protected $table = 'tracking_number_logs';
+
+    protected $primaryKey = 'uuid';
     
     protected $fillable = [
         'msisdn',

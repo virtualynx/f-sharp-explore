@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="form-group ml-5 mr-5">
                             <label class="control-label mb-10" for="exampleInputUsername_2">Phone</label>
-                            <input name="phone" type="text" class="form-control" placeholder="Enter phone">
+                            <input name="msisdn" type="text" class="form-control" placeholder="Enter phone">
                         </div>
                     </div>
                     <div class="row">

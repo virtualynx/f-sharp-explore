@@ -25,12 +25,14 @@ Route::prefix('/e-ktp')->group(function() {
 
 Route::prefix('/telecommunication')->group(function() {
     Route::post('/locate-msisdn', 'Api\TelecommunicationApi@locate_msisdn')->name('api_locate_number');
-    Route::get('/tracking-list', 'Api\TelecommunicationApi@get_tracked_list')->name('api_tracked_number_list');
+    Route::get('/tracking', 'Api\TelecommunicationApi@datatable_tracked_numbers')->name('api_tracked_number_list');
+    Route::get('/tracking/{msisdn}', 'Api\TelecommunicationApi@get_tracked_number');
     Route::post('/tracking', 'Api\TelecommunicationApi@save_tracked_number')->name('api_tracked_number_save');
-    Route::get('/tracking', 'Api\TelecommunicationApi@get_tracked_number')->name('api_tracked_number_get');
     Route::delete('/tracking', 'Api\TelecommunicationApi@delete_tracked_number')->name('api_tracked_number_delete');
     Route::get('/tracking-log-datatable/{msisdn}', 'Api\TelecommunicationApi@datatable_tracking_log');
     Route::post('/tracking-toggle', 'Api\TelecommunicationApi@toggle_tracking_number')->name('api_tracking_toggle');
+    Route::get('/tracking-geofence/{msisdn}', 'Api\TelecommunicationApi@get_geofence_v2');
+    Route::post('/tracking-geofence', 'Api\TelecommunicationApi@save_geofence')->name('api_tracking_geofence_save');
 });
 
 Route::prefix('/transportasi')->group(function() {
