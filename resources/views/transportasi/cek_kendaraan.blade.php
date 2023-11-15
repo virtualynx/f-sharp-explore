@@ -22,56 +22,42 @@ Cek Kendaraan
 
 @section('page-content')
 <!-- Title -->
-<div class="row heading-bg">
-    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-        <h5 class="txt-dark">Tracking Number</h5>
-    </div>
-    <!-- Breadcrumb -->
-    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-        <ol class="breadcrumb">
-            <li>Transportasi</li>
-            <li><a href="/transportasi/cek_kendaraan"><span>Cek Kendaraan</span></a></li>
-        </ol>
-    </div>
-    <!-- /Breadcrumb -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="row">
+                        <form>
+                            <div class="col-sm-8 p-0 m-0">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Tracking Vehicle</div>
+                                        <input type="text" id="vehicleNumber" name="vehicleNumber" class="form-control" placeholder="Enter Vehicle Number (NOPOL) Or NIK" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 p-0 m-0">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <select id="selectTypeKendaraan" class="form-control" onchange="changeType()">
+                                            <option value="" selected disabled>- Select Option -</option>
+                                            <option value="nik">NIK</option>
+                                            <option value="nopol">Vehicle Number (NOPOL)</option>
+                                        </select>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-primary btn-icon left-icon" onclick="searchKendaraan()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>
+                                        </span> 
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>			
+    </div>	
 </div>
-<!-- /Title -->
-<!-- <div class="row reorder form-group">
-    <div class="col-md-3 cold-xs-12">
-        <label class="input-group-addon text-left">Input Vehicle Number</label>
-    </div>
-    <div class="col-md-6 cold-xs-12">
-        <input type="text" id="vehicleNumber" name="vehicleNumber" class="form-control" placeholder="Tracking Vehicle Number">
-    </div>
-    <div class="col-md-3 cold-xs-12">
-        <span class="input-group-btn">
-            <button class="btn btn-primary btn-icon left-icon" onclick="searchKendaraan()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
-        </span>
-    </div>
-</div> -->
-
-<form>
-    <div class="form-row">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="vehicleNumber">Nomor Kendaraan</label>
-                <input type="text" class="form-control" id="vehicleNumber">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="selectTypeKendaraan">Type</label>
-                <select id="selectTypeKendaraan" class="form-control" onchange="changeType()">
-                    <option value="" selected disabled>--SELECT--</option>
-                    <option value="nik">NIK</option>
-                    <option value="nopol">Nomor Polisi</option>
-                </select>
-            </div>
-            <div class="form-group col-md-2">
-                <br />
-                <button type="button" class="btn btn-primary" onclick="searchKendaraan()">Cari</button>
-            </div>
-        </div>
-
-</form>
 
 <div class="row">
     <div class="col-lg-12">
