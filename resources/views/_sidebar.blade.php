@@ -1,7 +1,7 @@
 <!-- Left Sidebar Menu -->
 <div class="fixed-sidebar-left">
     <ul class="nav navbar-nav side-nav nicescroll-bar">
-        <li class="navigation-header">
+        <li class="navigation-header pt-15">
             <span>Main Menus</span> 
             <i class="zmdi zmdi-more"></i>
         </li>
@@ -53,7 +53,7 @@
             <a class="{{ request()->is('telecommunication/locate-number') ? 'active' : '' }}" href="/telecommunication/locate-number"><div class="pull-left"><i class="zmdi zmdi-phone-setting mr-20"></i><span class="right-nav-text">Locate Number</span></div><div class="clearfix"></div></a>
         </li>
         <li>
-            <a class="{{ request()->is('telecommunication/tracking-number') ? 'active' : '' }}" href="/telecommunication/tracking-number"><div class="pull-left"><i class="zmdi zmdi-phone-setting mr-20"></i><span class="right-nav-text">Tracking Number</span></div><div class="clearfix"></div></a>
+            <a class="{{ request()->is('telecommunication/tracking-number') ? 'active' : '' }}" href="/telecommunication/tracking-number"><div class="pull-left"><i class="zmdi zmdi-smartphone-info mr-20"></i><span class="right-nav-text">Tracking Number</span></div><div class="clearfix"></div></a>
         </li>
         {{-- <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-male-female mr-20"></i><span class="right-nav-text">Profile Tracking</span></div><div class="clearfix"></div></a>
@@ -86,7 +86,7 @@
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-bike mr-20"></i><span class="right-nav-text">Gojek</span></div><div class="clearfix"></div></a>
         </li> --}}
         <li>
-            <a href="/transportasi/cek_kendaraan"><div class="pull-left"><i class="zmdi zmdi-car mr-20"></i><span class="right-nav-text">Cek Kendaraan</span></div><div class="clearfix"></div></a>
+            <a class="{{ request()->is('transportasi/cek_kendaraan') ? 'active' : '' }}" href="/transportasi/cek_kendaraan"><div class="pull-left"><i class="zmdi zmdi-car mr-20"></i><span class="right-nav-text">Cek Kendaraan</span></div><div class="clearfix"></div></a>
         </li>
         {{-- <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-time-restore mr-20"></i><span class="right-nav-text">History</span></div><div class="clearfix"></div></a>
