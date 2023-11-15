@@ -20,7 +20,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css">
 	
 	<!-- Custom CSS -->
-	<link href="{{asset('dist/css/style_v_0_1.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('dist/css/style_v_0_2.css')}}" rel="stylesheet" type="text/css">
 
 	<style type="text/css"> 
 		.lds-spinner,
