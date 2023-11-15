@@ -19,7 +19,13 @@
     </script>
 
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" rel="stylesheet">
     
+    <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js">
+    </script>
+
     <style>
         @media (max-width: 768px) {
             .reorder {
@@ -106,6 +112,7 @@
 
     @include('telecommunication.tracking_number.modal_add_edit_number')
     @include('telecommunication.tracking_number.modal_tracking_log')
+    @include('telecommunication.tracking_number.modal_set_geofence')
 @endsection
 
 @section('page-footer')
@@ -118,11 +125,17 @@
         var map_log = null;
         var marker_log = null;
 
+        var map_geofence = null;
+        var drawnItems = null;
+        var drawControl = null;
+        var geofencePoints = [];
+        var geofenceGeoJson = null;
+
         $(function(){
             table_tracked = $('[name="tracked-table"]').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ url('/telecommunication/tracking-number') }}",
+                ajax: "{{ route('api_tracked_number_list') }}",
                 columns: [
                     {data: 'action', orderable: false, searchable: false},
                     {data: 'msisdn'},
@@ -165,10 +178,107 @@
                     "minZoom": 0, 
                     "noWrap": false, 
                     "opacity": 1, 
-                    "subdomains": "abc", 
+                    // "subdomains": "abc", 
                     "tms": false
                 }
             ).addTo(map_log);
+
+            map_geofence = L.map(
+                "map_geofence",
+                {
+                    center: [-6.268333, 106.955],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 14,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            L.tileLayer(
+                'https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
+                {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    "detectRetina": false, 
+                    "maxNativeZoom": 18, 
+                    "maxZoom": 18, 
+                    "minZoom": 0, 
+                    "noWrap": false, 
+                    "opacity": 1, 
+                    // "subdomains": "abc", 
+                    "tms": false
+                }
+            ).addTo(map_geofence);
+            
+            drawnItems = new L.FeatureGroup();
+            map_geofence.addLayer(drawnItems);
+
+            // let coords = '[[48,-3],[50,5],[44,11],[48,-3]]';
+            // let a = JSON.parse(coords);
+            // let polygon = L.polygon(a, {color: 'blue'}).addTo(drawnItems);
+            // polygon.addTo(map_geofence);
+            // map_geofence.fitBounds(polygon.getBounds());
+
+            drawControl = new L.Control.Draw({
+                draw : {
+                    position : 'top',
+                    polygon : true,
+                    polyline : false,
+                    rectangle : true,
+                    circle : true,
+                    circlemarker : false,
+                    marker: false
+                },
+                edit: {
+                    featureGroup: drawnItems,
+                    edit: true,
+                    remove: true
+                }
+            });
+            map_geofence.addControl(drawControl);
+
+            map_geofence.on('draw:created', function (e) {
+                let layer = e.layer;
+                let type = e.layerType;
+
+                // console.log(layer.getLatLngs());
+                console.log(JSON.stringify(layer.toGeoJSON()));
+
+                if(type === 'rectangle'){
+                    // layer.on('mouseover', function() {
+                    //     alert(layer.getLatLngs());    
+                    // });
+                }else if(type === 'circle'){
+                }else if(type === 'polygon'){
+                }
+
+                let points = layer.getLatLngs()[0];
+                geofencePoints = points.map((a)=>{return [a.lat, a.lng]});
+                geofenceGeoJson = layer.toGeoJSON();
+
+                drawnItems.addLayer(layer);
+            });
+
+            map_geofence.on('draw:drawstart', function (e) {
+                let cancelDraw = false;
+
+                if(drawnItems.getLayers().length > 0){
+                    cancelDraw = true;
+                    alert('Hanya bisa membuat 1 geofence');
+                }else if($('#select_geofence_action').val() == ''){
+                    cancelDraw = true;
+                    alert('Pilih action IN/OUT sebelum membuat geofence');
+                }
+
+                if(cancelDraw){
+                    drawControl._toolbars.draw._activeMode.handler.disable();
+                }
+            });
+
+            map_geofence.on('draw:deleted', function (e) {
+                geofencePoints = [];
+                geofenceGeoJson = null;
+            });
         });
 
         function addNumber(){
@@ -182,27 +292,26 @@
 
             $.ajax({
                 type: "get",
-                data: {msisdn: msisdn},
+                // data: {msisdn: msisdn},
                 cache: false,
-                url: "{{ route('api_tracked_number_get') }}",
+                url: "{{ url('api/telecommunication/tracking') }}/"+msisdn,
                 dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
                         let data = response.data;
-                        $('[name="phone"]').val(data.msisdn);
+                        $('[name="msisdn"]').val(data.msisdn);
                         $('[name="name"]').val(data.name);
                         $('[name="group"]').val(data.group);
-                        $('[name="cron_minute"]').val(data.cron_minute);
-                        $('[name="cron_hour"]').val(data.cron_hour);
-                        $('[name="cron_dayofmonth"]').val(data.cron_dayofmonth);
-                        $('[name="cron_month"]').val(data.cron_month);
-                        $('[name="cron_dayofweek"]').val(data.cron_dayofweek);
+
+                        let cron_notations = data.cron_notation.split(" ");
+                        $('[name="cron_minute"]').val(cron_notations[0]);
+                        $('[name="cron_hour"]').val(cron_notations[1]);
+                        $('[name="cron_dayofmonth"]').val(cron_notations[2]);
+                        $('[name="cron_month"]').val(cron_notations[3]);
+                        $('[name="cron_dayofweek"]').val(cron_notations[4]);
                     }
                 },
-                error: function (request, error) {
-                    console.log(arguments);
-                    alert(" Can't do because: " + error);
-                },
+                error: ajaxErrorHandler,
                 complete: function(){
                     $(".preloader-it").hide();
                 }
@@ -224,10 +333,7 @@
                             alert('Hapus nomor berhasil');
                         }
                     },
-                    error: function (request, error) {
-                        console.log(arguments);
-                        alert(" Can't do because: " + error);
-                    },
+                    error: ajaxErrorHandler,
                     complete: function(){
                         $(".preloader-it").hide();
                         table_tracked.draw();
@@ -237,13 +343,23 @@
         }
 
         function addOrSaveNumber(a){
-            let data = $('[name="form_add_edit_number"]').serialize();
+            let data = $('[name="form_add_edit_number"]').serializeArray();
+            console.log(data);
+
+            let cron_notation = $('[name="cron_minute"]').val()+' '+$('[name="cron_hour"]').val()+' '+$('[name="cron_dayofmonth"]').val()+' '+$('[name="cron_month"]').val()+' '+$('[name="cron_dayofweek"]').val();
+            let payload = {
+                mode: $('[name="mode"]').val(),
+                msisdn: $('[name="msisdn"]').val(),
+                name: $('[name="name"]').val(),
+                group: $('[name="group"]').val(),
+                cron_notation: cron_notation
+            };
 
             $(".preloader-it").show();
 
             $.ajax({
                 type: "post",
-                data: $('[name="form_add_edit_number"]').serialize(),
+                data: payload,
                 cache: false,
                 url: "{{ route('api_tracked_number_save') }}",
                 dataType: "json",
@@ -252,10 +368,7 @@
                         alert('Penyimpanan berhasil');
                     }
                 },
-                error: function (request, error) {
-                    console.log(arguments);
-                    alert(" Can't do because: " + error);
-                },
+                error: ajaxErrorHandler,
                 complete: function(){
                     $(".preloader-it").hide();
                     // $('[name="modal_add_edit_number"]').hide();
@@ -326,15 +439,54 @@
                     if(status == 'success'){
                     }
                 },
-                error: function (request, error) {
-                    console.log(arguments);
-                    alert(" Can't do because: " + error);
-                },
+                error: ajaxErrorHandler,
                 complete: function(){
                     $(".preloader-it").hide();
                     table_tracked.draw();
                 }
             });
+        }
+
+        function loadGeofence(msisdn){
+            //force trigger map calibration upon hidden, in-tab map
+            setTimeout(function () {
+                window.dispatchEvent(new Event("resize"));
+            }, 750);
+
+            $(".preloader-it").show();
+
+            $("#btn_geofence_set").hide();
+            $("#btn_geofence_delete").hide();
+
+            $.ajax({
+                type: "get",
+                // data: {msisdn: msisdn},
+                cache: false,
+                url: "{{ url('/api/telecommunication/tracking-geofence') }}/"+msisdn,
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        if(response != null){
+                            if(response.action != null){
+                                $('#select_geofence_action').val(response.action);
+                            }
+                            if(response.geojson != null){
+                                let savedLayer = L.geoJSON(JSON.parse(response.geojson)).addTo(map_geofence);
+                                drawnItems.addLayer(savedLayer);
+                                map_geofence.fitBounds(savedLayer.getBounds());
+                            }
+                        }
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function(){
+                    $(".preloader-it").hide();
+                }
+            });
+        }
+
+        function saveGeofence(){
+
         }
     </script>
 @endsection

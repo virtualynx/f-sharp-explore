@@ -226,10 +226,7 @@
                         alert(response.message);
                     }
                 },
-                error: function (request, error) {
-                    console.log(arguments);
-                    alert(" Can't do because: " + error);
-                },
+                error: ajaxErrorHandler,
                 complete: function() {
                     $(".preloader-it").hide();
                 },

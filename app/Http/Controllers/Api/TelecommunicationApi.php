@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
+use App\Models\TrackedNumber;
 use Exception;
 use App\Services\TelecommunicationService;
 use Yajra\DataTables\Facades\DataTables;
@@ -50,14 +51,8 @@ class TelecommunicationApi extends _Controller{
         }
     }
 
-    public function get_tracked_list(Request $request){
-        $datas = $this->service->getTrackedList();
-
-        return new ApiResponse($datas);
-    }
-
-    public function get_tracked_number(Request $request){
-        $data = $this->service->getTrackedNumber($request->msisdn);
+    public function get_tracked_number(string $msisdn){
+        $data = $this->service->getTrackedNumber($msisdn);
 
         return new ApiResponse($data);
     }
@@ -66,7 +61,7 @@ class TelecommunicationApi extends _Controller{
         if($request->mode == 'add'){
             $this->service->addTrackedNumber($request->all());
         }else if($request->mode == 'edit'){
-            $this->service->saveTrackedNumber($request->phone, $request->all());
+            $this->service->saveTrackedNumber($request->msisdn, $request->all());
         }
 
         return new ApiResponse(null);
@@ -76,6 +71,76 @@ class TelecommunicationApi extends _Controller{
         $data = $this->service->deleteTrackedNumber($request->msisdn);
 
         return new ApiResponse($data);
+    }
+
+    public function datatable_tracked_numbers(){
+        $data = $this->service->getTrackedList();
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                $btnRunning = $row->running == 1? 'stop': 'play';
+
+                $actionBtn = <<<HEREDOC
+                    <button onclick="deleteNumber('$row->msisdn')"><i class="fa-solid fa-xmark"></i></i></button>
+                    <button onclick="editNumber('$row->msisdn')" data-toggle="modal" data-target="#modal_add_edit_number"><i class="fa-solid fa-pen"></i></i></button>
+                    <button onclick="trackingLog('$row->msisdn')" data-toggle="modal" data-target="#modal_tracking_log"><i class="fa-solid fa-folder-open"></i></i></button>
+                    <button onclick="loadGeofence('$row->msisdn')" data-toggle="modal" data-target="#modal_set_geofence"><i class="fa-solid fa-map-location-dot"></i></button>
+                    <button onclick="toggleTracking('$row->msisdn')"><i class="fa-solid fa-$btnRunning"></i></button>
+                HEREDOC;
+
+                // <button><i class="fa-regular fa-calendar-days"></i></button>
+                
+                return $actionBtn;
+            })
+            ->addColumn('status', function($row){
+                $color = $row->running == 1? 'success': 'danger';
+                $status = $row->running == 1? 'Running': 'Stopped';
+                $pstatus = <<<HEREDOC
+                    <p class="text-$color">$status</p>
+                HEREDOC;
+
+                return $pstatus;
+            })
+            ->addColumn('success_count', function($row){
+                $logs = $row->logs->toArray();
+                $success = from($logs)
+                    ->where(function($a){ return $a["success"] == 1; })
+                    ->toArray();
+
+                return count($success);
+            })
+            ->addColumn('failed_count', function($row){
+                $logs = $row->logs->toArray();
+                $failed = from($logs)
+                    ->where(function($a){ return $a["success"] == 0; })
+                    ->toArray();
+                ;
+
+                return count($failed);
+            })
+            ->addColumn('last_error', function($row){
+                return null;
+            })
+            ->addColumn('last_tracked', function($row){
+                return now();
+            })
+            ->addColumn('cron_info', function($row){
+                $btn = <<<HEREDOC
+                    <button onclick="deleteTracked('$row->msisdn')"><i class="fa-solid fa-eye"></i></button>
+                HEREDOC;
+
+                return $btn;
+            })
+            ->rawColumns([
+                'action',
+                'status',
+                'success_count',
+                'failed_count',
+                'last_error',
+                'last_tracked',
+                'cron_info'
+            ])
+            ->make(true);
     }
 
     public function datatable_tracking_log(string $msisdn){
@@ -109,6 +174,36 @@ class TelecommunicationApi extends _Controller{
 
     public function toggle_tracking_number(Request $request){
         $this->service->toggleTracking($request->msisdn);
+
+        return new ApiResponse(null);
+    }
+
+    public function get_geofence(string $msisdn){
+        $datas = $this->service->getGeofence($msisdn);
+        if(count($datas) > 0){
+            $points = $datas[0]->points->toArray();
+
+            $points_arr = from($points)
+                ->select(function($a){ return [$a['lat'], $a['long']]; })
+                ->toArray();
+
+            return new ApiResponse($points_arr);
+        }
+
+        return new ApiResponse([]);
+    }
+
+    public function get_geofence_v2(string $msisdn){
+        $datas = $this->service->getGeofence($msisdn);
+        if(count($datas) > 0){
+            return new ApiResponse($datas[0]);
+        }
+
+        return new ApiResponse([]);
+    }
+
+    public function save_geofence(Request $request){
+        $this->service->saveGeofence($request->msisdn, $request->action, $request->geojson);
 
         return new ApiResponse(null);
     }

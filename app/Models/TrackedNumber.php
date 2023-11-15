@@ -18,11 +18,7 @@ class TrackedNumber extends Model
         'msisdn',
         'name',
         'group',
-        'cron_minute',
-        'cron_hour',
-        'cron_dayofmonth',
-        'cron_month',
-        'cron_dayofweek'
+        'cron_notation'
     ];
 
     public function logs(): HasMany
