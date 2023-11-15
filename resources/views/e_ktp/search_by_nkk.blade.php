@@ -131,12 +131,8 @@ Search By NKK
                         content += '<td class="pl-0" name="td-address">'+dataArr[i].ALAMAT+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%">RT</td>'
-                        content += '<td class="pl-0" name="td-rt">'+dataArr[i].NO_RT+'</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="40%">RW</td>'
-                        content += '<td class="pl-0" name="td-rw">'+dataArr[i].NO_RW+'</td>'
+                        content += '<td class="pl-0" width="40%">RT / RW</td>'
+                        content += '<td class="pl-0" name="td-rt-rw">'+dataArr[i].NO_RT+' / '+dataArr[i].NO_RW +' </td>'
                         content += "</tr>"
                         content += "<tr>"
                         content += '<td colspan="2" class="pa-0"></td>'

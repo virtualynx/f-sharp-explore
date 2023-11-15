@@ -91,12 +91,8 @@
                                                             <td class="pl-0" name="td-address">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%">RT</td>
-                                                            <td class="pl-0" name="td-rt">[No Data]</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="pl-0" width="40%">RW</td>
-                                                            <td class="pl-0" name="td-rw">[No Data]</td>
+                                                            <td class="pl-0" width="40%">RT / RW</td>
+                                                            <td class="pl-0" name="td-rt-rw">[No Data]</td>
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2" class="pa-0"></td>
@@ -210,8 +206,9 @@
             $('[name="td-father"]').html(data.NAMA_LGKP_AYAH);
             $('[name="td-mother"]').html(data.NAMA_LGKP_IBU);
             $('[name="td-address"]').html(data.ALAMAT);
-            $('[name="td-rt"]').html(data.NO_RT);
-            $('[name="td-rw"]').html(data.NO_RW);
+            $('[name="td-rt-rw"]').html(data.NO_RT+' / '+data.NO_RW);
+            // $('[name="td-rt"]').html(data.NO_RT);
+            // $('[name="td-rw"]').html(data.NO_RW);
             $('[name="td-nkk"]').html(data.NKK);
             $('[name="td-ttl"]').html(data.TMPT_LHR+', '+data.TGL_LHR);
             $('[name="td-lastedu"]').html(data.PDDK_AKH);
