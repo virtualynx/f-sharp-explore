@@ -23,7 +23,7 @@
                                             <div class="input-group-addon">Search NIK</div>
                                             <input type="text" name="nik" id="nik" class="form-control" placeholder="Enter NIK" required />
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchData()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
+                                                <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchData()"><i class="fa fa-search"></i> <span class="btn-text">Search</span></button>
                                             </span> 
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@
                                 <div class="item-big">
                                     <div class="carousel slide">
                                         <div class="carousel-inner">
-                                           <div class="item active"> <img name="photo" src="{{asset('dist/img/gallery/mock1.jpg')}}" alt="Image Personal Dukcapil"></div>
+                                           <div class="item active"><img name="photo" src="{{asset('dist/img/gallery/mock1.jpg')}}" alt="Image Personal Dukcapil" width="100%"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -67,78 +67,82 @@
                                     <div class="col-md-6">
                                         <div class="table-wrap">
                                             <div class="table-responsive">
-                                              <table class="table mb-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-none pl-0">Jenis Kelamin</td>
-                                                        <td class="border-none pl-0" name="td-sex">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Pekerjaan</td>
-                                                        <td class="pl-0" name="td-job">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Marital</td>
-                                                        <td class="pl-0" name="td-martial">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Agama</td>
-                                                        <td class="pl-0" name="td-religion">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Ayah</td>
-                                                        <td class="pl-0" name="td-father">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Ibu</td>
-                                                        <td class="pl-0" name="td-mother">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Alamat</td>
-                                                        <td class="pl-0" name="td-address">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="2" class="pa-0"></td>
-                                                    </tr>
-                                                </tbody>
-                                              </table>
+                                                <table class="table mb-0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="border-none pl-0" width="40%">NIK</td>
+                                                            <td class="border-none pl-0" name="td-nik">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Jenis Kelamin</td>
+                                                            <td class="pl-0" name="td-sex">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Pekerjaan</td>
+                                                            <td class="pl-0" name="td-job">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Marital</td>
+                                                            <td class="pl-0" name="td-marital">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Agama</td>
+                                                            <td class="pl-0" name="td-religion">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Ayah</td>
+                                                            <td class="pl-0" name="td-father">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Ibu</td>
+                                                            <td class="pl-0" name="td-mother">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Nomor KK</td>
+                                                            <td class="pl-0" name="td-nkk">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="pa-0"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="table-wrap">
                                             <div class="table-responsive">
-                                              <table class="table mb-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-none pl-0">RT</td>
-                                                        <td class="border-none pl-0" name="td-rt">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">RW</td>
-                                                        <td class="pl-0" name="td-rw">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Nomor KK</td>
-                                                        <td class="pl-0" name="td-nkk">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Tempat/Tgl Lahir</td>
-                                                        <td class="pl-0" name="td-ttl">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Pendidikan Terakhir</td>
-                                                        <td class="pl-0" name="td-lastedu">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0">Golongan Darah</td>
-                                                        <td class="pl-0" name="td-bloodtype">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="2"></td>
-                                                    </tr>
-                                                </tbody>
-                                              </table>
+                                                <table class="table mb-0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="border-none pl-0" width="40%">Alamat</td>
+                                                            <td class="border-none pl-0" name="td-address">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">RT</td>
+                                                            <td class="pl-0" name="td-rt">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">RW</td>
+                                                            <td class="pl-0" name="td-rw">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Tempat/Tgl Lahir</td>
+                                                            <td class="pl-0" name="td-ttl">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Pendidikan Terakhir</td>
+                                                            <td class="pl-0" name="td-lastedu">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Golongan Darah</td>
+                                                            <td class="pl-0" name="td-bloodtype">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -272,7 +276,16 @@
                     if(status == 'success' && response.status == 0){
                         setData(response.data);
                     }else{
-                        alert(response.message);
+                        $.toast().reset('all');
+                        $.toast({
+                            heading: 'Opps! somthing wents wrong',
+                            text: response.message,
+                            position: 'top-right',
+                            loaderBg:'#fec107',
+                            icon: 'error',
+                            hideAfter: false
+                        });
+                        // alert(response.message);
                     }
                 },
                 error: function (request, error) {
@@ -289,6 +302,7 @@
             $('[name="photo"]').attr('src', 'data:image/png;base64,'+data.FOTO);
 
             $('[name="td-name"]').html(data.NAMA_LGKP);
+            $('[name="td-nik"]').html(data.NIK);
             $('[name="td-sex"]').html(data.JENIS_KLMIN);
             $('[name="td-job"]').html(data.JENIS_PKRJN);
             $('[name="td-marital"]').html(data.STAT_KWN);

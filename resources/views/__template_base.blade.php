@@ -20,70 +20,112 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css">
 	
 	<!-- Custom CSS -->
-	<link href="{{asset('dist/css/style.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('dist/css/style_v_0_1.css')}}" rel="stylesheet" type="text/css">
 
-	<style>
-		.opacity70 {
-			opacity: 70%;
+	<style type="text/css"> 
+		.lds-spinner,
+		.lds-spinner div,
+		.lds-spinner div:after {
+			box-sizing: border-box;
 		}
 
-		.loading {
-			font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
-			text-transform:uppercase;
-			
-			width:150px;
-			text-align:center;
-			line-height:50px;
-			
-			position:fixed;
-			left:0;right:0;top:50%;
-			margin:auto;
-			transform:translateY(-50%);
+		.lds-spinner {
+			color: black;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			/* bring your own prefixes */
+			transform: translate(-50%, -50%);
+			display: inline-block;
+			width: 80px;
+			height: 80px;
 		}
 
-		.loading span {
-			position:relative;
-			z-index:999;
-			color:#fff;
+		.lds-spinner div {
+			transform-origin: 40px 40px;
+			animation: lds-spinner 1.2s linear infinite;
 		}
 
-		.loading:before {
-			content:'';
-			background:#61bdb6;
-			width:128px;
-			height:36px;
-			display:block;
-			position:absolute;
-			top:0;left:0;right:0;bottom:0;
-			margin:auto;
-			
-			animation:2s loadingBefore infinite ease-in-out;
+		.lds-spinner div:after {
+			content: " ";
+			display: block;
+			position: absolute;
+			top: 3.2px;
+			left: 36.8px;
+			width: 6.4px;
+			height: 17.6px;
+			border-radius: 20%;
+			background: currentColor;
 		}
 
-		@keyframes loadingBefore {
-			0%   {transform:translateX(-14px);}
-			50%  {transform:translateX(14px);}
-			100% {transform:translateX(-14px);}
+		.lds-spinner div:nth-child(1) {
+			transform: rotate(0deg);
+			animation-delay: -1.1s;
 		}
 
-		.loading:after {
-			content:'';
-			background:#ff3600;
-			width:14px;
-			height:60px;
-			display:block;
-			position:absolute;
-			top:0;left:0;right:0;bottom:0;
-			margin:auto;
-			opacity:.5;
-			
-			animation:2s loadingAfter infinite ease-in-out;
+		.lds-spinner div:nth-child(2) {
+			transform: rotate(30deg);
+			animation-delay: -1s;
 		}
 
-		@keyframes loadingAfter {
-			0%   {transform:translateX(-50px);}
-			50%  {transform:translateX(50px);}
-			100% {transform:translateX(-50px);}
+		.lds-spinner div:nth-child(3) {
+			transform: rotate(60deg);
+			animation-delay: -0.9s;
+		}
+
+		.lds-spinner div:nth-child(4) {
+			transform: rotate(90deg);
+			animation-delay: -0.8s;
+		}
+
+		.lds-spinner div:nth-child(5) {
+			transform: rotate(120deg);
+			animation-delay: -0.7s;
+		}
+
+		.lds-spinner div:nth-child(6) {
+			transform: rotate(150deg);
+			animation-delay: -0.6s;
+		}
+
+		.lds-spinner div:nth-child(7) {
+			transform: rotate(180deg);
+			animation-delay: -0.5s;
+		}
+
+		.lds-spinner div:nth-child(8) {
+			transform: rotate(210deg);
+			animation-delay: -0.4s;
+		}
+
+		.lds-spinner div:nth-child(9) {
+			transform: rotate(240deg);
+			animation-delay: -0.3s;
+		}
+
+		.lds-spinner div:nth-child(10) {
+			transform: rotate(270deg);
+			animation-delay: -0.2s;
+		}
+
+		.lds-spinner div:nth-child(11) {
+			transform: rotate(300deg);
+			animation-delay: -0.1s;
+		}
+
+		.lds-spinner div:nth-child(12) {
+			transform: rotate(330deg);
+			animation-delay: 0s;
+		}
+
+		@keyframes lds-spinner {
+			0% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: 0;
+			}
 		}
 	</style>
 	
@@ -93,9 +135,7 @@
 	<!-- Preloader -->
 	<div class="preloader-it opacity70">
 		{{-- <div class="la-anim-1"></div> --}}
-		<div class="loading">
-			<span>Loading</span>
-		</div>
+		<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 	</div>
 	<!-- /Preloader -->
 
