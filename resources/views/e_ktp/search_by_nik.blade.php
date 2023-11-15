@@ -39,7 +39,7 @@
     <!-- Response Search -->
     <div class="row">
         <div class="col-sm-12">
-            <div class="panel panel-default card-view">
+            <div class="panel panel-info card-view red-border">
                 <div class="panel-heading">
                     <div class="pull-left">
                         <h6 class="panel-title txt-dark">Data Dukcapil</h6>
@@ -47,7 +47,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
+                    <div class="panel-body pt-5">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="item-big">
@@ -56,9 +56,6 @@
                                            <div class="item active"><img name="photo" src="{{asset('dist/img/gallery/mock1.jpg')}}" alt="Image Personal Dukcapil" width="100%"></div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="product-detail-wrap text-center">
-                                    <h5 class="mb-20 mt-10 weight-500" name="td-name">[NO DATA]</h5>
                                 </div>
                             </div>
                                 
@@ -74,20 +71,28 @@
                                                             <td class="border-none pl-0" name="td-nik">[No Data]</td>
                                                         </tr>
                                                         <tr>
+                                                            <td class="pl-0" width="40%">Nama</td>
+                                                            <td class="pl-0" name="td-name">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%">Tempat/Tgl Lahir</td>
+                                                            <td class="pl-0" name="td-ttl">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
                                                             <td class="pl-0" width="40%">Jenis Kelamin</td>
                                                             <td class="pl-0" name="td-sex">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%">Pekerjaan</td>
-                                                            <td class="pl-0" name="td-job">[No Data]</td>
+                                                            <td class="pl-0" width="40%">Agama</td>
+                                                            <td class="pl-0" name="td-religion">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%">Marital</td>
+                                                            <td class="pl-0" width="40%">Status Perkawinan</td>
                                                             <td class="pl-0" name="td-marital">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%">Agama</td>
-                                                            <td class="pl-0" name="td-religion">[No Data]</td>
+                                                            <td class="pl-0" width="40%">Pekerjaan</td>
+                                                            <td class="pl-0" name="td-job">[No Data]</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="pl-0" width="40%">Ayah</td>
@@ -96,10 +101,6 @@
                                                         <tr>
                                                             <td class="pl-0" width="40%">Ibu</td>
                                                             <td class="pl-0" name="td-mother">[No Data]</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="pl-0" width="40%">Nomor KK</td>
-                                                            <td class="pl-0" name="td-nkk">[No Data]</td>
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2" class="pa-0"></td>
@@ -115,8 +116,12 @@
                                                 <table class="table mb-0">
                                                     <tbody>
                                                         <tr>
-                                                            <td class="border-none pl-0" width="40%">Alamat</td>
-                                                            <td class="border-none pl-0" name="td-address">[No Data]</td>
+                                                            <td class="pl-0 border-none" width="40%">Nomor KK</td>
+                                                            <td class="pl-0 border-none" name="td-nkk">[No Data]</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pl-0" width="40%" style="vertical-align: top;">Alamat</td>
+                                                            <td class="pl-0" name="td-address">[No Data]</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="pl-0" width="40%">RT</td>
@@ -125,10 +130,6 @@
                                                         <tr>
                                                             <td class="pl-0" width="40%">RW</td>
                                                             <td class="pl-0" name="td-rw">[No Data]</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="pl-0" width="40%">Tempat/Tgl Lahir</td>
-                                                            <td class="pl-0" name="td-ttl">[No Data]</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="pl-0" width="40%">Pendidikan Terakhir</td>
