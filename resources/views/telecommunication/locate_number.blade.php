@@ -76,14 +76,14 @@
                 </div>
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body pt-5">
-                        <div class="row mb-50">
+                        <div class="row mb-30">
                             <div class="col-lg-4">
                                 <div class="table-wrap">
                                     <div class="table-responsive mb-0">
                                         <table class="table table-hover mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th colspan="2 text-center">Detail Information Target</th>
+                                                    <th colspan="2" class="text-center">Detail Information Target</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
