@@ -55,9 +55,10 @@
         <li>
             <a class="{{ request()->is('telecommunication/tracking-number') ? 'active' : '' }}" href="/telecommunication/tracking-number"><div class="pull-left"><i class="zmdi zmdi-phone-setting mr-20"></i><span class="right-nav-text">Tracking Number</span></div><div class="clearfix"></div></a>
         </li>
-        {{-- <li>
-            <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-male-female mr-20"></i><span class="right-nav-text">Profile Tracking</span></div><div class="clearfix"></div></a>
+        <li>
+            <a class="{{ request()->is('telecommunication/telco_registration') ? 'active' : '' }}" href="/telecommunication/telco_registration"><div class="pull-left"><i class="zmdi zmdi-phone-setting mr-20"></i><span class="right-nav-text">Telco Registration</span></div><div class="clearfix"></div></a>
         </li>
+        {{--
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-smartphone-info mr-20"></i><span class="right-nav-text">Device Tracking</span></div><div class="clearfix"></div></a>
         </li>

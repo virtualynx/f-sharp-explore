@@ -9,17 +9,19 @@ use Exception;
 
 class TelecommunicationService extends _GeneralService
 {
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function locateMsisdn(string $msisdn){
+    public function locateMsisdn(string $msisdn)
+    {
         $uri = config('api.uri.general.msisdn_track');
 
-        $response = $this->getHttpClient()->request('GET', $uri.'/'.$msisdn);
-        if($response->getStatusCode() == 200){
+        $response = $this->getHttpClient()->request('GET', $uri . '/' . $msisdn);
+        if ($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
-            if(isset($resp_arr['status']) && $resp_arr['status']==1 && $resp_arr['statusCode']==200){
+            if (isset($resp_arr['status']) && $resp_arr['status'] == 1 && $resp_arr['statusCode'] == 200) {
                 $resp_respon = $resp_arr['respon'][0];
                 $data = [
                     'msisdn' => $msisdn,
@@ -33,17 +35,17 @@ class TelecommunicationService extends _GeneralService
                 ];
 
                 return $data;
-            }else if(isset($resp_arr['res'])){
-                if($resp_arr['res'] == 'success'){
+            } else if (isset($resp_arr['res'])) {
+                if ($resp_arr['res'] == 'success') {
                     throw new Exception($resp_arr['msg'], 1);
-                }else if($resp_arr['res'] == 'failed'){
+                } else if ($resp_arr['res'] == 'failed') {
                     throw new Exception($resp_arr['msg'], 2);
                 }
-            }else{
+            } else {
                 throw new Exception("Unknown Error", 99);
             }
-        }else{
-            throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
+        } else {
+            throw new Exception($response->getReasonPhrase() . '(' . $response->getStatusCode() . ')', 99);
         }
     }
 
@@ -116,5 +118,29 @@ class TelecommunicationService extends _GeneralService
         $data->geojson = $geojson;
 
         return $data->save();
+    }
+    
+    public function getTelcoNumber(string $value, string $type)
+    {
+        $uri = config('api.uri.general.telco_registration');
+
+        $response = $this->getHttpClient()->request('GET', $uri . '/' . $type . '/' . $value);
+
+        if ($response->getStatusCode() == 200) {
+            $resp_arr = json_decode($response->getBody(), true);
+
+            if (isset($resp_arr['status']) && $resp_arr['status'] == "data_ok") {
+                if ($resp_arr['status'] == "data_ok") {
+
+                    return $resp_arr['reg_data'];
+                } else if ($resp_arr['status'] == "data_tidak_ada") {
+                    return [];
+                }
+            } else {
+                throw new Exception("Unknown Error", 99);
+            }
+        } else {
+            throw new Exception($response->getReasonPhrase() . '(' . $response->getStatusCode() . ')', 99);
+        }
     }
 }

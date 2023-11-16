@@ -9,11 +9,8 @@ use \YaLinqo\Enumerable;
 
 class TelecommunicationController extends _Controller
 {
-    private TelecommunicationService $service;
-
-    public function __construct(TelecommunicationService $service){
+    public function __construct(){
         // $this->middleware('auth');
-        $this->service = $service;
     }
 
     public function index(){
@@ -32,5 +29,9 @@ class TelecommunicationController extends _Controller
         }
 
     	return view('telecommunication/tracking_number');
+    }
+
+    public function telco_registration(){
+    	return view('telecommunication/telco_registration');
     }
 }
