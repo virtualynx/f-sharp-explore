@@ -90,7 +90,7 @@ Telco Registration
                             <h6 class="mb-15">Detail Information Target</h6>
                             <div class="table-wrap mt-10">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered mb-0" id="kendaraan_nopol">
+                                    <table class="table table-striped table-bordered mb-0" id="tableTelco" name="tableTelco">
                                         <thead>
                                             <tr>
                                                 <th scope="col">NO</th>
@@ -157,6 +157,7 @@ Telco Registration
             url: "{{config('app.url')}}/api/telecommunication/telco_registration",
             dataType: "json",
             success: function(response, status) {
+                $("#tableTelco > tbody").html("");
                 if (status == 'success' && response.message == "success") {
                     let datas = response.data;
 
