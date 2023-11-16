@@ -51,6 +51,19 @@ class TelecommunicationApi extends _Controller{
         }
     }
 
+    public function telco_registration(Request $request)
+    {
+        $value = $request->value;
+        $type = $request->type;
+        try{
+            $response = $this->service->getTelcoNumber($value, $type);
+            
+            return new ApiResponse($response);
+        }catch(Exception $e){
+            return new ApiResponse(null, $e->getCode(), $e->getMessage());
+        }
+    }
+    
     public function get_tracked_number(string $msisdn){
         $data = $this->service->getTrackedNumber($msisdn);
 
