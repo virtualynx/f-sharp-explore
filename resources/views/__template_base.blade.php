@@ -20,7 +20,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css">
 	
 	<!-- Custom CSS -->
-	<link href="{{asset('dist/css/style_v_0_3.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('dist/css/style_v_0_4.css')}}" rel="stylesheet" type="text/css">
 
 	<style type="text/css"> 
 		.lds-spinner,
@@ -133,7 +133,7 @@
 </head>
 <body>
 	<!-- Preloader -->
-	<div class="preloader-it opacity70">
+	<div class="preloader-it opacity-80">
 		{{-- <div class="la-anim-1"></div> --}}
 		<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 	</div>
