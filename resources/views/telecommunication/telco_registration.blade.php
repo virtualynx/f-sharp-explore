@@ -1,7 +1,7 @@
 @extends('_template_authorized')
 
 @section('page-title')
-Cek Kendaraan
+Telco Registration
 @endsection
 
 @section('page-head')
