@@ -12,11 +12,13 @@ class TelecommunicationService
 {
     private string $base_uri;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->base_uri = config('api.base_uri.msisdn_track');
     }
 
-    private function generateHeader(){
+    private function generateHeader()
+    {
         $api_key = config('api.key.msisdn_track');
 
         return [
@@ -25,7 +27,8 @@ class TelecommunicationService
         ];
     }
 
-    public function getMsisdnsPosition(string $msisdn){
+    public function getMsisdnsPosition(string $msisdn)
+    {
         $uri = config('api.uri.msisdn_track');
 
         $client = new Client([
@@ -33,10 +36,10 @@ class TelecommunicationService
             'headers' => $this->generateHeader()
         ]);
 
-        $response = $client->request('GET', $uri.'/'.$msisdn);
-        if($response->getStatusCode() == 200){
+        $response = $client->request('GET', $uri . '/' . $msisdn);
+        if ($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
-            if(isset($resp_arr['status']) && $resp_arr['status']==1 && $resp_arr['statusCode']==200){
+            if (isset($resp_arr['status']) && $resp_arr['status'] == 1 && $resp_arr['statusCode'] == 200) {
                 $resp_respon = $resp_arr['respon'][0];
                 $data = [
                     'msisdn' => $msisdn,
@@ -50,17 +53,19 @@ class TelecommunicationService
                 ];
 
                 return $data;
-            }else if(isset($resp_arr['res'])){
-                if($resp_arr['res'] == 'success'){
+            } else if (isset($resp_arr['res'])) {
+                if ($resp_arr['res'] == 'success') {
                     throw new Exception($resp_arr['msg'], 1);
-                }else if($resp_arr['res'] == 'failed'){
+                } else if ($resp_arr['res'] == 'failed') {
                     throw new Exception($resp_arr['msg'], 2);
                 }
-            }else{
+            } else {
                 throw new Exception("Unknown Error", 99);
             }
-        }else{
-            throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
+        } else {
+            throw new Exception($response->getReasonPhrase() . '(' . $response->getStatusCode() . ')', 99);
         }
     }
+
+    
 }

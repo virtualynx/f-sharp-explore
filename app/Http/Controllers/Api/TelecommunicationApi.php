@@ -49,4 +49,17 @@ class TelecommunicationApi extends _Controller{
             return new ApiResponse(null, 99, $e->getMessage());
         }
     }
+
+    public function telco_registration(Request $request)
+    {
+        $value = $request->value;
+        $type = $request->type;
+        try{
+            $response = $this->service->getTelcoNumber($value, $type);
+            
+            return new ApiResponse($response);
+        }catch(Exception $e){
+            return new ApiResponse(null, $e->getCode(), $e->getMessage());
+        }
+    }
 }

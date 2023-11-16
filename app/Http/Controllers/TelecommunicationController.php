@@ -23,4 +23,8 @@ class TelecommunicationController extends _Controller
     public function tracking_number(){
     	return view('telecommunication/tracking_number');
     }
+
+    public function telco_registration(){
+    	return view('telecommunication/telco_registration');
+    }
 }
