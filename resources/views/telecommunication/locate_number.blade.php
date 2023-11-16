@@ -42,7 +42,7 @@
                                         <div class="input-group-addon">Search</div>
                                         <input type="text" name="msisdn" id="msisdn" class="form-control" placeholder="6281211112222, 6281233334444" required />
                                         <span class="input-group-btn">
-                                            <button class="btn btn-danger btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
+                                            <button class="btn btn-danger btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text"> Tracking</span></button>
                                         </span> 
                                     </div>
                                 </div>
@@ -54,72 +54,69 @@
         </div>	
     </div>
 
-    {{-- <div class="row reorder form-group">
-        <div class="col-md-3 cold-xs-12">
-            <label class="input-group-addon text-left">Input Phone Number</label>
-        </div>
-        <div class="col-md-6 cold-xs-12">
-            <input type="text" id="example-input2-group2" name="msisdn" class="form-control" placeholder="6281211112222, 6281233334444">
-        </div>
-        <div class="col-md-3 cold-xs-12">
-            <span class="input-group-btn">
-                <button class="btn btn-primary btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
-            </span> 
-        </div>
-    </div> --}}
-
     <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default card-view">
+        <div class="col-sm-12">
+            <div class="panel panel-info card-view panel-refresh red-border">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
                 <div class="panel-heading">
                     <div class="pull-left">
-                        <h6 class="panel-title txt-dark">Detail Information And Maps</h6>
+                        <h6 class="panel-title txt-dark">Data Target & Maps</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a href="#" class="pull-left inline-block refresh mr-15">
+                            <i class="zmdi zmdi-replay"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
-                        <div class="row">
+                    <div class="panel-body pt-5">
+                        <div class="row mb-50">
                             <div class="col-lg-4">
                                 <div class="table-wrap">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered mb-20">
+                                    <div class="table-responsive mb-0">
+                                        <table class="table table-hover mb-0">
                                             <thead>
                                                 <tr>
-                                                    <td colspan="2"><h6>Detail Information Target</h6></td>
+                                                    <th colspan="2 text-center">Detail Information Target</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td width="30%">MSISDN</td>
+                                                    <td width="30%"><span class="txt-dark weight-500">MSISDN</span></td>
                                                     <td name="td-msisdn">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
-                                                    <td width="30%">IMSI</td>
+                                                    <td width="30%"><span class="txt-dark weight-500">IMSI</span></td>
                                                     <td name="td-imsi">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
-                                                    <td width="30%">IMEI</td>
+                                                    <td width="30%"><span class="txt-dark weight-500">IMEI</span></td>
                                                     <td name="td-imei">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
-                                                    <td width="30%">PROVIDER</td>
+                                                    <td width="30%"><span class="txt-dark weight-500">Provider</span></td>
                                                     <td name="td-provider">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
-                                                    <td width="30%">ADDRESS</td>
+                                                    <td width="30%"><span class="txt-dark weight-500">Address</span></td>
                                                     <td name="td-address">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
-                                                    <td width="30%">PHONE</td>
+                                                    <td width="30%"><span class="txt-dark weight-500">Phone</span></td>
                                                     <td name="td-phone">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
-                                                    <td width="30%">LATITUDE</td>
+                                                    <td width="30%"><span class="txt-dark weight-500">Latitude</span></td>
                                                     <td name="td-lat">[NO DATA]</td>
                                                 </tr>
                                                 <tr>
-                                                    <td width="30%">LONGITUDE</td>
+                                                    <td width="30%"><span class="txt-dark weight-500">Longitude</span></td>
                                                     <td name="td-long">[NO DATA]</td>
                                                 </tr>
                                             </tbody>
@@ -128,7 +125,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <div id="map" style="height:600px;"></div>
+                                <div id="map" style="height:400px;"></div>
                             </div>
                         </div>
                     </div>
