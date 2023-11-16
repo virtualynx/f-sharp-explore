@@ -9,21 +9,9 @@ use Exception;
 
 class TelecommunicationService extends _GeneralService
 {
-    private string $base_uri;
-
     public function __construct()
     {
-        $this->base_uri = config('api.base_uri.msisdn_track');
-    }
-
-    private function generateHeader()
-    {
-        $api_key = config('api.key.msisdn_track');
-
-        return [
-            'User-Agent' => 'insomnia/8.3.0',
-            'auth_key' => $api_key
-        ];
+        parent::__construct();
     }
 
     public function locateMsisdn(string $msisdn)
