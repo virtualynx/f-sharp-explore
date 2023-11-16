@@ -128,7 +128,6 @@
         var map_geofence = null;
         var drawnItems = null;
         var drawControl = null;
-        var geofencePoints = [];
         var geofenceGeoJson = null;
 
         $(function(){
@@ -252,8 +251,6 @@
                 }else if(type === 'polygon'){
                 }
 
-                let points = layer.getLatLngs()[0];
-                geofencePoints = points.map((a)=>{return [a.lat, a.lng]});
                 geofenceGeoJson = layer.toGeoJSON();
 
                 drawnItems.addLayer(layer);
@@ -276,7 +273,6 @@
             });
 
             map_geofence.on('draw:deleted', function (e) {
-                geofencePoints = [];
                 geofenceGeoJson = null;
             });
         });
@@ -455,8 +451,12 @@
 
             $(".preloader-it").show();
 
-            $("#btn_geofence_set").hide();
-            $("#btn_geofence_delete").hide();
+            // map_geofence.forEach(function(layer) {
+            //     map_geofence.removeLayer(layer);
+            // });
+            // drawnItems.remove();
+
+            $('[name="input_geofence_msisdn"]').val('');
 
             $.ajax({
                 type: "get",
@@ -466,14 +466,25 @@
                 dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
-                        if(response != null){
-                            if(response.action != null){
-                                $('#select_geofence_action').val(response.action);
+                        if(response.data != null){
+                            let data = response.data;
+
+                            $('[name="input_geofence_msisdn"]').val(data.msisdn);
+                            if(data.action != null){
+                                $('#select_geofence_action').val(data.action);
                             }
-                            if(response.geojson != null){
-                                let savedLayer = L.geoJSON(JSON.parse(response.geojson)).addTo(map_geofence);
-                                drawnItems.addLayer(savedLayer);
-                                map_geofence.fitBounds(savedLayer.getBounds());
+                            if(data.geojson != null){
+                                let geometry = JSON.parse(data.geojson).geometry;
+                                let shape = null;
+                                if(geometry.type === 'Polygon'){
+                                    let latlngs = L.GeoJSON.coordsToLatLngs(geometry.coordinates, 1, L.GeoJSON.coordsToLatLng);
+                                    shape = L.polygon(latlngs, {color: 'blue'}).addTo(drawnItems);
+                                }else if(geometry.type === 'Circle'){
+
+                                }else if(geometry.type === 'Rectangle'){
+
+                                }
+                                map_geofence.fitBounds(shape.getBounds());
                             }
                         }
                     }
@@ -486,7 +497,29 @@
         }
 
         function saveGeofence(){
+            $(".preloader-it").show();
 
+            $.ajax({
+                type: "post",
+                data: {
+                    msisdn: $('[name="input_geofence_msisdn"]').val(),
+                    action: $('#select_geofence_action').val(data.action),
+                    geojson: geofenceGeoJson
+                },
+                cache: false,
+                url: "{{ route('api_tracking_geofence_save') }}",
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        let data = response.data;
+                        alert('Menyimpan geofence berhasil');
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function(){
+                    $(".preloader-it").hide();
+                }
+            });
         }
     </script>
 @endsection

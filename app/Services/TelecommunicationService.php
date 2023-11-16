@@ -107,6 +107,11 @@ class TelecommunicationService extends _GeneralService
         if(count($datas) == 0){
             $data = new TrackedNumberGeofence();
             $data->msisdn = $msisdn;
+        }else if(count($datas) == 1 && empty($geojson)){
+            $data = $datas[0];
+            $data->delete();
+            
+            return $data->save();
         }else if(count($datas) == 1){
             $data = $datas[0];
         }else if(count($datas) > 1){

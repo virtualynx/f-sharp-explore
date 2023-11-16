@@ -12,6 +12,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <input name="input_geofence_msisdn" type="hidden" value=""/>
                 <div class="row">
                     <div class="col-xs-4">
                         <button id="btn_geofence_save" onclick="saveGeofence()" type="button" class="btn btn-success btn-icon left-icon">

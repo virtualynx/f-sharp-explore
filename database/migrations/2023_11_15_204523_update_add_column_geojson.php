@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tracking_number_geo', function (Blueprint $table) {
-            $table->string('geojson', 999)->nullable();
+            $table->string('geojson', 9999)->nullable();
         });
         Schema::table('tracking_number_geo_breach', function (Blueprint $table) {
-            $table->string('geojson', 999)->nullable();
+            $table->string('geojson', 9999)->nullable();
         });
     }
 
