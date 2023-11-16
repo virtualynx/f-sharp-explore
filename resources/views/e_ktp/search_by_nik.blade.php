@@ -39,10 +39,21 @@
     <!-- Response Search -->
     <div class="row">
         <div class="col-sm-12">
-            <div class="panel panel-info card-view red-border">
+            <div class="panel panel-info card-view panel-refresh red-border">
+                <div class="refresh-container">
+                    <div class="la-anim-1"></div>
+                </div>
                 <div class="panel-heading">
                     <div class="pull-left">
                         <h6 class="panel-title txt-dark">Data Dukcapil</h6>
+                    </div>
+                    <div class="pull-right">
+                        <a href="#" class="pull-left inline-block refresh mr-15">
+                            <i class="zmdi zmdi-replay"></i>
+                        </a>
+                        <a href="#" class="pull-left inline-block full-screen mr-15">
+                            <i class="zmdi zmdi-fullscreen"></i>
+                        </a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -64,7 +75,7 @@
                                     <div class="col-md-6">
                                         <div class="table-wrap">
                                             <div class="table-responsive mb-0">
-                                                <table class="table mb-0">
+                                                <table class="table table-hover mb-0">
                                                     <tbody>
                                                         <tr>
                                                             <td class="border-none pl-0" width="40%">NIK</td>
@@ -105,7 +116,7 @@
                                     <div class="col-md-6">
                                         <div class="table-wrap">
                                             <div class="table-responsive">
-                                                <table class="table mb-0">
+                                                <table class="table table-hover mb-0">
                                                     <tbody>
                                                         <tr>
                                                             <td class="pl-0 border-none" width="40%">Nomor KK</td>
