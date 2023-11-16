@@ -121,31 +121,31 @@ Search By NKK
                         content += '<table class="table table-hover mb-0">'
                         content += "<tbody>"
                         content += "<tr>"
-                        content += '<td class="border-none pl-0" width="40%"><span class="txt-dark weight-500">NIK</span></td>'
+                        content += '<td class="border-none pl-0" width="50%"><span class="txt-dark weight-500">NIK</span></td>'
                         content += '<td class="border-none pl-0" name="td-nik">'+dataArr[i].NIK+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Nama</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Nama</span></td>'
                         content += '<td class="pl-0" name="td-name">'+dataArr[i].NAMA_LGKP+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Tempat/Tgl Lahir</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Tempat/Tgl Lahir</span></td>'
                         content += '<td class="pl-0" name="td-ttl">'+dataArr[i].TMPT_LHR+', ' + dataArr[i].TGL_LHR +' </td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Jenis Kelamin</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Jenis Kelamin</span></td>'
                         content += '<td class="pl-0" name="td-sex">'+dataArr[i].JENIS_KLMIN+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Agama</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Agama</span></td>'
                         content += '<td class="pl-0" name="td-religion">'+dataArr[i].AGAMA+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%" style="vertical-align: top;">Alamat</td>'
+                        content += '<td class="pl-0" width="50%" style="vertical-align: top;"><span class="txt-dark weight-500">Alamat</span></td>'
                         content += '<td class="pl-0" name="td-address">'+dataArr[i].ALAMAT+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">RT / RW</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">RT / RW</span></td>'
                         content += '<td class="pl-0" name="td-rt-rw">'+dataArr[i].NO_RT+' / '+dataArr[i].NO_RW +' </td>'
                         content += "</tr>"
                         content += "<tr>"
@@ -162,31 +162,31 @@ Search By NKK
                         content += '<table class="table table-hover mb-0">'
                         content += "<tbody>"
                         content += " <tr>"
-                        content += '<td class="pl-0 border-none" width="40%"><span class="txt-dark weight-500">Nomor KK</span></td>'
+                        content += '<td class="pl-0 border-none" width="50%"><span class="txt-dark weight-500">Nomor KK</span></td>'
                         content += '<td class="pl-0 border-none" name="td-nkk">'+dataArr[i].NKK+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Ayah</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Ayah</span></td>'
                         content += '<td class="pl-0" name="td-father">'+dataArr[i].NAMA_LGKP_AYAH+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Ibu</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Ibu</span></td>'
                         content += '<td class="pl-0" name="td-mother">'+dataArr[i].NAMA_LGKP_IBU+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Status Perkawinan</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Status Perkawinan</span></td>'
                         content += '<td class="pl-0" name="td-marital">'+dataArr[i].STAT_KWN+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Pekerjaan</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Pekerjaan</span></td>'
                         content += '<td class="pl-0" name="td-job">'+dataArr[i].JENIS_PKRJN+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Pendidikan Terakhir</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Pendidikan Terakhir</span></td>'
                         content += '<td class="pl-0" name="td-lastedu">'+dataArr[i].PDDK_AKH+'</td>'
                         content += "</tr>"
                         content += "<tr>"
-                        content += '<td class="pl-0" width="40%"><span class="txt-dark weight-500">Golongan Darah</span></td>'
+                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Golongan Darah</span></td>'
                         content += '<td class="pl-0" name="td-bloodtype">'+dataArr[i].GOL_DARAH+'</td>'
                         content += "</tr>"
                         content += "<tr>"
