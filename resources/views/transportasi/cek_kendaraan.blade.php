@@ -80,12 +80,12 @@ Cek Kendaraan
                 <div class="clearfix"></div>
             </div>
             <div class="panel-wrapper collapse in">
-                <div class="panel-body pt-5 pb-50">
+                <div class="panel-body pt-5">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-wrap">
                                 <div class="table-responsive mb-0" id="table-kendaraan-div">
-                                    <table class="table-hover mb-0" id="kendaraan_nopol" style="display: none;">
+                                    <table class="table table-hover mb-0 pb-50" id="kendaraan_nopol" style="display: none;">
                                         <thead>
                                             <tr>
                                                 <th colspan="2 text-center">Detail Information Target</th>
@@ -162,7 +162,7 @@ Cek Kendaraan
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <table class="table-hover mb-0" id="kendaraan_nik" style="display: none;">
+                                    <table class="table table-hover mb-0 pb-50" id="kendaraan_nik" style="display: none;">
                                         <thead>
                                             <tr>
                                                 <th colspan="2 text-center">Detail Information Target</th>
