@@ -2,13 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\TrackedNumber;
+use App\Models\TrackedNumberGeofence;
+use App\Models\TrackedNumberLog;
 use Exception;
-use GuzzleHttp\Client;
-use kamermans\OAuth2\OAuth2Middleware;
-use kamermans\OAuth2\GrantType\PasswordCredentials;
-use GuzzleHttp\HandlerStack;
 
-class TelecommunicationService
+class TelecommunicationService extends _GeneralService
 {
     private string $base_uri;
 
@@ -27,16 +26,11 @@ class TelecommunicationService
         ];
     }
 
-    public function getMsisdnsPosition(string $msisdn)
+    public function locateMsisdn(string $msisdn)
     {
-        $uri = config('api.uri.msisdn_track');
+        $uri = config('api.uri.general.msisdn_track');
 
-        $client = new Client([
-            'base_uri' => $this->base_uri,
-            'headers' => $this->generateHeader()
-        ]);
-
-        $response = $client->request('GET', $uri . '/' . $msisdn);
+        $response = $this->getHttpClient()->request('GET', $uri . '/' . $msisdn);
         if ($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
             if (isset($resp_arr['status']) && $resp_arr['status'] == 1 && $resp_arr['statusCode'] == 200) {
@@ -67,5 +61,98 @@ class TelecommunicationService
         }
     }
 
+    public function getTrackedList(){
+        // $result = TrackedNumber::get();
+        return TrackedNumber::all();
+    }
+
+    public function getTrackedNumber(string $msisdn){
+        $existing = TrackedNumber::where('msisdn', $msisdn)->first();
+
+        return $existing;
+    }
+
+    public function addTrackedNumber(array $data){
+        $newdata = new TrackedNumber();
+        $newdata->fill($data);
+
+        $newdata->save();
+    }
+
+    public function saveTrackedNumber(string $msisdn, array $data): bool{
+        $existing = TrackedNumber::where('msisdn', $msisdn)->first();
+        $existing->fill($data);
+
+        return $existing->save();
+    }
+
+    public function deleteTrackedNumber(string $msisdn): bool{
+        $existing = TrackedNumber::where('msisdn', $msisdn)->first();
+
+        return $existing->delete();
+    }
+
+    public function getTrackingLog(string $msisdn){
+        $datas = TrackedNumberLog::where('msisdn', $msisdn)->get();
+
+        return $datas;
+    }
+
+    public function toggleTracking(string $msisdn){
+        $existing = TrackedNumber::where('msisdn', $msisdn)->first();
+        
+        $running = $existing->running == 0? 1: 0;
+
+        $existing->running = $running;
+
+        return $existing->save();;
+    }
+
+    public function getGeofence(string $msisdn){
+        $datas = TrackedNumberGeofence::where('msisdn', $msisdn)->get();
+
+        return $datas;
+    }
+
+    public function saveGeofence(string $msisdn, string $action, string $geojson){
+        $datas = TrackedNumberGeofence::where('msisdn', $msisdn)->get();
+
+        $data = null;
+        if(count($datas) == 0){
+            $data = new TrackedNumberGeofence();
+            $data->msisdn = $msisdn;
+        }else if(count($datas) == 1){
+            $data = $datas[0];
+        }else if(count($datas) > 1){
+            throw new Exception('Multiple Geofence is not supported yet');
+        }
+        $data->action = $action;
+        $data->geojson = $geojson;
+
+        return $data->save();
+    }
     
+    public function getTelcoNumber(string $value, string $type)
+    {
+        $uri = config('api.uri.general.telco_registration');
+
+        $response = $this->getHttpClient()->request('GET', $uri . '/' . $type . '/' . $value);
+
+        if ($response->getStatusCode() == 200) {
+            $resp_arr = json_decode($response->getBody(), true);
+
+            if (isset($resp_arr['status']) && $resp_arr['status'] == "data_ok") {
+                if ($resp_arr['status'] == "data_ok") {
+
+                    return $resp_arr['reg_data'];
+                } else if ($resp_arr['status'] == "data_tidak_ada") {
+                    return [];
+                }
+            } else {
+                throw new Exception("Unknown Error", 99);
+            }
+        } else {
+            throw new Exception($response->getReasonPhrase() . '(' . $response->getStatusCode() . ')', 99);
+        }
+    }
 }

@@ -39,7 +39,7 @@
                             <div class="col-sm-12 p-0 m-0">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">Input Phone Number</div>
+                                        <div class="input-group-addon">Search</div>
                                         <input type="text" name="msisdn" id="msisdn" class="form-control" placeholder="6281211112222, 6281233334444" required />
                                         <span class="input-group-btn">
                                             <button class="btn btn-danger btn-icon left-icon" onclick="searchMsisdn()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
@@ -226,10 +226,7 @@
                         alert(response.message);
                     }
                 },
-                error: function (request, error) {
-                    console.log(arguments);
-                    alert(" Can't do because: " + error);
-                },
+                error: ajaxErrorHandler,
                 complete: function() {
                     $(".preloader-it").hide();
                 },

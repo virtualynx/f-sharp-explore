@@ -7,7 +7,7 @@
         
         <!-- Main Content -->
 		<div class="page-wrapper">
-            <div class="container-fluid pt-25">
+            <div class="container-fluid pt-0">
                 <!-- Title -->
                 <div class="row heading-bg">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">

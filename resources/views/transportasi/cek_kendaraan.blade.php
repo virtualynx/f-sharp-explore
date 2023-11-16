@@ -22,186 +22,191 @@ Cek Kendaraan
 
 @section('page-content')
 <!-- Title -->
-<div class="row heading-bg">
-    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-        <h5 class="txt-dark">Tracking Number</h5>
-    </div>
-    <!-- Breadcrumb -->
-    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-        <ol class="breadcrumb">
-            <li>Transportasi</li>
-            <li><a href="/transportasi/cek_kendaraan"><span>Cek Kendaraan</span></a></li>
-        </ol>
-    </div>
-    <!-- /Breadcrumb -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="row">
+                        <form>
+                            <div class="col-sm-4 p-0 m-0">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">Tracking Vehicle</div>
+                                        <select id="selectTypeKendaraan" class="form-control" onchange="changeType()">
+                                            <option value="" selected disabled> Select Type </option>
+                                            <option value="nik">NIK</option>
+                                            <option value="nopol">Vehicle Number (NOPOL)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 p-0 m-0">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" id="vehicleNumber" name="vehicleNumber" class="form-control" placeholder="Enter Vehicle Number (NOPOL) Or NIK" required />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchKendaraan()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>
+                                        </span> 
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>			
+    </div>	
 </div>
-<!-- /Title -->
-<!-- <div class="row reorder form-group">
-    <div class="col-md-3 cold-xs-12">
-        <label class="input-group-addon text-left">Input Vehicle Number</label>
-    </div>
-    <div class="col-md-6 cold-xs-12">
-        <input type="text" id="vehicleNumber" name="vehicleNumber" class="form-control" placeholder="Tracking Vehicle Number">
-    </div>
-    <div class="col-md-3 cold-xs-12">
-        <span class="input-group-btn">
-            <button class="btn btn-primary btn-icon left-icon" onclick="searchKendaraan()"><i class="fa fa-search"></i><span class="btn-text">Tracking</span></button>
-        </span>
-    </div>
-</div> -->
-
-<form>
-    <div class="form-row">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="vehicleNumber">Nomor Kendaraan</label>
-                <input type="text" class="form-control" id="vehicleNumber">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="selectTypeKendaraan">Type</label>
-                <select id="selectTypeKendaraan" class="form-control" onchange="changeType()">
-                    <option value="" selected disabled>--SELECT--</option>
-                    <option value="nik">NIK</option>
-                    <option value="nopol">Nomor Polisi</option>
-                </select>
-            </div>
-            <div class="form-group col-md-2">
-                <br />
-                <button type="button" class="btn btn-primary" onclick="searchKendaraan()">Cari</button>
-            </div>
-        </div>
-
-</form>
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-default card-view">
+        <div class="panel panel-info card-view panel-refresh red-border">
+            <div class="refresh-container">
+                <div class="la-anim-1"></div>
+            </div>
             <div class="panel-heading">
                 <div class="pull-left">
-                    <h6 class="panel-title txt-dark">Results</h6>
+                    <h6 class="panel-title txt-dark">Data Kendaraan</h6>
+                </div>
+                <div class="pull-right">
+                    <a href="#" class="pull-left inline-block refresh mr-15">
+                        <i class="zmdi zmdi-replay"></i>
+                    </a>
+                    <a href="#" class="pull-left inline-block full-screen mr-15">
+                        <i class="zmdi zmdi-fullscreen"></i>
+                    </a>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="panel-wrapper collapse in">
-                <!-- Panel Overlay-->
-                <div class="row mt-15 ml-5" id="panel-overlay-gmaps">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="well well-sm card-view">
-                            <h6 class="mb-15">Detail Information Target</h6>
-                            <div class="table-wrap mt-10">
-                                <div class="table-responsive" id="table-kendaraan-div">
-                                    <table class="table table-striped table-bordered mb-0" id="kendaraan_nopol" style="display: none;">
+                <div class="panel-body pt-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-wrap">
+                                <div class="table-responsive mb-0" id="table-kendaraan-div">
+                                    <table class="table table-hover mb-0 pb-50" id="kendaraan_nopol" style="display: none;">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2 text-center">Detail Information Target</th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                             <tr>
-                                                <td width="30%">NO_MESIN</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Nomor Mesin</span></td>
                                                 <td name="td-nopol-no_mesin">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">NO_POLISI</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Nomor Polisi</span></td>
                                                 <td name="td-nopol-no_polisi">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">NO_RANGKA</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Nomor Rangka</span></td>
                                                 <td name="td-nopol-no_rangka">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">PEMILIK</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Pemilik</span></td>
                                                 <td name="td-nopol-pemilik">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">RAKIT</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Rakit</span></td>
                                                 <td name="td-nopol-rakit">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">SAMSAT_BAYAR</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Samsat Bayar</span></td>
                                                 <td name="td-nopol-samsat_bayar">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">TGL_DAFTAR</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Tanggal Daftar</span></td>
                                                 <td name="td-nopol-tgl_daftar">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">TGL_MATI_YAD</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Tanggal Mati YAD</span></td>
                                                 <td name="td-nopol-tgl_mati_yad">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">TGL_STNK</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Tanggal STNK</span></td>
                                                 <td name="td-nopol-stnk">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">WARNA</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Warna</span></td>
                                                 <td name="td-nopol-warna">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">ALAMAT</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Alamat</span></td>
                                                 <td name="td-nopol-alamat">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">BBM</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Jenis BBM</span></td>
                                                 <td name="td-nopol-bbm">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">GOL_KEND</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Golongan Kendaraan</span></td>
                                                 <td name="td-nopol-gol_kend">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">JENIS_KEND</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Jenis Kendaraan</span></td>
                                                 <td name="td-nopol-jenis_kend">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">KODE_GOLONGAN</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Kode Golongan</span></td>
                                                 <td name="td-nopol-kode_golongan">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">KODE_JENIS</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Kode Jenis</span></td>
                                                 <td name="td-nopol-kode_jenis">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">MERK</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Merk Kendaraan</span></td>
                                                 <td name="td-nopol-merk">[NO DATA]</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <table class="table table-striped table-bordered mb-0" id="kendaraan_nik" style="display: none;">
+                                    <table class="table table-hover mb-0 pb-50" id="kendaraan_nik" style="display: none;">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2 text-center">Detail Information Target</th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                             <tr>
-                                                <td width="30%">NO_POLISI</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Nomor Polisi</span></td>
                                                 <td name="td-nik-no_polisi">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">NO_RANGKA</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Nomor Rangka</span></td>
                                                 <td name="td-nik-no_rangka">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">PEMILIK</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Pemilik</span></td>
                                                 <td name="td-nik-pemilik">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">ALAMAT</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Alamat</span></td>
                                                 <td name="td-nik-alamat">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">MERK</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Merk Kendaraan</span></td>
                                                 <td name="td-nik-merk">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">NIK</td>
+                                                <td width="30%"><span class="txt-dark weight-500">NIK</span></td>
                                                 <td name="td-nik-nik">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">NO_BPKB</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Nomor BPKB</span></td>
                                                 <td name="td-nik-no_bpkb">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">WARNA</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Warna</span></td>
                                                 <td name="td-nik-warna">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">NO_MESIN</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Nomor Mesin</span></td>
                                                 <td name="td-nik-no_mesin">[NO DATA]</td>
                                             </tr>
                                             <tr>
-                                                <td width="30%">TIPE_KEND</td>
+                                                <td width="30%"><span class="txt-dark weight-500">Tipe Kendaraan</span></td>
                                                 <td name="td-nik-tipe_kend">[NO DATA]</td>
                                             </tr>
                                         </tbody>
@@ -209,29 +214,7 @@ Cek Kendaraan
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="panel panel-default card-view">
-                                <div  class="panel-wrapper collapse in">
-                                    <div  class="panel-body">
-                                        <h6>Detail Information Target</h6>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="exampleInputuname_3" class="col-sm-3 control-label">MMISDN</label>
-                                                    <div class="col-sm-9">
-                                                            asdsdsad
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div> -->
                     </div>
-                </div>
-                <!-- End Panel Overlay-->
-                <div class="panel-body">
-                    <div id="map" style="height:600px;"></div>
                 </div>
             </div>
         </div>
@@ -241,17 +224,6 @@ Cek Kendaraan
 
 @section('page-footer')
 <script>
-    // setMap([-1.269160, 116.825264]);
-    // var map = L.map('map').setView([-1.269160, 116.825264], 16);
-    // var markers = [];
-
-    // L.tileLayer(
-    //     'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //         maxZoom: 19,
-    //         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    //     }
-    // ).addTo(map);
-
     function changeType() {
 
         var e = document.getElementById("selectTypeKendaraan");
@@ -302,10 +274,7 @@ Cek Kendaraan
                     alert(response.message);
                 }
             },
-            error: function(request, error) {
-                console.log(arguments);
-                alert(" Can't do because: " + error);
-            },
+            error: ajaxErrorHandler,
             complete: function() {
                 $(".preloader-it").hide();
             },
