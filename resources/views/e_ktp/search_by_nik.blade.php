@@ -78,31 +78,31 @@
                                                 <table class="table table-hover mb-0">
                                                     <tbody>
                                                         <tr>
-                                                            <td class="border-none pl-0" width="40%"><span class="txt-dark weight-500">NIK</span></td>
+                                                            <td class="border-none pl-0" width="50%"><span class="txt-dark weight-500">NIK</span></td>
                                                             <td class="border-none pl-0" name="td-nik">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Nama</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Nama</span></td>
                                                             <td class="pl-0" name="td-name">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Tempat/Tgl Lahir</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Tempat/Tgl Lahir</span></td>
                                                             <td class="pl-0" name="td-ttl">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Jenis Kelamin</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Jenis Kelamin</span></td>
                                                             <td class="pl-0" name="td-sex">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Agama</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Agama</span></td>
                                                             <td class="pl-0" name="td-religion">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%" style="vertical-align: top;">Alamat</span></td>
+                                                            <td class="pl-0" width="50%" style="vertical-align: top;"><span class="txt-dark weight-500">Alamat</span></td>
                                                             <td class="pl-0" name="td-address">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">RT / RW</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">RT / RW</span></td>
                                                             <td class="pl-0" name="td-rt-rw">[No Data]</td>
                                                         </tr>
                                                         <tr>
@@ -119,31 +119,31 @@
                                                 <table class="table table-hover mb-0">
                                                     <tbody>
                                                         <tr>
-                                                            <td class="pl-0 border-none" width="40%"><span class="txt-dark weight-500">Nomor KK</span></td>
+                                                            <td class="pl-0 border-none" width="50%"><span class="txt-dark weight-500">Nomor KK</span></td>
                                                             <td class="pl-0 border-none" name="td-nkk">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Ayah</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Ayah</span></td>
                                                             <td class="pl-0" name="td-father">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Ibu</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Ibu</span></td>
                                                             <td class="pl-0" name="td-mother">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Status Perkawinan</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Status Perkawinan</span></td>
                                                             <td class="pl-0" name="td-marital">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Pekerjaan</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Pekerjaan</span></td>
                                                             <td class="pl-0" name="td-job">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Pendidikan Terakhir</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Pendidikan Terakhir</span></td>
                                                             <td class="pl-0" name="td-lastedu">[No Data]</td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="pl-0" width="40%"><span class="txt-dark weight-500">Golongan Darah</span></td>
+                                                            <td class="pl-0" width="50%"><span class="txt-dark weight-500">Golongan Darah</span></td>
                                                             <td class="pl-0" name="td-bloodtype">[No Data]</td>
                                                         </tr>
                                                         <tr>

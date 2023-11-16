@@ -39,7 +39,6 @@ Telco Registration
                             <div class="col-sm-8 p-0 m-0">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="telcoNumber">
                                         <input type="text" id="telcoNumber" name="telcoNumber" class="form-control" placeholder="Enter NIK Or MSISDN" required />
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchTelco()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>
