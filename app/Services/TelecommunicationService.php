@@ -14,6 +14,7 @@ class TelecommunicationService extends _GeneralService
 
     public function __construct(SearchLogService $logService)
     {
+        parent::__construct();
         $this->logService = $logService;
     }
 
