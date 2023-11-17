@@ -18,6 +18,8 @@
 	<link href="{{asset('vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css')}}" rel="stylesheet" type="text/css">
 	
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css">
+
+	@yield('page-head')
 	
 	<!-- Custom CSS -->
 	<link href="{{asset('dist/css/style_v_0_4.css')}}" rel="stylesheet" type="text/css">
@@ -128,8 +130,6 @@
 			}
 		}
 	</style>
-	
-    @yield('page-head')
 </head>
 <body>
 	<!-- Preloader -->

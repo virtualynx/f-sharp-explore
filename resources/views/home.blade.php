@@ -1,445 +1,256 @@
 @extends('_template_authorized')
 
 @section('page-title')
-  Home
+    Dashboard
+@endsection
+
+@section('page-head')
+    <!--Maps-->
+	<link href="vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Bootstrap Select -->
+	<link href="vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
 @endsection
 
 @section('page-content')
-    <!-- Row -->
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-            <div class="panel panel-default card-view panel-refresh">
-                <div class="refresh-container">
-                    <div class="la-anim-1"></div>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-info card-view red-border panel-refresh">
+            <div class="refresh-container">
+                <div class="la-anim-1"></div>
+            </div>
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">MSISDN Statistics</h6>
                 </div>
-                <div class="panel-heading">
-                    <div class="pull-left">
-                        <h6 class="panel-title txt-dark">Visit by Traffic Types</h6>
-                    </div>
-                    <div class="pull-right">
-                        <a href="#" class="pull-left inline-block refresh mr-15">
-                            <i class="zmdi zmdi-replay"></i>
-                        </a>
-                        <div class="pull-left inline-block dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert"></i></a>
-                            <ul class="dropdown-menu bullet dropdown-menu-right"  role="menu">
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Devices</a></li>
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>General</a></li>
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Referral</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
-                        <div id="e_chart_3" class="" style="height:215px;"></div>
-                        <hr class="light-grey-hr row mt-10 mb-15"/>
-                        <div class="label-chatrs">
-                            <div class="">
-                                <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
-                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">44.46% organic</span><span class="block txt-grey">356 visits</span></span>
-                                <div id="sparkline_1" class="pull-right" style="width: 100px; overflow: hidden; margin: 0px auto;"></div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <hr class="light-grey-hr row mt-10 mb-15"/>
-                        <div class="label-chatrs">
-                            <div class="">
-                                <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
-                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">5.54% Refrral</span><span class="block txt-grey">36 visits</span></span>
-                                <div id="sparkline_2" class="pull-right" style="width: 100px; overflow: hidden; margin: 0px auto;"></div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <hr class="light-grey-hr row mt-10 mb-15"/>
-                        <div class="label-chatrs">
-                            <div class="">
-                                <span class="clabels clabels-lg inline-block bg-skyblue mr-10 pull-left"></span>
-                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">50% Other</span><span class="block txt-grey">245 visits</span></span>
-                                <div id="sparkline_3" class="pull-right" style="width: 100px; overflow: hidden; margin: 0px auto;"></div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
+                <div class="pull-right">
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select class="selectpicker" data-style="form-control">
+                            <option selected value='1'>Telco</option>
+                            <option value='2'>Gender</option>
+                            <option value='3'>Generations (Age)</option>
+                        </select>
                     </div>	
+                    <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
+                        <i class="zmdi zmdi-replay"></i>
+                    </a>
+                    <a href="#" class="pull-left inline-block full-screen" style="top: 3px;">
+                        <i class="zmdi zmdi-fullscreen"></i>
+                    </a>
                 </div>
+                <div class="clearfix"></div>
             </div>
-        </div>
-        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
-            <div class="panel panel-default card-view panel-refresh">
-                <div class="refresh-container">
-                    <div class="la-anim-1"></div>
-                </div>
-                <div class="panel-heading">
-                    <div class="pull-left">
-                        <h6 class="panel-title txt-dark">user statistics</h6>
-                    </div>
-                    <div class="pull-right">
-                        <a href="#" class="pull-left inline-block refresh mr-15">
-                            <i class="zmdi zmdi-replay"></i>
-                        </a>
-                        <a href="#" class="pull-left inline-block full-screen mr-15">
-                            <i class="zmdi zmdi-fullscreen"></i>
-                        </a>
-                        <div class="pull-left inline-block dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert"></i></a>
-                            <ul class="dropdown-menu bullet dropdown-menu-right"  role="menu">
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Devices</a></li>
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>General</a></li>
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Referral</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
-                        <div id="e_chart_1" class="" style="height:313px;"></div>
-                        <ul class="flex-stat mt-40">
-                            <li>
-                                <span class="block">Weekly Users</span>
-                                <span class="block txt-dark weight-500 font-18"><span class="counter-anim">3,24,222</span></span>
-                            </li>
-                            <li>
-                                <span class="block">Monthly Users</span>
-                                <span class="block txt-dark weight-500 font-18"><span class="counter-anim">1,23,432</span></span>
-                            </li>
-                            <li>
-                                <span class="block">Trend</span>
-                                <span class="block">
-                                    <i class="zmdi zmdi-trending-up txt-success font-24"></i>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <div class="panel panel-default card-view">
-                <div class="panel-heading">
-                    <div class="pull-left">
-                        <h6 class="panel-title txt-dark">browser stats</h6>
-                    </div>
-                    <div class="pull-right">
-                        <a href="#" class="pull-left inline-block mr-15">
-                            <i class="zmdi zmdi-download"></i>
-                        </a>
-                        <a href="#" class="pull-left inline-block close-panel" data-effect="fadeOut">
-                            <i class="zmdi zmdi-close"></i>
-                        </a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
-                        <div>
-                            <span class="pull-left inline-block capitalize-font txt-dark">
-                                google chrome
-                            </span>
-                            <span class="label label-primary pull-right">50%</span>
-                            <div class="clearfix"></div>
-                            <hr class="light-grey-hr row mt-10 mb-10"/>
-                            <span class="pull-left inline-block capitalize-font txt-dark">
-                                mozila firefox
-                            </span>
-                            <span class="label label-primary pull-right">10%</span>
-                            <div class="clearfix"></div>
-                            <hr class="light-grey-hr row mt-10 mb-10"/>
-                            <span class="pull-left inline-block capitalize-font txt-dark">
-                                Internet explorer
-                            </span>
-                            <span class="label label-primary pull-right">30%</span>
-                            <div class="clearfix"></div>
-                            <hr class="light-grey-hr row mt-10 mb-10"/>
-                            <span class="pull-left inline-block capitalize-font txt-dark">
-                                safari
-                            </span>
-                            <span class="label label-primary pull-right">10%</span>
+             <div class="panel-wrapper collapse in">
+                 <div class="panel-body">
+                    <!-- THE PIE CHART-->
+                    <div id="e_chart_statistics" class="" style="height:221px;"></div>
+                    <hr class="light-grey-hr row mt-10 mb-15"/>
+                    <div class="label-chatrs">
+                        <div class="">
+                            <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
+                            <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">44.46% Telkomsel</span></span>
+                            <span class="txt-dark block counter pull-right"><span class="counter-anim">102</span></span>
                             <div class="clearfix"></div>
                         </div>
-                    </div>	
-                </div>
-            </div>
-            <div class="panel panel-default card-view">
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body sm-data-box-1">
-                        <span class="uppercase-font weight-500 font-14 block text-center txt-dark">customer satisfaction</span>	
-                        <div class="cus-sat-stat weight-500 txt-primary text-center mt-5">
-                            <span class="counter-anim">70</span><span>%</span>
-                        </div>
-                        <div class="progress-anim mt-20">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-primary
-                                wow animated progress-animated" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <ul class="flex-stat mt-5">
-                            <li>
-                                <span class="block">Previous</span>
-                                <span class="block txt-dark weight-500 font-15">79.82</span>
-                            </li>
-                            <li>
-                                <span class="block">% Change</span>
-                                <span class="block txt-dark weight-500 font-15">+14.29</span>
-                            </li>
-                            <li>
-                                <span class="block">Trend</span>
-                                <span class="block">
-                                    <i class="zmdi zmdi-trending-up txt-success font-20"></i>
-                                </span>
-                            </li>
-                        </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Row -->
-    
-    <!-- Row -->
-    <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-            <div class="panel panel-default card-view pa-0">
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body pa-0">
-                        <div class="sm-data-box">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-                                        <span class="txt-dark block counter"><span class="counter-anim">914,001</span></span>
-                                        <span class="weight-500 uppercase-font block font-13">visits</span>
-                                    </div>
-                                    <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
-                                        <i class="icon-user-following data-right-rep-icon txt-light-grey"></i>
-                                    </div>
-                                </div>	
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-            <div class="panel panel-default card-view pa-0">
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body pa-0">
-                        <div class="sm-data-box">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-                                        <span class="txt-dark block counter"><span class="counter-anim">46.41</span>%</span>
-                                        <span class="weight-500 uppercase-font block">bounce rate</span>
-                                    </div>
-                                    <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
-                                        <i class="icon-control-rewind data-right-rep-icon txt-light-grey"></i>
-                                    </div>
-                                </div>	
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-            <div class="panel panel-default card-view pa-0">
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body pa-0">
-                        <div class="sm-data-box">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-                                        <span class="txt-dark block counter"><span class="counter-anim">4,054,876</span></span>
-                                        <span class="weight-500 uppercase-font block">pageviews</span>
-                                    </div>
-                                    <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
-                                        <i class="icon-layers data-right-rep-icon txt-light-grey"></i>
-                                    </div>
-                                </div>	
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-            <div class="panel panel-default card-view pa-0">
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body pa-0">
-                        <div class="sm-data-box">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-                                        <span class="txt-dark block counter"><span class="counter-anim">46.43</span>%</span>
-                                        <span class="weight-500 uppercase-font block">growth rate</span>
-                                    </div>
-                                    <div class="col-xs-6 text-center  pl-0 pr-0 pt-25  data-wrap-right">
-                                        <div id="sparkline_4" style="width: 100px; overflow: hidden; margin: 0px auto;"></div>
-                                    </div>
-                                </div>	
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /Row -->
 
-    <!-- Row -->
-    <div class="row">
-        <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-            <div class="panel panel-default card-view panel-refresh">
-                <div class="refresh-container">
-                    <div class="la-anim-1"></div>
+                     <hr class="light-grey-hr row mt-10 mb-15"/>
+                     <div class="label-chatrs">
+                         <div class="">
+                             <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
+                             <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">30.3% Indosat</span></span>
+                             <span class="txt-dark block counter pull-right"><span class="counter-anim">88</span></span>
+                             <div class="clearfix"></div>
+                         </div>
+                     </div>
+
+                     <hr class="light-grey-hr row mt-10 mb-15"/>
+                     <div class="label-chatrs">
+                         <div class="">
+                             <span class="clabels clabels-lg inline-block bg-skyblue mr-10 pull-left"></span>
+                             <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">5.53% Hutchison 3</span></span>
+                             <span class="txt-dark block counter pull-right"><span class="counter-anim">23</span></span>
+                             <div class="clearfix"></div>
+                         </div>
+                     </div>
+                 </div>	
+             </div>
+         </div>
+     </div>
+     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-info card-view red-border panel-refresh">
+            <div class="refresh-container">
+                <div class="la-anim-1"></div>
+            </div>
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Top 10 City Searched MSISDN</h6>
                 </div>
-                <div class="panel-heading">
-                    <div class="pull-left">
-                        <h6 class="panel-title txt-dark">Advertising & Promotions</h6>
-                    </div>
-                    <div class="pull-right">
-                        <a href="#" class="pull-left inline-block refresh mr-15">
-                            <i class="zmdi zmdi-replay"></i>
-                        </a>
-                        <div class="pull-left inline-block dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert"></i></a>
-                            <ul class="dropdown-menu bullet dropdown-menu-right"  role="menu">
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>option 1</a></li>
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>option 2</a></li>
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>option 3</a></li>
-                            </ul>
+                <div class="pull-right">
+                    <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
+                        <i class="zmdi zmdi-replay"></i>
+                    </a>
+                    <a href="#" class="pull-left inline-block full-screen" style="top: 3px;">
+                        <i class="zmdi zmdi-fullscreen"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body row pa-0">
+                    <div class="table-wrap">
+                        <div class="table-responsive">
+                          <table class="table table-hover mb-0">
+                            <thead>
+                                  <tr>
+                                    <th>City</th>
+                                    <th>Progress</th>
+                                    <th>Percent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Surabaya</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">50%</td>	
+                              </tr>
+                              <tr>
+                                <td>Bandung</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-danger" style="width: 52%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">52%</td>	
+                              </tr>
+                              <tr>
+                                <td>Jakarta</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-warning" style="width: 48%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">48%</td>	
+                              </tr>
+                              <tr>
+                                <td>Medan</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-warning" style="width: 40%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">40%</td>	
+                              </tr>
+                              <tr>
+                                <td>Semarang</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-primary" style="width: 39%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">39%</td>	
+                              </tr>
+                              <tr>
+                                <td>Makassar</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-primary" style="width: 37%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">37%</td>	
+                              </tr>
+                              <tr>
+                                <td>Palembang</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-primary" style="width: 36%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">39%</td>	
+                              </tr>
+                              <tr>
+                                <td>Batam</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-info" style="width: 25%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">39%</td>	
+                              </tr>
+                              <tr>
+                                <td>Denpasar</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-info" style="width: 22%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">39%</td>	
+                              </tr>
+                              <tr>
+                                <td>Kupang</td>
+                                <td>
+                                    <div class="progress progress-xs mb-0 ">
+                                        <div class="progress-bar progress-bar-info" style="width: 20%"></div>
+                                      </div>
+                                </td>
+                                <td class="txt-dark weight-500">39%</td>	
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
-                        <div id="e_chart_2" class="" style="height:236px;"></div>
-                        <div class="label-chatrs text-center mt-30">
-                            <div class="inline-block mr-15">
-                                <span class="clabels inline-block bg-primary mr-5"></span>
-                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font">Active</span>
-                            </div>
-                            <div class="inline-block mr-15">
-                                <span class="clabels inline-block bg-purple mr-5"></span>
-                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font">Closed</span>
-                            </div>	
-                            <div class="inline-block">
-                                <span class="clabels inline-block bg-skyblue mr-5"></span>
-                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font">Hold</span>
-                            </div>											
-                        </div>
-                    </div>
-                </div>	
-            </div>	
-        </div>	
-        <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
-            <div class="panel panel-default card-view panel-refresh">
-                <div class="refresh-container">
-                    <div class="la-anim-1"></div>
-                </div>
-                <div class="panel-heading">
-                    <div class="pull-left">
-                        <h6 class="panel-title txt-dark">social campaigns</h6>
-                    </div>
-                    <div class="pull-right">
-                        <a href="#" class="pull-left inline-block refresh mr-15">
-                            <i class="zmdi zmdi-replay"></i>
-                        </a>
-                        <a href="#" class="pull-left inline-block full-screen mr-15">
-                            <i class="zmdi zmdi-fullscreen"></i>
-                        </a>
-                        <div class="pull-left inline-block dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi zmdi-more-vert"></i></a>
-                            <ul class="dropdown-menu bullet dropdown-menu-right"  role="menu">
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Edit</a></li>
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Delete</a></li>
-                                <li role="presentation"><a href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>New</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body row pa-0">
-                        <div class="table-wrap">
-                            <div class="table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Campaign</th>
-                                            <th>Client</th>
-                                            <th>Changes</th>
-                                            <th>Budget</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><span class="txt-dark weight-500">Facebook</span></td>
-                                            <td>Beavis</td>
-                                            <td><span class="txt-success"><i class="zmdi zmdi-caret-up mr-10 font-20"></i><span>2.43%</span></span></td>
-                                            <td>
-                                                <span class="txt-dark weight-500">$1478</span>
-                                            </td>
-                                            <td>
-                                                <span class="label label-primary">Active</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="txt-dark weight-500">Youtube</span></td>
-                                            <td>Felix</td>
-                                            <td><span class="txt-success"><i class="zmdi zmdi-caret-up mr-10 font-20"></i><span>1.43%</span></span></td>
-                                            <td>
-                                                <span class="txt-dark weight-500">$951</span>
-                                            </td>
-                                            <td>
-                                                <span class="label label-danger">Closed</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="txt-dark weight-500">Twitter</span></td>
-                                            <td>Cannibus</td>
-                                            <td><span class="txt-danger"><i class="zmdi zmdi-caret-down mr-10 font-20"></i><span>-8.43%</span></span></td>
-                                            <td>
-                                                <span class="txt-dark weight-500">$632</span>
-                                            </td>
-                                            <td>
-                                                <span class="label label-default">Hold</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="txt-dark weight-500">Spotify</span></td>
-                                            <td>Neosoft</td>
-                                            <td><span class="txt-success"><i class="zmdi zmdi-caret-up mr-10 font-20"></i><span>7.43%</span></span></td>
-                                            <td>
-                                                <span class="txt-dark weight-500">$325</span>
-                                            </td>
-                                            <td>
-                                                <span class="label label-default">Hold</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="txt-dark weight-500">Instagram</span></td>
-                                            <td>Hencework</td>
-                                            <td><span class="txt-success"><i class="zmdi zmdi-caret-up mr-10 font-20"></i><span>9.43%</span></span></td>
-                                            <td>
-                                                <span class="txt-dark weight-500">$258</span>
-                                            </td>
-                                            <td>
-                                                <span class="label label-primary">Active</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>	
-                    </div>	
                 </div>
             </div>
         </div>
-    </div>	
-    <!-- Row -->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-xs-12">
+        <div class="panel panel-info card-view red-border panel-refresh">
+            <div class="refresh-container">
+                <div class="la-anim-1"></div>
+            </div>
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Maps Location Top Searched</h6>
+                </div>
+                <div class="pull-right">
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-5">
+                        <select class="selectpicker" data-style="form-control">
+                            <option selected value='1'>Jawa Timur</option>
+                            <option value='2'>Jawa Tengah</option>
+                            <option value='3'>DKI Jakarta</option>
+                        </select>
+                    </div>	
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select class="selectpicker" data-style="form-control">
+                            <option selected value='1'>Kota Malang</option>
+                            <option value='2'>Kota Surabaya</option>
+                            <option value='3'>Kota Blitar</option>
+                        </select>
+                    </div>	
+                    <a href="#" class="pull-left inline-block refresh mr-15">
+                        <i class="zmdi zmdi-replay"></i>
+                    </a>
+                    <a href="#" class="pull-left inline-block full-screen mr-15">
+                        <i class="zmdi zmdi-fullscreen"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div id="world_map_marker_1" style="height: 385px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('page-footer')
@@ -453,12 +264,167 @@
 	<!-- Fancy Dropdown JS -->
 	<script src="{{asset('dist/js/dropdown-bootstrap-extended.js')}}"></script>
 
+    <!--Maps-->
+	<script src="vendors/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+
 	<!-- Switchery JavaScript -->
 	<script src="{{asset('vendors/bower_components/switchery/dist/switchery.min.js')}}"></script>
+
+    <!-- Bootstrap Select -->
+	<script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
 	<!-- EChartJS JavaScript -->
 	<script src="{{asset('vendors/bower_components/echarts/dist/echarts-en.min.js')}}"></script>
 	<script src="{{asset('vendors/echarts-liquidfill.min.js')}}"></script>
     
 	<script src="{{asset('dist/js/dashboard-data.js')}}"></script>
+    <script>
+		$(function() {
+			"use strict";
+			var mapData = {
+					"US": 298,
+					"SA": 200,
+					"AU": 760,
+					"IN": 2000000,
+					"GB": 120,
+				};
+			
+			if( $('#world_map_marker_1').length > 0 ){
+				$('#world_map_marker_1').vectorMap(
+				{
+					map: 'world_mill_en',
+					backgroundColor: 'transparent',
+					borderColor: '#fff',
+					borderOpacity: 0.25,
+					borderWidth: 0,
+					color: '#e6e6e6',
+					regionStyle : {
+						initial : {
+						fill : '#f4f4f4'
+						}
+					},
+
+					markerStyle: {
+					initial: {
+									r: 10,
+									'fill': '#fff',
+									'fill-opacity':1,
+									'stroke': '#000',
+									'stroke-width' : 1,
+									'stroke-opacity': 0.4
+								},
+						},
+				
+					markers : [{
+						latLng : [21.00, 78.00],
+						name : 'INDIA : 350'
+					
+					},
+					{
+						latLng : [-33.00, 151.00],
+						name : 'Australia : 250'
+						
+					},
+					{
+						latLng : [36.77, -119.41],
+						name : 'USA : 250'
+					
+					},
+					{
+						latLng : [55.37, -3.41],
+						name : 'UK   : 250'
+					
+					},
+					{
+						latLng : [25.20, 55.27],
+						name : 'UAE : 250'
+					
+					}],
+
+					series: {
+						regions: [{
+							values: {
+								"US": '#667add',
+								"SA": '#667add',
+								"AU": '#667add',
+								"IN": '#667add',
+								"GB": '#667add',
+							},
+							attribute: 'fill'
+						}]
+					},
+					hoverOpacity: null,
+					normalizeFunction: 'linear',
+					zoomOnScroll: false,
+					scaleColors: ['#000000', '#000000'],
+					selectedColor: '#000000',
+					selectedRegions: [],
+					enableZoom: false,
+					hoverColor: '#fff',
+				});
+			}
+
+			if( $('#e_chart_statistics').length > 0 ){
+				var eChart_3 = echarts.init(document.getElementById('e_chart_statistics'));
+				var option3 = {
+					tooltip : {
+						trigger: 'item',
+						formatter: "{a} <br/>{b} : {c} ({d}%)",
+						backgroundColor: 'rgba(33,33,33,1)',
+						borderRadius:0,
+						padding:10,
+						textStyle: {
+							color: '#fff',
+							fontStyle: 'normal',
+							fontWeight: 'normal',
+							fontFamily: "'Roboto', sans-serif",
+							fontSize: 12
+						}	
+					},
+					legend: {
+						show:false
+					},
+					toolbox: {
+						show : false,
+					},
+					calculable : true,
+					itemStyle: {
+						normal: {
+							shadowBlur: 5,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					},
+					series : [
+						{
+							name:'Provider / Telco',
+							type:'pie',
+							radius : '80%',
+							center : ['50%', '50%'],
+							roseType : 'radius',
+							color: ['#119dd2', '#d36ee8', '#667add'],
+							label: {
+								normal: {
+									fontFamily: "'Roboto', sans-serif",
+									fontSize: 12
+								}
+							},
+							data:[
+								{value:335, name:'Telkomsel'},
+								{value:310, name:'Indosat'},
+								{value:274, name:'Hutchison 3'},
+							].sort(function (a, b) { return a.value - b.value; }),
+						},
+					],
+					animationType: 'scale',
+					animationEasing: 'elasticOut',
+					animationDelay: function (idx) {
+						return Math.random() * 1000;
+					}	
+				};
+				eChart_3.setOption(option3);
+				eChart_3.resize();
+			}
+		});
+	</script>
 @endsection

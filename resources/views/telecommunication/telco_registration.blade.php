@@ -29,7 +29,7 @@ Telco Registration
                                     <div class="input-group">
                                         <div class="input-group-addon">Search</div>
                                         <select id="selectTypeTelco" class="form-control" required>
-                                            <option value="" selected disabled> Select Type <option>
+                                            <option value="" selected disabled> Select Type </option>
                                             <option value="nik">NIK</option>
                                             <option value="msisdn">MSISDN</option>
                                         </select>
