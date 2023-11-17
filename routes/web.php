@@ -45,3 +45,9 @@ Route::prefix('/transportasi')->group(function() {
     // Route::post('/save', 'KtpController@save');
 });
 
+
+Route::prefix('/dataleak')->group(function() {
+    Route::get('/data-leak', 'DataLeakController@data_leak');
+    // Route::post('/save', 'KtpController@save');
+});
+
