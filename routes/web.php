@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/locate-number', 'TelecommunicationController@locate_number');
         Route::get('/tracking-number', 'TelecommunicationController@tracking_number');
         Route::get('/telco_registration', 'TelecommunicationController@telco_registration');
+        Route::get('/tracking_imsi_imei', 'TelecommunicationController@imei_imsi');
         // Route::post('/save', 'KtpController@save');
     });
 });

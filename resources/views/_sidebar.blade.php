@@ -59,7 +59,7 @@
             <a class="{{ request()->is('telecommunication/telco_registration') ? 'active' : '' }}" href="/telecommunication/telco_registration"><div class="pull-left"><i class="zmdi zmdi-accounts-list-alt mr-20"></i><span class="right-nav-text">Telco Registration</span></div><div class="clearfix"></div></a>
         </li>
         <li>
-            <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-smartphone-setup mr-20"></i><span class="right-nav-text">IMEI / IMSI</span></div><div class="clearfix"></div></a>
+            <a class="{{ request()->is('telecommunication/tracking_imsi_imei') ? 'active' : '' }}" href="/telecommunication/tracking_imsi_imei"><div class="pull-left"><i class="zmdi zmdi-smartphone-setup mr-20"></i><span class="right-nav-text">IMEI / IMSI</span></div><div class="clearfix"></div></a>
         </li>
         {{--
         <li>
