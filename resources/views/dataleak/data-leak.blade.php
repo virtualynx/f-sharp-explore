@@ -72,7 +72,7 @@ Data Leak
                         <div class="col-md-12">
                             <div class="table-wrap">
                                 <div class="table-responsive mb-0">
-                                    <table class="table table-hover mb-0" id="tableTelco" name="tableTelco">
+                                    <table class="table table-hover mb-0" id="tableDataLeak" name="tableDataLeak">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -242,9 +242,9 @@ Data Leak
             success: function(response, status) {
                 var content = "";
                 var dataArr = response.data;
-                console.log("isi data " + JSON.stringify(response));
+                
                 $('.panel-title').html('Data Dukcapil');
-                $("#resultsDataLeak").html('');
+                $("#tableDataLeak > tbody").html("");
                 if (status == 'success' && response.message == "success") {
                     let datas = response.data;
 
@@ -260,14 +260,21 @@ Data Leak
                             }
                             if (datas[i].registration_data) {
                                 content += '<td name="td-registrasi-nomor">' + datas[i].registration_data + '</td>'
+                            } else if (!datas[i].registration_data){
+                                content += '<td name="td-registrasi-nomor">NO DATA</td>'
                             }
                             if (datas[i].address) {
                                 content += '<td name="td-registrasi-nomor">' + datas[i].address + '</td>'
+                            }  else if (!datas[i].address) {
+                                content += '<td name="td-registrasi-nomor">NO DATA</td>'
                             }
                             if (datas[i].registration_data) {
                                 content += '<td name="td-registrasi-nomor"><a onclick="searchByNikFromLeak(' + datas[i].registration_data + ')"><button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button></a></td>'
 
+                            } else if (!datas[i].registration_data){
+                                content += '<td name="td-registrasi-nomor"><a><button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button></a></td>'
                             }
+
                             content += '</tr>'
 
                         }
