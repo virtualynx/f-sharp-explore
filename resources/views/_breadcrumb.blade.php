@@ -2,7 +2,8 @@
     $breadcrumbs_parents = [
         'Telekomunikasi' => [
             'Locate Number',
-            'Tracking Number'
+            'Tracking Number'.
+            'Telco Registration'
         ],
         'Search Dukcapil' => [
             'Search By NKK',
@@ -15,7 +16,11 @@
 
     $breadcrumbs_links = [
         'Search Number' => 'telecommunication/search-number',
-        'Tracking Number' => 'telecommunication/tracking-number'
+        'Locate Number' => 'telecommunication/tracking-number',
+        'Telco Registration' => 'telecommunication/telco_registration',
+        'Search By NKK' => 'e-ktp/search-by-nkk',
+        'Search By NIK' => 'e-ktp/search-by-nik',
+        'Cek Kendaraan' => 'transportasi/cek_kendaraan'
     ];
 
     $page_title = app()->view->getSections()['page-title'];

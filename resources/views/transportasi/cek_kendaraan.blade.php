@@ -21,7 +21,7 @@ Cek Kendaraan
 @endsection
 
 @section('page-content')
-<!-- Title -->
+<!-- Search bar -->
 <div class="row">
     <div class="col-sm-12">
         <div class="panel panel-default card-view">
@@ -88,7 +88,7 @@ Cek Kendaraan
                                     <table class="table table-hover mb-0 pb-50" id="kendaraan_nopol" style="display: none;">
                                         <thead>
                                             <tr>
-                                                <th colspan="2 text-center">Detail Information Target</th>
+                                                <th colspan="2" class="text-center">Detail Information Target</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -165,7 +165,7 @@ Cek Kendaraan
                                     <table class="table table-hover mb-0 pb-50" id="kendaraan_nik" style="display: none;">
                                         <thead>
                                             <tr>
-                                                <th colspan="2 text-center">Detail Information Target</th>
+                                                <th colspan="2" class="text-center">Detail Information Target</th>
                                             </tr>
                                         </thead>
                                         <tbody>
