@@ -220,6 +220,20 @@
                     <h6 class="panel-title txt-dark">Maps Location Top Searched</h6>
                 </div>
                 <div class="pull-right">
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-5">
+                        <select class="selectpicker" data-style="form-control">
+                            <option selected value='1'>Jawa Timur</option>
+                            <option value='2'>Jawa Tengah</option>
+                            <option value='3'>DKI Jakarta</option>
+                        </select>
+                    </div>	
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select class="selectpicker" data-style="form-control">
+                            <option selected value='1'>Kota Malang</option>
+                            <option value='2'>Kota Surabaya</option>
+                            <option value='3'>Kota Blitar</option>
+                        </select>
+                    </div>	
                     <a href="#" class="pull-left inline-block refresh mr-15">
                         <i class="zmdi zmdi-replay"></i>
                     </a>
