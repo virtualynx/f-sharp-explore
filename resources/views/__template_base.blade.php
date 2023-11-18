@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	{{-- <title>F# Xplore</title> --}}
     <title>{{ config('app.name') }} | @yield('page-title', '')</title>
 	<meta name="description" content="F# Xplore is a Dashboard & Admin Site Responsive Template." />
 	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, responsive admin, sass, panel, software, ui, visualization, web app, application" />
 	<meta name="author" content="F#XploreTeam2023"/>
 	
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('dist/favicon/apple-touch-icon.png')}}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{asset('dist/favicon/favicon-32x32.png')}}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('dist/favicon/favicon-16x16.png')}}">
+	<link rel="manifest" href="{{asset('dist/favicon/site.webmanifest')}}">
+	<link rel="mask-icon" href="{{asset('dist/favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
 	
 	<!-- Data table CSS -->
 	<link href="{{asset('vendors/bower_components/datatables/media/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
@@ -22,7 +26,7 @@
 	@yield('page-head')
 	
 	<!-- Custom CSS -->
-	<link href="{{asset('dist/css/style_v_0_4.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('dist/css/style_v_0_5.css')}}" rel="stylesheet" type="text/css">
 
 	<style type="text/css"> 
 		.lds-spinner,
