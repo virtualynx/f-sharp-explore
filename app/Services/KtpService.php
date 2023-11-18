@@ -75,4 +75,21 @@ class KtpService extends _GeneralService
             throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
         }
     }
+
+    public function getKarakter(string $dob){
+        $uri = config('api.uri.general.karakter');
+        $response = $this->getHttpClient()->request('GET', $uri.'/'.$dob);
+        if($response->getStatusCode() == 200){
+            $resp_arr = json_decode($response->getBody(), true);
+            if(isset($resp_arr['Zodiak'])){
+                    return $resp_arr;
+            }else{
+                Log::error(json_encode($resp_arr));
+                throw new Exception(json_encode($resp_arr), 99);
+            }
+        }else{
+            Log::error($response->getReasonPhrase());
+            throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
+        }
+    }
 }

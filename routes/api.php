@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('/e-ktp')->group(function() {
     Route::post('/search-by-nik', 'Api\EKtpApi@search_by_nik')->name('api_ektp_search_by_nik');
     Route::post('/search_by_nkk', 'Api\EKtpApi@search_by_nkk');
+    Route::post('/search_by_dob', 'Api\EKtpApi@search_by_dob');
+    
 });
 
 Route::prefix('/telecommunication')->group(function() {
