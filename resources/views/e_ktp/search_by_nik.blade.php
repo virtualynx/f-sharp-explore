@@ -162,6 +162,59 @@
             </div>
         </div>
     </div>
+
+    <!-- Response Search -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-info card-view panel-refresh red-border">
+            <div class="refresh-container">
+                <div class="la-anim-1"></div>
+            </div>
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">
+                        Lakukan pencarian data terlebih dahulu pada "Search Box" diatas
+                    </h6>
+                </div>
+                <div class="pull-right">
+                    <a href="#" class="pull-left inline-block refresh mr-15">
+                        <i class="zmdi zmdi-replay"></i>
+                    </a>
+                    <a href="#" class="pull-left inline-block full-screen mr-15">
+                        <i class="zmdi zmdi-fullscreen"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body pt-5 pb-50">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-wrap">
+                                <div class="table-responsive mb-0">
+                                    <table class="table table-hover mb-0" id="tableDataLeak" name="tableDataLeak">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Name</th>
+                                                <th>NIK</th>
+                                                <th>Alamat</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyDataLeak" name="tbodyDataLeak">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('page-footer')
