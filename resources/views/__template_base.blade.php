@@ -155,7 +155,7 @@
     <script src="{{asset('vendors/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     
 	<!-- Data table JavaScript -->
-	{{-- <script src="{{asset('vendors/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script> --}}
+	<script src="{{asset('vendors/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script>
 	
 	<!-- Slimscroll JavaScript -->
 	<script src="{{asset('dist/js/jquery.slimscroll.js')}}"></script>

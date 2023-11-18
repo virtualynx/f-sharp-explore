@@ -18,7 +18,7 @@
         crossorigin="">
     </script>
 
-    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    {{-- <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet"> --}}
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" rel="stylesheet">
     
@@ -37,75 +37,51 @@
 @endsection
 
 @section('page-content')
-    <!-- Search bar -->
     <div class="row">
         <div class="col-sm-12">
-            <div class="panel panel-default card-view">
+            <div class="panel panel-info card-view red-border">
+                <div class="panel-heading">
+                    <div class="pull-left">
+                        <h6 class="panel-title txt-dark">List Data Target</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
                 <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
+                    <div class="panel-body pt-5">
                         <div class="row">
-                            <div class="col-sm-3 mr-10 pull-right">
-                                <button onclick="addNumber()" class="btn btn-success btn-icon left-icon" data-toggle="modal" data-target="#modal_add_edit_number"><i class="fa fa-search"></i><span class="btn-text">Add Number</span></button>
+                            <div class="col-md-12 pb-20">
+                                <div class="pull-right btn-only">
+                                    <button onclick="addNumber()" class="btn btn-danger btn-icon left-icon" data-toggle="modal" data-target="#modal_add_edit_number"><i class="fa fa-plus-square-o"></i><span class="btn-text"> Add New Target</span></button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="table-wrap">
+                                    <div class="table-responsive">
+                                        <table name="tracked-table" class="table table-hover display dataTable" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Actions</th>
+                                                    <th>Phone</th>
+                                                    <th>Name</th>
+                                                    <th>Group</th>
+                                                    <th>Status</th>
+                                                    <th>Success</th>
+                                                    <th>Failed</th>
+                                                    <th>Last Error</th>
+                                                    <th>Last Updated</th>
+                                                    <th>Cron Info</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>			
-        </div>	
-    </div>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default card-view">
-                
-                <div class="table-wrap">
-                    <div class="table-responsive">
-                        <table name="tracked-table" class="table table-hover table-striped mb-0">
-                            <thead>
-                                <tr>
-                                    <th>Actions</th>
-                                    <th>Phone</th>
-                                    <th>Name</th>
-                                    <th>Group</th>
-                                    <th>Status</th>
-                                    <th>Success</th>
-                                    <th>Failed</th>
-                                    <th>Last Error</th>
-                                    <th>Last Updated</th>
-                                    <th>Cron Info</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{-- <tr>
-                                    <td>
-                                        <button><i class="fa-solid fa-xmark"></i></button>
-                                        <button><i class="fa-solid fa-pen"></i></button>
-                                        <button><i class="fa-solid fa-list"></i></i></button>
-                                        <button><i class="fa-regular fa-calendar-days"></i></button>
-                                        <button><i class="fa-solid fa-map-location-dot"></i></button>
-                                        <button><i class="fa-solid fa-play"></i></button>
-                                    </td>
-                                    <td>6281122223333</td>
-                                    <td>Andre</td>
-                                    <td>Juragan</td>
-                                    <td>
-                                        <span class="label label-success">Running</span>
-                                    </td>
-                                    <td>15</td>
-                                    <td>0</td>
-                                    <td></td>
-                                    <td>
-                                        13 November 2023
-                                    </td>
-                                    <td>
-                                        <button><i class="fa-solid fa-eye"></i></button>
-                                    </td>
-                                </tr> --}}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -116,8 +92,8 @@
 @endsection
 
 @section('page-footer')
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> --}}
 
     <script>
         var table_tracked = null;
@@ -136,6 +112,8 @@
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('api_tracked_number_list') }}",
+                scrollX: true,
+				ordering: false,
                 columns: [
                     {data: 'action', orderable: false, searchable: false},
                     {data: 'msisdn'},
