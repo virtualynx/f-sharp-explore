@@ -21,14 +21,17 @@
             </div>
             <div class="panel-heading">
                 <div class="pull-left">
-                    <h6 class="panel-title txt-dark">MSISDN Statistics</h6>
+                    <h6 class="panel-title txt-dark">Target Search Statistics</h6>
                 </div>
                 <div class="pull-right">
                     <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
-                        <select class="selectpicker" data-style="form-control">
-                            <option selected value='1'>Operator</option>
-                            <option value='2'>Gender</option>
-                            <option value='3'>Generations (Age)</option>
+                        <select id="select_search_stat_by" class="selectpicker" data-style="form-control">
+                            <option selected value='{{App\Enum\StatisticByEnum::OPERATOR->value}}'>Operator</option>
+                            <option value='{{App\Enum\StatisticByEnum::GENERATION->value}}'>Generations (Age)</option>
+                            <option value='{{App\Enum\StatisticByEnum::OCCUPATION->value}}'>Occupation</option>
+                            <option value='{{App\Enum\StatisticByEnum::EDUCATION->value}}'>Education</option>
+                            <option value='{{App\Enum\StatisticByEnum::RELIGION->value}}'>Religion</option>
+                            <option value='{{App\Enum\StatisticByEnum::GENDER->value}}'>Gender</option>
                         </select>
                     </div>	
                     <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
@@ -402,7 +405,7 @@
 							radius : '80%',
 							center : ['50%', '50%'],
 							roseType : 'radius',
-							color: ['#119dd2', '#d36ee8', '#667add'],
+							color: ['#119dd2', '#d36ee8', '#667add', '#ff0000'],
 							label: {
 								normal: {
 									fontFamily: "'Roboto', sans-serif",
@@ -413,6 +416,7 @@
 								{value:335, name:'Telkomsel'},
 								{value:310, name:'Indosat'},
 								{value:274, name:'Hutchison 3'},
+								{value:375, name:'XL Axiata'},
 							].sort(function (a, b) { return a.value - b.value; }),
 						},
 					],
@@ -425,6 +429,73 @@
 				eChart_3.setOption(option3);
 				eChart_3.resize();
 			}
+
+            $('.select_search_stat_by').change(function(e){
+                var by = $(e.target).val();
+
+                getSearchStatisticBy(by);
+            });
+
+            getSearchStatisticBy('{{App\Enum\StatisticByEnum::OPERATOR->value}}');
 		});
+
+        function getSearchStatisticBy(by){
+            console.log('getSearchStatisticBy');
+            $.ajax({
+                type: "get",
+                data: {},
+                cache: false,
+                // url: "{{config('app.url')}}/api/report/dashboard/search-statistic/"+by,
+                url: "{{config('app.url')}}/api/report/search-statistic/"+by,
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        // $([document.documentElement, document.body]).animate({
+                        //     scrollTop: $("#map").offset().top
+                        // }, 150);
+                        
+                        // let datas = response.data;
+
+                        // if(datas.length > 0){
+                        //     if(markers.length > 0){
+                        //         markers.forEach(marker => {
+                        //             map.removeLayer(marker);
+                        //         });
+
+                        //         markers = [];
+                        //     }
+                            
+                        //     let successDatas = [];
+                        //     datas.forEach(data => {
+                        //         if(data.status == 'success'){
+                        //             setData(data);
+                        //             let marker = L.marker([data.lat, data.long]).addTo(map);
+                        //             markers.push(marker);
+                        //             successDatas.push(data);
+                        //         }
+                        //     });
+                        //     if(successDatas.length == 1){
+                        //         map.flyTo(
+                        //             [successDatas[0].lat, successDatas[0].long], 
+                        //             16, 
+                        //             {
+                        //                 animate: true,
+                        //                 duration: 2 // in seconds
+                        //             }
+                        //         );
+                        //     }else if(successDatas.length > 1){
+                        //         var group = new L.featureGroup(markers);
+                        //         map.fitBounds(group.getBounds());
+                        //     }
+                        // }
+                    }else{
+                        alert(response.message);
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function() {
+                },
+            });
+        }
 	</script>
 @endsection
