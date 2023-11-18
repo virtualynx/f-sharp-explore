@@ -16,16 +16,24 @@ class ReportingService
     }
 
     public function getSearchStatisticBy(string $by){
-        if($by == StatisticByEnum::OPERATOR->value){
-            $datas = SearchLogLocateMsisdn::select("operator", DB::raw("count(1) as count"))
-                ->groupBy('operator')
+        if(
+            $by == StatisticByEnum::OPERATOR->value
+            || $by == StatisticByEnum::HANDSET->value
+        ){
+            $column = 'unknown';
+            if($by == StatisticByEnum::OPERATOR->value){
+                $column = 'operator';
+            }else if($by == StatisticByEnum::HANDSET->value){
+                $column = 'phone';
+            }
+
+            $datas = SearchLogLocateMsisdn::select(
+                    $column, 
+                    DB::raw("count(1) as count")
+                )
+                ->groupBy($column)
                 ->get()
                 ->toArray();
-            // $datas = DB::select('
-            //         select operator, count(1) as count 
-            //         from search_logs_locate_msisdn 
-            //         group by operator
-            //     ');
             
             return $datas;
         }else if(
