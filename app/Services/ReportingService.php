@@ -6,6 +6,7 @@ use App\Enum\StatisticByEnum;
 use App\Models\GenerationMap;
 use App\Models\SearchLogDukcapil;
 use App\Models\SearchLogLocateMsisdn;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -52,26 +53,37 @@ class ReportingService
                 $generationMaps = [];
                 foreach($generationMapsRaw as $loop){
                     $generationMaps[] = [
-                        'lowerbound' => date('Y-m-d', strtotime("01/01/".$loop->lowerbound)),
-                        'upperbound' => date('Y-m-d', strtotime("31/12/".$loop->upperbound)),
+                        // 'lowerbound' => date('Y-m-d', strtotime("01/01/".$loop->lowerbound)),
+                        'lowerbound' => Carbon::createFromFormat('Y-m-d H:i:s', $loop->lowerbound.'-01-01 00:00:00'),
+                        // 'upperbound' => date('Y-m-d', strtotime("31/12/".$loop->upperbound)),
+                        'upperbound' => Carbon::createFromFormat('Y-m-d H:i:s', $loop->upperbound.'-12-31 23:59:59'),
                         'name' => $loop->name
                     ];
                 }
                 
+                $preResult = [];
                 foreach($raws as $capilData){
+                    $dob = Carbon::createFromFormat('Y-m-d H:i:s', $capilData->dob.'00:00:00');
                     $generation = '';
                     foreach($generationMaps as $genMap){
-                        if($genMap['lowerbound'] <= $capilData->dob && $capilData->dob <= $genMap['upperbound']){
+                        if($genMap['lowerbound'] <= $dob && $dob <= $genMap['upperbound']){
                             $generation = $genMap['name'];
                             break;
                         }
                     }
 
-                    if(!isset($datas[$generation])){
-                        $datas[$generation] = 0;
+                    if(!isset($preResult[$generation])){
+                        $preResult[$generation] = 0;
                     }
 
-                    $datas[$generation] += $capilData->count;
+                    $preResult[$generation] += $capilData->count;
+                }
+
+                foreach($preResult as $gen => $count){
+                    $datas[] = [
+                        'generation' => $gen,
+                        'count' => $count
+                    ];
                 }
             }else{
                 $column = 'unknown';
