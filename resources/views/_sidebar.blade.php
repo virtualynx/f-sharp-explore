@@ -29,9 +29,9 @@
         <li>
             <a class="{{ request()->is('e-ktp/*') ? 'active' : '' }}" href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="zmdi zmdi-accounts mr-20"></i><span class="right-nav-text">Search Dukcapil</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
-                {{-- <li>
-                    <a href="panels-wells.html">Search By Profile</a>
-                </li> --}}
+                <li>
+                    <a href="{{ url('e-ktp/search-by-profile') }}">Search By Profile</a>
+                </li>
                 <li>
                     <a href="{{ url('e-ktp/search-by-nkk') }}">Search By NKK</a>
                 </li> 

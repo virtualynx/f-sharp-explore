@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
                         <div class="mb-30">
-                            <div class="text-center txt-dark mb-10"><img class="logo-brand-img-login mr-10" src="{{asset('dist/img/logo.jpg')}}" alt="logo 0320explorer"/></div>
+                            <div class="text-center txt-dark mb-10"><img class="logo-brand-img-login mr-10" src="{{asset('dist/img/0320-horizontal-logo.png')}}" alt="new logo 0320explorer"/></div>
                             <h6 class="text-center nonecase-font txt-grey">Enter your credentials below</h6>
                         </div>	
                         <div class="form-wrap mb-20">
