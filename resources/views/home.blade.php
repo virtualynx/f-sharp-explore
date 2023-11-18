@@ -43,44 +43,100 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-             <div class="panel-wrapper collapse in">
-                 <div class="panel-body">
-                    <!-- THE PIE CHART-->
-                    <div id="e_chart_statistics" class="" style="height:221px;"></div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                <!-- THE PIE CHART-->
+                <div id="e_chart_statistics" class="" style="height:221px;"></div>
+                <hr class="light-grey-hr row mt-10 mb-15"/>
+                <div class="label-chatrs">
+                    <div class="">
+                        <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
+                        <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">44.46% Telkomsel</span></span>
+                        <span class="txt-dark block counter pull-right"><span class="counter-anim">102</span></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
                     <hr class="light-grey-hr row mt-10 mb-15"/>
                     <div class="label-chatrs">
                         <div class="">
-                            <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
-                            <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">44.46% Telkomsel</span></span>
-                            <span class="txt-dark block counter pull-right"><span class="counter-anim">102</span></span>
+                            <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
+                            <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">30.3% Indosat</span></span>
+                            <span class="txt-dark block counter pull-right"><span class="counter-anim">88</span></span>
                             <div class="clearfix"></div>
                         </div>
                     </div>
 
-                     <hr class="light-grey-hr row mt-10 mb-15"/>
-                     <div class="label-chatrs">
-                         <div class="">
-                             <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
-                             <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">30.3% Indosat</span></span>
-                             <span class="txt-dark block counter pull-right"><span class="counter-anim">88</span></span>
-                             <div class="clearfix"></div>
-                         </div>
-                     </div>
-
-                     <hr class="light-grey-hr row mt-10 mb-15"/>
-                     <div class="label-chatrs">
-                         <div class="">
-                             <span class="clabels clabels-lg inline-block bg-skyblue mr-10 pull-left"></span>
-                             <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">5.53% Hutchison 3</span></span>
-                             <span class="txt-dark block counter pull-right"><span class="counter-anim">23</span></span>
-                             <div class="clearfix"></div>
-                         </div>
-                     </div>
-                 </div>	
+                    <hr class="light-grey-hr row mt-10 mb-15"/>
+                    <div class="label-chatrs">
+                        <div class="">
+                            <span class="clabels clabels-lg inline-block bg-skyblue mr-10 pull-left"></span>
+                            <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">5.53% Hutchison 3</span></span>
+                            <span class="txt-dark block counter pull-right"><span class="counter-anim">23</span></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>	
              </div>
-         </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-info card-view red-border panel-refresh">
+            <div class="refresh-container">
+                <div class="la-anim-1"></div>
+            </div>
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Most Searched On Dukcapil</h6>
+                </div>
+                <div class="pull-right">
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select class="selectpicker" data-style="form-control">
+                            <option value='2'>Gender</option>
+                            <option value='3'>Generations (Age)</option>
+                        </select>
+                    </div>	
+                    <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
+                        <i class="zmdi zmdi-replay"></i>
+                    </a>
+                    <a href="#" class="pull-left inline-block full-screen" style="top: 3px;">
+                        <i class="zmdi zmdi-fullscreen"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                <!-- THE PIE CHART-->
+                <div id="e_chart_dukcapil" class="" style="height:257px;"></div>
+                <hr class="light-grey-hr row mt-20 mb-15"/>
+                <div class="label-chatrs">
+                    <div class="">
+                        <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
+                        <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">58% Male</span></span>
+                        <span class="txt-dark block counter pull-right"><span class="counter-anim">1000</span></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                    <hr class="light-grey-hr row mt-10 mb-15"/>
+                    <div class="label-chatrs">
+                        <div class="">
+                            <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
+                            <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">41% Female</span></span>
+                            <span class="txt-dark block counter pull-right"><span class="counter-anim">700</span></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>	
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="panel panel-info card-view red-border panel-refresh">
             <div class="refresh-container">
                 <div class="la-anim-1"></div>
@@ -210,10 +266,7 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12 col-xs-12">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="panel panel-info card-view red-border panel-refresh">
             <div class="refresh-container">
                 <div class="la-anim-1"></div>
@@ -292,6 +345,67 @@
 					"IN": 2000000,
 					"GB": 120,
 				};
+            
+            //-- CHART TAMBAHAN (MOST SEARCHED DUKCAPIL BY GENDER / GENERATION) --> 
+            if( $('#e_chart_dukcapil').length > 0 ){
+				var eChart_dukcapil = echarts.init(document.getElementById('e_chart_dukcapil'));
+				var option_dukcapil = {
+					tooltip : {
+						trigger: 'item',
+						formatter: "{a} <br/>{b} : {c} ({d}%)",
+						backgroundColor: 'rgba(33,33,33,1)',
+						borderRadius:0,
+						padding:10,
+						textStyle: {
+							color: '#fff',
+							fontStyle: 'normal',
+							fontWeight: 'normal',
+							fontFamily: "'Roboto', sans-serif",
+							fontSize: 12
+						}	
+					},
+					legend: {
+						show:false
+					},
+					toolbox: {
+						show : false,
+					},
+					calculable : true,
+					itemStyle: {
+						normal: {
+							shadowBlur: 5,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					},
+					series : [
+						{
+							name:'Most Search By Gender',
+							type:'pie',
+							radius : '80%',
+							center : ['50%', '50%'],
+							roseType : 'radius',
+							color: ['#119dd2', '#d36ee8'],
+							label: {
+								normal: {
+									fontFamily: "'Roboto', sans-serif",
+									fontSize: 12
+								}
+							},
+							data:[
+								{value:1000, name:'Male'},
+								{value:700, name:'Female'},
+							].sort(function (a, b) { return a.value - b.value; }),
+						},
+					],
+					animationType: 'scale',
+					animationEasing: 'elasticOut',
+					animationDelay: function (idx) {
+						return Math.random() * 1000;
+					}	
+				};
+				eChart_dukcapil.setOption(option_dukcapil);
+				eChart_dukcapil.resize();
+			}
 			
 			if( $('#world_map_marker_1').length > 0 ){
 				$('#world_map_marker_1').vectorMap(
@@ -367,6 +481,7 @@
 					hoverColor: '#fff',
 				});
 			}
+            //-- CHART TAMBAHAN (MOST SEARCHED DUKCAPIL BY GENDER / GENERATION) --> 
 
 			if( $('#e_chart_statistics').length > 0 ){
 				var eChart_3 = echarts.init(document.getElementById('e_chart_statistics'));
