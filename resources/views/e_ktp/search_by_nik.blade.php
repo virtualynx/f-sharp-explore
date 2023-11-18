@@ -155,12 +155,12 @@ Search By NIK
                                     </div>
                                 </div>
                             </div>
-                            <br/>
+                            <br />
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card mb-4">
-                                        <div class="card-body">
-                                            <div class="row">
+                                        <div class="card-body" id="bodyZodiac" name="bodyZodiac">
+                                            <!-- <div class="row">
                                                 <div class="col-sm-3">
                                                     <p class="mb-0"><span class="txt-dark weight-500">Zodiac</span></p>
                                                 </div>
@@ -174,7 +174,7 @@ Search By NIK
                                                     <p class="mb-0"><span class="txt-dark weight-500">Profil<span class="txt-dark weight-500"></p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                <p class="text-muted mb-0" name="td-profil">[No Data]</p>
+                                                    <p class="text-muted mb-0" name="td-profil">[No Data]</p>
                                                 </div>
                                             </div>
                                             <hr style="border-top:1px solid #dedede;">
@@ -183,7 +183,7 @@ Search By NIK
                                                     <p class="mb-0"><span class="txt-dark weight-500">Weton<span class="txt-dark weight-500"></p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                <p class="text-muted mb-0" name="td-weton">[No Data]</p>
+                                                    <p class="text-muted mb-0" name="td-weton">[No Data]</p>
                                                 </div>
                                             </div>
                                             <hr style="border-top:1px solid #dedede;">
@@ -192,10 +192,10 @@ Search By NIK
                                                     <p class="mb-0"><span class="txt-dark weight-500">Karakter Hari<span class="txt-dark weight-500"></p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                <p class="text-muted mb-0" name="td-weton-karakterhari">[No Data]</p>
+                                                    <p class="text-muted mb-0" name="td-weton-karakterhari">[No Data]</p>
                                                 </div>
                                             </div>
-                                            <hr style="border-top:1px solid #dedede;">
+                                            <hr style="border-top:1px solid #dedede;"> -->
                                         </div>
                                     </div>
                                 </div>
@@ -228,6 +228,7 @@ Search By NIK
                 url: "{{route('api_ektp_search_by_nik')}}",
                 dataType: "json",
                 success: function(response, status) {
+                   
                     if (status == 'success' && response.status == 0) {
                         // Parse the original date string into a Date object
                         var originalDate = new Date(response.data.TGL_LHR);
@@ -243,8 +244,6 @@ Search By NIK
 
                         // Combine the formatted values with dashes
                         var formattedDate = day + '-' + month + '-' + year;
-                        console.log("tanggal " + formattedDate);
-                        searchByKarakter(formattedDate);
                         setData(response.data, formattedDate);
                     } else {
                         $.toast().reset('all');
@@ -271,10 +270,14 @@ Search By NIK
         }
 
         function setData(data, tanggalLahir) {
+            var dataArrDob = [];
+            dataArrDob.push(tanggalLahir);
+           
             $.ajax({
                 type: "post",
                 data: {
-                    dob: tanggalLahir
+                    dob: dataArrDob,
+                    type: "nik"
                 },
                 // data: $('[name="search_by_nik_form"]').serialize(),
                 cache: false,
@@ -282,7 +285,7 @@ Search By NIK
                 url: "{{config('app.url')}}/api/e-ktp/search_by_dob",
                 dataType: "json",
                 success: function(response, status) {
-                    console.log("response " + JSON.stringify(response.data));
+                    
                     if (status == 'success' && response.status == 0) {
                         $('[name="photo"]').attr('src', 'data:image/png;base64,' + data.FOTO);
 
@@ -302,10 +305,59 @@ Search By NIK
                         $('[name="td-ttl"]').html(data.TMPT_LHR + ', ' + data.TGL_LHR);
                         $('[name="td-lastedu"]').html(data.PDDK_AKH);
                         $('[name="td-bloodtype"]').html(data.GOL_DARAH);
-                        $('[name="td-zodiac"]').html(response.data.Zodiak.zodiak);
-                        $('[name="td-weton"]').html(response.data.Weton.weton);
-                        $('[name="td-profil"]').html(response.data.Zodiak.profil);
-                        $('[name="td-weton-karakterhari"]').html(response.data.Weton.karakter_hari);
+
+                        var dataArrRes = response.data;
+                        var content = "";
+                        var titles = ["Zodiac", "Profil", "Weton", "Karakter Hari"];
+                        for (var i = 0; i < dataArrRes.length; i++) {
+                            content += '<div class="row">'
+                            content += '<div class="col-sm-3">'
+                            content += '<p class="mb-0"><span class="txt-dark weight-500">Zodiac</span></p>'
+                            content += '</div>'
+                            content += '<div class="col-sm-9">'
+                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i].Zodiak.zodiak+'</p>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '<hr style="border-top:1px solid #dedede;">'
+                            content += ' <div class="row">'
+                            content += '<div class="col-sm-3">'
+                            content += '<p class="mb-0"><span class="txt-dark weight-500">Profil</span></p>'
+                            content += '</div>'
+                            content += '<div class="col-sm-9">'
+                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i].Zodiak.profil+'</p>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '<hr style="border-top:1px solid #dedede;">'
+                            content += ' <div class="row">'
+                            content += '<div class="col-sm-3">'
+                            content += '<p class="mb-0"><span class="txt-dark weight-500">Weton</span></p>'
+                            content += '</div>'
+                            content += '<div class="col-sm-9">'
+                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i].Weton.weton+'</p>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '<hr style="border-top:1px solid #dedede;">'
+                            content += ' <div class="row">'
+                            content += '<div class="col-sm-3">'
+                            content += '<p class="mb-0"><span class="txt-dark weight-500">Karakter Hari</span></p>'
+                            content += '</div>'
+                            content += '<div class="col-sm-9">'
+                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i].Weton.karakter_hari+'</p>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '</div>'
+                            content += '<hr style="border-top:1px solid #dedede;">'
+                        }
+                       
+                        $("#bodyZodiac").append(content);
+
                     } else {
                         $.toast().reset('all');
                         $.toast({

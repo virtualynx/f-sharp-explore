@@ -49,10 +49,11 @@ class EKtpApi extends _Controller{
     public function search_by_dob(Request $request)
     {
         $dob = $request->dob;
+        $type= $request->type;
 
         try{
             // $response = $this->service->ask($nik, KujangAskforEnum::NIK);
-            $response = $this->service->getKarakter($dob);
+            $response = $this->service->getKarakter($dob, $type);
     
             return new ApiResponse($response);
         }catch(Exception $e){
