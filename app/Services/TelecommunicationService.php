@@ -6,12 +6,16 @@ use App\Models\TrackedNumber;
 use App\Models\TrackedNumberGeofence;
 use App\Models\TrackedNumberLog;
 use Exception;
+use Illuminate\Support\Arr;
 
 class TelecommunicationService extends _GeneralService
 {
-    public function __construct()
+    private SearchLogService $logService;
+
+    public function __construct(SearchLogService $logService)
     {
         parent::__construct();
+        $this->logService = $logService;
     }
 
     public function locateMsisdn(string $msisdn)
@@ -33,6 +37,8 @@ class TelecommunicationService extends _GeneralService
                     'lat' => (float)$resp_respon['latitude'],
                     'long' => (float)$resp_respon['longitude']
                 ];
+
+                $this->logService->locateMsisdn($data);
 
                 return $data;
             } else if (isset($resp_arr['res'])) {
@@ -131,6 +137,19 @@ class TelecommunicationService extends _GeneralService
 
             if (isset($resp_arr['status']) && $resp_arr['status'] == "data_ok") {
                 if ($resp_arr['status'] == "data_ok") {
+                    $reg_datas = $resp_arr['reg_data'];
+                    
+                    $search_logs = [];
+                    foreach($reg_datas as $loop){
+                        $log = [
+                            'msisdn' => $loop['NO_PESERTA'],
+                            'nik' => $loop['PENCARIAN'],
+                            'operator' => $loop['INSTANSI']
+                        ];
+                        array_push($search_logs, $log);
+                    }
+
+                    $this->logService->telcoRegistration($search_logs);
 
                     return $resp_arr['reg_data'];
                 } else if ($resp_arr['status'] == "data_tidak_ada") {

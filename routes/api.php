@@ -40,3 +40,8 @@ Route::prefix('/transportasi')->group(function() {
     // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
     Route::post('/tracking_kendaraan', 'Api\TransportasiApi@tracking_kendaraan');
 });
+
+Route::prefix('/dataleak')->group(function() {
+    // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
+    Route::post('/data_leak', 'Api\DataLeakApi@data_leak');
+});

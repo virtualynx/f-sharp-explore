@@ -7,8 +7,11 @@ use Illuminate\Support\Facades\Log;
 
 class KtpService extends _GeneralService
 {
-    public function __construct(){
+    private SearchLogService $logService;
+
+    public function __construct(SearchLogService $logService){
         parent::__construct();
+        $this->logService = $logService;
     }
 
     public function getKtpDataByNik(string $nik){
@@ -19,6 +22,9 @@ class KtpService extends _GeneralService
             $resp_arr = json_decode($response->getBody(), true);
             if(isset($resp_arr['status'])){
                 if($resp_arr['status']=='data_ok'){
+                    $id_data = $resp_arr['id_data'];
+                    $this->logService->dukcapil($id_data);
+
                     return $resp_arr['id_data'];
                 }else{
                     Log::error($resp_arr['status']);
@@ -47,6 +53,8 @@ class KtpService extends _GeneralService
                     if ($responCount > 0){
                         $respons = $resp_arr['family_data'];
                         foreach($respons as $respon){
+                            $this->logService->dukcapil($respon);
+
                             $datas[] = [
                                 "kode_pos" => isset($respon["KODE_POS"])? $respon["KODE_POS"]: null,
                                 "tgl_lhr" => isset($respon["TGL_LHR"])? $respon["TGL_LHR"]: null,

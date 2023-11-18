@@ -26,7 +26,7 @@
                 <div class="pull-right">
                     <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
                         <select class="selectpicker" data-style="form-control">
-                            <option selected value='1'>Telco</option>
+                            <option selected value='1'>Operator</option>
                             <option value='2'>Gender</option>
                             <option value='3'>Generations (Age)</option>
                         </select>

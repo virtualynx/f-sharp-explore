@@ -6,16 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Thiagoprz\CompositeKey\HasCompositeKey;
 
-class TrackedNumberGeofenceBreachPoints extends Model
+class SearchLogTelcoRegistration extends Model
 {
     use HasFactory, HasCompositeKey;
 
-    protected $table = 'tracking_number_geo_breach_points';
+    protected $table = 'search_logs_telco_registration';
 
-    protected $primaryKey = ['geo_breach_uuid', 'lat', 'long'];
+    protected $primaryKey = ['msisdn', 'nik'];
     
     protected $fillable = [
-        'lat',
-        'long'
+        'msisdn',
+        'nik',
+        'operator'
     ];
 }
