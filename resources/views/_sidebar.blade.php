@@ -58,6 +58,9 @@
         <li>
             <a class="{{ request()->is('telecommunication/telco_registration') ? 'active' : '' }}" href="/telecommunication/telco_registration"><div class="pull-left"><i class="zmdi zmdi-accounts-list-alt mr-20"></i><span class="right-nav-text">Telco Registration</span></div><div class="clearfix"></div></a>
         </li>
+        <li>
+            <a class="{{ request()->is('telecommunication/tracking_imsi_imei') ? 'active' : '' }}" href="/telecommunication/tracking_imsi_imei"><div class="pull-left"><i class="zmdi zmdi-smartphone-setup mr-20"></i><span class="right-nav-text">IMEI / IMSI</span></div><div class="clearfix"></div></a>
+        </li>
         {{--
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-smartphone-info mr-20"></i><span class="right-nav-text">Device Tracking</span></div><div class="clearfix"></div></a>
@@ -65,9 +68,7 @@
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-input-antenna mr-20"></i><span class="right-nav-text">CDR</span></div><div class="clearfix"></div></a>
         </li>
-        <li>
-            <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-smartphone-setup mr-20"></i><span class="right-nav-text">IMEI / IMSI</span></div><div class="clearfix"></div></a>
-        </li>
+        
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-phone-ring mr-20"></i><span class="right-nav-text">Multi Tracking Number</span></div><div class="clearfix"></div></a>
         </li>
@@ -132,6 +133,15 @@
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-time-restore mr-20"></i><span class="right-nav-text">History</span></div><div class="clearfix"></div></a>
         </li>
         <li><hr class="light-grey-hr mb-30"/></li> --}}
+
+        <li class="navigation-header">
+            <span>Data Leak</span> 
+            <i class="zmdi zmdi-more"></i>
+        </li>
+        <li>
+            <a href="/dataleak/data-leak"><div class="pull-left"><i class="zmdi zmdi-smartphone-info mr-20"></i><span class="right-nav-text">Leak</span></div><div class="clearfix"></div></a>
+        </li> 
+        <li><hr class="light-grey-hr mb-10"/></li>
     </ul>
 </div>
 <!-- /Left Sidebar Menu -->
