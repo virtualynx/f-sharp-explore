@@ -603,7 +603,6 @@
             for(let a=0;a<datas.length;a++){
                 colors.push(randomHexColorCode());
             }
-            console.log(colors);
 
             let detailContainer;
             const chartDatas = [];
