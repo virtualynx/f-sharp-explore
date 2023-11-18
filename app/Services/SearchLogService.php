@@ -50,8 +50,8 @@ class SearchLogService
 
         $existing = SearchLogDukcapil::find($nik);
         if(!empty($existing) && empty($existing->photo_path) && !empty($data['FOTO'])){
-            $existing->photo_path = $data['FOTO'];
-            $existing->save();
+            // $existing->photo_path = $data['FOTO'];
+            // $existing->save();
         }else if(empty($existing)){
             $log = new SearchLogDukcapil();
             $log->nik = $nik;
@@ -67,12 +67,15 @@ class SearchLogService
             $log->education = $data['PDDK_AKH'];
             $log->marital = $data['STAT_KWN'];
 
-            $dob = Carbon::createFromFormat('d-m-Y', $data['TGL_LHR']); 
+            $dob = Carbon::parse($data['TGL_LHR'])->format('Y-m-d'); 
             $log->dob = $dob;
 
-            if(!empty($data['FOTO'])){
-                $existing->photo_path = $data['FOTO'];
-            }
+            $log->created_at = Carbon::now();
+            $log->save();
+
+            // if(!empty($data['FOTO'])){
+            //     $existing->photo_path = $data['FOTO'];
+            // }
         }
     }
 }
