@@ -27,6 +27,7 @@
                     <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
                         <select id="select_stat_msisdn_by" class="selectpicker" data-style="form-control">
                             <option selected value='{{App\Enum\StatisticByEnum::OPERATOR->value}}'>Operator</option>
+                            <option value='{{App\Enum\StatisticByEnum::HANDSET->value}}'>Handset</option>
                         </select>
                     </div>	
                     <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
@@ -90,7 +91,7 @@
                 <div class="pull-right">
                     <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
                         <select id="select_stat_dukcapil_by" class="selectpicker" data-style="form-control">
-                            <option value='{{App\Enum\StatisticByEnum::GENDER->value}}'>Gender</option>
+                            <option selected value='{{App\Enum\StatisticByEnum::GENDER->value}}'>Gender</option>
                             <option value='{{App\Enum\StatisticByEnum::GENERATION->value}}'>Generations (Age)</option>
                             <option value='{{App\Enum\StatisticByEnum::OCCUPATION->value}}'>Occupation</option>
                             <option value='{{App\Enum\StatisticByEnum::EDUCATION->value}}'>Education</option>
@@ -452,7 +453,7 @@
             getSearchStatisticBy('{{App\Enum\StatisticByEnum::OPERATOR->value}}');
             getSearchStatisticBy('{{App\Enum\StatisticByEnum::GENDER->value}}');
 		});
-        
+
         var eChartMsisdn;
         var chartOptionMsisdn = {
             tooltip : {
@@ -607,15 +608,28 @@
             let detailContainer;
             const chartDatas = [];
             let totalCount = 0;
-            if(by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'){
+            if(
+                by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'
+                || by == '{{App\Enum\StatisticByEnum::HANDSET->value}}'
+            ){
                 let series = chartOptionMsisdn.series[0];
-                series.name = 'Provider / Telco';
+
+                if(by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'){
+                    series.name = 'Provider / Telco';
+                }else if(by == '{{App\Enum\StatisticByEnum::HANDSET->value}}'){
+                    series.name = 'Handset';
+                }
+                
                 series.color = colors;
                 datas.forEach((a) => {
-                    const row = {
-                        name: a.operator,
-                        value: a.count
-                    };
+                    const row = {};
+
+                    if(by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'){
+                        row.name = a.operator;
+                    }else if(by == '{{App\Enum\StatisticByEnum::HANDSET->value}}'){
+                        row.name = a.phone;
+                    }
+                    row.value = a.count;
                     totalCount += a.count;
                     chartDatas.push(row);
                 });
