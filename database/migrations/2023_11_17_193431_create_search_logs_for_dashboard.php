@@ -52,7 +52,8 @@ return new class extends Migration
             $table->string('education', 255);
             $table->string('marital', 15);
             $table->date('dob', 15);
-            $table->string('photo_path', 255);
+            $table->string('pob', 255);
+            $table->string('photo_path', 255)->nullable();
             $table->timestamps();
             
             $table->index('nkk');

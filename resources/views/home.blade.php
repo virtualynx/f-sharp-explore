@@ -21,18 +21,16 @@
             </div>
             <div class="panel-heading">
                 <div class="pull-left">
-                    <h6 class="panel-title txt-dark">MSISDN Statistics</h6>
+                    <h6 class="panel-title txt-dark">Most Located Msisdn</h6>
                 </div>
                 <div class="pull-right">
                     <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
-                        <select class="selectpicker" data-style="form-control">
-                            <option selected value='1'>Operator</option>
-                            <option value='2'>Gender</option>
-                            <option value='3'>Generations (Age)</option>
+                        <select id="select_stat_msisdn_by" class="selectpicker" data-style="form-control">
+                            <option selected value='{{App\Enum\StatisticByEnum::OPERATOR->value}}'>Operator</option>
                         </select>
                     </div>	
                     <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
-                        <i class="zmdi zmdi-replay"></i>
+                        <i id="link_refresh_chart_msisdn" class="zmdi zmdi-replay"></i>
                     </a>
                     <a href="#" class="pull-left inline-block full-screen" style="top: 3px;">
                         <i class="zmdi zmdi-fullscreen"></i>
@@ -40,44 +38,107 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-             <div class="panel-wrapper collapse in">
-                 <div class="panel-body">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
                     <!-- THE PIE CHART-->
-                    <div id="e_chart_statistics" class="" style="height:221px;"></div>
-                    <hr class="light-grey-hr row mt-10 mb-15"/>
-                    <div class="label-chatrs">
-                        <div class="">
-                            <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
-                            <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">44.46% Telkomsel</span></span>
-                            <span class="txt-dark block counter pull-right"><span class="counter-anim">102</span></span>
-                            <div class="clearfix"></div>
+                    <div id="e_chart_msisdn" class="" style="height:221px;"></div>
+                    <div id="chart_detail_msisdn">
+                        <hr class="light-grey-hr row mt-10 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">44.46% Telkomsel</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">102</span></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+        
+                        <hr class="light-grey-hr row mt-10 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">30.3% Indosat</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">88</span></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+    
+                        <hr class="light-grey-hr row mt-10 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-skyblue mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">5.53% Hutchison 3</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">23</span></span>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
                     </div>
-
-                     <hr class="light-grey-hr row mt-10 mb-15"/>
-                     <div class="label-chatrs">
-                         <div class="">
-                             <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
-                             <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">30.3% Indosat</span></span>
-                             <span class="txt-dark block counter pull-right"><span class="counter-anim">88</span></span>
-                             <div class="clearfix"></div>
-                         </div>
-                     </div>
-
-                     <hr class="light-grey-hr row mt-10 mb-15"/>
-                     <div class="label-chatrs">
-                         <div class="">
-                             <span class="clabels clabels-lg inline-block bg-skyblue mr-10 pull-left"></span>
-                             <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">5.53% Hutchison 3</span></span>
-                             <span class="txt-dark block counter pull-right"><span class="counter-anim">23</span></span>
-                             <div class="clearfix"></div>
-                         </div>
-                     </div>
-                 </div>	
+                </div>	
              </div>
-         </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-info card-view red-border panel-refresh">
+            <div class="refresh-container">
+                <div class="la-anim-1"></div>
+            </div>
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Most Searched On Dukcapil</h6>
+                </div>
+                <div class="pull-right">
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select id="select_stat_dukcapil_by" class="selectpicker" data-style="form-control">
+                            <option value='{{App\Enum\StatisticByEnum::GENDER->value}}'>Gender</option>
+                            <option value='{{App\Enum\StatisticByEnum::GENERATION->value}}'>Generations (Age)</option>
+                            <option value='{{App\Enum\StatisticByEnum::OCCUPATION->value}}'>Occupation</option>
+                            <option value='{{App\Enum\StatisticByEnum::EDUCATION->value}}'>Education</option>
+                            <option value='{{App\Enum\StatisticByEnum::RELIGION->value}}'>Religion</option>
+                        </select>
+                    </div>	
+                    <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
+                        <i id="link_refresh_chart_dukcapil" class="zmdi zmdi-replay"></i>
+                    </a>
+                    <a href="#" class="pull-left inline-block full-screen" style="top: 3px;">
+                        <i class="zmdi zmdi-fullscreen"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <!-- THE PIE CHART-->
+                    <div id="e_chart_dukcapil" class="" style="height:257px;"></div>
+                    <div id="chart_detail_dukcapil">
+                        <hr class="light-grey-hr row mt-20 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">58% Male</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">1000</span></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                        <hr class="light-grey-hr row mt-10 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">41% Female</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">700</span></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>	
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="panel panel-info card-view red-border panel-refresh">
             <div class="refresh-container">
                 <div class="la-anim-1"></div>
@@ -207,10 +268,7 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12 col-xs-12">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="panel panel-info card-view red-border panel-refresh">
             <div class="refresh-container">
                 <div class="la-anim-1"></div>
@@ -289,6 +347,19 @@
 					"IN": 2000000,
 					"GB": 120,
 				};
+
+			if( $('#e_chart_msisdn').length > 0 ){
+				eChartMsisdn = echarts.init(document.getElementById('e_chart_msisdn'));
+				eChartMsisdn.setOption(chartOptionMsisdn);
+				eChartMsisdn.resize();
+			}
+            
+            //-- CHART TAMBAHAN (MOST SEARCHED DUKCAPIL BY GENDER / GENERATION) --> 
+            if( $('#e_chart_dukcapil').length > 0 ){
+				eChart_dukcapil = echarts.init(document.getElementById('e_chart_dukcapil'));
+				eChart_dukcapil.setOption(chartOptionDukcapil);
+				eChart_dukcapil.resize();
+			}
 			
 			if( $('#world_map_marker_1').length > 0 ){
 				$('#world_map_marker_1').vectorMap(
@@ -364,67 +435,265 @@
 					hoverColor: '#fff',
 				});
 			}
+            //-- CHART TAMBAHAN (MOST SEARCHED DUKCAPIL BY GENDER / GENERATION) --> 
 
-			if( $('#e_chart_statistics').length > 0 ){
-				var eChart_3 = echarts.init(document.getElementById('e_chart_statistics'));
-				var option3 = {
-					tooltip : {
-						trigger: 'item',
-						formatter: "{a} <br/>{b} : {c} ({d}%)",
-						backgroundColor: 'rgba(33,33,33,1)',
-						borderRadius:0,
-						padding:10,
-						textStyle: {
-							color: '#fff',
-							fontStyle: 'normal',
-							fontWeight: 'normal',
-							fontFamily: "'Roboto', sans-serif",
-							fontSize: 12
-						}	
-					},
-					legend: {
-						show:false
-					},
-					toolbox: {
-						show : false,
-					},
-					calculable : true,
-					itemStyle: {
-						normal: {
-							shadowBlur: 5,
-							shadowColor: 'rgba(0, 0, 0, 0.5)'
-						}
-					},
-					series : [
-						{
-							name:'Provider / Telco',
-							type:'pie',
-							radius : '80%',
-							center : ['50%', '50%'],
-							roseType : 'radius',
-							color: ['#119dd2', '#d36ee8', '#667add'],
-							label: {
-								normal: {
-									fontFamily: "'Roboto', sans-serif",
-									fontSize: 12
-								}
-							},
-							data:[
-								{value:335, name:'Telkomsel'},
-								{value:310, name:'Indosat'},
-								{value:274, name:'Hutchison 3'},
-							].sort(function (a, b) { return a.value - b.value; }),
-						},
-					],
-					animationType: 'scale',
-					animationEasing: 'elasticOut',
-					animationDelay: function (idx) {
-						return Math.random() * 1000;
-					}	
-				};
-				eChart_3.setOption(option3);
-				eChart_3.resize();
-			}
+            $('#select_stat_msisdn_by').change(function(e){
+                var by = $(e.target).val();
+
+                getSearchStatisticBy(by);
+            });
+
+            $('#select_stat_dukcapil_by').change(function(e){
+                var by = $(e.target).val();
+
+                getSearchStatisticBy(by);
+            });
+
+            getSearchStatisticBy('{{App\Enum\StatisticByEnum::OPERATOR->value}}');
+            getSearchStatisticBy('{{App\Enum\StatisticByEnum::GENDER->value}}');
 		});
+        
+        var eChartMsisdn;
+        var chartOptionMsisdn = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)",
+                backgroundColor: 'rgba(33,33,33,1)',
+                borderRadius:0,
+                padding:10,
+                textStyle: {
+                    color: '#fff',
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    fontFamily: "'Roboto', sans-serif",
+                    fontSize: 12
+                }	
+            },
+            legend: {
+                show:false
+            },
+            toolbox: {
+                show : false,
+            },
+            calculable : true,
+            itemStyle: {
+                normal: {
+                    shadowBlur: 5,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            series : [
+                {
+                    name:'Provider / Telco',
+                    type:'pie',
+                    radius : '80%',
+                    center : ['50%', '50%'],
+                    roseType : 'radius',
+                    color: ['#119dd2', '#d36ee8', '#667add', '#ff0000'],
+                    label: {
+                        normal: {
+                            fontFamily: "'Roboto', sans-serif",
+                            fontSize: 12
+                        }
+                    },
+                    data:[
+                        {value:335, name:'Telkomsel'},
+                        {value:310, name:'Indosat'},
+                        {value:274, name:'Hutchison 3'},
+                        {value:375, name:'XL Axiata'},
+                    ].sort(function (a, b) { return a.value - b.value; }),
+                },
+            ],
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function (idx) {
+                return Math.random() * 1000;
+            }	
+        };
+        
+        var eChart_dukcapil;
+        var chartOptionDukcapil = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)",
+                backgroundColor: 'rgba(33,33,33,1)',
+                borderRadius:0,
+                padding:10,
+                textStyle: {
+                    color: '#fff',
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    fontFamily: "'Roboto', sans-serif",
+                    fontSize: 12
+                }	
+            },
+            legend: {
+                show:false
+            },
+            toolbox: {
+                show : false,
+            },
+            calculable : true,
+            itemStyle: {
+                normal: {
+                    shadowBlur: 5,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            series : [
+                {
+                    name:'Most Search By Gender',
+                    type:'pie',
+                    radius : '80%',
+                    center : ['50%', '50%'],
+                    roseType : 'radius',
+                    color: ['#119dd2', '#d36ee8'],
+                    label: {
+                        normal: {
+                            fontFamily: "'Roboto', sans-serif",
+                            fontSize: 12
+                        }
+                    },
+                    data:[
+                        {value:1000, name:'Male'},
+                        {value:700, name:'Female'},
+                    ].sort(function (a, b) { return a.value - b.value; }),
+                },
+            ],
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function (idx) {
+                return Math.random() * 1000;
+            }	
+        };
+
+        function getSearchStatisticBy(by){
+            if(by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'){
+                $('#link_refresh_chart_msisdn').trigger('click');
+            }else{
+                $('#link_refresh_chart_dukcapil').trigger('click');
+            }
+
+            $.ajax({
+                type: "get",
+                data: {},
+                cache: false,
+                url: "{{config('app.url')}}/api/report/search-statistic/"+by,
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        updateChartMsisdn(by, response.data);
+                    }else{
+                        alert(response.message);
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function() {
+                },
+            });
+        }
+
+        function randomHexColorCode(){
+            let n = (Math.random() * 0xfffff * 1000000).toString(16);
+            return '#' + n.slice(0, 6);
+        }
+
+        function updateChartMsisdn(by, datas){
+            let colors = [];
+            for(let a=0;a<datas.length;a++){
+                colors.push(randomHexColorCode());
+            }
+
+            let detailContainer;
+            const chartDatas = [];
+            let totalCount = 0;
+            if(by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'){
+                let series = chartOptionMsisdn.series[0];
+                series.name = 'Provider / Telco';
+                series.color = colors;
+                datas.forEach((a) => {
+                    const row = {
+                        name: a.operator,
+                        value: a.count
+                    };
+                    totalCount += a.count;
+                    chartDatas.push(row);
+                });
+                series.data = chartDatas;
+
+				eChartMsisdn.setOption(chartOptionMsisdn);
+				// eChartMsisdn.resize();
+
+                detailContainer = $('#chart_detail_msisdn');
+            }else{
+                let series = chartOptionDukcapil.series[0];
+
+                if(by == '{{App\Enum\StatisticByEnum::GENDER->value}}'){
+                    series.name = 'Gender';
+                }else if(by == '{{App\Enum\StatisticByEnum::GENERATION->value}}'){
+                    series.name = 'Generation (Age)';
+                }else if(by == '{{App\Enum\StatisticByEnum::OCCUPATION->value}}'){
+                    series.name = 'Occupation';
+                }else if(by == '{{App\Enum\StatisticByEnum::EDUCATION->value}}'){
+                    series.name = 'Education';
+                }else if(by == '{{App\Enum\StatisticByEnum::RELIGION->value}}'){
+                    series.name = 'Religion';
+                }
+                
+                series.color = colors;
+                datas.forEach((a) => {
+                    const row = {};
+
+                    if(by == '{{App\Enum\StatisticByEnum::GENDER->value}}'){
+                        row.name = a.gender;
+                    }else if(by == '{{App\Enum\StatisticByEnum::GENERATION->value}}'){
+                        row.name = a.generation;
+                    }else if(by == '{{App\Enum\StatisticByEnum::OCCUPATION->value}}'){
+                        row.name = a.occupation;
+                    }else if(by == '{{App\Enum\StatisticByEnum::EDUCATION->value}}'){
+                        row.name = a.education;
+                    }else if(by == '{{App\Enum\StatisticByEnum::RELIGION->value}}'){
+                        row.name = a.religion;
+                    }
+                    row.value = a.count;
+                    totalCount += a.count;
+
+                    chartDatas.push(row);
+                });
+                series.data = chartDatas;
+
+				eChart_dukcapil.setOption(chartOptionDukcapil);
+				// eChart_dukcapil.resize();
+
+                detailContainer = $('#chart_detail_dukcapil');
+            }
+
+            const chartDetailTemplate = `
+                    <hr class="light-grey-hr row mt-10 mb-15"/>
+                    <div class="label-chatrs">
+                        <div class="">
+                            <span class="clabels clabels-lg inline-block mr-10 pull-left" style="background-color:@color"></span>
+                            <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">@percentage% @name</span></span>
+                            <span class="txt-dark block counter pull-right"><span class="counter-anim">@count</span></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                `;
+            
+            detailContainer.html('');
+            let content = '';
+            for(let a=0;a<chartDatas.length;a++){
+                let percent = (chartDatas[a].value / totalCount) * 100;
+
+                let row = chartDetailTemplate
+                    .replaceAll("@color", colors[a])
+                    .replaceAll("@percentage", percent.toFixed(2))
+                    .replaceAll("@name", chartDatas[a].name)
+                    .replaceAll("@count", chartDatas[a].value)
+                    ;
+                content+=row;
+            }
+            detailContainer.html(content);
+        }
 	</script>
 @endsection
