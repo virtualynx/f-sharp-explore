@@ -20,6 +20,7 @@ class DataLeakService extends _GeneralService
            
             if(isset($resp_arr['status'])){
                 if($resp_arr['status']=="data_ok"){
+                    
                         return $resp_arr['person_data'];
                 }else if($resp_arr['status']=="diterima"){
                     return [];
