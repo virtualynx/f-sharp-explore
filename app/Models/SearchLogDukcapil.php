@@ -27,6 +27,7 @@ class SearchLogDukcapil extends Model
         'education',
         'marital',
         'dob',
+		'pob',
         'photo_path'
     ];
 }
