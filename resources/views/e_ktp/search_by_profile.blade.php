@@ -86,25 +86,29 @@
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body pt-5">
                         <div class="row mb-50">
-							<div class="table-responsive">
-								<table name="table-search-by-profile" class="table table-hover display dataTable" width="100%">
-									<thead>
-										<tr>
-											<th>Action</th>
-											<th>Nama Lengkap</th>
-											<th>Tanggal Lahir</th>
-											<th>Tempat Lahir</th>
-											<th>NIK</th>
-											<th>NKK</th>
-											<th>Agama</th>
-											<th>Jenis Kelamin</th>
-											<th>Pekerjaan</th>
-											<th>Status Kawin</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
+							<div class="col-md-12">
+                                <div class="table-wrap">
+									<div class="table-responsive">
+										<table name="table-search-by-profile" class="table table-hover display dataTable" width="100%">
+											<thead>
+												<tr>
+													<th>Action</th>
+													<th>Nama Lengkap</th>
+													<th>Tanggal Lahir</th>
+													<th>Tempat Lahir</th>
+													<th>NIK</th>
+													<th>NKK</th>
+													<th>Agama</th>
+													<th>Jenis Kelamin</th>
+													<th>Pekerjaan</th>
+													<th>Status Kawin</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
 							</div>
                         </div>
                     </div>
