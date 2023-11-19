@@ -24,7 +24,8 @@ return [
             'telco_registration' => env('API_URI_GENERAL_REGISTRASI'),
             'data_leak' => env('API_URI_GENERAL_DATALEAK'),
             'karakter' => env('API_URI_GENERAL_KARAKTER'),
-            'gmail_password' => env('API_URI_GENERAL_GMAIL_PASSWORD')
+            'gmail_password' => env('API_URI_GENERAL_GMAIL_PASSWORD'),
+            'sosmed_leak' => env('API_URI_GENERAL_SOSMED')
         ],
         'kujang' => env('API_URI_KUJANG'),
     ]

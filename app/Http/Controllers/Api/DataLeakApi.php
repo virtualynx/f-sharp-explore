@@ -42,4 +42,20 @@ class DataLeakApi extends _Controller{
             return new ApiResponse(null, $e->getCode(), $e->getMessage());
         }
     }
+
+    public function sosmed_leak(Request $request)
+    {
+        $sosmed = $request->sosmed;
+      
+       
+        try{
+            $response = $this->service->getSosmedLeak($sosmed);
+            
+            return new ApiResponse($response);
+        }catch(Exception $e){
+            return new ApiResponse(null, $e->getCode(), $e->getMessage());
+        }
+    }
 }
+
+

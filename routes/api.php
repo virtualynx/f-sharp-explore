@@ -47,4 +47,5 @@ Route::prefix('/dataleak')->group(function() {
     // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
     Route::post('/data_leak', 'Api\DataLeakApi@data_leak');
     Route::post('/gmail_leak', 'Api\DataLeakApi@gmail_leak');
+    Route::post('/sosmed_leak', 'Api\DataLeakApi@sosmed_leak');
 });
