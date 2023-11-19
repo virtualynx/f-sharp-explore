@@ -127,9 +127,6 @@ Gmail
                             content += '<td name="td-registrasi-nomor">' + datas[i]['url_user'] + '</td>'
                             content += '</tr>'
                         }
-
-
-
                         $("#tbodyDataSosmed").append(content);
                     } else {
                         $.toast().reset('all');

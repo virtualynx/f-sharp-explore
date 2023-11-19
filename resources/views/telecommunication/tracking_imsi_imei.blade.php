@@ -46,7 +46,7 @@ Cek IMSI / IMEI
                                     <div class="input-group">
                                         <input type="text" id="imsiNumber" name="imsiNumber" class="form-control" placeholder="Enter IMSI or IMEI" required />
                                         <span class="input-group-btn">
-                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchIMSI()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>
+                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchImsi()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>
                                         </span>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@ Cek IMSI / IMEI
             </div>
             <div class="panel-heading">
                 <div class="pull-left">
-                    <h6 class="panel-title txt-dark">Data Kendaraan</h6>
+                    <h6 class="panel-title txt-dark">Data Results</h6>
                 </div>
                 <div class="pull-right">
                     <a href="#" class="pull-left inline-block refresh mr-15">
@@ -144,19 +144,41 @@ Cek IMSI / IMEI
             },
             cache: false,
             // url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
-            url: "{{config('app.url')}}/api/transportasi/tracking_kendaraan",
+            url: "{{config('app.url')}}/api/telecommunication/track_imsi_imei",
             dataType: "json",
             success: function(response, status) {
                 console.log("isi response " + JSON.stringify(response));
                 if (status == 'success' && response.message == "success") {
-                    let datas = response.data;
+                    $("#tableImsi > tbody").html("");
+                    let datas = response.data.original.data;
+                   
+                    var content = "";
+                    var number = 0;
+                    if (datas.length > 0) {
+                        for (var i = 0; i < datas.length; i++) {
+                            number += 1;
+                            content += '<tr>'
+                            content += '<td name="td-registrasi-nomor">' + number + '</td>'
+                            content += '<td name="td-registrasi-nomor">' + datas[i]['msisdn'] + '</td>'
+                            content += '<td name="td-registrasi-nomor">' + datas[i]['imei'] + '</td>'
+                            content += '<td name="td-registrasi-nomor">' + datas[i]['imsi'] + '</td>'
+                            content += '</tr>'
 
-                    for (var i = 0; i < datas.length; i++) {
-                        number += 1;
-
-
+                        }
+                        $("#tbodyImsi").append(content);
+                    } else {
+                        $.toast().reset('all');
+                        $.toast({
+                            heading: 'Opps! somthing wents wrong',
+                            text: 'Data tidak ditemukan',
+                            position: 'top-right',
+                            loaderBg: '#fec107',
+                            icon: 'error',
+                            hideAfter: false
+                        });
                     }
-                    $("#tbodyImsi").append(content);
+
+
                 } else {
                     alert(response.message);
                 }
