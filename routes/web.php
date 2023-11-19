@@ -50,5 +50,7 @@ Route::prefix('/transportasi')->group(function() {
 
 Route::prefix('/dataleak')->group(function() {
     Route::get('/data-leak', 'DataLeakController@data_leak');
+    Route::get('/data-gmail', 'DataLeakController@gmail_leak');
+    Route::get('/data-sosmed', 'DataLeakController@sosmed_leak');
     // Route::post('/save', 'KtpController@save');
 });
