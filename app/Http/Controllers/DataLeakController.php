@@ -15,4 +15,8 @@ class DataLeakController extends _Controller
     public function data_leak(){
     	return view('dataleak/data-leak');
     }
+
+    public function gmail_leak(){
+    	return view('dataleak/data-gmail');
+    }
 }

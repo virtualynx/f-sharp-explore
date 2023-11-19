@@ -28,4 +28,18 @@ class DataLeakApi extends _Controller{
             return new ApiResponse(null, $e->getCode(), $e->getMessage());
         }
     }
+
+    public function gmail_leak(Request $request)
+    {
+        $gmail = $request->gmail;
+      
+       
+        try{
+            $response = $this->service->getGmailLeak($gmail);
+            
+            return new ApiResponse($response);
+        }catch(Exception $e){
+            return new ApiResponse(null, $e->getCode(), $e->getMessage());
+        }
+    }
 }

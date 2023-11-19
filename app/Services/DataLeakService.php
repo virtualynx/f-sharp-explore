@@ -6,30 +6,51 @@ use Exception;
 
 class DataLeakService extends _GeneralService
 {
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function getDataLeak(string $msisdn){
+    public function getDataLeak(string $msisdn)
+    {
         $uri = config('api.uri.general.data_leak');
 
-        $response = $this->getHttpClient()->request('GET', $uri.'/'.$msisdn);
-       
-        if($response->getStatusCode() == 200){
+        $response = $this->getHttpClient()->request('GET', $uri . '/' . $msisdn);
+
+        if ($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
-           
-            if(isset($resp_arr['status'])){
-                if($resp_arr['status']=="data_ok"){
-                    
-                        return $resp_arr['person_data'];
-                }else if($resp_arr['status']=="diterima"){
+
+            if (isset($resp_arr['status'])) {
+                if ($resp_arr['status'] == "data_ok") {
+
+                    return $resp_arr['person_data'];
+                } else if ($resp_arr['status'] == "diterima") {
                     return [];
                 }
-            }else{
+            } else {
                 throw new Exception("Unknown Error", 99);
             }
-        }else{
-            throw new Exception($response->getReasonPhrase().'('.$response->getStatusCode().')', 99);
+        } else {
+            throw new Exception($response->getReasonPhrase() . '(' . $response->getStatusCode() . ')', 99);
+        }
+    }
+
+    public function getGmailLeak(string $gmail)
+    {
+        $uri = config('api.uri.general.gmail_password');
+
+        $response = $this->getHttpClient()->request('GET', $uri . '/' . $gmail);
+
+        if ($response->getStatusCode() == 200) {
+            $resp_arr = json_decode($response->getBody(), true);
+
+            if (isset($resp_arr['Gmail_Leaks'])) {
+                return $resp_arr['Gmail_Leaks'];
+            } else {
+                throw new Exception("Unknown Error", 99);
+            }
+        } else {
+            throw new Exception($response->getReasonPhrase() . '(' . $response->getStatusCode() . ')', 99);
         }
     }
 }
