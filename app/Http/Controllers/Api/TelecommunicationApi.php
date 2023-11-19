@@ -105,7 +105,7 @@ class TelecommunicationApi extends _Controller{
                     <span data-toggle="tooltip" data-placement="right" data-original-title="Tracking Geofences">
                         <button onclick="loadGeofence('$row->msisdn')" class="btn btn-primary btn-square btn-sm" role="button" data-toggle="modal" data-target="#modal_set_geofence"><i class="icon-map"></i></button>
                     </span>
-                    <button onclick="toggleTracking('$row->msisdn')" class="btn btn-$color btn-square btn-sm" data-toggle="tooltip" data-placement="right" data-original-title="Toggle Tracking"><i class="fa-solid fa-$btnRunning"></i></button>
+                    <button onclick="toggleTracking('$row->msisdn')" class="btn btn-$color btn-square btn-sm" data-toggle="tooltip" data-placement="right" data-original-title="Toggle Tracking"><i class="fa fa-$btnRunning"></i></button>
                 HEREDOC;
 
                 // <button onclick="deleteNumber('$row->msisdn')"><i class="fa-solid fa-xmark"></i></i></button>
@@ -177,7 +177,7 @@ class TelecommunicationApi extends _Controller{
             })
             ->addColumn('see_button', function($row){
                 $btn = <<<HEREDOC
-                    <button onclick="seeCoordinateOnMap($row->lat, $row->long)"><i class="fa-solid fa-eye"></i></button>
+                    <button onclick="seeCoordinateOnMap($row->lat, $row->long)"><i class="icon-eye"></i></button>
                 HEREDOC;
 
                 return $btn;
