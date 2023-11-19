@@ -325,7 +325,8 @@
 
     <!--Maps-->
 	<script src="vendors/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    {{-- <script src="vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script> --}}
+    <script src="vendors/vectormap/indonesia-adm1.js"></script>
 
 	<!-- Switchery JavaScript -->
 	<script src="{{asset('vendors/bower_components/switchery/dist/switchery.min.js')}}"></script>
@@ -338,17 +339,11 @@
 	<script src="{{asset('vendors/echarts-liquidfill.min.js')}}"></script>
     
 	<script src="{{asset('dist/js/dashboard-data.js')}}"></script>
+	{{-- <script src="{{asset('vendors/vectormap/jquery-jvectormap-world-mill-en.js')}}"></script> --}}
+	<script src="{{asset('vendors/vectormap/indonesia-adm1.js')}}"></script>
     <script>
 		$(function() {
 			"use strict";
-			var mapData = {
-					"US": 298,
-					"SA": 200,
-					"AU": 760,
-					"IN": 2000000,
-					"GB": 120,
-				};
-
 			if( $('#e_chart_msisdn').length > 0 ){
 				eChartMsisdn = echarts.init(document.getElementById('e_chart_msisdn'));
 				eChartMsisdn.setOption(chartOptionMsisdn);
@@ -360,81 +355,6 @@
 				eChart_dukcapil = echarts.init(document.getElementById('e_chart_dukcapil'));
 				eChart_dukcapil.setOption(chartOptionDukcapil);
 				eChart_dukcapil.resize();
-			}
-			
-			if( $('#world_map_marker_1').length > 0 ){
-				$('#world_map_marker_1').vectorMap(
-				{
-					map: 'world_mill_en',
-					backgroundColor: 'transparent',
-					borderColor: '#fff',
-					borderOpacity: 0.25,
-					borderWidth: 0,
-					color: '#e6e6e6',
-					regionStyle : {
-						initial : {
-						fill : '#f4f4f4'
-						}
-					},
-
-					markerStyle: {
-					initial: {
-									r: 10,
-									'fill': '#fff',
-									'fill-opacity':1,
-									'stroke': '#000',
-									'stroke-width' : 1,
-									'stroke-opacity': 0.4
-								},
-						},
-				
-					markers : [{
-						latLng : [21.00, 78.00],
-						name : 'INDIA : 350'
-					
-					},
-					{
-						latLng : [-33.00, 151.00],
-						name : 'Australia : 250'
-						
-					},
-					{
-						latLng : [36.77, -119.41],
-						name : 'USA : 250'
-					
-					},
-					{
-						latLng : [55.37, -3.41],
-						name : 'UK   : 250'
-					
-					},
-					{
-						latLng : [25.20, 55.27],
-						name : 'UAE : 250'
-					
-					}],
-
-					series: {
-						regions: [{
-							values: {
-								"US": '#667add',
-								"SA": '#667add',
-								"AU": '#667add',
-								"IN": '#667add',
-								"GB": '#667add',
-							},
-							attribute: 'fill'
-						}]
-					},
-					hoverOpacity: null,
-					normalizeFunction: 'linear',
-					zoomOnScroll: false,
-					scaleColors: ['#000000', '#000000'],
-					selectedColor: '#000000',
-					selectedRegions: [],
-					enableZoom: false,
-					hoverColor: '#fff',
-				});
 			}
             //-- CHART TAMBAHAN (MOST SEARCHED DUKCAPIL BY GENDER / GENERATION) --> 
 
@@ -454,6 +374,122 @@
             getSearchStatisticBy('{{App\Enums\StatisticByEnum::GENDER->value}}');
 
             getTop10City('city');
+			
+			var mapData = {
+					"US": 298,
+					"SA": 200,
+					"AU": 760,
+					"IN": 2000000,
+					"GB": 120,
+				};
+            
+            /** 
+             * Load another jvectormap on region click
+             * https://stackoverflow.com/questions/15643677/load-another-jvectormap-on-region-click
+            */
+			if( $('#world_map_marker_1').length > 0 ){
+				$('#world_map_marker_1').vectorMap({
+					// map: 'world_mill_en',
+					map: 'indonesia-adm1_merc',
+                    // map: 'indonesia-adm2-1_merc',
+					backgroundColor: 'transparent',
+					borderColor: '#fff',
+					borderOpacity: 0.25,
+					borderWidth: 0,
+					color: '#e6e6e6',
+					hoverOpacity: null,
+					normalizeFunction: 'linear',
+					zoomOnScroll: true,
+					scaleColors: ['#000000', '#000000'],
+					selectedColor: '#000000',
+					selectedRegions: [],
+					enableZoom: false,
+					hoverColor: '#fff',
+
+                    regionStyle: { 
+                        initial: { fill: '#d2d6de' }, 
+                        hover: { fill: '#A0D1DC' } 
+                    },
+
+					markerStyle: {
+					    initial: {
+									r: 10,
+									'fill': '#fff',
+									'fill-opacity':1,
+									'stroke': '#000',
+									'stroke-width' : 1,
+									'stroke-opacity': 0.4
+                        },
+                    },
+				
+					markers : [
+                        // {
+                        //     latLng : [21.00, 78.00],
+                        //     name : 'INDIA : 350'
+                        
+                        // },
+                        // {
+                        //     latLng : [-33.00, 151.00],
+                        //     name : 'Australia : 250'
+                            
+                        // }
+                    ],
+
+					series: {
+						regions: [
+                            // {
+                            //     values: {
+                            //         "US": '#667add',
+                            //         "SA": '#667add',
+                            //         "AU": '#667add',
+                            //         "IN": '#667add',
+                            //         "GB": '#667add',
+                            //     },
+                            //     attribute: 'fill'
+                            // }
+                            {
+                                "values": {
+                                    // 10: "#1c8b7b",
+                                    // 16: "#341ebc",
+                                    // 27: "#987c19"
+                                },
+                                "attribute": "fill"
+                            }
+                        ]
+					},
+                    onRegionTipShow: function(e, el, code){
+                        let value = mapInstance.series.regions[0].values[code];
+                        let formattedValue = new Intl.NumberFormat('en-US', mapInstance.dataSetFormat).format(value);
+                        el.text(el.text() + ' (' + mapInstance.dataSetName + ': ' + formattedValue + ')');
+                    }
+				});
+                mapInstance = $('#world_map_marker_1').vectorMap('get', 'mapObject');
+
+                // mapInstance = new jvm.Map({
+				// 	map: 'indonesia-adm1_merc',
+                //     container: $('#world_map_marker_1'),
+                //     zoomOnScroll: true,
+                //     regionsSelectable: false,
+                //     backgroundColor: "aliceblue", 
+                //     markers: [], /* Initialize the map with empty markers */
+                //     series: {
+                //     regions: [{
+                //         values: {}, /* Initialize the map with empty region values */
+                //         scale: ['#C8EEFF', '#0071A4'],
+                //         normalizeFunction: 'polynomial'
+                //     }],
+                //     /* Initialize the map with empty marker values */
+                //     markers: [{attribute: 'fill', scale: {}, values: []}]
+                //     }, 
+                //     onRegionTipShow: function(e, el, code){
+                //         // var value = worldMap.series.regions[0].values[code],
+                //         // formattedValue = new Intl.NumberFormat('en-US', worldMap.dataSetFormat).format(value);
+                //         // el.text(el.text() + ' (' + worldMap.dataSetName + ': ' + formattedValue + ')');
+                //     }
+                // });
+
+                getVectorMapData();
+			}
 		});
 
         var eChartMsisdn;
@@ -568,6 +604,187 @@
             animationDelay: function (idx) {
                 return Math.random() * 1000;
             }	
+        };
+
+        var mapInstance;
+        const jvectorMapOptions = {
+            // map: 'world_mill_en',
+            map: 'indonesia-adm1_merc',
+            // map: 'indonesia-adm2-1_merc',
+            backgroundColor: 'transparent',
+            borderColor: '#fff',
+            borderOpacity: 0.25,
+            borderWidth: 0,
+            color: '#e6e6e6',
+            regionStyle: { 
+                initial: { fill: '#d2d6de' }, 
+                hover: { fill: '#A0D1DC' } 
+            },
+
+            markerStyle: {
+            initial: {
+                            r: 10,
+                            'fill': '#fff',
+                            'fill-opacity':1,
+                            'stroke': '#000',
+                            'stroke-width' : 1,
+                            'stroke-opacity': 0.4
+                        },
+                },
+        
+            markers : [
+                // {
+                //     latLng : [21.00, 78.00],
+                //     name : 'INDIA : 350'
+                
+                // },
+                // {
+                //     latLng : [-33.00, 151.00],
+                //     name : 'Australia : 250'
+                    
+                // },
+                // {
+                //     latLng : [36.77, -119.41],
+                //     name : 'USA : 250'
+                
+                // },
+                // {
+                //     latLng : [55.37, -3.41],
+                //     name : 'UK   : 250'
+                
+                // },
+                // {
+                //     latLng : [25.20, 55.27],
+                //     name : 'UAE : 250'
+                
+                // }
+            ],
+
+            series: {
+                regions: [{
+                    values: {
+                        "US": '#667add',
+                        "SA": '#667add',
+                        "AU": '#667add',
+                        "IN": '#667add',
+                        "GB": '#667add',
+                    },
+                    attribute: 'fill'
+                }]
+            },
+            hoverOpacity: null,
+            normalizeFunction: 'linear',
+            zoomOnScroll: false,
+            scaleColors: ['#000000', '#000000'],
+            selectedColor: '#000000',
+            selectedRegions: [],
+            enableZoom: false,
+            hoverColor: '#fff',
+        };
+
+        const jvectorMapProvince = {
+            "24": {
+                "name": "Papua"
+            },
+            "25": {
+                "name": "Riau"
+            },
+            "26": {
+                "name": "Sulawesi Barat"
+            },
+            "27": {
+                "name": "Sulawesi Selatan"
+            },
+            "20": {
+                "name": "Maluku Utara"
+            },
+            "21": {
+                "name": "Maluku"
+            },
+            "22": {
+                "name": "Nusa Tenggara Barat"
+            },
+            "23": {
+                "name": "Nusa Tenggara Timur"
+            },
+            "28": {
+                "name": "Sulawesi Tengah"
+            },
+            "29": {
+                "name": "Sulawesi Tenggara"
+            },
+            "1": {
+                "name": "Aceh"
+            },
+            "3": {
+                "name": "Bangka-Belitung"
+            },
+            "2": {
+                "name": "Bali"
+            },
+            "5": {
+                "name": "Bengkulu"
+            },
+            "4": {
+                "name": "Banten"
+            },
+            "7": {
+                "name": "Irian Jaya Barat"
+            },
+            "6": {
+                "name": "Gorontalo"
+            },
+            "9": {
+                "name": "Jambi"
+            },
+            "8": {
+                "name": "Jakarta Raya"
+            },
+            "11": {
+                "name": "Jawa Tengah"
+            },
+            "10": {
+                "name": "Jawa Barat"
+            },
+            "13": {
+                "name": "Kalimantan Barat"
+            },
+            "12": {
+                "name": "Jawa Timur"
+            },
+            "15": {
+                "name": "Kalimantan Tengah"
+            },
+            "14": {
+                "name": "Kalimantan Selatan"
+            },
+            "17": {
+                "name": "Kalimantan Utara"
+            },
+            "16": {
+                "name": "Kalimantan Timur"
+            },
+            "19": {
+                "name": "Lampung"
+            },
+            "18": {
+                "name": "Kepulauan Riau"
+            },
+            "31": {
+                "name": "Sumatera Barat"
+            },
+            "30": {
+                "name": "Sulawesi Utara"
+            },
+            "34": {
+                "name": "Yogyakarta"
+            },
+            "33": {
+                "name": "Sumatera Utara"
+            },
+            "32": {
+                "name": "Sumatera Selatan"
+            }
         };
 
         function getSearchStatisticBy(by){
@@ -766,6 +983,70 @@
                             content += rowContent;
                         }
                         $('#table-top-10-located-msisdn').html(content);
+                    }else{
+                        alert(response.message);
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function() {
+                },
+            });
+        }
+
+        function getVectorMapData(){
+            const provinceMap = [];
+            for(const [key, value] of Object.entries(jvectorMapProvince)) {
+                const rowdata = {
+                    region_id: key,
+                    name: value.name
+                };
+                provinceMap.push(rowdata);
+            }
+
+            $.ajax({
+                type: "post",
+                data: {},
+                cache: false,
+                url: "{{config('app.url')}}/api/report/dashboard/map-visualization",
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        const datas = response.data;
+                        const regionData = {
+                            values: {},
+                            attribute: 'fill'
+                        };
+                        const regionValuesData = {};
+                        const colors = [];
+                        for(let a=0;a<datas.length;a++){
+                            colors.push(randomHexColorCode());
+                        }
+
+                        for(let a=0;a<datas.length;a++){
+                            let loopData = datas[a];
+                            let map = provinceMap.filter((b) => b.name.toLowerCase() == loopData.province.toLowerCase());
+                            if(map.length > 0){
+                                map = map[0];
+                                // regionData[map.region_id.toString()] = colors[a];
+                                // regionData.values[map.region_id.toString()] = colors[a];
+                                regionValuesData[map.region_id.toString()] = colors[a];
+                            }
+                        }
+
+                        // let region = mapInstance.series.regions[0];
+                        /* Reset the scale min & max, allow recomputation. */ 
+                        // region.params.min = min;
+                        // region.params.max = max;
+                        // region.setValues(regionData);
+                        // region.values = regionData;
+
+                        // let mapInst = $('#world_map_marker_1').vectorMap('get', 'mapObject');
+                        // mapInst.clearSelectedRegions();
+                        // mapInst.series.regions[0].clear(); //clear the array values
+                        // mapInst.setSelectedRegions([code]);
+                        // mapInst.series.regions[0].values = regionValuesData;
+
+                        mapInstance.series.regions[0].setValues(regionValuesData);
                     }else{
                         alert(response.message);
                     }

@@ -134,4 +134,15 @@ class ReportingService
 
         return $raw;
     }
+
+    public function getMapVisualization(string $province = null){
+        $raw = SearchLogLocateMsisdn::select(
+                'province', 
+                DB::raw("count(1) as count")
+            )
+            ->groupBy('province')
+            ->get();
+
+        return $raw;
+    }
 }

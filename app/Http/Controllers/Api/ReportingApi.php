@@ -30,4 +30,13 @@ class ReportingApi extends _Controller{
 
         return new ApiResponse($datas);
     }
+
+    public function map_visualization(Request $request){
+        $province = $request->province;
+
+        $datas = $this->service->getMapVisualization();
+        
+
+        return new ApiResponse($datas);
+    }
 }
