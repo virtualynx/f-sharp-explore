@@ -177,7 +177,7 @@ class TelecommunicationApi extends _Controller{
             })
             ->addColumn('see_button', function($row){
                 $btn = <<<HEREDOC
-                    <button onclick="seeCoordinateOnMap($row->lat, $row->long)"><i class="icon-eye"></i></button>
+                    <button onclick="seeCoordinateOnMap($row->lat, $row->long)" class="btn btn-primary btn-square btn-sm"><i class="icon-eye"></i></button>
                 HEREDOC;
 
                 return $btn;
