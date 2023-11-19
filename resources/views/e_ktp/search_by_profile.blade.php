@@ -120,7 +120,7 @@
 
     <script>
 		const form_id = '#search_by_profile';
-        let table_profile = $('.datatable').DataTable({
+        let table_profile = $('[name="table-search-by-profile"]').DataTable({
 			processing: true,
 			serverSide: true,
 			searching: false,
