@@ -26,11 +26,14 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div id="map_log" style="height:500px;"></div>
+                        <h6 class="panel-title txt-dark mb-10">Maps</h6>
+                        <div class="m-5">
+                            <div id="map_log" style="height:450px;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer mt-30">
+            <div class="modal-footer mt-20">
                 <button type="button" class="btn btn-default text-left" data-dismiss="modal">Close</button>
             </div>
         </div>
