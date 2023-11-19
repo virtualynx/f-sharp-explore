@@ -27,6 +27,8 @@ class KtpService extends _GeneralService
                     $id_data = $resp_arr['id_data'];
                     $this->logService->dukcapil($id_data);
 
+                    $id_data['NAMA_LGKP'] = ucwords($id_data['NAMA_LGKP']);
+                    
                     return $resp_arr['id_data'];
                 } else {
                     Log::error($resp_arr['status']);
