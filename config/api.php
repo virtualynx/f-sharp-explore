@@ -30,5 +30,4 @@ return [
             'reverse_geocode' => env('API_URI_BDC_REV_GEOCODE')
         ],
     ],
-    'locate_msisdn' => env('API_URL_LOCATE_MSISDN')
 ];
