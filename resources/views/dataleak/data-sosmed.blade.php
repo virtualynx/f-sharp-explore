@@ -1,7 +1,7 @@
 @extends('_template_authorized')
 
 @section('page-title')
-Gmail
+Data Media Social
 @endsection
 
 @section('page-head')
