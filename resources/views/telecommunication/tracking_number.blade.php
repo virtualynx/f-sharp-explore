@@ -370,7 +370,7 @@
                 processing: true,
                 serverSide: true,
                 scorllX: true,
-                scrollY: "500px",
+                scrollY: "420px",
                 scrollCollapse: true,
                 paging: false,
                 ordering: false,
