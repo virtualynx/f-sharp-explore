@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('/e-ktp')->group(function() {
     Route::post('/search-by-nik', 'Api\EKtpApi@search_by_nik')->name('api_ektp_search_by_nik');
     Route::post('/search_by_nkk', 'Api\EKtpApi@search_by_nkk');
+    Route::post('/search_by_dob', 'Api\EKtpApi@search_by_dob');
+    
 });
 
 Route::prefix('/telecommunication')->group(function() {
@@ -51,4 +53,6 @@ Route::prefix('/report')->group(function() {
 Route::prefix('/dataleak')->group(function() {
     // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
     Route::post('/data_leak', 'Api\DataLeakApi@data_leak');
+    Route::post('/gmail_leak', 'Api\DataLeakApi@gmail_leak');
+    Route::post('/sosmed_leak', 'Api\DataLeakApi@sosmed_leak');
 });
