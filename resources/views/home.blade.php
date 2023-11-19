@@ -340,6 +340,10 @@
     
 	<script src="{{asset('dist/js/dashboard-data.js')}}"></script>
 	{{-- <script src="{{asset('vendors/vectormap/jquery-jvectormap-world-mill-en.js')}}"></script> --}}
+    {{-- 
+        for complete district vector map in
+        https://github.com/nsetyo/jvectormap-indonesia 
+    --}}
 	<script src="{{asset('vendors/vectormap/indonesia-adm1.js')}}"></script>
     <script>
 		$(function() {
@@ -374,14 +378,6 @@
             getSearchStatisticBy('{{App\Enums\StatisticByEnum::GENDER->value}}');
 
             getTop10City('city');
-			
-			var mapData = {
-					"US": 298,
-					"SA": 200,
-					"AU": 760,
-					"IN": 2000000,
-					"GB": 120,
-				};
             
             /** 
              * Load another jvectormap on region click
@@ -449,9 +445,9 @@
                             // }
                             {
                                 "values": {
-                                    // 10: "#1c8b7b",
-                                    // 16: "#341ebc",
-                                    // 27: "#987c19"
+                                    // '10': "#1c8b7b",
+                                    // '16': "#341ebc",
+                                    // '27': "#987c19"
                                 },
                                 "attribute": "fill"
                             }
@@ -460,8 +456,20 @@
                     onRegionTipShow: function(e, el, code){
                         let value = mapInstance.series.regions[0].values[code];
                         let formattedValue = new Intl.NumberFormat('en-US', mapInstance.dataSetFormat).format(value);
-                        el.text(el.text() + ' (' + mapInstance.dataSetName + ': ' + formattedValue + ')');
-                    }
+                        if(value){
+                            el.text(el.text() + ' (' + mapInstance.dataSetName + ': ' + formattedValue + ')');
+                        }
+                    },
+
+                    // labels: {
+                    //     regions: {
+                    //         render: function(code){
+                    //             // return regions[code] && jvm.Map.maps[map].paths[code].name;
+                    //             // return jvm.Map.maps[mapInstance].paths[code].name;
+                    //             return 'test';
+                    //         }
+                    //     }
+                    // },
 				});
                 mapInstance = $('#world_map_marker_1').vectorMap('get', 'mapObject');
 
@@ -607,79 +615,12 @@
         };
 
         var mapInstance;
-        const jvectorMapOptions = {
-            // map: 'world_mill_en',
-            map: 'indonesia-adm1_merc',
-            // map: 'indonesia-adm2-1_merc',
-            backgroundColor: 'transparent',
-            borderColor: '#fff',
-            borderOpacity: 0.25,
-            borderWidth: 0,
-            color: '#e6e6e6',
-            regionStyle: { 
-                initial: { fill: '#d2d6de' }, 
-                hover: { fill: '#A0D1DC' } 
-            },
-
-            markerStyle: {
-            initial: {
-                            r: 10,
-                            'fill': '#fff',
-                            'fill-opacity':1,
-                            'stroke': '#000',
-                            'stroke-width' : 1,
-                            'stroke-opacity': 0.4
-                        },
-                },
-        
-            markers : [
-                // {
-                //     latLng : [21.00, 78.00],
-                //     name : 'INDIA : 350'
-                
-                // },
-                // {
-                //     latLng : [-33.00, 151.00],
-                //     name : 'Australia : 250'
-                    
-                // },
-                // {
-                //     latLng : [36.77, -119.41],
-                //     name : 'USA : 250'
-                
-                // },
-                // {
-                //     latLng : [55.37, -3.41],
-                //     name : 'UK   : 250'
-                
-                // },
-                // {
-                //     latLng : [25.20, 55.27],
-                //     name : 'UAE : 250'
-                
-                // }
-            ],
-
-            series: {
-                regions: [{
-                    values: {
-                        "US": '#667add',
-                        "SA": '#667add',
-                        "AU": '#667add',
-                        "IN": '#667add',
-                        "GB": '#667add',
-                    },
-                    attribute: 'fill'
-                }]
-            },
-            hoverOpacity: null,
-            normalizeFunction: 'linear',
-            zoomOnScroll: false,
-            scaleColors: ['#000000', '#000000'],
-            selectedColor: '#000000',
-            selectedRegions: [],
-            enableZoom: false,
-            hoverColor: '#fff',
+        var mapData = {
+            "US": 298,
+            "SA": 200,
+            "AU": 760,
+            "IN": 2000000,
+            "GB": 120,
         };
 
         const jvectorMapProvince = {
@@ -849,7 +790,7 @@
                         row.name = a.phone;
                     }
                     row.value = a.count;
-                    totalCount += a.count;
+                    totalCount += parseInt(a.count);
                     chartDatas.push(row);
                 });
                 series.data = chartDatas;
@@ -889,7 +830,7 @@
                         row.name = a.religion;
                     }
                     row.value = a.count;
-                    totalCount += a.count;
+                    totalCount += parseInt(a.count);
 
                     chartDatas.push(row);
                 });
@@ -1022,14 +963,14 @@
                             colors.push(randomHexColorCode());
                         }
 
+                        mapData = {};
                         for(let a=0;a<datas.length;a++){
                             let loopData = datas[a];
-                            let map = provinceMap.filter((b) => b.name.toLowerCase() == loopData.province.toLowerCase());
-                            if(map.length > 0){
-                                map = map[0];
-                                // regionData[map.region_id.toString()] = colors[a];
-                                // regionData.values[map.region_id.toString()] = colors[a];
-                                regionValuesData[map.region_id.toString()] = colors[a];
+                            let matchedDatas = provinceMap.filter((b) => b.name.toLowerCase() == loopData.province.toLowerCase());
+                            if(matchedDatas.length > 0){
+                                let matchedData = matchedDatas[0];
+                                regionValuesData[matchedData.region_id] = colors[a];
+                                mapData[matchedData.region_id] = loopData.count;
                             }
                         }
 
