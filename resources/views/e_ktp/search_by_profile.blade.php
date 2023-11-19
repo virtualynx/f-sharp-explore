@@ -7,6 +7,7 @@
 @section('page-head')
 	{{-- <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet"> --}}
 	{{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/e_ktp/search_by_profile.css') }}"> --}}
+	<link href="{{ url('/dist/css/custom-style.css') }}" rel="stylesheet">
 @endsection
 
 @section('page-content')
@@ -87,7 +88,7 @@
                     <div class="panel-body pt-5">
                         <div class="row mb-50">
 							<div class="col-md-12">
-                                <div class="table-wrap">
+                                <div class="table-wrap table-search-by-profile-wrap">
 									<div class="table-responsive">
 										<table name="table-search-by-profile" class="table table-hover display dataTable" width="100%">
 											<thead>
@@ -116,6 +117,7 @@
             </div>
         </div>
     </div>
+	@include('e_ktp.profile-detail') 
 @endsection
 
 @section('page-footer')
@@ -124,7 +126,7 @@
 
     <script>
 		const form_id = '#search_by_profile';
-        let table_profile = $('[name="table-search-by-profile"]').DataTable({
+        let tableProfile = $('[name="table-search-by-profile"]').DataTable({
 			processing: true,
 			serverSide: true,
 			searching: false,
@@ -143,7 +145,12 @@
 				}
 			},
 			columns: [
-				{data: 'action', name: 'action', orderable: false, searchable: false},
+				{
+					class: 'dt-control',
+					orderable: false,
+					data: null,
+					defaultContent: ''
+				},
 				{data: 'name', name: 'name'},
 				{data: 'dob', name: 'dob'},
 				{data: 'pob', name: 'pob'},
@@ -158,7 +165,70 @@
 
 		$('#search_by_profile').on('submit', function(e) {
 			e.preventDefault();
-			table_profile.draw();
+			tableProfile.draw();
+		});
+
+		function formatDataDetail(d) {
+			const pob_dob = (d.pob != null) ? ( d.pob  + ', ' + d.dob ) : d.dob;
+
+			let el_profile_detail = $('.profile-detail-master .profile-detail').clone();
+			el_profile_detail.find('[name="td-nik"]').text(d.nik);
+			el_profile_detail.find('[name="td-name"]').text(d.name);
+			el_profile_detail.find('[name="td-ttl"]').text(pob_dob);
+			el_profile_detail.find('[name="td-sex"]').text(d.gender);
+			el_profile_detail.find('[name="td-religion"]').text(d.religion);
+			el_profile_detail.find('[name="td-address"]').text(d.address);
+			el_profile_detail.find('[name="td-nkk"]').text(d.nkk);
+			el_profile_detail.find('[name="td-father"]').text(d.father);
+			el_profile_detail.find('[name="td-mother"]').text(d.mother);
+			el_profile_detail.find('[name="td-marital"]').text(d.marital);
+			el_profile_detail.find('[name="td-job"]').text(d.occupation);
+			el_profile_detail.find('[name="td-lastedu"]').text(d.education);
+			el_profile_detail.find('[name="td-bloodtype"]').text(d.blood_type);
+
+			// replace photo profile
+			if (d.photo_path != null) {
+				el_profile_detail.find('[name="photo"]').attr('src', d.photo_path);
+			}
+
+			return el_profile_detail;
+		}
+
+
+		// Array to track the ids of the details displayed rows
+		const detailRows = [];
+
+		tableProfile.on('click', 'tbody td', function () {
+			let tr = event.target.closest('tr');
+			let row = tableProfile.row(tr);
+			let idx = detailRows.indexOf(tr.id);
+		
+			if (row.child.isShown()) {
+				tr.classList.remove('details');
+				row.child.hide();
+		
+				// Remove from the 'open' array
+				detailRows.splice(idx, 1);
+			}
+			else {
+				tr.classList.add('details');
+				row.child( formatDataDetail( row.data() ) ).show();
+		
+				// Add to the 'open' array
+				if (idx === -1) {
+					detailRows.push(tr.id);
+				}
+			}
+		});
+
+		tableProfile.on('draw', () => {
+			detailRows.forEach((id, i) => {
+				let el = document.querySelector('#' + id + ' td.dt-control');
+		
+				if (el) {
+					el.dispatchEvent(new Event('click', { bubbles: true }));
+				}
+			});
 		});
     </script>
 @endsection
