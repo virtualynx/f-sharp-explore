@@ -22,13 +22,17 @@ class GeocodingService
 
         $response = $client->request(
             'GET', 
-            '/data/reverse-geocode-client?latitude='.$lat.'&longitude='.$long
+            'data/reverse-geocode-client?latitude='.$lat.'&longitude='.$long
         );
 
         if($response->getStatusCode() == 200){
-            $result = json_decode($response->getBody()->getContents(), true);
+            $responseJson = json_decode($response->getBody()->getContents(), true);
 
-            return $result;
+            return [
+                'countryName' => $responseJson['countryName'],
+                'principalSubdivision' => $responseJson['principalSubdivision'],
+                'city' => $responseJson['city'],
+            ];
         }else{
             throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
         }

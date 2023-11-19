@@ -20,4 +20,14 @@ class ReportingApi extends _Controller{
 
         return new ApiResponse($datas);
     }
+
+    public function most_located_msisdn_by($by){
+        $datas = $this->service->getMostLocateMsisdnCities($by);
+
+        $datas = from($datas)
+            ->orderByDescending(function($a) { return $a->count; })
+            ->toArray();
+
+        return new ApiResponse($datas);
+    }
 }

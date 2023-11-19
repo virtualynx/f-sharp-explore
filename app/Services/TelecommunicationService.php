@@ -36,7 +36,11 @@ class TelecommunicationService extends _GeneralService
                     'address' => $resp_respon['address'],
                     'phone' => $resp_respon['phone'],
                     'lat' => (float)$resp_respon['latitude'],
-                    'long' => (float)$resp_respon['longitude']
+                    'long' => (float)$resp_respon['longitude'],
+                    'province' => !empty($resp_respon['province'])? $resp_respon['province']: null,
+                    'city' => !empty($resp_respon['city'])? $resp_respon['city']: null,
+                    'district' => !empty($resp_respon['district'])? $resp_respon['district']: null,
+                    'subdistrict' => !empty($resp_respon['subdistrict'])? $resp_respon['subdistrict']: null,
                 ];
 
                 $this->logService->locateMsisdn($data);

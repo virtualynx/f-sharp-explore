@@ -166,11 +166,11 @@
                             <thead>
                                   <tr>
                                     <th>City</th>
-                                    <th>Progress</th>
+                                    <th>Portion</th>
                                     <th>Percent</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="table-top-10-located-msisdn">
                               <tr>
                                 <td>Surabaya</td>
                                 <td>
@@ -452,6 +452,8 @@
 
             getSearchStatisticBy('{{App\Enums\StatisticByEnum::OPERATOR->value}}');
             getSearchStatisticBy('{{App\Enums\StatisticByEnum::GENDER->value}}');
+
+            getTop10City('city');
 		});
 
         var eChartMsisdn;
@@ -708,6 +710,70 @@
                 content+=row;
             }
             detailContainer.html(content);
+        }
+
+        function getTop10City(by){
+            const rowTemplate = `
+                <tr>
+                    <td>@city</td>
+                    <td>
+                        <div class="progress progress-xs mb-0 ">
+                            <div class="progress-bar" style="width: @percent%; background-color: @color"></div>
+                            </div>
+                    </td>
+                    <td class="txt-dark weight-500">@percent%</td>	
+                </tr>
+            `;
+
+            $.ajax({
+                type: "get",
+                data: {},
+                cache: false,
+                url: "{{config('app.url')}}/api/report/dashboard/most-located-msisdn/"+by,
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        let datas = response.data;
+
+                        const colors = [];
+                        for(let a=0;a<datas.length;a++){
+                            colors.push(randomHexColorCode());
+                        }
+
+                        let totalCount = 0;
+                        datas.forEach((a) => {
+                            totalCount += a.count;
+                        });
+
+                        $('#table-top-10-located-msisdn').html('');
+                        let content = '';
+                        for(let a=0;a<datas.length;a++){
+                            let data = datas[a];    
+                            let field = null;
+
+                            if(by == 'city'){
+                                field = data.city;
+                            }
+
+                            let percent = (data.count / totalCount) * 100;
+
+                            let rowContent = rowTemplate
+                                .replaceAll('@city', field)
+                                .replaceAll('@percent', percent.toFixed(2))
+                                .replaceAll('@color', colors[a])
+                                ;
+
+                            content += rowContent;
+                        }
+                        $('#table-top-10-located-msisdn').html(content);
+                    }else{
+                        alert(response.message);
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function() {
+                },
+            });
         }
 	</script>
 @endsection
