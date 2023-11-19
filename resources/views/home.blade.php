@@ -26,8 +26,8 @@
                 <div class="pull-right">
                     <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
                         <select id="select_stat_msisdn_by" class="selectpicker" data-style="form-control">
-                            <option selected value='{{App\Enum\StatisticByEnum::OPERATOR->value}}'>Operator</option>
-                            <option value='{{App\Enum\StatisticByEnum::HANDSET->value}}'>Handset</option>
+                            <option selected value='{{App\Enums\StatisticByEnum::OPERATOR->value}}'>Operator</option>
+                            <option value='{{App\Enums\StatisticByEnum::HANDSET->value}}'>Handset</option>
                         </select>
                     </div>	
                     <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
@@ -91,11 +91,11 @@
                 <div class="pull-right">
                     <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
                         <select id="select_stat_dukcapil_by" class="selectpicker" data-style="form-control">
-                            <option selected value='{{App\Enum\StatisticByEnum::GENDER->value}}'>Gender</option>
-                            <option value='{{App\Enum\StatisticByEnum::GENERATION->value}}'>Generations (Age)</option>
-                            <option value='{{App\Enum\StatisticByEnum::OCCUPATION->value}}'>Occupation</option>
-                            <option value='{{App\Enum\StatisticByEnum::EDUCATION->value}}'>Education</option>
-                            <option value='{{App\Enum\StatisticByEnum::RELIGION->value}}'>Religion</option>
+                            <option selected value='{{App\Enums\StatisticByEnum::GENDER->value}}'>Gender</option>
+                            <option value='{{App\Enums\StatisticByEnum::GENERATION->value}}'>Generations (Age)</option>
+                            <option value='{{App\Enums\StatisticByEnum::OCCUPATION->value}}'>Occupation</option>
+                            <option value='{{App\Enums\StatisticByEnum::EDUCATION->value}}'>Education</option>
+                            <option value='{{App\Enums\StatisticByEnum::RELIGION->value}}'>Religion</option>
                         </select>
                     </div>	
                     <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
@@ -450,8 +450,8 @@
                 getSearchStatisticBy(by);
             });
 
-            getSearchStatisticBy('{{App\Enum\StatisticByEnum::OPERATOR->value}}');
-            getSearchStatisticBy('{{App\Enum\StatisticByEnum::GENDER->value}}');
+            getSearchStatisticBy('{{App\Enums\StatisticByEnum::OPERATOR->value}}');
+            getSearchStatisticBy('{{App\Enums\StatisticByEnum::GENDER->value}}');
 		});
 
         var eChartMsisdn;
@@ -569,7 +569,7 @@
         };
 
         function getSearchStatisticBy(by){
-            if(by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'){
+            if(by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'){
                 $('#link_refresh_chart_msisdn').trigger('click');
             }else{
                 $('#link_refresh_chart_dukcapil').trigger('click');
@@ -609,14 +609,14 @@
             const chartDatas = [];
             let totalCount = 0;
             if(
-                by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'
-                || by == '{{App\Enum\StatisticByEnum::HANDSET->value}}'
+                by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'
+                || by == '{{App\Enums\StatisticByEnum::HANDSET->value}}'
             ){
                 let series = chartOptionMsisdn.series[0];
 
-                if(by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'){
+                if(by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'){
                     series.name = 'Provider / Telco';
-                }else if(by == '{{App\Enum\StatisticByEnum::HANDSET->value}}'){
+                }else if(by == '{{App\Enums\StatisticByEnum::HANDSET->value}}'){
                     series.name = 'Handset';
                 }
                 
@@ -624,9 +624,9 @@
                 datas.forEach((a) => {
                     const row = {};
 
-                    if(by == '{{App\Enum\StatisticByEnum::OPERATOR->value}}'){
+                    if(by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'){
                         row.name = a.operator;
-                    }else if(by == '{{App\Enum\StatisticByEnum::HANDSET->value}}'){
+                    }else if(by == '{{App\Enums\StatisticByEnum::HANDSET->value}}'){
                         row.name = a.phone;
                     }
                     row.value = a.count;
@@ -642,15 +642,15 @@
             }else{
                 let series = chartOptionDukcapil.series[0];
 
-                if(by == '{{App\Enum\StatisticByEnum::GENDER->value}}'){
+                if(by == '{{App\Enums\StatisticByEnum::GENDER->value}}'){
                     series.name = 'Gender';
-                }else if(by == '{{App\Enum\StatisticByEnum::GENERATION->value}}'){
+                }else if(by == '{{App\Enums\StatisticByEnum::GENERATION->value}}'){
                     series.name = 'Generation (Age)';
-                }else if(by == '{{App\Enum\StatisticByEnum::OCCUPATION->value}}'){
+                }else if(by == '{{App\Enums\StatisticByEnum::OCCUPATION->value}}'){
                     series.name = 'Occupation';
-                }else if(by == '{{App\Enum\StatisticByEnum::EDUCATION->value}}'){
+                }else if(by == '{{App\Enums\StatisticByEnum::EDUCATION->value}}'){
                     series.name = 'Education';
-                }else if(by == '{{App\Enum\StatisticByEnum::RELIGION->value}}'){
+                }else if(by == '{{App\Enums\StatisticByEnum::RELIGION->value}}'){
                     series.name = 'Religion';
                 }
                 
@@ -658,15 +658,15 @@
                 datas.forEach((a) => {
                     const row = {};
 
-                    if(by == '{{App\Enum\StatisticByEnum::GENDER->value}}'){
+                    if(by == '{{App\Enums\StatisticByEnum::GENDER->value}}'){
                         row.name = a.gender;
-                    }else if(by == '{{App\Enum\StatisticByEnum::GENERATION->value}}'){
+                    }else if(by == '{{App\Enums\StatisticByEnum::GENERATION->value}}'){
                         row.name = a.generation;
-                    }else if(by == '{{App\Enum\StatisticByEnum::OCCUPATION->value}}'){
+                    }else if(by == '{{App\Enums\StatisticByEnum::OCCUPATION->value}}'){
                         row.name = a.occupation;
-                    }else if(by == '{{App\Enum\StatisticByEnum::EDUCATION->value}}'){
+                    }else if(by == '{{App\Enums\StatisticByEnum::EDUCATION->value}}'){
                         row.name = a.education;
-                    }else if(by == '{{App\Enum\StatisticByEnum::RELIGION->value}}'){
+                    }else if(by == '{{App\Enums\StatisticByEnum::RELIGION->value}}'){
                         row.name = a.religion;
                     }
                     row.value = a.count;

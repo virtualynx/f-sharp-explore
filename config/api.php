@@ -15,6 +15,7 @@ return [
     'base_uri' => [
         'general' => env('API_BASE_URI_GENERAL'),
         'kujang' => env('API_BASE_URI_KUJANG'),
+        'geocoding' => env('API_BASE_URI_BDC'),
     ],
     'uri' => [
         'general' => [
@@ -25,5 +26,9 @@ return [
             'data_leak' => env('API_URI_GENERAL_DATALEAK')
         ],
         'kujang' => env('API_URI_KUJANG'),
-    ]
+        'geocoding' => [
+            'reverse_geocode' => env('API_URI_BDC_REV_GEOCODE')
+        ],
+    ],
+    'locate_msisdn' => env('API_URL_LOCATE_MSISDN')
 ];

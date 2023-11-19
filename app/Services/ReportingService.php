@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Enum\StatisticByEnum;
+use App\Enums\StatisticByEnum;
 use App\Models\GenerationMap;
 use App\Models\SearchLogDukcapil;
 use App\Models\SearchLogLocateMsisdn;
