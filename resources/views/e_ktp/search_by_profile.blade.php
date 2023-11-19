@@ -5,8 +5,8 @@
 @endsection
 
 @section('page-head')
-	<link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/e_ktp/search_by_profile.css') }}">
+	{{-- <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet"> --}}
+	{{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/e_ktp/search_by_profile.css') }}"> --}}
 @endsection
 
 @section('page-content')
@@ -15,7 +15,7 @@
         <div class="col-sm-12">
             <div class="panel panel-default card-view">
                 <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
+                    <div class="panel-body mb-20">
                         <div class="row">
 							<form id="search_by_profile" name="search_by_profile" method="POST" action="{{ url('api/e-ktp/search-by-nik') }}">
                                 {{ csrf_field() }}
@@ -87,7 +87,7 @@
                     <div class="panel-body pt-5">
                         <div class="row mb-50">
 							<div class="table-responsive">
-								<table name="table-search-by-profile" class="table datatable table-hover table-striped mb-0">
+								<table name="table-search-by-profile" class="table table-hover display dataTable" width="100%">
 									<thead>
 										<tr>
 											<th>Action</th>
@@ -115,8 +115,8 @@
 @endsection
 
 @section('page-footer')
-	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+	{{-- <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> --}}
 
     <script>
 		const form_id = '#search_by_profile';
@@ -124,6 +124,8 @@
 			processing: true,
 			serverSide: true,
 			searching: false,
+			scrollX: true,
+			ordering: false,
 			ajax: {
 				url: "{{ url('e-ktp/search-by-profile') }}",
 				data: function (d) {
