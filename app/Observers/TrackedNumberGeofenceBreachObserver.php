@@ -7,13 +7,17 @@ use Ramsey\Uuid\Uuid;
 
 class TrackedNumberGeofenceBreachObserver
 {
+    public function creating(TrackedNumberGeofenceBreach $data): void
+    {
+        $data->geo_breach_uuid = Uuid::uuid4()->toString();
+    }
+
     /**
      * Handle the TrackedNumberGeofenceBreach "created" event.
      */
     public function created(TrackedNumberGeofenceBreach $trackedNumberGeofenceBreach): void
     {
-        $trackedNumberGeofenceBreach->geo_breach_uuid = Uuid::uuid4()->toString();
-        $trackedNumberGeofenceBreach->save();
+        //
     }
 
     /**

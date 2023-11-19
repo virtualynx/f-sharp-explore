@@ -2,6 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\SearchLogLocateMsisdn;
+use App\Models\TrackedNumberGeofence;
+use App\Models\TrackedNumberGeofenceBreach;
+use App\Models\TrackedNumberLog;
+use App\Observers\SearchLogLocateMsisdnObserver;
+use App\Observers\TrackedNumberGeofenceBreachObserver;
+use App\Observers\TrackedNumberGeofenceObserver;
+use App\Observers\TrackedNumberLogObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,7 +33,10 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        TrackedNumberLog::observe(TrackedNumberLogObserver::class);
+        TrackedNumberGeofence::observe(TrackedNumberGeofenceObserver::class);
+        TrackedNumberGeofenceBreach::observe(TrackedNumberGeofenceBreachObserver::class);
+        SearchLogLocateMsisdn::observe(SearchLogLocateMsisdnObserver::class);
     }
 
     /**
