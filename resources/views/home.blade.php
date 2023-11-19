@@ -743,7 +743,7 @@
                 dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
-                        updateChartMsisdn(by, response.data);
+                        updateCharts(by, response.data);
                     }else{
                         alert(response.message);
                     }
@@ -759,7 +759,7 @@
             return '#' + n.slice(0, 6);
         }
 
-        function updateChartMsisdn(by, datas){
+        function updateCharts(by, datas){
             let colors = [];
             for(let a=0;a<datas.length;a++){
                 colors.push(randomHexColorCode());
@@ -900,7 +900,7 @@
 
                         let totalCount = 0;
                         datas.forEach((a) => {
-                            totalCount += a.count;
+                            totalCount += parseInt(a.count);
                         });
 
                         $('#table-top-10-located-msisdn').html('');
