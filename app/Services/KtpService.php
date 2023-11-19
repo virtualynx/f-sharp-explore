@@ -32,7 +32,11 @@ class KtpService extends _GeneralService
                     return $resp_arr['id_data'];
                 } else {
                     Log::error($resp_arr['status']);
-                    throw new Exception($resp_arr['status'], 1);
+                    $status = $resp_arr['status'];
+                    if($status == 'diterima'){
+                        $status = 'Api dukcapil belum dapat merespon, harap coba kembali nanti';
+                    }
+                    throw new Exception($status, 1);
                 }
             } else {
                 Log::error(json_encode($resp_arr));
