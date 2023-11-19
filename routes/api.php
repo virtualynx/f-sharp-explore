@@ -44,10 +44,10 @@ Route::prefix('/transportasi')->group(function() {
 });
 
 Route::prefix('/report')->group(function() {
-    Route::get('/search-statistic/{by}', 'Api\ReportingApi@search_statistic_by');
     Route::prefix('/dashboard')->group(function() {
-        Route::get('/search-statistic/{by}', 'Api\ReportingApi@search_statistic_by');
+        Route::get('/most-located-msisdn/{by}', 'Api\ReportingApi@most_located_msisdn_by');
     });
+    Route::get('/search-statistic/{by}', 'Api\ReportingApi@search_statistic_by');
 });
 
 Route::prefix('/dataleak')->group(function() {

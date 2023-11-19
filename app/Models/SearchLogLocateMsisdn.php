@@ -20,6 +20,10 @@ class SearchLogLocateMsisdn extends Model
         'phone',
         'lat',
         'long',
-        'operator'
+        'operator',
+        'province',
+        'city',
+        'district',
+        'subdistrict',
     ];
 }

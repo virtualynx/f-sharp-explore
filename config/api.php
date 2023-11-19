@@ -15,6 +15,7 @@ return [
     'base_uri' => [
         'general' => env('API_BASE_URI_GENERAL'),
         'kujang' => env('API_BASE_URI_KUJANG'),
+        'geocoding' => env('API_BASE_URI_BDC'),
     ],
     'uri' => [
         'general' => [
@@ -28,5 +29,8 @@ return [
             'sosmed_leak' => env('API_URI_GENERAL_SOSMED')
         ],
         'kujang' => env('API_URI_KUJANG'),
-    ]
+        'geocoding' => [
+            'reverse_geocode' => env('API_URI_BDC_REV_GEOCODE')
+        ],
+    ],
 ];

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Enum\StatisticByEnum;
+use App\Enums\StatisticByEnum;
 use App\Models\GenerationMap;
 use App\Models\SearchLogDukcapil;
 use App\Models\SearchLogLocateMsisdn;
@@ -119,5 +119,19 @@ class ReportingService
         }
 
         throw new Exception('Invalid argument "by", '. $by, 2);
+    }
+
+    public function getMostLocateMsisdnCities(string $by, int $limit = 10){
+        $raw = SearchLogLocateMsisdn::select(
+                $by, 
+                DB::raw("count(1) as count")
+            )
+            ->groupBy($by)
+            // ->orderBy(DB::raw('count(1)', 'DESC'))
+            ->orderBy(DB::raw('count', 'DESC'))
+            ->limit($limit)
+            ->get();
+
+        return $raw;
     }
 }

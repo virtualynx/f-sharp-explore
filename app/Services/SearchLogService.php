@@ -23,6 +23,10 @@ class SearchLogService
         $log->lat = $data['lat'];
         $log->long = $data['long'];
         $log->operator = $data['provider'];
+        $log->province = $data['province'];
+        $log->city = $data['city'];
+        $log->district = $data['district'];
+        $log->subdistrict = $data['subdistrict'];
 
         return $log->save();
     }

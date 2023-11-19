@@ -203,6 +203,8 @@
                                     let marker = L.marker([data.lat, data.long]).addTo(map);
                                     markers.push(marker);
                                     successDatas.push(data);
+                                }else{
+                                    alert(data.message);
                                 }
                             });
                             if(successDatas.length == 1){
