@@ -369,6 +369,12 @@
             table_log = $('[name="table_log"]').DataTable({
                 processing: true,
                 serverSide: true,
+                scorllX: true,
+                scrollY: "500px",
+                scrollCollapse: true,
+                paging: false,
+                ordering: false,
+                destroy: true,
                 ajax: "{{config('app.url')}}/api/telecommunication/tracking-log-datatable/"+msisdn,
                 columns: [
                     // {data: 'action', orderable: false, searchable: false},
