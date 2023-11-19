@@ -21,12 +21,12 @@
 	<link href="{{asset('vendors/bower_components/datatables/media/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
 	<link href="{{asset('vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css')}}" rel="stylesheet" type="text/css">
 	
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css">
+	{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css"> --}}
 
 	@yield('page-head')
 	
 	<!-- Custom CSS -->
-	<link href="{{asset('dist/css/style_v_0_5.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('dist/css/style_v_0_6.css')}}" rel="stylesheet" type="text/css">
 
 	<style type="text/css"> 
 		.lds-spinner,
@@ -184,7 +184,7 @@
 	<script src="{{asset('dist/js/init.js')}}"></script>
 	{{-- <script src="{{asset('dist/js/dashboard-data.js')}}"></script> --}}
 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+	{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script> --}}
 	
     @yield('page-footer')
 </body>

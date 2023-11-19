@@ -1,7 +1,7 @@
 @extends('_template_authorized')
 
 @section('page-title')
-Gmail
+Data Gmail
 @endsection
 
 @section('page-head')

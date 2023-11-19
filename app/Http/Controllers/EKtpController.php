@@ -37,7 +37,8 @@ class EKtpController extends _Controller
 		$dataResult = DataTables::of($query)
 			->addIndexColumn()
 			->addColumn('action', function($row) {
-				return '<button type="button" class="" title="lihat detail"><i class="fa-solid fa-eye"></i></button>';
+				return '<button type="button" class="btn btn-primary btn-square btn-sm" data-toggle="tooltip" data-placement="right" data-original-title="Lihat Detail"><i class="icon-eye"></i></button>'; 
+				// return '<button type="button" class="" title="lihat detail"><i class="fa-solid fa-eye"></i></button>';
 			})
 			->filter(function ($instance) use ($request) {
 				$like_filters = [
