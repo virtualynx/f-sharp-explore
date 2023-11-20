@@ -11,7 +11,7 @@
             <div class="auth-form  ml-auto mr-auto no-float">
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
-                        <div class="panel panel-info card-view">
+                        <div class="panel panel-info card-view transparant-card">
                             <div  class="panel-wrapper collapse in">
                                 <div  class="panel-body">
                                     <div class="mb-30">
@@ -27,7 +27,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Password</label>
-                                                <input name="password" type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Enter pwd">
+                                                <input name="password" type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Enter Password">
                                             </div>
                                             <div class="form-group">
                                                 <a class="capitalize-font text-danger block mb-10 pull-right font-12" href="forgot-password.html">forgot password ?</a>
