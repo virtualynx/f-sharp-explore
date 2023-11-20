@@ -29,7 +29,7 @@ class KtpService extends _GeneralService
 
                     $id_data['NAMA_LGKP'] = ucwords($id_data['NAMA_LGKP']);
                     
-                    return $resp_arr['id_data'];
+                    return $id_data;
                 } else {
                     Log::error($resp_arr['status']);
                     $status = $resp_arr['status'];
