@@ -181,10 +181,6 @@
                 dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
-                        $([document.documentElement, document.body]).animate({
-                            scrollTop: $("#map").offset().top
-                        }, 150);
-                        
                         let datas = response.data;
 
                         if(datas.length > 0){
@@ -197,6 +193,7 @@
                             }
                             
                             let successDatas = [];
+                            let failedDatas = [];
                             datas.forEach(data => {
                                 if(data.status == 'success'){
                                     setData(data);
@@ -204,21 +201,52 @@
                                     markers.push(marker);
                                     successDatas.push(data);
                                 }else{
-                                    alert(data.message);
+                                    // alert(data.message);
+                                    failedDatas.push({
+                                        msisdn: data.msisdn,
+                                        message: data.message
+                                    });
                                 }
                             });
-                            if(successDatas.length == 1){
-                                map.flyTo(
-                                    [successDatas[0].lat, successDatas[0].long], 
-                                    16, 
-                                    {
-                                        animate: true,
-                                        duration: 2 // in seconds
-                                    }
-                                );
-                            }else if(successDatas.length > 1){
-                                var group = new L.featureGroup(markers);
-                                map.fitBounds(group.getBounds());
+
+                            if(successDatas > 0){
+                                $([document.documentElement, document.body]).animate({
+                                    scrollTop: $("#map").offset().top
+                                }, 150);
+
+                                if(successDatas.length == 1){
+                                    map.flyTo(
+                                        [successDatas[0].lat, successDatas[0].long], 
+                                        16, 
+                                        {
+                                            animate: true,
+                                            duration: 2 // in seconds
+                                        }
+                                    );
+                                }else if(successDatas.length > 1){
+                                    var group = new L.featureGroup(markers);
+                                    map.fitBounds(group.getBounds());
+                                }
+                            }
+
+                            if(failedDatas.length > 0){
+                                let messages = [];
+
+                                failedDatas.forEach((a) => {
+                                    messages.push(a.msisdn + ': ' + a.message);
+                                });
+
+                                let message = messages.join('; ');
+
+                                $.toast().reset('all');
+                                $.toast({
+                                    heading: 'Opps! something wents wrong',
+                                    text: message,
+                                    position: 'top-right',
+                                    loaderBg: '#fec107',
+                                    icon: 'error',
+                                    hideAfter: false
+                                });
                             }
                         }
                     }else{
