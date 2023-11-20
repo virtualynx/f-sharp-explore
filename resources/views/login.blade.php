@@ -33,7 +33,7 @@
                                                 <a class="capitalize-font text-danger block mb-10 pull-right font-12" href="forgot-password.html">forgot password ?</a>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="form-group text-center mt-30 mb-0">
+                                            <div class="form-group text-center mt-0 mb-0">
                                                 <button type="submit" class="btn btn-danger btn-block">sign in</button>
                                             </div>
                                         </form>

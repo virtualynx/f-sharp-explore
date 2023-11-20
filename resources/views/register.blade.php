@@ -35,7 +35,7 @@
                                                 <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Confirm Password</label>
                                                 <input name="password2" type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Confirm password">
                                             </div>
-                                            <div class="form-group text-center mt-30 mb-0">
+                                            <div class="form-group text-center mt-0 mb-0">
                                                 <button type="submit" class="btn btn-danger btn-block">Register Me</button>
                                             </div>
                                         </form>
