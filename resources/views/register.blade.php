@@ -13,12 +13,12 @@
                     <div class="col-sm-12 col-xs-12">
                         <div class="panel panel-info card-view transparant-card">
                             <div  class="panel-wrapper collapse in">
-                                <div  class="panel-body">
-                                    <div class="mb-30">
-                                        <div class="text-center txt-dark mb-10"><img class="logo-brand-img-login mr-10" src="{{asset('dist/img/black-0320-horizontal-logo.png')}}" alt="new logo 0320explorer"/></div>
+                                <div  class="panel-body pb-0 pt-0">
+                                    <div class="mb-20">
+                                        <div class="text-center txt-dark mb-0"><img class="logo-brand-img-login mr-10" src="{{asset('dist/img/black-0320-horizontal-logo.png')}}" alt="new logo 0320explorer"/></div>
                                         <h6 class="text-center nonecase-font txt-grey">Register your credentials below</h6>
                                     </div>	
-                                    <div class="form-wrap mb-20">
+                                    <div class="form-wrap mb-10">
                                         <form method="POST" action="{{ url("do-register") }}">
                                             {{ csrf_field() }}
                                             <div class="form-group">
@@ -35,15 +35,15 @@
                                                 <label class="pull-left control-label mb-10" for="exampleInputpwd_2">Confirm Password</label>
                                                 <input name="password2" type="password" class="form-control" required="" id="exampleInputpwd_2" placeholder="Confirm password">
                                             </div>
-                                            <div class="form-group text-center">
+                                            <div class="form-group text-center mt-30 mb-0">
                                                 <button type="submit" class="btn btn-danger btn-block">Register Me</button>
                                             </div>
                                         </form>
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div class="form-group mb-0 text-center">
+                                    <div class="form-group mb-25 text-center">
                                         <span class="inline-block">Already have an account?</span>
-                                        <a class="capitalize-font text-danger mb-10" href="/login"><u>Login Here.</u></a>
+                                        <a class="capitalize-font text-danger mb-0" href="/login"><u>Login Here.</u></a>
                                     </div>
                                 </div>
                             </div>
