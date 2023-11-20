@@ -279,7 +279,7 @@
                     <h6 class="panel-title txt-dark">Maps Location Top Searched</h6>
                 </div>
                 <div class="pull-right">
-                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-5">
+                    {{-- <div class="pull-left form-group mb-0 sm-bootstrap-select mr-5">
                         <select class="selectpicker" data-style="form-control">
                             <option selected value='1'>Jawa Timur</option>
                             <option value='2'>Jawa Tengah</option>
@@ -292,7 +292,7 @@
                             <option value='2'>Kota Surabaya</option>
                             <option value='3'>Kota Blitar</option>
                         </select>
-                    </div>	
+                    </div>	 --}}
                     <a href="#" class="pull-left inline-block refresh mr-15">
                         <i class="zmdi zmdi-replay"></i>
                     </a>
@@ -453,20 +453,21 @@
                             }
                         ]
 					},
+
                     onRegionTipShow: function(e, el, code){
                         let value = mapInstance.series.regions[0].values[code];
-                        let formattedValue = new Intl.NumberFormat('en-US', mapInstance.dataSetFormat).format(value);
                         if(value){
-                            el.text(el.text() + ' (' + mapInstance.dataSetName + ': ' + formattedValue + ')');
+                            let percent = (mapData.values[code] / mapData.total * 100).toFixed(2);
+                            el.text(el.text() + ': ' + mapData.values[code] + ' (' + percent + '%)');
                         }
                     },
 
                     // labels: {
                     //     regions: {
                     //         render: function(code){
-                    //             // return regions[code] && jvm.Map.maps[map].paths[code].name;
-                    //             // return jvm.Map.maps[mapInstance].paths[code].name;
-                    //             return 'test';
+                    //             let percent = (mapData.values[code] / mapData.total * 100).toFixed(2) + '%';
+
+                    //             return percent;
                     //         }
                     //     }
                     // },
@@ -614,15 +615,14 @@
             }	
         };
 
-        var mapInstance;
-        var mapData = {
-            "US": 298,
-            "SA": 200,
-            "AU": 760,
-            "IN": 2000000,
-            "GB": 120,
+        var mapInstance = null;
+        const mapData = {
+            values: [],
+            total: 0
         };
-
+        /**
+         * region map for file indonesia-adm1.js
+        */
         const jvectorMapProvince = {
             "24": {
                 "name": "Papua"
@@ -963,16 +963,19 @@
                             colors.push(randomHexColorCode());
                         }
 
-                        mapData = {};
+                        mapData.total = 0;
+                        let mapDataValues = {};
                         for(let a=0;a<datas.length;a++){
                             let loopData = datas[a];
                             let matchedDatas = provinceMap.filter((b) => b.name.toLowerCase() == loopData.province.toLowerCase());
                             if(matchedDatas.length > 0){
                                 let matchedData = matchedDatas[0];
                                 regionValuesData[matchedData.region_id] = colors[a];
-                                mapData[matchedData.region_id] = loopData.count;
+                                mapDataValues[matchedData.region_id] = parseInt(loopData.count);
+                                mapData.total += parseInt(loopData.count);
                             }
                         }
+                        mapData.values = mapDataValues;
 
                         // let region = mapInstance.series.regions[0];
                         /* Reset the scale min & max, allow recomputation. */ 
