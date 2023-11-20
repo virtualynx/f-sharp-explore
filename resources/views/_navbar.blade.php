@@ -4,7 +4,7 @@
         <div class="nav-header pull-left pl-0">
             <div class="logo-wrap text-center">
                 <a href="{{ url('/') }}">
-                    <img class="logo-brand-img" src="{{asset('dist/img/0320-horizontal-logo.png')}}" alt="new logo 0320explorer" />
+                    <img class="logo-brand-img" src="{{asset('dist/img/black-0320-horizontal-logo.png')}}" alt="new logo 0320explorer" />
                 </a>
             </div>
         </div>	
