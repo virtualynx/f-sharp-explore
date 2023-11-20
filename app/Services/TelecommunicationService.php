@@ -156,7 +156,7 @@ class TelecommunicationService extends _GeneralService
         if ($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
 
-            if (isset($resp_arr['status']) && $resp_arr['status'] == "data_ok") {
+            if (isset($resp_arr['status'])) {
                 if ($resp_arr['status'] == "data_ok") {
                     $reg_datas = $resp_arr['reg_data'];
                     
