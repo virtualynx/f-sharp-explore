@@ -257,7 +257,7 @@ Cek Kendaraan
             $.toast().reset('all');
             $.toast({
                 heading: 'Warning',
-                text: 'Tipe dan Nomor Kendaraan harus diisi',
+                text: 'Tipe dan Nomor Pencarian harus diisi',
                 position: 'top-right',
                 loaderBg: '#fec107',
                 icon: 'error',
