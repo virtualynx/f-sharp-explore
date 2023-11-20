@@ -37,7 +37,7 @@ class TelecommunicationApi extends _Controller{
                         $response = [
                             'msisdn' => $msisdn,
                             'status' => 'failed',
-                            'error' => $e->getMessage()
+                            'message' => $e->getMessage()
                         ];
                         array_push($datas, $response);
                     }

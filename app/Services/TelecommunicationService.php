@@ -8,6 +8,7 @@ use App\Models\TrackedNumberLog;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 
 class TelecommunicationService extends _GeneralService
 {
@@ -22,9 +23,24 @@ class TelecommunicationService extends _GeneralService
     public function locateMsisdn(string $msisdn)
     {
         $uri = config('api.uri.general.msisdn_track');
+        $response = null;
 
-        $response = $this->getHttpClient()->request('GET', $uri . '/' . $msisdn);
-        if ($response->getStatusCode() == 200) {
+        try{
+            $response = $this->getHttpClient()->request(
+                'GET', 
+                $uri . '/' . $msisdn,
+                [
+                    'timeout' => 30, // Response timeout
+                    'connect_timeout' => 30, // Connection timeout
+                ]
+            );
+        }catch(\GuzzleHttp\Exception\ConnectException $e){
+            throw new Exception("Belum dapat menghubungi API Tracking Nomor, harap coba kembali nanti", 2);
+        }catch(Exception $e){
+            Log::error($e->getMessage(), $e);
+        }
+
+        if($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
             if (isset($resp_arr['status']) && $resp_arr['status'] == 1 && $resp_arr['statusCode'] == 200) {
                 $resp_respon = $resp_arr['respon'][0];
