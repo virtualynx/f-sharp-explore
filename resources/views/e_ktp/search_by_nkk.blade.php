@@ -78,6 +78,19 @@ Search By NKK
     function searchDataNKK() {
         let nkk = $('[name="inputNKK"]').val();
 
+        if(!nkk){
+            $.toast().reset('all');
+            $.toast({
+                heading: 'Warning',
+                text: 'NKK harus diisi',
+                position: 'top-right',
+                loaderBg: '#fec107',
+                icon: 'error',
+                hideAfter: false
+            });
+            return;
+        }
+
         $(".preloader-it").show();
 
         $.ajax({
