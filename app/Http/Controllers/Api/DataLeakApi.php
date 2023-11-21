@@ -46,11 +46,12 @@ class DataLeakApi extends _Controller{
     public function sosmed_leak(Request $request)
     {
         $sosmed = $request->sosmed;
+        $maxSites = $request->maxSites;
         
         $sosmed = str_replace(' ', '', $sosmed);
 
         try{
-            $response = $this->service->getSosmedLeak($sosmed);
+            $response = $this->service->getSosmedLeak($sosmed, $maxSites);
             
             return new ApiResponse($response);
         }catch(Exception $e){
