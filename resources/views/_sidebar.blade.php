@@ -29,9 +29,9 @@
         <li>
             <a class="{{ request()->is('e-ktp/*') ? 'active' : '' }}" href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="zmdi zmdi-accounts mr-20"></i><span class="right-nav-text">Search Dukcapil</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
-                {{-- <li>
-                    <a href="panels-wells.html">Search By Profile</a>
-                </li> --}}
+                <li>
+                    <a href="{{ url('e-ktp/search-by-profile') }}">Search By Profile</a>
+                </li>
                 <li>
                     <a href="{{ url('e-ktp/search-by-nkk') }}">Search By NKK</a>
                 </li> 
@@ -139,13 +139,13 @@
             <i class="zmdi zmdi-more"></i>
         </li>
         <li>
-            <a href="/dataleak/data-leak"><div class="pull-left"><i class="zmdi zmdi-smartphone-info mr-20"></i><span class="right-nav-text">Leak</span></div><div class="clearfix"></div></a>
+            <a class="{{ request()->is('dataleak/data-leak') ? 'active' : '' }}" href="/dataleak/data-leak"><div class="pull-left"><i class="zmdi zmdi-folder-star-alt mr-20"></i><span class="right-nav-text">Leak</span></div><div class="clearfix"></div></a>
         </li> 
         <li>
-            <a href="/dataleak/data-gmail"><div class="pull-left"><i class="zmdi zmdi-smartphone-info mr-20"></i><span class="right-nav-text">Gmail</span></div><div class="clearfix"></div></a>
+            <a class="{{ request()->is('transportasi/data-gmail') ? 'active' : '' }}" href="/dataleak/data-gmail"><div class="pull-left"><i class="zmdi zmdi-email-open mr-20"></i><span class="right-nav-text">Gmail</span></div><div class="clearfix"></div></a>
         </li> 
         <li>
-            <a href="/dataleak/data-sosmed"><div class="pull-left"><i class="zmdi zmdi-smartphone-info mr-20"></i><span class="right-nav-text">Media Social</span></div><div class="clearfix"></div></a>
+            <a class="{{ request()->is('transportasi/data-sosmed') ? 'active' : '' }}" href="/dataleak/data-sosmed"><div class="pull-left"><i class="zmdi zmdi-device-hub mr-20"></i><span class="right-nav-text">Media Social</span></div><div class="clearfix"></div></a>
         </li> 
         <li><hr class="light-grey-hr mb-10"/></li>
     </ul>

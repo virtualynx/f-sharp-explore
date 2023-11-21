@@ -1,7 +1,7 @@
 @extends('_template_authorized')
 
 @section('page-title')
-Gmail
+Data Gmail
 @endsection
 
 @section('page-head')
@@ -99,6 +99,19 @@ Gmail
     function searchGmailLeak() {
         let gmail = $('[name="inputGmailLeak"]').val();
 
+        if(!gmail){
+            $.toast().reset('all');
+            $.toast({
+                heading: 'Warning',
+                text: 'Email pencarian harus diisi',
+                position: 'top-right',
+                loaderBg: '#fec107',
+                icon: 'error',
+                hideAfter: false
+            });
+            return;
+        }
+
         $(".preloader-it").show();
 
         $.ajax({
@@ -145,7 +158,7 @@ Gmail
                     $.toast().reset('all');
                     $.toast({
                         heading: 'Opps! somthing wents wrong',
-                        text: 'Data tidak ditemukan',
+                        text: response.message,
                         position: 'top-right',
                         loaderBg: '#fec107',
                         icon: 'error',

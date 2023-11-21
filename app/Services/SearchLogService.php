@@ -23,6 +23,10 @@ class SearchLogService
         $log->lat = $data['lat'];
         $log->long = $data['long'];
         $log->operator = $data['provider'];
+        $log->province = $data['province'];
+        $log->city = $data['city'];
+        $log->district = $data['district'];
+        $log->subdistrict = $data['subdistrict'];
 
         return $log->save();
     }
@@ -58,7 +62,9 @@ class SearchLogService
             $log->nkk = $data['NKK'];
             $log->religion = $data['AGAMA'];
             $log->address = $data['ALAMAT'];
-            $log->blood_type = $data['GOL_DARAH'];
+            $blood_type = $data['GOL_DARAH'];
+            $blood_type = !empty($blood_type) && (strlen($blood_type)<=5)? strtoupper($blood_type): null;
+            $log->blood_type = $blood_type;
             $log->gender = $data['JENIS_KLMIN'];
             $log->occupation = $data['JENIS_PKRJN'];
             $log->name = $data['NAMA_LGKP'];
@@ -70,12 +76,12 @@ class SearchLogService
             $dob = Carbon::parse($data['TGL_LHR'])->format('Y-m-d'); 
             $log->dob = $dob;
 
-            $log->created_at = Carbon::now();
-            $log->save();
-
             // if(!empty($data['FOTO'])){
             //     $existing->photo_path = $data['FOTO'];
             // }
+
+            $log->created_at = Carbon::now();
+            $log->save();
         }
     }
 }

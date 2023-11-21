@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Enum\KujangAskforEnum;
+use App\Enums\KujangAskforEnum;
 use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;

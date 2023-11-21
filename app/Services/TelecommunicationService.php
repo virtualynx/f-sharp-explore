@@ -6,10 +6,9 @@ use App\Models\TrackedNumber;
 use App\Models\TrackedNumberGeofence;
 use App\Models\TrackedNumberLog;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
-use DB;
-use DataTables;
-use File;
+use Illuminate\Support\Facades\Log;
 
 class TelecommunicationService extends _GeneralService
 {
@@ -24,9 +23,24 @@ class TelecommunicationService extends _GeneralService
     public function locateMsisdn(string $msisdn)
     {
         $uri = config('api.uri.general.msisdn_track');
+        $response = null;
 
-        $response = $this->getHttpClient()->request('GET', $uri . '/' . $msisdn);
-        if ($response->getStatusCode() == 200) {
+        try{
+            $response = $this->getHttpClient()->request(
+                'GET', 
+                $uri . '/' . $msisdn,
+                [
+                    'timeout' => 30, // Response timeout
+                    'connect_timeout' => 30, // Connection timeout
+                ]
+            );
+        }catch(\GuzzleHttp\Exception\ConnectException $e){
+            throw new Exception("Belum dapat menghubungi API Tracking Nomor, harap coba kembali nanti", 2);
+        }catch(Exception $e){
+            Log::error($e->getMessage(), $e);
+        }
+
+        if($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
             if (isset($resp_arr['status']) && $resp_arr['status'] == 1 && $resp_arr['statusCode'] == 200) {
                 $resp_respon = $resp_arr['respon'][0];
@@ -38,7 +52,11 @@ class TelecommunicationService extends _GeneralService
                     'address' => $resp_respon['address'],
                     'phone' => $resp_respon['phone'],
                     'lat' => (float)$resp_respon['latitude'],
-                    'long' => (float)$resp_respon['longitude']
+                    'long' => (float)$resp_respon['longitude'],
+                    'province' => !empty($resp_respon['province'])? trim($resp_respon['province']): null,
+                    'city' => !empty($resp_respon['city'])? trim($resp_respon['city']): null,
+                    'district' => !empty($resp_respon['district'])? trim($resp_respon['district']): null,
+                    'subdistrict' => !empty($resp_respon['subdistrict'])? trim($resp_respon['subdistrict']): null,
                 ];
 
                 $this->logService->locateMsisdn($data);
@@ -147,7 +165,7 @@ class TelecommunicationService extends _GeneralService
         if ($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
 
-            if (isset($resp_arr['status']) && $resp_arr['status'] == "data_ok") {
+            if (isset($resp_arr['status'])) {
                 if ($resp_arr['status'] == "data_ok") {
                     $reg_datas = $resp_arr['reg_data'];
 

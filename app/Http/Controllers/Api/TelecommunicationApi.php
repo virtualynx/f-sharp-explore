@@ -37,7 +37,7 @@ class TelecommunicationApi extends _Controller{
                         $response = [
                             'msisdn' => $msisdn,
                             'status' => 'failed',
-                            'error' => $e->getMessage()
+                            'message' => $e->getMessage()
                         ];
                         array_push($datas, $response);
                     }
@@ -92,15 +92,27 @@ class TelecommunicationApi extends _Controller{
             ->addIndexColumn()
             ->addColumn('action', function($row){
                 $btnRunning = $row->running == 1? 'stop': 'play';
+                $color = $row->running == 1? 'success': 'danger';
 
                 $actionBtn = <<<HEREDOC
-                    <button onclick="deleteNumber('$row->msisdn')"><i class="fa-solid fa-xmark"></i></i></button>
-                    <button onclick="editNumber('$row->msisdn')" data-toggle="modal" data-target="#modal_add_edit_number"><i class="fa-solid fa-pen"></i></i></button>
-                    <button onclick="trackingLog('$row->msisdn')" data-toggle="modal" data-target="#modal_tracking_log"><i class="fa-solid fa-folder-open"></i></i></button>
-                    <button onclick="loadGeofence('$row->msisdn')" data-toggle="modal" data-target="#modal_set_geofence"><i class="fa-solid fa-map-location-dot"></i></button>
-                    <button onclick="toggleTracking('$row->msisdn')"><i class="fa-solid fa-$btnRunning"></i></button>
+                    <button onclick="deleteNumber('$row->msisdn')" class="btn btn-danger btn-square btn-sm" data-toggle="tooltip" data-placement="right" data-original-title="Delete"><i class="fa fa-trash-o"></i></button>
+                    <span data-toggle="tooltip" data-placement="right" data-original-title="Edit">
+                        <button onclick="editNumber('$row->msisdn')" class="btn btn-default btn-square btn-sm" role="button" data-toggle="modal" data-target="#modal_add_edit_number"><i class="fa fa-pencil"></i></button>
+                    </span>
+                    <span data-toggle="tooltip" data-placement="right" data-original-title="Tracking Log">
+                        <button onclick="trackingLog('$row->msisdn')" class="btn btn-warning btn-square btn-sm" role="button" data-toggle="modal" data-target="#modal_tracking_log"><i class="fa fa-folder-open-o"></i></button>
+                    </span>
+                    <span data-toggle="tooltip" data-placement="right" data-original-title="Tracking Geofences">
+                        <button onclick="loadGeofence('$row->msisdn')" class="btn btn-primary btn-square btn-sm" role="button" data-toggle="modal" data-target="#modal_set_geofence"><i class="icon-map"></i></button>
+                    </span>
+                    <button onclick="toggleTracking('$row->msisdn')" class="btn btn-$color btn-square btn-sm" data-toggle="tooltip" data-placement="right" data-original-title="Toggle Tracking"><i class="fa fa-$btnRunning"></i></button>
                 HEREDOC;
 
+                // <button onclick="deleteNumber('$row->msisdn')"><i class="fa-solid fa-xmark"></i></i></button>
+                // <button onclick="editNumber('$row->msisdn')" data-toggle="modal" data-target="#modal_add_edit_number"><i class="fa-solid fa-pen"></i></i></button>
+                // <button onclick="trackingLog('$row->msisdn')" data-toggle="modal" data-target="#modal_tracking_log"><i class="fa-solid fa-folder-open"></i></i></button>
+                // <button onclick="loadGeofence('$row->msisdn')" data-toggle="modal" data-target="#modal_set_geofence"><i class="fa-solid fa-map-location-dot"></i></button>
+                // <button onclick="toggleTracking('$row->msisdn')"><i class="fa-solid fa-$btnRunning"></i></button>
                 // <button><i class="fa-regular fa-calendar-days"></i></button>
                 
                 return $actionBtn;
@@ -109,7 +121,7 @@ class TelecommunicationApi extends _Controller{
                 $color = $row->running == 1? 'success': 'danger';
                 $status = $row->running == 1? 'Running': 'Stopped';
                 $pstatus = <<<HEREDOC
-                    <p class="text-$color">$status</p>
+                    <span class="label label-$color">$status</span>
                 HEREDOC;
 
                 return $pstatus;
@@ -139,7 +151,7 @@ class TelecommunicationApi extends _Controller{
             })
             ->addColumn('cron_info', function($row){
                 $btn = <<<HEREDOC
-                    <button onclick="deleteTracked('$row->msisdn')"><i class="fa-solid fa-eye"></i></button>
+                    <button onclick="deleteTracked('$row->msisdn')" class="btn btn-primary btn-square btn-sm" data-toggle="tooltip" data-placement="left" data-original-title="Cron Info"><i class="icon-eye"></i></button> 
                 HEREDOC;
 
                 return $btn;
@@ -165,7 +177,7 @@ class TelecommunicationApi extends _Controller{
             })
             ->addColumn('see_button', function($row){
                 $btn = <<<HEREDOC
-                    <button onclick="seeCoordinateOnMap($row->lat, $row->long)"><i class="fa-solid fa-eye"></i></button>
+                    <button onclick="seeCoordinateOnMap($row->lat, $row->long)" class="btn btn-primary btn-square btn-sm"><i class="icon-eye"></i></button>
                 HEREDOC;
 
                 return $btn;

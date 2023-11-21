@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	{{-- <title>F# Xplore</title> --}}
     <title>{{ config('app.name') }} | @yield('page-title', '')</title>
 	<meta name="description" content="F# Xplore is a Dashboard & Admin Site Responsive Template." />
 	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, responsive admin, sass, panel, software, ui, visualization, web app, application" />
 	<meta name="author" content="F#XploreTeam2023"/>
 	
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="180x180" href="{{asset('dist/favicon/apple-touch-icon.png')}}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{asset('dist/favicon/favicon-32x32.png')}}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('dist/favicon/favicon-16x16.png')}}">
+	<link rel="manifest" href="{{asset('dist/favicon/site.webmanifest')}}">
+	<link rel="mask-icon" href="{{asset('dist/favicon/safari-pinned-tab.svg')}}" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
 	
 	<!-- Data table CSS -->
 	<link href="{{asset('vendors/bower_components/datatables/media/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
 	<link href="{{asset('vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css')}}" rel="stylesheet" type="text/css">
 	
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css">
+	{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css"> --}}
 
 	@yield('page-head')
 	
 	<!-- Custom CSS -->
-	<link href="{{asset('dist/css/style_v_0_4.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('dist/css/style_v_1_0.css')}}" rel="stylesheet" type="text/css">
 
 	<style type="text/css"> 
 		.lds-spinner,
@@ -151,7 +155,7 @@
     <script src="{{asset('vendors/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     
 	<!-- Data table JavaScript -->
-	{{-- <script src="{{asset('vendors/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script> --}}
+	<script src="{{asset('vendors/bower_components/datatables/media/js/jquery.dataTables.min.js')}}"></script>
 	
 	<!-- Slimscroll JavaScript -->
 	<script src="{{asset('dist/js/jquery.slimscroll.js')}}"></script>
@@ -180,7 +184,7 @@
 	<script src="{{asset('dist/js/init.js')}}"></script>
 	{{-- <script src="{{asset('dist/js/dashboard-data.js')}}"></script> --}}
 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+	{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script> --}}
 	
     @yield('page-footer')
 </body>

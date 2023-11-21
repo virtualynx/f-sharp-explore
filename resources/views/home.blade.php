@@ -21,18 +21,17 @@
             </div>
             <div class="panel-heading">
                 <div class="pull-left">
-                    <h6 class="panel-title txt-dark">MSISDN Statistics</h6>
+                    <h6 class="panel-title txt-dark">Most Located Msisdn</h6>
                 </div>
                 <div class="pull-right">
                     <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
-                        <select class="selectpicker" data-style="form-control">
-                            <option selected value='1'>Operator</option>
-                            <option value='2'>Gender</option>
-                            <option value='3'>Generations (Age)</option>
+                        <select id="select_stat_msisdn_by" class="selectpicker" data-style="form-control">
+                            <option selected value='{{App\Enums\StatisticByEnum::OPERATOR->value}}'>Operator</option>
+                            <option value='{{App\Enums\StatisticByEnum::HANDSET->value}}'>Handset</option>
                         </select>
                     </div>	
                     <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
-                        <i class="zmdi zmdi-replay"></i>
+                        <i id="link_refresh_chart_msisdn" class="zmdi zmdi-replay"></i>
                     </a>
                     <a href="#" class="pull-left inline-block full-screen" style="top: 3px;">
                         <i class="zmdi zmdi-fullscreen"></i>
@@ -40,44 +39,107 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-             <div class="panel-wrapper collapse in">
-                 <div class="panel-body">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
                     <!-- THE PIE CHART-->
-                    <div id="e_chart_statistics" class="" style="height:221px;"></div>
-                    <hr class="light-grey-hr row mt-10 mb-15"/>
-                    <div class="label-chatrs">
-                        <div class="">
-                            <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
-                            <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">44.46% Telkomsel</span></span>
-                            <span class="txt-dark block counter pull-right"><span class="counter-anim">102</span></span>
-                            <div class="clearfix"></div>
+                    <div id="e_chart_msisdn" class="" style="height:221px;"></div>
+                    <div id="chart_detail_msisdn">
+                        <hr class="light-grey-hr row mt-10 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">44.46% Telkomsel</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">102</span></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+        
+                        <hr class="light-grey-hr row mt-10 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">30.3% Indosat</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">88</span></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+    
+                        <hr class="light-grey-hr row mt-10 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-skyblue mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">5.53% Hutchison 3</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">23</span></span>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
                     </div>
-
-                     <hr class="light-grey-hr row mt-10 mb-15"/>
-                     <div class="label-chatrs">
-                         <div class="">
-                             <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
-                             <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">30.3% Indosat</span></span>
-                             <span class="txt-dark block counter pull-right"><span class="counter-anim">88</span></span>
-                             <div class="clearfix"></div>
-                         </div>
-                     </div>
-
-                     <hr class="light-grey-hr row mt-10 mb-15"/>
-                     <div class="label-chatrs">
-                         <div class="">
-                             <span class="clabels clabels-lg inline-block bg-skyblue mr-10 pull-left"></span>
-                             <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">5.53% Hutchison 3</span></span>
-                             <span class="txt-dark block counter pull-right"><span class="counter-anim">23</span></span>
-                             <div class="clearfix"></div>
-                         </div>
-                     </div>
-                 </div>	
+                </div>	
              </div>
-         </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-info card-view red-border panel-refresh">
+            <div class="refresh-container">
+                <div class="la-anim-1"></div>
+            </div>
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Most Searched On Dukcapil</h6>
+                </div>
+                <div class="pull-right">
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select id="select_stat_dukcapil_by" class="selectpicker" data-style="form-control">
+                            <option selected value='{{App\Enums\StatisticByEnum::GENDER->value}}'>Gender</option>
+                            <option value='{{App\Enums\StatisticByEnum::GENERATION->value}}'>Generations (Age)</option>
+                            <option value='{{App\Enums\StatisticByEnum::OCCUPATION->value}}'>Occupation</option>
+                            <option value='{{App\Enums\StatisticByEnum::EDUCATION->value}}'>Education</option>
+                            <option value='{{App\Enums\StatisticByEnum::RELIGION->value}}'>Religion</option>
+                        </select>
+                    </div>	
+                    <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
+                        <i id="link_refresh_chart_dukcapil" class="zmdi zmdi-replay"></i>
+                    </a>
+                    <a href="#" class="pull-left inline-block full-screen" style="top: 3px;">
+                        <i class="zmdi zmdi-fullscreen"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <!-- THE PIE CHART-->
+                    <div id="e_chart_dukcapil" class="" style="height:257px;"></div>
+                    <div id="chart_detail_dukcapil">
+                        <hr class="light-grey-hr row mt-20 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-primary mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">58% Male</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">1000</span></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+
+                        <hr class="light-grey-hr row mt-10 mb-15"/>
+                        <div class="label-chatrs">
+                            <div class="">
+                                <span class="clabels clabels-lg inline-block bg-purple mr-10 pull-left"></span>
+                                <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">41% Female</span></span>
+                                <span class="txt-dark block counter pull-right"><span class="counter-anim">700</span></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>	
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="panel panel-info card-view red-border panel-refresh">
             <div class="refresh-container">
                 <div class="la-anim-1"></div>
@@ -104,11 +166,11 @@
                             <thead>
                                   <tr>
                                     <th>City</th>
-                                    <th>Progress</th>
+                                    <th>Portion</th>
                                     <th>Percent</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="table-top-10-located-msisdn">
                               <tr>
                                 <td>Surabaya</td>
                                 <td>
@@ -207,10 +269,7 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12 col-xs-12">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="panel panel-info card-view red-border panel-refresh">
             <div class="refresh-container">
                 <div class="la-anim-1"></div>
@@ -220,7 +279,7 @@
                     <h6 class="panel-title txt-dark">Maps Location Top Searched</h6>
                 </div>
                 <div class="pull-right">
-                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-5">
+                    {{-- <div class="pull-left form-group mb-0 sm-bootstrap-select mr-5">
                         <select class="selectpicker" data-style="form-control">
                             <option selected value='1'>Jawa Timur</option>
                             <option value='2'>Jawa Tengah</option>
@@ -233,7 +292,7 @@
                             <option value='2'>Kota Surabaya</option>
                             <option value='3'>Kota Blitar</option>
                         </select>
-                    </div>	
+                    </div>	 --}}
                     <a href="#" class="pull-left inline-block refresh mr-15">
                         <i class="zmdi zmdi-replay"></i>
                     </a>
@@ -266,7 +325,8 @@
 
     <!--Maps-->
 	<script src="vendors/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    {{-- <script src="vendors/vectormap/jquery-jvectormap-world-mill-en.js"></script> --}}
+    <script src="vendors/vectormap/indonesia-adm1.js"></script>
 
 	<!-- Switchery JavaScript -->
 	<script src="{{asset('vendors/bower_components/switchery/dist/switchery.min.js')}}"></script>
@@ -279,152 +339,666 @@
 	<script src="{{asset('vendors/echarts-liquidfill.min.js')}}"></script>
     
 	<script src="{{asset('dist/js/dashboard-data.js')}}"></script>
+	{{-- <script src="{{asset('vendors/vectormap/jquery-jvectormap-world-mill-en.js')}}"></script> --}}
+    {{-- 
+        for complete district vector map in
+        https://github.com/nsetyo/jvectormap-indonesia 
+    --}}
+	<script src="{{asset('vendors/vectormap/indonesia-adm1.js')}}"></script>
     <script>
 		$(function() {
 			"use strict";
-			var mapData = {
-					"US": 298,
-					"SA": 200,
-					"AU": 760,
-					"IN": 2000000,
-					"GB": 120,
-				};
-			
+			if( $('#e_chart_msisdn').length > 0 ){
+				eChartMsisdn = echarts.init(document.getElementById('e_chart_msisdn'));
+				eChartMsisdn.setOption(chartOptionMsisdn);
+				eChartMsisdn.resize();
+			}
+            
+            //-- CHART TAMBAHAN (MOST SEARCHED DUKCAPIL BY GENDER / GENERATION) --> 
+            if( $('#e_chart_dukcapil').length > 0 ){
+				eChart_dukcapil = echarts.init(document.getElementById('e_chart_dukcapil'));
+				eChart_dukcapil.setOption(chartOptionDukcapil);
+				eChart_dukcapil.resize();
+			}
+            //-- CHART TAMBAHAN (MOST SEARCHED DUKCAPIL BY GENDER / GENERATION) --> 
+
+            $('#select_stat_msisdn_by').change(function(e){
+                var by = $(e.target).val();
+
+                getSearchStatisticBy(by);
+            });
+
+            $('#select_stat_dukcapil_by').change(function(e){
+                var by = $(e.target).val();
+
+                getSearchStatisticBy(by);
+            });
+
+            getSearchStatisticBy('{{App\Enums\StatisticByEnum::OPERATOR->value}}');
+            getSearchStatisticBy('{{App\Enums\StatisticByEnum::GENDER->value}}');
+
+            getTop10City('city');
+            
+            /** 
+             * Load another jvectormap on region click
+             * https://stackoverflow.com/questions/15643677/load-another-jvectormap-on-region-click
+            */
 			if( $('#world_map_marker_1').length > 0 ){
-				$('#world_map_marker_1').vectorMap(
-				{
-					map: 'world_mill_en',
+				$('#world_map_marker_1').vectorMap({
+					// map: 'world_mill_en',
+					map: 'indonesia-adm1_merc',
+                    // map: 'indonesia-adm2-1_merc',
 					backgroundColor: 'transparent',
 					borderColor: '#fff',
 					borderOpacity: 0.25,
 					borderWidth: 0,
 					color: '#e6e6e6',
-					regionStyle : {
-						initial : {
-						fill : '#f4f4f4'
-						}
-					},
+					hoverOpacity: null,
+					normalizeFunction: 'linear',
+					zoomOnScroll: true,
+					scaleColors: ['#000000', '#000000'],
+					selectedColor: '#000000',
+					selectedRegions: [],
+					enableZoom: false,
+					hoverColor: '#fff',
+
+                    regionStyle: { 
+                        initial: { fill: '#d2d6de' }, 
+                        hover: { fill: '#A0D1DC' } 
+                    },
 
 					markerStyle: {
-					initial: {
+					    initial: {
 									r: 10,
 									'fill': '#fff',
 									'fill-opacity':1,
 									'stroke': '#000',
 									'stroke-width' : 1,
 									'stroke-opacity': 0.4
-								},
-						},
+                        },
+                    },
 				
-					markers : [{
-						latLng : [21.00, 78.00],
-						name : 'INDIA : 350'
-					
-					},
-					{
-						latLng : [-33.00, 151.00],
-						name : 'Australia : 250'
-						
-					},
-					{
-						latLng : [36.77, -119.41],
-						name : 'USA : 250'
-					
-					},
-					{
-						latLng : [55.37, -3.41],
-						name : 'UK   : 250'
-					
-					},
-					{
-						latLng : [25.20, 55.27],
-						name : 'UAE : 250'
-					
-					}],
+					markers : [
+                        // {
+                        //     latLng : [21.00, 78.00],
+                        //     name : 'INDIA : 350'
+                        
+                        // },
+                        // {
+                        //     latLng : [-33.00, 151.00],
+                        //     name : 'Australia : 250'
+                            
+                        // }
+                    ],
 
 					series: {
-						regions: [{
-							values: {
-								"US": '#667add',
-								"SA": '#667add',
-								"AU": '#667add',
-								"IN": '#667add',
-								"GB": '#667add',
-							},
-							attribute: 'fill'
-						}]
+						regions: [
+                            // {
+                            //     values: {
+                            //         "US": '#667add',
+                            //         "SA": '#667add',
+                            //         "AU": '#667add',
+                            //         "IN": '#667add',
+                            //         "GB": '#667add',
+                            //     },
+                            //     attribute: 'fill'
+                            // }
+                            {
+                                "values": {
+                                    // '10': "#1c8b7b",
+                                    // '16': "#341ebc",
+                                    // '27': "#987c19"
+                                },
+                                "attribute": "fill"
+                            }
+                        ]
 					},
-					hoverOpacity: null,
-					normalizeFunction: 'linear',
-					zoomOnScroll: false,
-					scaleColors: ['#000000', '#000000'],
-					selectedColor: '#000000',
-					selectedRegions: [],
-					enableZoom: false,
-					hoverColor: '#fff',
-				});
-			}
 
-			if( $('#e_chart_statistics').length > 0 ){
-				var eChart_3 = echarts.init(document.getElementById('e_chart_statistics'));
-				var option3 = {
-					tooltip : {
-						trigger: 'item',
-						formatter: "{a} <br/>{b} : {c} ({d}%)",
-						backgroundColor: 'rgba(33,33,33,1)',
-						borderRadius:0,
-						padding:10,
-						textStyle: {
-							color: '#fff',
-							fontStyle: 'normal',
-							fontWeight: 'normal',
-							fontFamily: "'Roboto', sans-serif",
-							fontSize: 12
-						}	
-					},
-					legend: {
-						show:false
-					},
-					toolbox: {
-						show : false,
-					},
-					calculable : true,
-					itemStyle: {
-						normal: {
-							shadowBlur: 5,
-							shadowColor: 'rgba(0, 0, 0, 0.5)'
-						}
-					},
-					series : [
-						{
-							name:'Provider / Telco',
-							type:'pie',
-							radius : '80%',
-							center : ['50%', '50%'],
-							roseType : 'radius',
-							color: ['#119dd2', '#d36ee8', '#667add'],
-							label: {
-								normal: {
-									fontFamily: "'Roboto', sans-serif",
-									fontSize: 12
-								}
-							},
-							data:[
-								{value:335, name:'Telkomsel'},
-								{value:310, name:'Indosat'},
-								{value:274, name:'Hutchison 3'},
-							].sort(function (a, b) { return a.value - b.value; }),
-						},
-					],
-					animationType: 'scale',
-					animationEasing: 'elasticOut',
-					animationDelay: function (idx) {
-						return Math.random() * 1000;
-					}	
-				};
-				eChart_3.setOption(option3);
-				eChart_3.resize();
+                    onRegionTipShow: function(e, el, code){
+                        let value = mapInstance.series.regions[0].values[code];
+                        if(value){
+                            let percent = (mapData.values[code] / mapData.total * 100).toFixed(2);
+                            el.text(el.text() + ': ' + mapData.values[code] + ' (' + percent + '%)');
+                        }
+                    },
+
+                    // labels: {
+                    //     regions: {
+                    //         render: function(code){
+                    //             let percent = (mapData.values[code] / mapData.total * 100).toFixed(2) + '%';
+
+                    //             return percent;
+                    //         }
+                    //     }
+                    // },
+				});
+                mapInstance = $('#world_map_marker_1').vectorMap('get', 'mapObject');
+
+                // mapInstance = new jvm.Map({
+				// 	map: 'indonesia-adm1_merc',
+                //     container: $('#world_map_marker_1'),
+                //     zoomOnScroll: true,
+                //     regionsSelectable: false,
+                //     backgroundColor: "aliceblue", 
+                //     markers: [], /* Initialize the map with empty markers */
+                //     series: {
+                //     regions: [{
+                //         values: {}, /* Initialize the map with empty region values */
+                //         scale: ['#C8EEFF', '#0071A4'],
+                //         normalizeFunction: 'polynomial'
+                //     }],
+                //     /* Initialize the map with empty marker values */
+                //     markers: [{attribute: 'fill', scale: {}, values: []}]
+                //     }, 
+                //     onRegionTipShow: function(e, el, code){
+                //         // var value = worldMap.series.regions[0].values[code],
+                //         // formattedValue = new Intl.NumberFormat('en-US', worldMap.dataSetFormat).format(value);
+                //         // el.text(el.text() + ' (' + worldMap.dataSetName + ': ' + formattedValue + ')');
+                //     }
+                // });
+
+                getVectorMapData();
 			}
 		});
+
+        var eChartMsisdn;
+        var chartOptionMsisdn = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)",
+                backgroundColor: 'rgba(33,33,33,1)',
+                borderRadius:0,
+                padding:10,
+                textStyle: {
+                    color: '#fff',
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    fontFamily: "'Roboto', sans-serif",
+                    fontSize: 12
+                }	
+            },
+            legend: {
+                show:false
+            },
+            toolbox: {
+                show : false,
+            },
+            calculable : true,
+            itemStyle: {
+                normal: {
+                    shadowBlur: 5,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            series : [
+                {
+                    name:'Provider / Telco',
+                    type:'pie',
+                    radius : '80%',
+                    center : ['50%', '50%'],
+                    roseType : 'radius',
+                    color: ['#119dd2', '#d36ee8', '#667add', '#ff0000'],
+                    label: {
+                        normal: {
+                            fontFamily: "'Roboto', sans-serif",
+                            fontSize: 12
+                        }
+                    },
+                    data:[
+                        {value:335, name:'Telkomsel'},
+                        {value:310, name:'Indosat'},
+                        {value:274, name:'Hutchison 3'},
+                        {value:375, name:'XL Axiata'},
+                    ].sort(function (a, b) { return a.value - b.value; }),
+                },
+            ],
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function (idx) {
+                return Math.random() * 1000;
+            }	
+        };
+        
+        var eChart_dukcapil;
+        var chartOptionDukcapil = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)",
+                backgroundColor: 'rgba(33,33,33,1)',
+                borderRadius:0,
+                padding:10,
+                textStyle: {
+                    color: '#fff',
+                    fontStyle: 'normal',
+                    fontWeight: 'normal',
+                    fontFamily: "'Roboto', sans-serif",
+                    fontSize: 12
+                }	
+            },
+            legend: {
+                show:false
+            },
+            toolbox: {
+                show : false,
+            },
+            calculable : true,
+            itemStyle: {
+                normal: {
+                    shadowBlur: 5,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            series : [
+                {
+                    name:'Most Search By Gender',
+                    type:'pie',
+                    radius : '80%',
+                    center : ['50%', '50%'],
+                    roseType : 'radius',
+                    color: ['#119dd2', '#d36ee8'],
+                    label: {
+                        normal: {
+                            fontFamily: "'Roboto', sans-serif",
+                            fontSize: 12
+                        }
+                    },
+                    data:[
+                        {value:1000, name:'Male'},
+                        {value:700, name:'Female'},
+                    ].sort(function (a, b) { return a.value - b.value; }),
+                },
+            ],
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function (idx) {
+                return Math.random() * 1000;
+            }	
+        };
+
+        var mapInstance = null;
+        const mapData = {
+            values: [],
+            total: 0
+        };
+        /**
+         * region map for file indonesia-adm1.js
+        */
+        const jvectorMapProvince = {
+            "24": {
+                "name": "Papua"
+            },
+            "25": {
+                "name": "Riau"
+            },
+            "26": {
+                "name": "Sulawesi Barat"
+            },
+            "27": {
+                "name": "Sulawesi Selatan"
+            },
+            "20": {
+                "name": "Maluku Utara"
+            },
+            "21": {
+                "name": "Maluku"
+            },
+            "22": {
+                "name": "Nusa Tenggara Barat"
+            },
+            "23": {
+                "name": "Nusa Tenggara Timur"
+            },
+            "28": {
+                "name": "Sulawesi Tengah"
+            },
+            "29": {
+                "name": "Sulawesi Tenggara"
+            },
+            "1": {
+                "name": "Aceh"
+            },
+            "3": {
+                "name": "Bangka-Belitung"
+            },
+            "2": {
+                "name": "Bali"
+            },
+            "5": {
+                "name": "Bengkulu"
+            },
+            "4": {
+                "name": "Banten"
+            },
+            "7": {
+                "name": "Irian Jaya Barat"
+            },
+            "6": {
+                "name": "Gorontalo"
+            },
+            "9": {
+                "name": "Jambi"
+            },
+            "8": {
+                "name": "Jakarta Raya"
+            },
+            "11": {
+                "name": "Jawa Tengah"
+            },
+            "10": {
+                "name": "Jawa Barat"
+            },
+            "13": {
+                "name": "Kalimantan Barat"
+            },
+            "12": {
+                "name": "Jawa Timur"
+            },
+            "15": {
+                "name": "Kalimantan Tengah"
+            },
+            "14": {
+                "name": "Kalimantan Selatan"
+            },
+            "17": {
+                "name": "Kalimantan Utara"
+            },
+            "16": {
+                "name": "Kalimantan Timur"
+            },
+            "19": {
+                "name": "Lampung"
+            },
+            "18": {
+                "name": "Kepulauan Riau"
+            },
+            "31": {
+                "name": "Sumatera Barat"
+            },
+            "30": {
+                "name": "Sulawesi Utara"
+            },
+            "34": {
+                "name": "Yogyakarta"
+            },
+            "33": {
+                "name": "Sumatera Utara"
+            },
+            "32": {
+                "name": "Sumatera Selatan"
+            }
+        };
+
+        function getSearchStatisticBy(by){
+            if(by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'){
+                $('#link_refresh_chart_msisdn').trigger('click');
+            }else{
+                $('#link_refresh_chart_dukcapil').trigger('click');
+            }
+
+            $.ajax({
+                type: "get",
+                data: {},
+                cache: false,
+                url: "{{config('app.url')}}/api/report/search-statistic/"+by,
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        updateCharts(by, response.data);
+                    }else{
+                        alert(response.message);
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function() {
+                },
+            });
+        }
+
+        function randomHexColorCode(){
+            let n = (Math.random() * 0xfffff * 1000000).toString(16);
+            return '#' + n.slice(0, 6);
+        }
+
+        function updateCharts(by, datas){
+            let colors = [];
+            for(let a=0;a<datas.length;a++){
+                colors.push(randomHexColorCode());
+            }
+
+            let detailContainer;
+            const chartDatas = [];
+            let totalCount = 0;
+            if(
+                by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'
+                || by == '{{App\Enums\StatisticByEnum::HANDSET->value}}'
+            ){
+                let series = chartOptionMsisdn.series[0];
+
+                if(by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'){
+                    series.name = 'Provider / Telco';
+                }else if(by == '{{App\Enums\StatisticByEnum::HANDSET->value}}'){
+                    series.name = 'Handset';
+                }
+                
+                series.color = colors;
+                datas.forEach((a) => {
+                    const row = {};
+
+                    if(by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'){
+                        row.name = a.operator;
+                    }else if(by == '{{App\Enums\StatisticByEnum::HANDSET->value}}'){
+                        row.name = a.phone;
+                    }
+                    row.value = a.count;
+                    totalCount += parseInt(a.count);
+                    chartDatas.push(row);
+                });
+                series.data = chartDatas;
+
+				eChartMsisdn.setOption(chartOptionMsisdn);
+				// eChartMsisdn.resize();
+
+                detailContainer = $('#chart_detail_msisdn');
+            }else{
+                let series = chartOptionDukcapil.series[0];
+
+                if(by == '{{App\Enums\StatisticByEnum::GENDER->value}}'){
+                    series.name = 'Gender';
+                }else if(by == '{{App\Enums\StatisticByEnum::GENERATION->value}}'){
+                    series.name = 'Generation (Age)';
+                }else if(by == '{{App\Enums\StatisticByEnum::OCCUPATION->value}}'){
+                    series.name = 'Occupation';
+                }else if(by == '{{App\Enums\StatisticByEnum::EDUCATION->value}}'){
+                    series.name = 'Education';
+                }else if(by == '{{App\Enums\StatisticByEnum::RELIGION->value}}'){
+                    series.name = 'Religion';
+                }
+                
+                series.color = colors;
+                datas.forEach((a) => {
+                    const row = {};
+
+                    if(by == '{{App\Enums\StatisticByEnum::GENDER->value}}'){
+                        row.name = a.gender;
+                    }else if(by == '{{App\Enums\StatisticByEnum::GENERATION->value}}'){
+                        row.name = a.generation;
+                    }else if(by == '{{App\Enums\StatisticByEnum::OCCUPATION->value}}'){
+                        row.name = a.occupation;
+                    }else if(by == '{{App\Enums\StatisticByEnum::EDUCATION->value}}'){
+                        row.name = a.education;
+                    }else if(by == '{{App\Enums\StatisticByEnum::RELIGION->value}}'){
+                        row.name = a.religion;
+                    }
+                    row.value = a.count;
+                    totalCount += parseInt(a.count);
+
+                    chartDatas.push(row);
+                });
+                series.data = chartDatas;
+
+				eChart_dukcapil.setOption(chartOptionDukcapil);
+				// eChart_dukcapil.resize();
+
+                detailContainer = $('#chart_detail_dukcapil');
+            }
+
+            const chartDetailTemplate = `
+                    <hr class="light-grey-hr row mt-10 mb-15"/>
+                    <div class="label-chatrs">
+                        <div class="">
+                            <span class="clabels clabels-lg inline-block mr-10 pull-left" style="background-color:@color"></span>
+                            <span class="clabels-text font-12 inline-block txt-dark capitalize-font pull-left"><span class="block font-15 weight-500 mb-5">@percentage% @name</span></span>
+                            <span class="txt-dark block counter pull-right"><span class="counter-anim">@count</span></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                `;
+            
+            detailContainer.html('');
+            let content = '';
+            for(let a=0;a<chartDatas.length;a++){
+                let percent = (chartDatas[a].value / totalCount) * 100;
+
+                let row = chartDetailTemplate
+                    .replaceAll("@color", colors[a])
+                    .replaceAll("@percentage", percent.toFixed(2))
+                    .replaceAll("@name", chartDatas[a].name)
+                    .replaceAll("@count", chartDatas[a].value)
+                    ;
+                content+=row;
+            }
+            detailContainer.html(content);
+        }
+
+        function getTop10City(by){
+            const rowTemplate = `
+                <tr>
+                    <td>@city</td>
+                    <td>
+                        <div class="progress progress-xs mb-0 ">
+                            <div class="progress-bar" style="width: @percent%; background-color: @color"></div>
+                            </div>
+                    </td>
+                    <td class="txt-dark weight-500">@percent%</td>	
+                </tr>
+            `;
+
+            $.ajax({
+                type: "get",
+                data: {},
+                cache: false,
+                url: "{{config('app.url')}}/api/report/dashboard/most-located-msisdn/"+by,
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        let datas = response.data;
+
+                        const colors = [];
+                        for(let a=0;a<datas.length;a++){
+                            colors.push(randomHexColorCode());
+                        }
+
+                        let totalCount = 0;
+                        datas.forEach((a) => {
+                            totalCount += parseInt(a.count);
+                        });
+
+                        $('#table-top-10-located-msisdn').html('');
+                        let content = '';
+                        for(let a=0;a<datas.length;a++){
+                            let data = datas[a];    
+                            let field = null;
+
+                            if(by == 'city'){
+                                field = data.city;
+                            }
+
+                            let percent = (data.count / totalCount) * 100;
+
+                            let rowContent = rowTemplate
+                                .replaceAll('@city', field)
+                                .replaceAll('@percent', percent.toFixed(2))
+                                .replaceAll('@color', colors[a])
+                                ;
+
+                            content += rowContent;
+                        }
+                        $('#table-top-10-located-msisdn').html(content);
+                    }else{
+                        alert(response.message);
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function() {
+                },
+            });
+        }
+
+        function getVectorMapData(){
+            const provinceMap = [];
+            for(const [key, value] of Object.entries(jvectorMapProvince)) {
+                const rowdata = {
+                    region_id: key,
+                    name: value.name
+                };
+                provinceMap.push(rowdata);
+            }
+
+            $.ajax({
+                type: "post",
+                data: {},
+                cache: false,
+                url: "{{config('app.url')}}/api/report/dashboard/map-visualization",
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        const datas = response.data;
+                        const regionData = {
+                            values: {},
+                            attribute: 'fill'
+                        };
+                        const regionValuesData = {};
+                        const colors = [];
+                        for(let a=0;a<datas.length;a++){
+                            colors.push(randomHexColorCode());
+                        }
+
+                        mapData.total = 0;
+                        let mapDataValues = {};
+                        for(let a=0;a<datas.length;a++){
+                            let loopData = datas[a];
+                            let matchedDatas = provinceMap.filter((b) => b.name.toLowerCase() == loopData.province.toLowerCase());
+                            if(matchedDatas.length > 0){
+                                let matchedData = matchedDatas[0];
+                                regionValuesData[matchedData.region_id] = colors[a];
+                                mapDataValues[matchedData.region_id] = parseInt(loopData.count);
+                                mapData.total += parseInt(loopData.count);
+                            }
+                        }
+                        mapData.values = mapDataValues;
+
+                        // let region = mapInstance.series.regions[0];
+                        /* Reset the scale min & max, allow recomputation. */ 
+                        // region.params.min = min;
+                        // region.params.max = max;
+                        // region.setValues(regionData);
+                        // region.values = regionData;
+
+                        // let mapInst = $('#world_map_marker_1').vectorMap('get', 'mapObject');
+                        // mapInst.clearSelectedRegions();
+                        // mapInst.series.regions[0].clear(); //clear the array values
+                        // mapInst.setSelectedRegions([code]);
+                        // mapInst.series.regions[0].values = regionValuesData;
+
+                        mapInstance.series.regions[0].setValues(regionValuesData);
+                    }else{
+                        alert(response.message);
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function() {
+                },
+            });
+        }
 	</script>
 @endsection

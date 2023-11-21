@@ -2,25 +2,37 @@
     $breadcrumbs_parents = [
         'Telekomunikasi' => [
             'Locate Number',
-            'Tracking Number'.
-            'Telco Registration'
+            'Tracking Number',
+            'Telco Registration',
+            'Cek IMSI / IMEI',
         ],
         'Search Dukcapil' => [
             'Search By NKK',
-            'Search By NIK'
+            'Search By NIK',
+            'Search By Profile',
         ], 
         'Transportation' => [
-            'Cek Kendaraan'
+            'Cek Kendaraan',
+        ],
+        'Data Leak' => [
+            'Data Leak',
+            'Data Gmail',
+            'Data Media Social',
         ]
     ];
 
     $breadcrumbs_links = [
-        'Search Number' => 'telecommunication/search-number',
-        'Locate Number' => 'telecommunication/tracking-number',
+        'Tracking Number' => 'telecommunication/tracking-number',
+        'Locate Number' => 'telecommunication/locate-number',
         'Telco Registration' => 'telecommunication/telco_registration',
+        'Cek IMSI / IMEI' => 'telecommunication/tracking_imsi_imei',
         'Search By NKK' => 'e-ktp/search-by-nkk',
         'Search By NIK' => 'e-ktp/search-by-nik',
-        'Cek Kendaraan' => 'transportasi/cek_kendaraan'
+        'Search By Profile' => 'e-ktp/search-by-profile',
+        'Cek Kendaraan' => 'transportasi/cek_kendaraan',
+        'Data Leak' => 'dataleak/data-leak',
+        'Data Gmail' => 'dataleak/data-gmail',
+        'Data Media Social' => 'dataleak/data-sosmed',
     ];
 
     $page_title = app()->view->getSections()['page-title'];

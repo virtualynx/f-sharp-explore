@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Enum\KujangAskforEnum;
+use App\Enums\KujangAskforEnum;
 use GuzzleHttp\Client;
 use kamermans\OAuth2\OAuth2Middleware;
 use kamermans\OAuth2\GrantType\PasswordCredentials;

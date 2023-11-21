@@ -215,6 +215,19 @@ Search By NIK
         function searchData() {
             let nik = $('[name="nik"]').val();
 
+            if(!nik){
+                $.toast().reset('all');
+                $.toast({
+                    heading: 'Warning',
+                    text: 'NIK harus diisi',
+                    position: 'top-right',
+                    loaderBg: '#fec107',
+                    icon: 'error',
+                    hideAfter: false
+                });
+                return;
+            }
+
             $(".preloader-it").show();
 
             $.ajax({

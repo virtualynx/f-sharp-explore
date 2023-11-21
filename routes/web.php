@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function() {
     Route::prefix('/e-ktp')->group(function() {
         Route::get('/search-by-nkk', 'EKtpController@search_by_nkk');
         Route::get('/search-by-nik', 'EKtpController@search_by_nik');
+		Route::get('/search-by-profile', 'EKtpController@search_by_profile');
     });
 
     Route::prefix('/telecommunication')->group(function() {
@@ -53,4 +54,3 @@ Route::prefix('/dataleak')->group(function() {
     Route::get('/data-sosmed', 'DataLeakController@sosmed_leak');
     // Route::post('/save', 'KtpController@save');
 });
-

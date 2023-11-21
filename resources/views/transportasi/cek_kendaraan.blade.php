@@ -44,7 +44,7 @@ Cek Kendaraan
                             <div class="col-sm-8 p-0 m-0">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" id="vehicleNumber" name="vehicleNumber" class="form-control" placeholder="Enter Vehicle Number (NOPOL) Or NIK" required />
+                                        <input type="text" id="vehicleNumber" name="vehicleNumber" onkeyup="capitalizeVehicleNumber()" class="form-control" placeholder="Enter Vehicle Number (NOPOL) Or NIK" required />
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchKendaraan()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>
                                         </span> 
@@ -224,6 +224,11 @@ Cek Kendaraan
 
 @section('page-footer')
 <script>
+    function capitalizeVehicleNumber(){
+        let vecNumber = $('[name="vehicleNumber"]').val();
+        $('[name="vehicleNumber"]').val(vecNumber.toUpperCase());
+    }
+
     function changeType() {
 
         var e = document.getElementById("selectTypeKendaraan");
@@ -248,6 +253,19 @@ Cek Kendaraan
         var valueType = e.value;
         var nomorkendaraan = document.getElementById("vehicleNumber").value;
 
+        if(!valueType || !nomorkendaraan){
+            $.toast().reset('all');
+            $.toast({
+                heading: 'Warning',
+                text: 'Tipe dan Nomor Pencarian harus diisi',
+                position: 'top-right',
+                loaderBg: '#fec107',
+                icon: 'error',
+                hideAfter: false
+            });
+            return;
+        }
+
         $(".preloader-it").show();
 
         $.ajax({
@@ -268,10 +286,30 @@ Cek Kendaraan
                     if (datas.length > 0) {
                         setDataKendaraan(datas[0], valueType);
                     }else{
-                        alert('Data tidak ditemukan');
+                        // alert('Data tidak ditemukan');
+                        
+                        $.toast().reset('all');
+                        $.toast({
+                            heading: 'No Data',
+                            text: 'Data tidak ditemukan',
+                            position: 'top-right',
+                            loaderBg: '#fec107',
+                            icon: 'error',
+                            hideAfter: false
+                        });
                     }
                 } else {
-                    alert(response.message);
+                    // alert(response.message);
+                        
+                    $.toast().reset('all');
+                    $.toast({
+                        heading: 'Opps! something wents wrong',
+                        text: response.message,
+                        position: 'top-right',
+                        loaderBg: '#fec107',
+                        icon: 'error',
+                        hideAfter: false
+                    });
                 }
             },
             error: ajaxErrorHandler,
