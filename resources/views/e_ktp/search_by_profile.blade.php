@@ -7,6 +7,8 @@
 @section('page-head')
 	{{-- <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet"> --}}
 	{{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/e_ktp/search_by_profile.css') }}"> --}}
+	<!-- Bootstrap Datetimepicker CSS -->
+	<link href="{{asset('vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css"/>
 	<link href="{{ url('/dist/css/custom-style.css') }}" rel="stylesheet">
 @endsection
 
@@ -33,7 +35,13 @@
 								<div class="col-sm-4 p-0 m-0">
 									<div class="form-group">
 										<label for="date-of-birth" class="txt-dark weight-500">Tanggal Lahir</label>
-										<input type="date" class="form-control" id="date-of-birth" name="date-of-birth" placeholder="Pilih tanggal lahir">
+										{{-- <input type="date" class="form-control" id="date-of-birth" name="date-of-birth" placeholder="Pilih tanggal lahir"> --}}
+										<div class="input-group date" id="datetimepicker-onlydate">
+											<input type='text' class="form-control" id="date-of-birth" name="date-of-birth" placeholder="Pilih tanggal lahir" />
+											<span class="input-group-addon">
+												<span class="fa fa-calendar"></span>
+											</span>
+										</div>
 									</div>
 									<div class="form-group">
 										<label for="fullname-father" class="txt-dark weight-500">Nama Lengkap Ayah</label>
@@ -123,8 +131,22 @@
 @section('page-footer')
 	{{-- <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> --}}
+	<!-- Bootstrap Datetimepicker JavaScript -->
+	<script type="text/javascript" src="{{asset('vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
 
     <script>
+
+		$('#datetimepicker-onlydate').datetimepicker({
+			useCurrent: true,
+			format: 'MM-DD-YYYY',
+			icons: {
+					time: "fa fa-clock-o",
+					date: "fa fa-calendar",
+					up: "fa fa-arrow-up",
+					down: "fa fa-arrow-down"
+				},
+		});
+
 		const form_id = '#search_by_profile';
         let tableProfile = $('[name="table-search-by-profile"]').DataTable({
 			processing: true,
