@@ -18,7 +18,6 @@ class DataLeakService extends _GeneralService
         $uri = config('api.uri.general.data_leak');
 
         $response = $this->getHttpClient()->request('GET', $uri . '/' . $msisdn);
-
         if ($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
 
@@ -93,17 +92,33 @@ class DataLeakService extends _GeneralService
             'total_sites' => "10"
         ];
 
-        $response = $client->post($url, [
-            'headers' => $headers,
-            'json' => $data,
-        ]);
+        try{
+            $response = $this->getHttpClient()->post($url, ['json' => $data]);
+            // $response = $client->post($url, [
+            //     'headers' => $headers,
+            //     'json' => $data,
+            // ]);
+        }catch(\GuzzleHttp\Exception\ClientException $e){
+            $msg = $e->getMessage();
+            if($e->getCode() == 400){
+                if(str_contains($msg, 'Format input tidak valid.')) {
+                    throw new Exception("Format input tidak valid", 1);
+                }
+            }else{
+                throw new Exception($e->getMessage(), 99);
+            }
+        }catch(Exception $e){
+            Log::error($e->getMessage());
+            throw new Exception("Unknown Error", 99);
+        }
+
         // $response = $this->getHttpClientPost()->request(
         //     'POST',
         //     $uri,
         //     ['body' => json_encode($payload)]
         // );
-
-        if ($response->getStatusCode() == 200) {
+        
+        if($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
 
             if (isset($resp_arr)) {

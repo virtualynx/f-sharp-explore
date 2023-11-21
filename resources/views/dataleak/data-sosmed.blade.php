@@ -99,6 +99,19 @@ Data Media Social
     function searchSosmedLeak() {
         let sosmed = $('[name="inputSosmedLeak"]').val();
 
+        if(!sosmed){
+            $.toast().reset('all');
+            $.toast({
+                heading: 'Warning',
+                text: 'Text pencarian harus diisi',
+                position: 'top-right',
+                loaderBg: '#fec107',
+                icon: 'error',
+                hideAfter: false
+            });
+            return;
+        }
+
         $(".preloader-it").show();
 
         $.ajax({
@@ -146,7 +159,7 @@ Data Media Social
                     $.toast().reset('all');
                     $.toast({
                         heading: 'Opps! somthing wents wrong',
-                        text: 'Data tidak ditemukan',
+                        text: response.message,
                         position: 'top-right',
                         loaderBg: '#fec107',
                         icon: 'error',
