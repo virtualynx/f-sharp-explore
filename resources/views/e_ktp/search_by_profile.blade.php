@@ -140,7 +140,7 @@
 
 		$('#datetimepicker-onlydate').datetimepicker({
 			useCurrent: true,
-			format: 'MM-DD-YYYY',
+			format: 'YYYY-MM-DD',
 			icons: {
 					time: "fa fa-clock-o",
 					date: "fa fa-calendar",

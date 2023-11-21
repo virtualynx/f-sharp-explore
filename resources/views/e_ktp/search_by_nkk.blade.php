@@ -27,7 +27,7 @@ Search By NKK
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">Search NKK</div>
+                                        <div class="input-group-addon">Search</div>
                                         <input type="text" name="inputNKK" id="inputNKK" class="form-control" placeholder="Enter NKK" required />
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchDataNKK()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>

@@ -32,7 +32,7 @@ Cek IMSI / IMEI
                             <div class="col-sm-4 p-0 m-0">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">Tracking IMEI / IMSI</div>
+                                        <div class="input-group-addon">Search</div>
                                         <select id="selectTypeImsi" class="form-control" onchange="changeTypeImsi()">
                                             <option value="" selected disabled> Select Type </option>
                                             <option value="imsi">IMSI</option>
