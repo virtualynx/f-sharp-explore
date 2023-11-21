@@ -33,7 +33,7 @@ Cek IMSI / IMEI
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">Search</div>
-                                        <select id="selectTypeImsi" class="form-control" onchange="changeTypeImsi()">
+                                        <select id="selectTypeImsi" class="form-control">
                                             <option value="" selected disabled> Select Type </option>
                                             <option value="imsi">IMSI</option>
                                             <option value="imei">IMEI</option>
@@ -46,7 +46,7 @@ Cek IMSI / IMEI
                                     <div class="input-group">
                                         <input type="text" id="imsiNumber" name="imsiNumber" class="form-control" placeholder="Enter IMSI or IMEI" required />
                                         <span class="input-group-btn">
-                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchIMSI()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>
+                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchImsi()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>
                                         </span>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@ Cek IMSI / IMEI
             </div>
             <div class="panel-heading">
                 <div class="pull-left">
-                    <h6 class="panel-title txt-dark">Data Kendaraan</h6>
+                    <h6 class="panel-title txt-dark">Data Results</h6>
                 </div>
                 <div class="pull-right">
                     <a href="#" class="pull-left inline-block refresh mr-15">
@@ -110,29 +110,23 @@ Cek IMSI / IMEI
 
 @section('page-footer')
 <script>
-    function changeType() {
-
-        var e = document.getElementById("selectTypeKendaraan");
-        var valueType = e.value;
-        var nomorkendaraan = document.getElementById("vehicleNumber").value;
-        if (valueType == "nik") {
-            console.log("masuk if")
-            var idDiv = document.getElementById("kendaraan_nik");
-            var idDiv2 = document.getElementById("kendaraan_nopol");
-            idDiv.style.display = "table";
-            idDiv2.style.display = "none";
-        } else {
-            var idDiv = document.getElementById("kendaraan_nopol");
-            var idDiv2 = document.getElementById("kendaraan_nik");
-            idDiv.style.display = "table";
-            idDiv2.style.display = "none";
-        }
-    }
-
     function searchImsi() {
         var e = document.getElementById("selectTypeImsi");
         var valueType = e.value;
         var nomorimsi = document.getElementById("imsiNumber").value;
+
+        if(!valueType || !nomorimsi){
+            $.toast().reset('all');
+            $.toast({
+                heading: 'Warning',
+                text: 'Tipe dan Nomor IMEI/IMSI harus diisi',
+                position: 'top-right',
+                loaderBg: '#fec107',
+                icon: 'error',
+                hideAfter: false
+            });
+            return;
+        }
 
         $(".preloader-it").show();
 
@@ -144,21 +138,52 @@ Cek IMSI / IMEI
             },
             cache: false,
             // url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
-            url: "{{config('app.url')}}/api/transportasi/tracking_kendaraan",
+            url: "{{config('app.url')}}/api/telecommunication/track_imsi_imei",
             dataType: "json",
             success: function(response, status) {
                 console.log("isi response " + JSON.stringify(response));
                 if (status == 'success' && response.message == "success") {
-                    let datas = response.data;
+                    $("#tableImsi > tbody").html("");
+                    let datas = response.data.original.data;
+                   
+                    var content = "";
+                    var number = 0;
+                    if (datas.length > 0) {
+                        for (var i = 0; i < datas.length; i++) {
+                            number += 1;
+                            content += '<tr>'
+                            content += '<td name="td-registrasi-nomor">' + number + '</td>'
+                            content += '<td name="td-registrasi-nomor">' + datas[i]['msisdn'] + '</td>'
+                            content += '<td name="td-registrasi-nomor">' + datas[i]['imei'] + '</td>'
+                            content += '<td name="td-registrasi-nomor">' + datas[i]['imsi'] + '</td>'
+                            content += '</tr>'
 
-                    for (var i = 0; i < datas.length; i++) {
-                        number += 1;
-
-
+                        }
+                        $("#tbodyImsi").append(content);
+                    } else {
+                        $.toast().reset('all');
+                        $.toast({
+                            heading: 'No Data',
+                            text: 'Data tidak ditemukan',
+                            position: 'top-right',
+                            loaderBg: '#fec107',
+                            icon: 'error',
+                            hideAfter: false
+                        });
                     }
-                    $("#tbodyImsi").append(content);
+
+
                 } else {
-                    alert(response.message);
+                    // alert(response.message);
+                    $.toast().reset('all');
+                    $.toast({
+                        heading: 'Opps! somthing wents wrong',
+                        text: response.message,
+                        position: 'top-right',
+                        loaderBg: '#fec107',
+                        icon: 'error',
+                        hideAfter: false
+                    });
                 }
             },
             error: ajaxErrorHandler,

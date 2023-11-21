@@ -77,69 +77,78 @@ class TelecommunicationService extends _GeneralService
         }
     }
 
-    public function getTrackedList(){
+    public function getTrackedList()
+    {
         // $result = TrackedNumber::get();
         return TrackedNumber::all();
     }
 
-    public function getTrackedNumber(string $msisdn){
+    public function getTrackedNumber(string $msisdn)
+    {
         $existing = TrackedNumber::where('msisdn', $msisdn)->first();
 
         return $existing;
     }
 
-    public function addTrackedNumber(array $data){
+    public function addTrackedNumber(array $data)
+    {
         $newdata = new TrackedNumber();
         $newdata->fill($data);
 
         $newdata->save();
     }
 
-    public function saveTrackedNumber(string $msisdn, array $data): bool{
+    public function saveTrackedNumber(string $msisdn, array $data): bool
+    {
         $existing = TrackedNumber::where('msisdn', $msisdn)->first();
         $existing->fill($data);
 
         return $existing->save();
     }
 
-    public function deleteTrackedNumber(string $msisdn): bool{
+    public function deleteTrackedNumber(string $msisdn): bool
+    {
         $existing = TrackedNumber::where('msisdn', $msisdn)->first();
 
         return $existing->delete();
     }
 
-    public function getTrackingLog(string $msisdn){
+    public function getTrackingLog(string $msisdn)
+    {
         $datas = TrackedNumberLog::where('msisdn', $msisdn)->get();
 
         return $datas;
     }
 
-    public function toggleTracking(string $msisdn){
+    public function toggleTracking(string $msisdn)
+    {
         $existing = TrackedNumber::where('msisdn', $msisdn)->first();
-        
-        $running = $existing->running == 0? 1: 0;
+
+        $running = $existing->running == 0 ? 1 : 0;
 
         $existing->running = $running;
 
         return $existing->save();;
     }
 
-    public function getGeofence(string $msisdn){
+    public function getGeofence(string $msisdn)
+    {
         $datas = TrackedNumberGeofence::where('msisdn', $msisdn)->get();
 
         return $datas;
     }
 
-    public function saveGeofence(string $msisdn, string $action, string $geojson){
+    public function saveGeofence(string $msisdn, string $action, string $geojson)
+    {
         $datas = TrackedNumberGeofence::where('msisdn', $msisdn)->get();
 
         $data = null;
-        if(count($datas) == 0){
+        if (count($datas) == 0) {
             $data = new TrackedNumberGeofence();
             $data->msisdn = $msisdn;
-        }else if(count($datas) == 1){
+        } else if (count($datas) == 1) {
             $data = $datas[0];
-        }else if(count($datas) > 1){
+        } else if (count($datas) > 1) {
             throw new Exception('Multiple Geofence is not supported yet');
         }
         $data->action = $action;
@@ -147,7 +156,7 @@ class TelecommunicationService extends _GeneralService
 
         return $data->save();
     }
-    
+
     public function getTelcoNumber(string $value, string $type)
     {
         $uri = config('api.uri.general.telco_registration');
@@ -160,9 +169,9 @@ class TelecommunicationService extends _GeneralService
             if (isset($resp_arr['status'])) {
                 if ($resp_arr['status'] == "data_ok") {
                     $reg_datas = $resp_arr['reg_data'];
-                    
+
                     $search_logs = [];
-                    foreach($reg_datas as $loop){
+                    foreach ($reg_datas as $loop) {
                         $log = [
                             'msisdn' => $loop['NO_PESERTA'],
                             'nik' => $loop['PENCARIAN'],
@@ -184,4 +193,22 @@ class TelecommunicationService extends _GeneralService
             throw new Exception($response->getReasonPhrase() . '(' . $response->getStatusCode() . ')', 99);
         }
     }
-}
+
+    public function getImsiOrImei(string $value, string $type)
+    {
+        $response = DB::table('search_logs_locate_msisdn')
+        ->where($type, '=', $value)
+        ->get();
+
+        if ($response){
+            return response()->json([
+                'data' => $response
+            ], 200);
+        } else {
+            return response()->json([
+                'data' => ''
+            ], 99);
+        }
+        }
+    }
+

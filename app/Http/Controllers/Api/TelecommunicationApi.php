@@ -232,4 +232,17 @@ class TelecommunicationApi extends _Controller{
 
         return new ApiResponse(null);
     }
+
+    public function track_imsi_imei(Request $request)
+    {
+        $value = $request->value;
+        $type = $request->type;
+        try{
+            $response = $this->service->getImsiOrImei($value, $type);
+            
+            return new ApiResponse($response);
+        }catch(Exception $e){
+            return new ApiResponse(null, $e->getCode(), $e->getMessage());
+        }
+    }
 }

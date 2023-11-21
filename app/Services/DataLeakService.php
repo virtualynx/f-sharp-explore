@@ -75,15 +75,27 @@ class DataLeakService extends _GeneralService
         }
     }
 
-    public function getSosmedLeak(string $sosmed)
+    public function getSosmedLeak(string $sosmed, $maxsites)
     {
         $data = [
             'username' => $sosmed,
-            'total_sites' => "10"
+            'total_sites' => $maxsites
         ];
+     
 
         try{
             $response = $this->getHttpClient()->post('osint/search/', ['json' => $data]);
+            if($response->getStatusCode() == 200 || $response->getStatusCode() == 400) {
+                $resp_arr = json_decode($response->getBody(), true);
+    
+                if (isset($resp_arr)) {
+                    return $resp_arr;
+                } else {
+                    throw new Exception("Unknown Error", 99);
+                }
+            } else {
+                throw new Exception($response->getReasonPhrase() . '(' . $response->getStatusCode() . ')', 99);
+            }
         }catch(\GuzzleHttp\Exception\ClientException $e){
             $msg = $e->getMessage();
             if($e->getCode() == 400){
@@ -98,16 +110,6 @@ class DataLeakService extends _GeneralService
             throw new Exception("Unknown Error", 99);
         }
         
-        if($response->getStatusCode() == 200) {
-            $resp_arr = json_decode($response->getBody(), true);
-
-            if (isset($resp_arr)) {
-                return $resp_arr;
-            } else {
-                throw new Exception("Unknown Error", 99);
-            }
-        } else {
-            throw new Exception($response->getReasonPhrase() . '(' . $response->getStatusCode() . ')', 99);
-        }
+       
     }
 }

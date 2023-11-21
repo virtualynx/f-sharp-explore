@@ -36,6 +36,8 @@ Route::prefix('/telecommunication')->group(function() {
     Route::post('/tracking-toggle', 'Api\TelecommunicationApi@toggle_tracking_number')->name('api_tracking_toggle');
     Route::get('/tracking-geofence/{msisdn}', 'Api\TelecommunicationApi@get_geofence_v2');
     Route::post('/tracking-geofence', 'Api\TelecommunicationApi@save_geofence')->name('api_tracking_geofence_save');
+    Route::post('/track_imsi_imei', 'Api\TelecommunicationApi@track_imsi_imei')->name('track_imsi_imei');
+    
 });
 
 Route::prefix('/transportasi')->group(function() {

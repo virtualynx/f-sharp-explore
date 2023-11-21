@@ -25,22 +25,60 @@ Data Media Social
                         <div class="col-sm-12 p-0 m-0">
                             <form>
                                 {{ csrf_field() }}
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">Search</div>
-                                        <input type="text" name="inputSosmedLeak" id="inputSosmedLeak" class="form-control" placeholder="Enter Username" required />
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" name="inputSosmedLeak" id="inputSosmedLeak" class="form-control" placeholder="Enter ...">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Max Sites</label>
+                                        <input type="number" pattern="^[0-9]*$" name="inputSosmedSites" id="inputSosmedSites" class="form-control" placeholder="Enter ...">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label></label>
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
                                         </span>
                                     </div>
                                 </div>
-                            </form>
                         </div>
+                        <!-- <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-addon">Search Social Media</div>
+                                <input type="text" name="inputSosmedLeak" id="inputSosmedLeak" class="form-control" placeholder="Enter Username" required />
+                                <span class="input-group-btn">
+                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
+                                        </span>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-addon">Max Sites</div>
+                                <input type="text" name="inputSosmedSites" id="inputSosmedSites" class="form-control" placeholder="Contoh: 2000" required />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
+                                </span>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-4">
+                                    <div class="input-group">
+                                        
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
+                                        </span>
+                                    </div>
+                                </div> -->
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Response Search -->
@@ -72,7 +110,7 @@ Data Media Social
                                             <tr>
                                                 <th>No</th>
                                                 <th>Website</th>
-                                                <th>Address</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbodyDataSosmed" name="tbodyDataSosmed">
@@ -98,12 +136,24 @@ Data Media Social
 <script>
     function searchSosmedLeak() {
         let sosmed = $('[name="inputSosmedLeak"]').val();
+        let maxSites = $('[name="inputSosmedSites"]').val();
 
-        if(!sosmed){
+        if (!sosmed || !maxSites) {
             $.toast().reset('all');
             $.toast({
                 heading: 'Warning',
                 text: 'Text pencarian harus diisi',
+                position: 'top-right',
+                loaderBg: '#fec107',
+                icon: 'error',
+                hideAfter: false
+            });
+            return;
+        } else if (sosmed.length < 5) {
+            $.toast().reset('all');
+            $.toast({
+                heading: 'Warning',
+                text: 'Minimal input username 5 karakter',
                 position: 'top-right',
                 loaderBg: '#fec107',
                 icon: 'error',
@@ -117,7 +167,8 @@ Data Media Social
         $.ajax({
             type: "post",
             data: {
-                sosmed: sosmed
+                sosmed: sosmed,
+                maxSites: maxSites
             },
             cache: false,
             url: "{{config('app.url')}}/api/dataleak/sosmed_leak",
@@ -126,40 +177,49 @@ Data Media Social
                 var content = "";
                 var dataArr = response.data;
                 $('.panel-title').html('Data Dukcapil');
-                $("#tableDataSosmed > tbody").html("");
+                //$("#tableDataSosmed > tbody").html("");
                 if (status == 'success' && response.message == "success") {
-                    let datas = response.data.found_accounts;
-                    if (datas.length > 0) {
-                        var content = "";
-                        var number = 0;
-                        for (var i = 0; i < datas.length; i++) {
-                            number += 1;
-                            content += '<tr>'
-                            content += '<td name="td-registrasi-nomor">' + number + '</td>'
-                            content += '<td name="td-registrasi-nomor">' + datas[i]['site'] + '</td>'
-                            content += '<td name="td-registrasi-nomor">' + datas[i]['url_user'] + '</td>'
-                            content += '</tr>'
+                    if (response.data != null) {
+                        let datas = response.data.found_accounts;
+                        if (datas.length > 0) {
+                            var content = "";
+                            var number = 0;
+                            var table = $('#tableDataSosmed').DataTable();
+                            table.clear();
+                            for (var i = 0; i < datas.length; i++) {
+                                number += 1;
+                                // number += 1;
+                                // content += '<tr>'
+                                // content += '<td name="td-registrasi-nomor">' + number + '</td>'
+                                // content += '<td name="td-registrasi-nomor">' + datas[i]['site'] + '</td>'
+                                // content += '<td name="td-registrasi-nomor"><a href="' + datas[i]['url_user'] + '"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-icon left-icon"><i class="fa fa-search"></i><span class="btn-text">Lihat</span></button></span></a></td>'
+                                // content += '</tr>'
+                                table.row.add([
+                                    number,
+                                    datas[i]['site'],
+                                    '<a href="' + datas[i]['url_user'] + '" target="_blank"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-icon left-icon"><i class="fa fa-search"></i><span class="btn-text">Lihat</span></button></span></a>',
+                                ]).draw(true);
+                            }
+                            table.draw();
+                            //$("#tbodyDataSosmed").append(content);
+                        } else {
+                            $.toast().reset('all');
+                            $.toast({
+                                heading: 'Opps! somthing wents wrong',
+                                text: 'Data tidak ditemukan',
+                                position: 'top-right',
+                                loaderBg: '#fec107',
+                                icon: 'error',
+                                hideAfter: false
+                            });
                         }
-
-
-
-                        $("#tbodyDataSosmed").append(content);
-                    } else {
-                        $.toast().reset('all');
-                        $.toast({
-                            heading: 'Opps! somthing wents wrong',
-                            text: 'Data tidak ditemukan',
-                            position: 'top-right',
-                            loaderBg: '#fec107',
-                            icon: 'error',
-                            hideAfter: false
-                        });
                     }
+
                 } else {
                     $.toast().reset('all');
                     $.toast({
                         heading: 'Opps! somthing wents wrong',
-                        text: response.message,
+                        text: response.message + ". Minimal input username 5 karakter",
                         position: 'top-right',
                         loaderBg: '#fec107',
                         icon: 'error',
