@@ -27,7 +27,7 @@ Data Media Social
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">Search Social Media</div>
+                                        <div class="input-group-addon">Search</div>
                                         <input type="text" name="inputSosmedLeak" id="inputSosmedLeak" class="form-control" placeholder="Enter Username" required />
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
