@@ -6,12 +6,12 @@ use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
 use Exception;
-use App\Services\DataleakService;
+use App\Services\DataLeakService;
 
 class DataLeakApi extends _Controller{
-    private DataleakService $service;
+    private DataLeakService $service;
 
-    public function __construct(DataleakService $service){
+    public function __construct(DataLeakService $service){
         $this->service = $service;
     }
 
