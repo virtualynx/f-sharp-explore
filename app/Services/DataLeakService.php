@@ -77,27 +77,13 @@ class DataLeakService extends _GeneralService
 
     public function getSosmedLeak(string $sosmed)
     {
-        $client = new Client();
-
-        $url = 'http://202.43.190.20:8088/osint/search/';
-
-        $headers = [
-            'auth-key' => '97ebd8b107af40fe7cd2e63b2abe42413ad43e3f',
-            'Content-Type' => 'application/json',
-            // Add any other headers as needed
-        ];
-
         $data = [
             'username' => $sosmed,
             'total_sites' => "10"
         ];
 
         try{
-            $response = $this->getHttpClient()->post($url, ['json' => $data]);
-            // $response = $client->post($url, [
-            //     'headers' => $headers,
-            //     'json' => $data,
-            // ]);
+            $response = $this->getHttpClient()->post('osint/search/', ['json' => $data]);
         }catch(\GuzzleHttp\Exception\ClientException $e){
             $msg = $e->getMessage();
             if($e->getCode() == 400){
@@ -111,12 +97,6 @@ class DataLeakService extends _GeneralService
             Log::error($e->getMessage());
             throw new Exception("Unknown Error", 99);
         }
-
-        // $response = $this->getHttpClientPost()->request(
-        //     'POST',
-        //     $uri,
-        //     ['body' => json_encode($payload)]
-        // );
         
         if($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
