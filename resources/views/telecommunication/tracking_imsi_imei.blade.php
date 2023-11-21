@@ -33,7 +33,7 @@ Cek IMSI / IMEI
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">Search</div>
-                                        <select id="selectTypeImsi" class="form-control" onchange="changeTypeImsi()">
+                                        <select id="selectTypeImsi" class="form-control">
                                             <option value="" selected disabled> Select Type </option>
                                             <option value="imsi">IMSI</option>
                                             <option value="imei">IMEI</option>
@@ -110,29 +110,23 @@ Cek IMSI / IMEI
 
 @section('page-footer')
 <script>
-    function changeType() {
-
-        var e = document.getElementById("selectTypeKendaraan");
-        var valueType = e.value;
-        var nomorkendaraan = document.getElementById("vehicleNumber").value;
-        if (valueType == "nik") {
-            console.log("masuk if")
-            var idDiv = document.getElementById("kendaraan_nik");
-            var idDiv2 = document.getElementById("kendaraan_nopol");
-            idDiv.style.display = "table";
-            idDiv2.style.display = "none";
-        } else {
-            var idDiv = document.getElementById("kendaraan_nopol");
-            var idDiv2 = document.getElementById("kendaraan_nik");
-            idDiv.style.display = "table";
-            idDiv2.style.display = "none";
-        }
-    }
-
     function searchImsi() {
         var e = document.getElementById("selectTypeImsi");
         var valueType = e.value;
         var nomorimsi = document.getElementById("imsiNumber").value;
+
+        if(!valueType || !nomorimsi){
+            $.toast().reset('all');
+            $.toast({
+                heading: 'Warning',
+                text: 'Tipe dan Nomor IMEI/IMSI harus diisi',
+                position: 'top-right',
+                loaderBg: '#fec107',
+                icon: 'error',
+                hideAfter: false
+            });
+            return;
+        }
 
         $(".preloader-it").show();
 
@@ -169,7 +163,7 @@ Cek IMSI / IMEI
                     } else {
                         $.toast().reset('all');
                         $.toast({
-                            heading: 'Opps! somthing wents wrong',
+                            heading: 'No Data',
                             text: 'Data tidak ditemukan',
                             position: 'top-right',
                             loaderBg: '#fec107',
@@ -180,7 +174,16 @@ Cek IMSI / IMEI
 
 
                 } else {
-                    alert(response.message);
+                    // alert(response.message);
+                    $.toast().reset('all');
+                    $.toast({
+                        heading: 'Opps! somthing wents wrong',
+                        text: response.message,
+                        position: 'top-right',
+                        loaderBg: '#fec107',
+                        icon: 'error',
+                        hideAfter: false
+                    });
                 }
             },
             error: ajaxErrorHandler,
