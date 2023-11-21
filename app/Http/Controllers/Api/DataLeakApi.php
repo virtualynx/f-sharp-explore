@@ -46,8 +46,9 @@ class DataLeakApi extends _Controller{
     public function sosmed_leak(Request $request)
     {
         $sosmed = $request->sosmed;
-      
-       
+        
+        $sosmed = str_replace(' ', '', $sosmed);
+
         try{
             $response = $this->service->getSosmedLeak($sosmed);
             
