@@ -27,7 +27,7 @@ Data Gmail
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">Search Gmail</div>
+                                        <div class="input-group-addon">Search</div>
                                         <input type="text" name="inputGmailLeak" id="inputGmailLeak" class="form-control" placeholder="Enter Gmail" required />
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchGmailLeak()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>

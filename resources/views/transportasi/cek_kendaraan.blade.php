@@ -32,7 +32,7 @@ Cek Kendaraan
                             <div class="col-sm-4 p-0 m-0">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">Tracking Vehicle</div>
+                                        <div class="input-group-addon">Search</div>
                                         <select id="selectTypeKendaraan" class="form-control" onchange="changeType()">
                                             <option value="" selected disabled> Select Type </option>
                                             <option value="nik">NIK</option>

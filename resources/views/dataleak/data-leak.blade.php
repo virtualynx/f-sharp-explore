@@ -27,7 +27,7 @@ Data Leak
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">Search Data</div>
+                                        <div class="input-group-addon">Search</div>
                                         <input type="text" name="inputMsisdnLeak" id="inputMsisdnLeak" class="form-control" placeholder="Enter MSISDN" required />
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchDataLeak()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>

@@ -20,7 +20,7 @@ Search By NIK
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">Search NIK</div>
+                                        <div class="input-group-addon">Search</div>
                                         <input type="text" name="nik" id="nik" class="form-control" placeholder="Enter NIK" required />
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchData()"><i class="fa fa-search"></i> <span class="btn-text"> Search</span></button>
