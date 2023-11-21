@@ -8,6 +8,7 @@ use App\Models\TrackedNumberLog;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class TelecommunicationService extends _GeneralService
