@@ -4,40 +4,13 @@ namespace App\Services;
 
 use Exception;
 use GuzzleHttp\Client;
-use kamermans\OAuth2\OAuth2Middleware;
-use kamermans\OAuth2\GrantType\PasswordCredentials;
-use kamermans\OAuth2\Persistence\FileTokenPersistence;
-use GuzzleHttp\HandlerStack;
+use Illuminate\Support\Facades\Log;
 
 class DataLeakService extends _GeneralService
 {
-    private OAuth2Middleware $oauth_middleware;
     public function __construct()
     {
         parent::__construct();
-    }
-
-    private function getClient()
-    {
-        $stack = HandlerStack::create();
-
-        $client = new Client([
-            'auth-key' => '97ebd8b107af40fe7cd2e63b2abe42413ad43e3f',
-            'headers' => [
-                'Content-Type' => 'application/json'
-            ]
-        ]);
-
-        return $client;
-    }
-
-    private function encodeRequestPayload(array $payload)
-    {
-        return json_encode(
-            [
-                'ehlo' => base64_encode(json_encode($payload))
-            ]
-        );
     }
 
     public function getDataLeak(string $msisdn)
@@ -68,7 +41,27 @@ class DataLeakService extends _GeneralService
     {
         $uri = config('api.uri.general.gmail_password');
 
-        $response = $this->getHttpClient()->request('GET', $uri . '/' . $gmail);
+        $response = null;
+        try{
+            $response = $this->getHttpClient()->request('GET', $uri . '/' . $gmail);
+        }catch(\GuzzleHttp\Exception\ClientException $e){
+            $msg = $e->getMessage();
+            if($e->getCode() == 422){
+                if(str_contains($msg, 'value is not a valid email address')) {
+                    throw new Exception("Is not a valid email address", 1);
+                }
+            }else if($e->getCode() == 404){
+                if(str_contains($msg, 'Alamat email tidak ditemukan.')) {
+                    throw new Exception("Alamat email tidak ditemukan", 1);
+                }
+                throw new Exception("Is not a valid email address", 1);
+            }else{
+                throw new Exception($e->getMessage(), 99);
+            }
+        }catch(Exception $e){
+            Log::error($e->getMessage());
+            throw new Exception("Unknown Error", 99);
+        }
 
         if ($response->getStatusCode() == 200) {
             $resp_arr = json_decode($response->getBody(), true);
