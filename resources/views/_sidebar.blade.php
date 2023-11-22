@@ -157,7 +157,7 @@
         <li>
             <a href="{{url('webtools/index.html')}}" target="_blank"><div class="pull-left"><i class="zmdi zmdi-globe mr-20"></i><span class="right-nav-text">Web Tools</span></div><div class="clearfix"></div></a>
         </li>
-        <li><hr class="light-grey-hr mb-10"/></li>
+        <li><hr class="light-grey-hr mb-50"/></li>
     </ul>
 </div>
 <!-- /Left Sidebar Menu -->
