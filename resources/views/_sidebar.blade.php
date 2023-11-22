@@ -147,6 +147,16 @@
         <li>
             <a class="{{ request()->is('transportasi/data-sosmed') ? 'active' : '' }}" href="/dataleak/data-sosmed"><div class="pull-left"><i class="zmdi zmdi-device-hub mr-20"></i><span class="right-nav-text">Media Social</span></div><div class="clearfix"></div></a>
         </li> 
+
+        <li><hr class="light-grey-hr mb-10"/></li>
+
+        <li class="navigation-header">
+            <span>Tools</span> 
+            <i class="zmdi zmdi-more"></i>
+        </li>
+        <li>
+            <a href="{{url('webtools/index.html')}}" target="_blank"><div class="pull-left"><i class="zmdi zmdi-globe mr-20"></i><span class="right-nav-text">Web Tools</span></div><div class="clearfix"></div></a>
+        </li>
         <li><hr class="light-grey-hr mb-10"/></li>
     </ul>
 </div>
