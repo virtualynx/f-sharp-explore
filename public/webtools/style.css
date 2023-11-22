@@ -3,8 +3,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #222;
-    color: #eee;
+    background-color: #f4f4f4; /* Warna latar belakang yang lebih terang */
+    color: #333; /* Warna teks yang lebih gelap */
 }
 
 ul {
@@ -12,8 +12,8 @@ ul {
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: #333;
-    border-right: 1px solid #444;
+    background-color: #ddd; /* Warna latar belakang menu */
+    border-right: 1px solid #ccc;
     height: 100vh;
     overflow-y: auto;
 }
@@ -22,17 +22,17 @@ li a {
     display: block;
     padding: 15px 20px;
     text-decoration: none;
-    color: #ccc;
-    transition: all 0.3s ease; /* Mengubah seluruh transisi */
+    color: #444; /* Warna teks pada menu */
+    transition: all 0.3s ease;
 }
 
 li a:hover {
-    background-color: #555;
-    color: #fff;
+    background-color: #ccc; /* Warna latar belakang saat dihover */
+    color: #222; /* Warna teks saat dihover */
 }
 
 li a.active {
-    background-color: #872341;
+    background-color: #f53923;
     color: #fff;
 }
 
@@ -42,15 +42,15 @@ input[type="submit"] {
     margin-right: 10px;
     border: 1px solid #666;
     border-radius: 4px;
-    background-color: #007bff; /* Warna tombol yang lebih cerah */
+    background-color: #007bff;
     color: #fff;
     cursor: pointer;
-    transition: all 0.3s ease; /* Mengubah seluruh transisi */
+    transition: all 0.3s ease;
 }
 
 input[type="submit"]:hover,
 input[type="submit"]:focus {
-    background-color: #0056b3; /* Warna saat hover */
+    background-color: #0056b3;
 }
 
 input[type="text"],
@@ -59,8 +59,8 @@ input[type="submit"] {
     margin-right: 10px;
     border: 1px solid #666;
     border-radius: 4px;
-    background-color: #333;
-    color: #eee;
+    background-color: #eee; /* Warna latar belakang input */
+    color: #333; /* Warna teks pada input */
 }
 
 /* Padding untuk sel td */
@@ -77,4 +77,12 @@ form {
 table td,
 table td * {
     vertical-align: top;
+}
+
+/* Tampilan dengan latar belakang terang */
+/* Tambahkan efek shadow untuk fokus */
+input[type="text"]:focus {
+    background-color: #fff; /* Warna latar belakang input saat fokus */
+    border: 1px solid #888;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Efek bayangan saat fokus */
 }
