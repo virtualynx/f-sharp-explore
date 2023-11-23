@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Enum\KujangAskforEnum;
+use App\Enums\KujangAskforEnum;
 use App\Http\Controllers\_Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\ApiResponse;
@@ -38,6 +38,22 @@ class EKtpApi extends _Controller{
         try{
             // $response = $this->service->ask($nik, KujangAskforEnum::NIK);
             $response = $this->service->getKtpDataByNkk($nkk);
+    
+            return new ApiResponse($response);
+        }catch(Exception $e){
+            // print_r($e);exit;
+            return new ApiResponse(null, $e->getCode(), $e->getMessage());
+        }
+    }
+
+    public function search_by_dob(Request $request)
+    {
+        $dob = $request->dob;
+        $type= $request->type;
+
+        try{
+            // $response = $this->service->ask($nik, KujangAskforEnum::NIK);
+            $response = $this->service->getKarakter($dob, $type);
     
             return new ApiResponse($response);
         }catch(Exception $e){

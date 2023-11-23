@@ -34,4 +34,8 @@ class TelecommunicationController extends _Controller
     public function telco_registration(){
     	return view('telecommunication/telco_registration');
     }
+
+    public function imei_imsi(){
+    	return view('telecommunication/tracking_imsi_imei');
+    }
 }

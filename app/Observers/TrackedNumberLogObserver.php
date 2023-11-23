@@ -7,13 +7,17 @@ use Ramsey\Uuid\Uuid;
 
 class TrackedNumberLogObserver
 {
+    public function creating(TrackedNumberLog $data): void
+    {
+        $data->uuid = Uuid::uuid4()->toString();
+    }
+    
     /**
      * Handle the TrackedNumberLog "created" event.
      */
     public function created(TrackedNumberLog $trackedNumberLog): void
     {
-        $trackedNumberLog->uuid = Uuid::uuid4()->toString();
-        $trackedNumberLog->save();
+        //
     }
 
     /**

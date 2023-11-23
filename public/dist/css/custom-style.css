@@ -1,0 +1,29 @@
+.table-search-by-profile-wrap table.dataTable td.dt-control:before {
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.5);
+    content: "▶";
+	border: 0;
+    background: none;
+    box-shadow: none;
+    font-size: 14px;
+}
+
+.table-search-by-profile-wrap table.dataTable tr.details td.dt-control:before {
+    content: "▼";
+}
+
+.table-search-by-profile-wrap table tbody td {
+	cursor: pointer;
+}
+
+.profile-detail table tbody td {
+	cursor: text;
+}
+
+.profile-detail table {
+	background: none !important;
+}
+
+.dataTable .profile-detail {
+	padding: 20px;
+}

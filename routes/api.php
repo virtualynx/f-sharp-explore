@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('/e-ktp')->group(function() {
     Route::post('/search-by-nik', 'Api\EKtpApi@search_by_nik')->name('api_ektp_search_by_nik');
     Route::post('/search_by_nkk', 'Api\EKtpApi@search_by_nkk');
+    Route::post('/search_by_dob', 'Api\EKtpApi@search_by_dob');
+    
 });
 
 Route::prefix('/telecommunication')->group(function() {
@@ -34,9 +36,26 @@ Route::prefix('/telecommunication')->group(function() {
     Route::post('/tracking-toggle', 'Api\TelecommunicationApi@toggle_tracking_number')->name('api_tracking_toggle');
     Route::get('/tracking-geofence/{msisdn}', 'Api\TelecommunicationApi@get_geofence_v2');
     Route::post('/tracking-geofence', 'Api\TelecommunicationApi@save_geofence')->name('api_tracking_geofence_save');
+    Route::post('/track_imsi_imei', 'Api\TelecommunicationApi@track_imsi_imei')->name('track_imsi_imei');
+    
 });
 
 Route::prefix('/transportasi')->group(function() {
     // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
     Route::post('/tracking_kendaraan', 'Api\TransportasiApi@tracking_kendaraan');
+});
+
+Route::prefix('/report')->group(function() {
+    Route::prefix('/dashboard')->group(function() {
+        Route::get('/most-located-msisdn/{by}', 'Api\ReportingApi@most_located_msisdn_by');
+        Route::post('/map-visualization', 'Api\ReportingApi@map_visualization');
+    });
+    Route::get('/search-statistic/{by}', 'Api\ReportingApi@search_statistic_by');
+});
+
+Route::prefix('/dataleak')->group(function() {
+    // Route::get('/tracking-msisdn/{msisdn}', 'Api\TelecommunicationApi@tracking_msisdn');
+    Route::post('/data_leak', 'Api\DataLeakApi@data_leak');
+    Route::post('/gmail_leak', 'Api\DataLeakApi@gmail_leak');
+    Route::post('/sosmed_leak', 'Api\DataLeakApi@sosmed_leak');
 });

@@ -111,6 +111,19 @@ Telco Registration
         var valueType = e.value;
         var telcoNumber = document.getElementById("telcoNumber").value;
 
+        if(!valueType || !telcoNumber){
+            $.toast().reset('all');
+            $.toast({
+                heading: 'Warning',
+                text: 'Tipe dan Nomor Pencarian harus diisi',
+                position: 'top-right',
+                loaderBg: '#fec107',
+                icon: 'error',
+                hideAfter: false
+            });
+            return;
+        }
+
         $(".preloader-it").show();
 
         $.ajax({
@@ -144,10 +157,29 @@ Telco Registration
                         }
                         $("#tbodyTelco").append(content);
                     } else {
-                        alert('Data tidak ditemukan');
+                        // alert('Data tidak ditemukan');
+                        
+                        $.toast().reset('all');
+                        $.toast({
+                            heading: 'No Data',
+                            text: 'Data tidak ditemukan',
+                            position: 'top-right',
+                            loaderBg: '#fec107',
+                            icon: 'error',
+                            hideAfter: false
+                        });
                     }
                 } else {
-                    alert(response.message);
+                    // alert(response.message);
+                    $.toast().reset('all');
+                    $.toast({
+                        heading: 'Opps! something wents wrong',
+                        text: response.message,
+                        position: 'top-right',
+                        loaderBg: '#fec107',
+                        icon: 'error',
+                        hideAfter: false
+                    });
                 }
             },
             error: function(request, error) {

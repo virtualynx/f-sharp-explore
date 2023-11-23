@@ -29,9 +29,9 @@
         <li>
             <a class="{{ request()->is('e-ktp/*') ? 'active' : '' }}" href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div class="pull-left"><i class="zmdi zmdi-accounts mr-20"></i><span class="right-nav-text">Search Dukcapil</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="ui_dr" class="collapse collapse-level-1 two-col-list">
-                {{-- <li>
-                    <a href="panels-wells.html">Search By Profile</a>
-                </li> --}}
+                <li>
+                    <a href="{{ url('e-ktp/search-by-profile') }}">Search By Profile</a>
+                </li>
                 <li>
                     <a href="{{ url('e-ktp/search-by-nkk') }}">Search By NKK</a>
                 </li> 
@@ -58,6 +58,9 @@
         <li>
             <a class="{{ request()->is('telecommunication/telco_registration') ? 'active' : '' }}" href="/telecommunication/telco_registration"><div class="pull-left"><i class="zmdi zmdi-accounts-list-alt mr-20"></i><span class="right-nav-text">Telco Registration</span></div><div class="clearfix"></div></a>
         </li>
+        <li>
+            <a class="{{ request()->is('telecommunication/tracking_imsi_imei') ? 'active' : '' }}" href="/telecommunication/tracking_imsi_imei"><div class="pull-left"><i class="zmdi zmdi-smartphone-setup mr-20"></i><span class="right-nav-text">IMEI / IMSI</span></div><div class="clearfix"></div></a>
+        </li>
         {{--
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-smartphone-info mr-20"></i><span class="right-nav-text">Device Tracking</span></div><div class="clearfix"></div></a>
@@ -65,9 +68,7 @@
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-input-antenna mr-20"></i><span class="right-nav-text">CDR</span></div><div class="clearfix"></div></a>
         </li>
-        <li>
-            <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-smartphone-setup mr-20"></i><span class="right-nav-text">IMEI / IMSI</span></div><div class="clearfix"></div></a>
-        </li>
+        
         <li>
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-phone-ring mr-20"></i><span class="right-nav-text">Multi Tracking Number</span></div><div class="clearfix"></div></a>
         </li>
@@ -132,6 +133,30 @@
             <a href="blank.html"><div class="pull-left"><i class="zmdi zmdi-time-restore mr-20"></i><span class="right-nav-text">History</span></div><div class="clearfix"></div></a>
         </li>
         <li><hr class="light-grey-hr mb-30"/></li> --}}
+
+        <li class="navigation-header">
+            <span>Data Leak</span> 
+            <i class="zmdi zmdi-more"></i>
+        </li>
+        <li>
+            <a class="{{ request()->is('dataleak/data-leak') ? 'active' : '' }}" href="/dataleak/data-leak"><div class="pull-left"><i class="zmdi zmdi-folder-star-alt mr-20"></i><span class="right-nav-text">Leak</span></div><div class="clearfix"></div></a>
+        </li> 
+        <li>
+            <a class="{{ request()->is('dataleak/data-gmail') ? 'active' : '' }}" href="/dataleak/data-gmail"><div class="pull-left"><i class="zmdi zmdi-email-open mr-20"></i><span class="right-nav-text">Gmail</span></div><div class="clearfix"></div></a>
+        </li> 
+        <li>
+            <a class="{{ request()->is('dataleak/data-sosmed') ? 'active' : '' }}" href="/dataleak/data-sosmed"><div class="pull-left"><i class="zmdi zmdi-device-hub mr-20"></i><span class="right-nav-text">Media Social</span></div><div class="clearfix"></div></a>
+        </li> 
+        <li><hr class="light-grey-hr mb-10"/></li>
+
+        <li class="navigation-header">
+            <span>Tools</span> 
+            <i class="zmdi zmdi-more"></i>
+        </li>
+        <li>
+            <a href="/webtools" class="{{ request()->is('webtools') ? 'active' : '' }}"><div class="pull-left"><i class="zmdi zmdi-globe mr-20"></i><span class="right-nav-text">Webtools</span></div><div class="clearfix"></div></a>
+        </li>
+        <li><hr class="light-grey-hr mb-50"/></li>
     </ul>
 </div>
 <!-- /Left Sidebar Menu -->
