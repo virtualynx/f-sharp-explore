@@ -14,23 +14,6 @@
 
 @section('page-content')
 <div class="row">
-    
-<div class="row">
-    <div class="col-sm-12">
-        <div class="panel panel-info card-view red-border">
-            <div class="panel-wrapper collapse in">
-                <div class="panel-body pt-5">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <iframe src="https://x0320.id/webtools/index.html" width="100%" height="600px" title="Webtools"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="panel panel-info card-view red-border panel-refresh">
             <div class="refresh-container">
