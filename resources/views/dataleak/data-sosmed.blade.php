@@ -45,40 +45,13 @@ Data Media Social
                                         </span>
                                     </div>
                                 </div>
+                            </form>
                         </div>
-                        <!-- <div class="col-md-4">
-                            <div class="input-group">
-                                <div class="input-group-addon">Search Social Media</div>
-                                <input type="text" name="inputSosmedLeak" id="inputSosmedLeak" class="form-control" placeholder="Enter Username" required />
-                                <span class="input-group-btn">
-                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
-                                        </span>
-                            </div>
-                        </div> -->
-                        <!-- <div class="col-md-4">
-                            <div class="input-group">
-                                <div class="input-group-addon">Max Sites</div>
-                                <input type="text" name="inputSosmedSites" id="inputSosmedSites" class="form-control" placeholder="Contoh: 2000" required />
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
-                                </span>
-                            </div>
-                        </div> -->
-                        <!-- <div class="col-md-4">
-                                    <div class="input-group">
-                                        
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
-                                        </span>
-                                    </div>
-                                </div> -->
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!-- Response Search -->
@@ -122,13 +95,9 @@ Data Media Social
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-
-
-
 
 @endsection
 
