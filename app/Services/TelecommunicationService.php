@@ -151,8 +151,13 @@ class TelecommunicationService extends _GeneralService
         } else if (count($datas) > 1) {
             throw new Exception('Multiple Geofence is not supported yet');
         }
-        $data->action = $action;
-        $data->geojson = $geojson;
+
+        if(!empty($geojson)){
+            $data->action = $action;
+            $data->geojson = $geojson;
+        }else if(count($datas) == 1 && empty($geojson)){
+            TrackedNumberGeofence::where('msisdn', $msisdn)->delete();
+        }
 
         return $data->save();
     }
