@@ -104,8 +104,6 @@
         var map_geofence = null;
         var drawnItems = null;
         var drawControl = null;
-        var geofencePoints = [];
-        var geofenceGeoJson = null;
 
         $(function(){
             table_tracked = $('[name="tracked-table"]').DataTable({
@@ -219,20 +217,11 @@
                 let layer = e.layer;
                 let type = e.layerType;
 
-                // console.log(layer.getLatLngs());
-                console.log(JSON.stringify(layer.toGeoJSON()));
+                // console.log(layer);
+                // console.log(JSON.stringify(layer.toGeoJSON()));
 
-                if(type === 'rectangle'){
-                    // layer.on('mouseover', function() {
-                    //     alert(layer.getLatLngs());    
-                    // });
-                }else if(type === 'circle'){
-                }else if(type === 'polygon'){
-                }
-
-                let points = layer.getLatLngs()[0];
-                geofencePoints = points.map((a)=>{return [a.lat, a.lng]});
-                geofenceGeoJson = layer.toGeoJSON();
+                // let points = layer.getLatLngs()[0];
+                // points = points.map((a)=>{return [a.lat, a.lng]});
 
                 drawnItems.addLayer(layer);
             });
@@ -254,8 +243,11 @@
             });
 
             map_geofence.on('draw:deleted', function (e) {
-                geofencePoints = [];
-                geofenceGeoJson = null;
+                drawnItems.eachLayer(function(layer){
+                    if (layer._path != null) {
+                        layer.remove()
+                    }
+                });
             });
         });
 
@@ -437,16 +429,106 @@
                 window.dispatchEvent(new Event("resize"));
             }, 750);
 
-            $(".preloader-it").show();
+            $('#geofence_msisdn').html(msisdn);
+            
+            map_geofence.eachLayer(function(layer){
+                if (layer._path != null) {
+                    layer.remove()
+                }
+            });
+            drawnItems.eachLayer(function(layer){
+                if (layer._path != null) {
+                    layer.remove()
+                }
+            });
 
-            $("#btn_geofence_set").hide();
-            $("#btn_geofence_delete").hide();
+            $(".preloader-it").show();
 
             $.ajax({
                 type: "get",
                 // data: {msisdn: msisdn},
                 cache: false,
                 url: "{{ url('/api/telecommunication/tracking-geofence') }}/"+msisdn,
+                dataType: "json",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        if(response.data != null){
+                            let data = response.data;
+
+                            $('[name="input_geofence_msisdn"]').val(data.msisdn);
+                            if(data.action != null){
+                                $('#select_geofence_action').val(data.action);
+                            }
+                            if(data.geojson != null){
+                                let geojson = JSON.parse(data.geojson);
+                                let geometry = geojson.geometry;
+                                if(geojson.properties.type === 'polygon'){
+                                    let latlngs = L.GeoJSON.coordsToLatLngs(geometry.coordinates, 1, L.GeoJSON.coordsToLatLng);
+                                    // shape = L.polygon(latlngs, {color: 'blue'}).addTo(drawnItems);
+                                    let shape = L.polygon(latlngs, {color: 'blue'}).addTo(map_geofence);
+                                    shape.addTo(drawnItems);
+                                    map_geofence.panTo(latlngs[0][0]);
+
+                                    // let geoJSON = L.geoJson(geometry, {}).addTo(drawnItems);
+                                    // map_geofence.fitBounds(shape.getBounds());
+                                }else if(geojson.properties.type === 'circle'){
+                                    let latlng = L.GeoJSON.coordsToLatLng(geometry.coordinates, 1);
+                                    // shape = L.polygon(latlngs, {color: 'blue'}).addTo(drawnItems);
+                                    // let shape = L.polygon(latlngs, {color: 'blue'}).addTo(map_geofence);
+                                    let shape = L.circle(latlng, {color: 'blue', radius: geojson.properties.mRadius}).addTo(map_geofence);
+                                    shape.addTo(drawnItems);
+                                    map_geofence.panTo(latlng);
+                                }
+                                // map_geofence.fitBounds(shape.getBounds());
+                                // map_geofence.panTo(shape.getBounds().getCenter());
+                            }
+                        }
+                    }
+                },
+                error: ajaxErrorHandler,
+                complete: function(){
+                    $(".preloader-it").hide();
+                }
+            });
+        }
+
+        function saveGeofence(){
+            let geojson = null;
+
+            if(drawnItems.getLayers().length > 0){
+                let layer = drawnItems.getLayers()[0];
+                geojson = layer.toGeoJSON();
+
+                if(layer.hasOwnProperty('_mRadius')){
+                    // console.log('circle');
+                    // geojson.properties = {
+                    //     type: 'circle',
+                    //     mRadius: layer._mRadius
+                    // };
+                    geojson.properties.type = 'circle';
+                    geojson.properties.mRadius = layer._mRadius;
+                    geojson.properties.radius = layer._radius;
+                }else if(layer.hasOwnProperty('_latlngs')){
+                    // console.log('polygon');
+                    // geojson.properties = {
+                    //     type: 'polygon',
+                    //     mRadius: layer._mRadius
+                    // };
+                    geojson.properties.type = 'polygon';
+                }
+            }
+
+            $(".preloader-it").show();
+
+            $.ajax({
+                type: "post",
+                data: {
+                    msisdn: $('#geofence_msisdn').html(),
+                    action: $('#select_geofence_action').val(),
+                    geojson: geojson
+                },
+                cache: false,
+                url: "{{ route('api_tracking_geofence_save') }}",
                 dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
@@ -467,10 +549,6 @@
                     $(".preloader-it").hide();
                 }
             });
-        }
-
-        function saveGeofence(){
-
         }
     </script>
 @endsection
