@@ -228,7 +228,13 @@ class TelecommunicationApi extends _Controller{
     }
 
     public function save_geofence(Request $request){
-        $this->service->saveGeofence($request->msisdn, $request->action, $request->geojson);
+        $geojson = $request->geojson;
+        if(!empty($geojson)){
+            $geojson = json_encode($geojson);
+        }else{
+            $geojson = '';
+        }
+        $this->service->saveGeofence($request->msisdn, $request->action, $geojson);
 
         return new ApiResponse(null);
     }

@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h5 class="modal-title" id="modal_set_geofence_title">Set Geofence</h5>
+                <h5 class="modal-title" id="modal_set_geofence_title">Set Geofence for <span id="geofence_msisdn"></span></h5>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -51,6 +51,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <input name="input_geofence_msisdn" type="hidden" value=""/>
                 <div class="row">
                     <div class="col-xs-4">
                         <button id="btn_geofence_save" onclick="saveGeofence()" type="button" class="btn btn-success btn-icon left-icon">
