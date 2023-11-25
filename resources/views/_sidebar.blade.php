@@ -156,6 +156,9 @@
         <li>
             <a href="/webtools" class="{{ request()->is('webtools') ? 'active' : '' }}"><div class="pull-left"><i class="zmdi zmdi-globe mr-20"></i><span class="right-nav-text">Webtools</span></div><div class="clearfix"></div></a>
         </li>
+        <li>
+            <a href="/spidertools" class="{{ request()->is('spidertools') ? 'active' : '' }}"><div class="pull-left"><i class="zmdi zmdi-globe mr-20"></i><span class="right-nav-text">SpiderTools</span></div><div class="clearfix"></div></a>
+        </li>
         <li><hr class="light-grey-hr mb-50"/></li>
     </ul>
 </div>

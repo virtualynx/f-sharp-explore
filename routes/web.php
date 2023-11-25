@@ -54,4 +54,5 @@ Route::middleware('auth')->group(function() {
     });
     
     Route::get('/webtools', 'WebtoolsController@index');
+    Route::get('/spidertools', 'SpidertoolsController@index');
 });
