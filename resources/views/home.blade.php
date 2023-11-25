@@ -96,6 +96,9 @@
                             <option value='{{App\Enums\StatisticByEnum::OCCUPATION->value}}'>Occupation</option>
                             <option value='{{App\Enums\StatisticByEnum::EDUCATION->value}}'>Education</option>
                             <option value='{{App\Enums\StatisticByEnum::RELIGION->value}}'>Religion</option>
+                            <option value='{{App\Enums\StatisticByEnum::PROVINCE->value}}'>Province</option>
+                            <option value='{{App\Enums\StatisticByEnum::CITY->value}}'>City</option>
+                            <option value='{{App\Enums\StatisticByEnum::DISTRICT->value}}'>District</option>
                         </select>
                     </div>	
                     <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
@@ -731,7 +734,13 @@
         function getSearchStatisticBy(by){
             if(by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'){
                 $('#link_refresh_chart_msisdn').trigger('click');
-            }else{
+            } else if (by == '{{App\Enums\StatisticByEnum::PROVINCE->value}}') {
+                $('#link_refresh_chart_dukcapil').trigger('click');
+            } else if (by == '{{App\Enums\StatisticByEnum::CITY->value}}') {
+                $('#link_refresh_chart_dukcapil').trigger('click');
+            } else if (by == '{{App\Enums\StatisticByEnum::DISTRICT->value}}') {
+                $('#link_refresh_chart_dukcapil').trigger('click');
+            } else {
                 $('#link_refresh_chart_dukcapil').trigger('click');
             }
 
@@ -812,6 +821,12 @@
                     series.name = 'Education';
                 }else if(by == '{{App\Enums\StatisticByEnum::RELIGION->value}}'){
                     series.name = 'Religion';
+                }else if(by == '{{App\Enums\StatisticByEnum::PROVINCE->value}}'){
+                    series.name = 'Province';
+                }else if(by == '{{App\Enums\StatisticByEnum::CITY->value}}'){
+                    series.name = 'City';
+                }else if(by == '{{App\Enums\StatisticByEnum::DISTRICT->value}}'){
+                    series.name = 'District';
                 }
                 
                 series.color = colors;
@@ -828,6 +843,12 @@
                         row.name = a.education;
                     }else if(by == '{{App\Enums\StatisticByEnum::RELIGION->value}}'){
                         row.name = a.religion;
+                    }else if(by == '{{App\Enums\StatisticByEnum::PROVINCE->value}}'){
+                        row.name = a.province;
+                    }else if(by == '{{App\Enums\StatisticByEnum::CITY->value}}'){
+                        row.name = a.city;
+                    }else if(by == '{{App\Enums\StatisticByEnum::DISTRICT->value}}'){
+                        row.name = a.district;
                     }
                     row.value = a.count;
                     totalCount += parseInt(a.count);

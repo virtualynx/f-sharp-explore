@@ -12,120 +12,133 @@ use Illuminate\Support\Facades\DB;
 
 class ReportingService
 {
-    public function __construct(){
+    public function __construct()
+    {
     }
 
-    public function getSearchStatisticBy(string $by){
-        if(
+    public function getSearchStatisticBy(string $by)
+    {
+        if (
             $by == StatisticByEnum::OPERATOR->value
             || $by == StatisticByEnum::HANDSET->value
-        ){
+            || $by == StatisticByEnum::PROVINCE->value
+            || $by == StatisticByEnum::CITY->value
+            || $by == StatisticByEnum::DISTRICT->value
+            
+        ) {
             $column = 'unknown';
-            if($by == StatisticByEnum::OPERATOR->value){
+            if ($by == StatisticByEnum::OPERATOR->value) {
                 $column = 'operator';
-            }else if($by == StatisticByEnum::HANDSET->value){
+            } else if ($by == StatisticByEnum::HANDSET->value) {
                 $column = 'phone';
+            } else if ($by == StatisticByEnum::PROVINCE->value) {
+                $column = 'province';
+            } else if ($by == StatisticByEnum::CITY->value) {
+                $column = 'city';
+            } else if ($by == StatisticByEnum::DISTRICT->value) {
+                $column = 'district';
             }
 
             $datas = SearchLogLocateMsisdn::select(
-                    $column, 
-                    DB::raw("count(1) as count")
-                )
+                $column,
+                DB::raw("count(1) as count")
+            )
                 ->groupBy($column)
                 ->get()
                 ->toArray();
-            
+
             return $datas;
-        }else if(
+        } else if (
             $by == StatisticByEnum::GENERATION->value
             || $by == StatisticByEnum::OCCUPATION->value
             || $by == StatisticByEnum::EDUCATION->value
             || $by == StatisticByEnum::RELIGION->value
             || $by == StatisticByEnum::GENDER->value
-        ){
+        ) {
             $datas = [];
-            if($by == StatisticByEnum::GENERATION->value){
+            if ($by == StatisticByEnum::GENERATION->value) {
                 // $raws = DB::select('
                 //     select dob, count(1) as count 
                 //     from search_logs_dukcapil 
                 //     group by dob
                 // ');
                 $raws = SearchLogDukcapil::select(
-                        "dob", 
-                        DB::raw("count(1) as count")
-                    )
+                    "dob",
+                    DB::raw("count(1) as count")
+                )
                     ->groupBy('dob')
                     ->get();
-                
+
                 $generationMapsRaw = GenerationMap::get();
                 $generationMaps = [];
-                foreach($generationMapsRaw as $loop){
+                foreach ($generationMapsRaw as $loop) {
                     $generationMaps[] = [
                         // 'lowerbound' => date('Y-m-d', strtotime("01/01/".$loop->lowerbound)),
-                        'lowerbound' => Carbon::createFromFormat('Y-m-d H:i:s', $loop->lowerbound.'-01-01 00:00:00'),
+                        'lowerbound' => Carbon::createFromFormat('Y-m-d H:i:s', $loop->lowerbound . '-01-01 00:00:00'),
                         // 'upperbound' => date('Y-m-d', strtotime("31/12/".$loop->upperbound)),
-                        'upperbound' => Carbon::createFromFormat('Y-m-d H:i:s', $loop->upperbound.'-12-31 23:59:59'),
+                        'upperbound' => Carbon::createFromFormat('Y-m-d H:i:s', $loop->upperbound . '-12-31 23:59:59'),
                         'name' => $loop->name
                     ];
                 }
-                
+
                 $preResult = [];
-                foreach($raws as $capilData){
-                    $dob = Carbon::createFromFormat('Y-m-d H:i:s', $capilData->dob.'00:00:00');
+                foreach ($raws as $capilData) {
+                    $dob = Carbon::createFromFormat('Y-m-d H:i:s', $capilData->dob . '00:00:00');
                     $generation = '';
-                    foreach($generationMaps as $genMap){
-                        if($genMap['lowerbound'] <= $dob && $dob <= $genMap['upperbound']){
+                    foreach ($generationMaps as $genMap) {
+                        if ($genMap['lowerbound'] <= $dob && $dob <= $genMap['upperbound']) {
                             $generation = $genMap['name'];
                             break;
                         }
                     }
 
-                    if(!isset($preResult[$generation])){
+                    if (!isset($preResult[$generation])) {
                         $preResult[$generation] = 0;
                     }
 
                     $preResult[$generation] += $capilData->count;
                 }
 
-                foreach($preResult as $gen => $count){
+                foreach ($preResult as $gen => $count) {
                     $datas[] = [
                         'generation' => $gen,
                         'count' => $count
                     ];
                 }
-            }else{
+            } else {
                 $column = 'unknown';
-                if($by == StatisticByEnum::OCCUPATION->value){
+                if ($by == StatisticByEnum::OCCUPATION->value) {
                     $column = 'occupation';
-                }else if($by == StatisticByEnum::EDUCATION->value){
+                } else if ($by == StatisticByEnum::EDUCATION->value) {
                     $column = 'education';
-                }else if($by == StatisticByEnum::RELIGION->value){
+                } else if ($by == StatisticByEnum::RELIGION->value) {
                     $column = 'religion';
-                }else if($by == StatisticByEnum::GENDER->value){
+                } else if ($by == StatisticByEnum::GENDER->value) {
                     $column = 'gender';
                 }
 
                 $raws = SearchLogDukcapil::select(
-                        $column, 
-                        DB::raw("count(1) as count")
-                    )
+                    $column,
+                    DB::raw("count(1) as count")
+                )
                     ->groupBy($column)
                     ->get();
 
                 $datas = $raws->toArray();
             }
-            
+
             return $datas;
         }
 
-        throw new Exception('Invalid argument "by", '. $by, 2);
+        throw new Exception('Invalid argument "by", ' . $by, 2);
     }
 
-    public function getMostLocateMsisdnCities(string $by, int $limit = 10){
+    public function getMostLocateMsisdnCities(string $by, int $limit = 10)
+    {
         $raw = SearchLogLocateMsisdn::select(
-                $by, 
-                DB::raw("count(1) as count")
-            )
+            $by,
+            DB::raw("count(1) as count")
+        )
             ->groupBy($by)
             // ->orderBy(DB::raw('count(1)', 'DESC'))
             ->orderBy(DB::raw('count', 'DESC'))
@@ -135,11 +148,12 @@ class ReportingService
         return $raw;
     }
 
-    public function getMapVisualization(string $province = null){
+    public function getMapVisualization(string $province = null)
+    {
         $raw = SearchLogLocateMsisdn::select(
-                'province', 
-                DB::raw("count(1) as count")
-            )
+            'province',
+            DB::raw("count(1) as count")
+        )
             ->groupBy('province')
             ->get();
 

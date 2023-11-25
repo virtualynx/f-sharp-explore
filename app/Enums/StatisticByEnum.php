@@ -10,4 +10,7 @@ enum StatisticByEnum : string
     case RELIGION = 'religion';
     case OCCUPATION = 'occupation';
     case EDUCATION = 'education';
+    case PROVINCE = 'province';
+    case CITY = 'city';
+    case DISTRICT = 'district';
 }
