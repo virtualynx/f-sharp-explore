@@ -13,6 +13,6 @@ class WebtoolsController extends _Controller
     public function index(){
         $data = array();
 
-    	return view('webtools')->with('data', $data);
+    	return view('tools/webtools')->with('data', $data);
     }
 }

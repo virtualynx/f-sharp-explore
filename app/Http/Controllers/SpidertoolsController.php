@@ -13,6 +13,6 @@ class SpidertoolsController extends _Controller
     public function index(){
         $data = array();
 
-    	return view('spidertools')->with('data', $data);
+    	return view('tools/spidertools')->with('data', $data);
     }
 }
