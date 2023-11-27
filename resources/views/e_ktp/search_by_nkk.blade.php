@@ -129,16 +129,7 @@ Search By NKK
                     setData(dataArr, dataArrDob);
 
                 } else {
-                    $.toast().reset('all');
-                    $.toast({
-                        heading: 'Opps! somthing wents wrong',
-                        text: 'Data tidak ditemukan',
-                        position: 'top-right',
-                        loaderBg: '#fec107',
-                        icon: 'error',
-                        hideAfter: false
-                    });
-                    //alert('Data tidak ditemukan');
+                    myAlert('Data tidak ditemukan', 'warning');
                 }
 
                 $(".preloader-it").hide();

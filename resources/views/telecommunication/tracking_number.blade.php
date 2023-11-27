@@ -231,10 +231,10 @@
 
                 if(drawnItems.getLayers().length > 0){
                     cancelDraw = true;
-                    alert('Hanya bisa membuat 1 geofence');
+                    myAlert('Hanya bisa membuat 1 geofence');
                 }else if($('#select_geofence_action').val() == ''){
                     cancelDraw = true;
-                    alert('Pilih action IN/OUT sebelum membuat geofence');
+                    myAlert('Pilih action IN/OUT sebelum membuat geofence');
                 }
 
                 if(cancelDraw){
@@ -258,14 +258,8 @@
         function editNumber(msisdn){
             $('[name="mode"]').val('edit');
 
-            $(".preloader-it").show();
-
-            $.ajax({
-                type: "get",
-                // data: {msisdn: msisdn},
-                cache: false,
+            get({
                 url: "{{ url('api/telecommunication/tracking') }}/"+msisdn,
-                dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
                         let data = response.data;
@@ -280,30 +274,21 @@
                         $('[name="cron_month"]').val(cron_notations[3]);
                         $('[name="cron_dayofweek"]').val(cron_notations[4]);
                     }
-                },
-                error: ajaxErrorHandler,
-                complete: function(){
-                    $(".preloader-it").hide();
                 }
             });
         }
 
         function deleteNumber(msisdn){
             if (confirm('Delete number '+msisdn+' from tracking?')) {
-                $(".preloader-it").show();
-
-                $.ajax({
+                request({
                     type: "delete",
                     data: {msisdn: msisdn},
-                    cache: false,
                     url: "{{ route('api_tracked_number_delete') }}",
-                    dataType: "json",
                     success: function (response, status) {
                         if(status == 'success' && response.status == 0){
-                            alert('Hapus nomor berhasil');
+                            myAlert('Hapus nomor berhasil');
                         }
                     },
-                    error: ajaxErrorHandler,
                     complete: function(){
                         $(".preloader-it").hide();
                         table_tracked.draw();
@@ -325,20 +310,15 @@
                 cron_notation: cron_notation
             };
 
-            $(".preloader-it").show();
-
-            $.ajax({
+            post({
                 type: "post",
                 data: payload,
-                cache: false,
                 url: "{{ route('api_tracked_number_save') }}",
-                dataType: "json",
                 success: function (response, status) {
                     if(status == 'success'){
-                        alert('Penyimpanan berhasil');
+                        myAlert('Penyimpanan berhasil');
                     }
                 },
-                error: ajaxErrorHandler,
                 complete: function(){
                     $(".preloader-it").hide();
                     // $('[name="modal_add_edit_number"]').hide();
@@ -403,19 +383,14 @@
         }
         
         function toggleTracking(msisdn){
-            $(".preloader-it").show();
-
-            $.ajax({
+            post({
                 type: "post",
                 data: {msisdn: msisdn},
-                cache: false,
                 url: "{{ route('api_tracking_toggle') }}",
-                dataType: "json",
                 success: function (response, status) {
                     if(status == 'success'){
                     }
                 },
-                error: ajaxErrorHandler,
                 complete: function(){
                     $(".preloader-it").hide();
                     table_tracked.draw();
@@ -442,14 +417,9 @@
                 }
             });
 
-            $(".preloader-it").show();
-
-            $.ajax({
+            get({
                 type: "get",
-                // data: {msisdn: msisdn},
-                cache: false,
                 url: "{{ url('/api/telecommunication/tracking-geofence') }}/"+msisdn,
-                dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
                         if(response.data != null){
@@ -484,10 +454,6 @@
                             }
                         }
                     }
-                },
-                error: ajaxErrorHandler,
-                complete: function(){
-                    $(".preloader-it").hide();
                 }
             });
         }
@@ -518,18 +484,14 @@
                 }
             }
 
-            $(".preloader-it").show();
-
-            $.ajax({
+            post({
                 type: "post",
                 data: {
                     msisdn: $('#geofence_msisdn').html(),
                     action: $('#select_geofence_action').val(),
                     geojson: geojson
                 },
-                cache: false,
                 url: "{{ route('api_tracking_geofence_save') }}",
-                dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
                         if(response != null){
@@ -543,10 +505,6 @@
                             }
                         }
                     }
-                },
-                error: ajaxErrorHandler,
-                complete: function(){
-                    $(".preloader-it").hide();
                 }
             });
         }

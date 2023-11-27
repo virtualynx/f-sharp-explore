@@ -100,29 +100,16 @@ Data Gmail
         let gmail = $('[name="inputGmailLeak"]').val();
 
         if(!gmail){
-            $.toast().reset('all');
-            $.toast({
-                heading: 'Warning',
-                text: 'Email pencarian harus diisi',
-                position: 'top-right',
-                loaderBg: '#fec107',
-                icon: 'error',
-                hideAfter: false
-            });
+            myAlert('Email pencarian harus diisi', 'warning');
             return;
         }
 
-        $(".preloader-it").show();
-
-        $.ajax({
-            type: "post",
-            data: {
+        post(
+            "{{config('app.url')}}/api/dataleak/gmail_leak",
+            {
                 gmail: gmail
             },
-            cache: false,
-            url: "{{config('app.url')}}/api/dataleak/gmail_leak",
-            dataType: "json",
-            success: function(response, status) {
+            function(response, status){
                 var content = "";
                 var dataArr = response.data;
                 $('.panel-title').html('Data Dukcapil');
@@ -144,36 +131,13 @@ Data Gmail
 
                         $("#tbodyDataGmail").append(content);
                     } else {
-                        $.toast().reset('all');
-                        $.toast({
-                            heading: 'Opps! somthing wents wrong',
-                            text: 'Data tidak ditemukan',
-                            position: 'top-right',
-                            loaderBg: '#fec107',
-                            icon: 'error',
-                            hideAfter: false
-                        });
+                        myAlert('Data tidak ditemukan', 'warning');
                     }
                 } else {
-                    $.toast().reset('all');
-                    $.toast({
-                        heading: 'Opps! somthing wents wrong',
-                        text: response.message,
-                        position: 'top-right',
-                        loaderBg: '#fec107',
-                        icon: 'error',
-                        hideAfter: false
-                    });
-                    //alert('Data tidak ditemukan');
+                    myAlert(response.message, 'error');
                 }
-
-                $(".preloader-it").hide();
-            },
-            error: ajaxErrorHandler,
-            complete: function() {
-                $(".preloader-it").hide();
             }
-        });
+        );
     }
 </script>
 @endsection

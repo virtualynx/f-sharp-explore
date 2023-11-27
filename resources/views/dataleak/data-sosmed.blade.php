@@ -108,40 +108,19 @@ Data Media Social
         let maxSites = $('[name="inputSosmedSites"]').val();
 
         if (!sosmed || !maxSites) {
-            $.toast().reset('all');
-            $.toast({
-                heading: 'Warning',
-                text: 'Text pencarian harus diisi',
-                position: 'top-right',
-                loaderBg: '#fec107',
-                icon: 'error',
-                hideAfter: false
-            });
+            myAlert('Text pencarian harus diisi', 'warning');
             return;
         } else if (sosmed.length < 5) {
-            $.toast().reset('all');
-            $.toast({
-                heading: 'Warning',
-                text: 'Minimal input username 5 karakter',
-                position: 'top-right',
-                loaderBg: '#fec107',
-                icon: 'error',
-                hideAfter: false
-            });
+            myAlert('Minimal input username 5 karakter', 'warning');
             return;
         }
 
-        $(".preloader-it").show();
-
-        $.ajax({
-            type: "post",
+        post({
             data: {
                 sosmed: sosmed,
                 maxSites: maxSites
             },
-            cache: false,
             url: "{{config('app.url')}}/api/dataleak/sosmed_leak",
-            dataType: "json",
             success: function(response, status) {
                 var content = "";
                 var dataArr = response.data;
@@ -172,36 +151,13 @@ Data Media Social
                             table.draw();
                             //$("#tbodyDataSosmed").append(content);
                         } else {
-                            $.toast().reset('all');
-                            $.toast({
-                                heading: 'Opps! somthing wents wrong',
-                                text: 'Data tidak ditemukan',
-                                position: 'top-right',
-                                loaderBg: '#fec107',
-                                icon: 'error',
-                                hideAfter: false
-                            });
+                            myAlert('Data tidak ditemukan', 'warning');
                         }
                     }
 
                 } else {
-                    $.toast().reset('all');
-                    $.toast({
-                        heading: 'Opps! somthing wents wrong',
-                        text: response.message + ". Minimal input username 5 karakter",
-                        position: 'top-right',
-                        loaderBg: '#fec107',
-                        icon: 'error',
-                        hideAfter: false
-                    });
-                    //alert('Data tidak ditemukan');
+                    myAlert(response.message, 'error');
                 }
-
-                $(".preloader-it").hide();
-            },
-            error: ajaxErrorHandler,
-            complete: function() {
-                $(".preloader-it").hide();
             }
         });
     }

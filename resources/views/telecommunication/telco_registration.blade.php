@@ -157,17 +157,7 @@ Telco Registration
                         }
                         $("#tbodyTelco").append(content);
                     } else {
-                        // alert('Data tidak ditemukan');
-                        
-                        $.toast().reset('all');
-                        $.toast({
-                            heading: 'No Data',
-                            text: 'Data tidak ditemukan',
-                            position: 'top-right',
-                            loaderBg: '#fec107',
-                            icon: 'error',
-                            hideAfter: false
-                        });
+                        myAlert('Data tidak ditemukan', 'warning');
                     }
                 } else {
                     // alert(response.message);
