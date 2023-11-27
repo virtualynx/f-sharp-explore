@@ -229,16 +229,9 @@ Data Leak
     function searchDataLeak() {
         let msisdn = $('[name="inputMsisdnLeak"]').val();
 
-        $(".preloader-it").show();
-
-        $.ajax({
-            type: "post",
-            data: {
-                msisdn: msisdn
-            },
-            cache: false,
+        post({
+            data: {msisdn: msisdn},
             url: "{{config('app.url')}}/api/dataleak/data_leak",
-            dataType: "json",
             success: function(response, status) {
                 var content = "";
                 var dataArr = response.data;
@@ -285,30 +278,17 @@ Data Leak
                 } else {
                     myAlert(response.message, 'error');
                 }
-
-                $(".preloader-it").hide();
-            },
-            error: ajaxErrorHandler,
-            complete: function() {
-                $(".preloader-it").hide();
             }
         });
     }
 
     function searchByNikFromLeak(nik) {
 
-        $(".preloader-it").show();
-
-        $.ajax({
-            type: "post",
-            data: {
-                nik: nik
-            },
+        post({
+            data: {nik: nik},
             // data: $('[name="search_by_nik_form"]').serialize(),
-            cache: false,
             // url: "{{config('app.url')}}/api/e-ktp/search-by-nik",
             url: "{{route('api_ektp_search_by_nik')}}",
-            dataType: "json",
             success: function(response, status) {
 
                 if (status == 'success' && response.status == 0) {
@@ -316,10 +296,6 @@ Data Leak
                 } else {
                     myAlert(response.message, 'error');
                 }
-            },
-            error: ajaxErrorHandler,
-            complete: function() {
-                $(".preloader-it").hide();
             },
         });
     }

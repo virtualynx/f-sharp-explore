@@ -228,18 +228,13 @@ Search By NIK
                 return;
             }
 
-            $(".preloader-it").show();
-
-            $.ajax({
-                type: "post",
+            post({
                 data: {
                     nik: $('[name="nik"]').val()
                 },
                 // data: $('[name="search_by_nik_form"]').serialize(),
-                cache: false,
                 // url: "{{config('app.url')}}/api/e-ktp/search-by-nik",
                 url: "{{route('api_ektp_search_by_nik')}}",
-                dataType: "json",
                 success: function(response, status) {
                    
                     if (status == 'success' && response.status == 0) {
@@ -259,21 +254,8 @@ Search By NIK
                         var formattedDate = day + '-' + month + '-' + year;
                         setData(response.data, formattedDate);
                     } else {
-                        $.toast().reset('all');
-                        $.toast({
-                            heading: 'Opps! somthing wents wrong',
-                            text: response.message,
-                            position: 'top-right',
-                            loaderBg: '#fec107',
-                            icon: 'error',
-                            hideAfter: false
-                        });
-                        // alert(response.message);
+                        myAlert(response.message, 'error');
                     }
-                },
-                error: ajaxErrorHandler,
-                complete: function() {
-                    $(".preloader-it").hide();
                 },
             });
         }
@@ -285,20 +267,16 @@ Search By NIK
         function setData(data, tanggalLahir) {
             var dataArrDob = [];
             dataArrDob.push(tanggalLahir);
-           
-            $.ajax({
-                type: "post",
+            
+            post({
                 data: {
                     dob: dataArrDob,
                     type: "nik"
                 },
                 // data: $('[name="search_by_nik_form"]').serialize(),
-                cache: false,
                 // url: "{{config('app.url')}}/api/e-ktp/search-by-nik",
                 url: "{{config('app.url')}}/api/e-ktp/search_by_dob",
-                dataType: "json",
                 success: function(response, status) {
-                    
                     if (status == 'success' && response.status == 0) {
                         $('[name="photo"]').attr('src', 'data:image/png;base64,' + data.FOTO);
 
@@ -328,7 +306,7 @@ Search By NIK
                             content += '<p class="mb-0"><span class="txt-dark weight-500">Zodiac</span></p>'
                             content += '</div>'
                             content += '<div class="col-sm-9">'
-                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i].Zodiak.zodiak+'</p>'
+                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Zodiak.zodiak+'</p>'
                             content += '</div>'
                             content += '</div>'
                             content += '</div>'
@@ -339,7 +317,7 @@ Search By NIK
                             content += '<p class="mb-0"><span class="txt-dark weight-500">Profil</span></p>'
                             content += '</div>'
                             content += '<div class="col-sm-9">'
-                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i].Zodiak.profil+'</p>'
+                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Zodiak.profil+'</p>'
                             content += '</div>'
                             content += '</div>'
                             content += '</div>'
@@ -350,7 +328,7 @@ Search By NIK
                             content += '<p class="mb-0"><span class="txt-dark weight-500">Weton</span></p>'
                             content += '</div>'
                             content += '<div class="col-sm-9">'
-                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i].Weton.weton+'</p>'
+                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Weton.weton+'</p>'
                             content += '</div>'
                             content += '</div>'
                             content += '</div>'
@@ -361,7 +339,7 @@ Search By NIK
                             content += '<p class="mb-0"><span class="txt-dark weight-500">Karakter Hari</span></p>'
                             content += '</div>'
                             content += '<div class="col-sm-9">'
-                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i].Weton.karakter_hari+'</p>'
+                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Weton.karakter_hari+'</p>'
                             content += '</div>'
                             content += '</div>'
                             content += '</div>'
@@ -372,24 +350,11 @@ Search By NIK
                         $("#bodyZodiac").append(content);
 
                     } else {
-                        $.toast().reset('all');
-                        $.toast({
-                            heading: 'Opps! somthing wents wrong',
-                            text: response.message,
-                            position: 'top-right',
-                            loaderBg: '#fec107',
-                            icon: 'error',
-                            hideAfter: false
-                        });
+                        myAlert(response.message, 'error');
                         // alert(response.message);
                     }
                 },
-                error: ajaxErrorHandler,
-                complete: function() {
-                    $(".preloader-it").hide();
-                },
             });
-
         }
     </script>
     @endsection
