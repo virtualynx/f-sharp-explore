@@ -754,24 +754,6 @@
                     }
                 }
             }, false);
-
-            // $.ajax({
-            //     type: "get",
-            //     data: {},
-            //     cache: false,
-            //     url: "{{config('app.url')}}/api/report/search-statistic/"+by,
-            //     dataType: "json",
-            //     success: function (response, status) {
-            //         if(status == 'success' && response.status == 0){
-            //             updateCharts(by, response.data);
-            //         }else{
-            //             alert(response.message);
-            //         }
-            //     },
-            //     error: ajaxErrorHandler,
-            //     complete: function() {
-            //     },
-            // });
         }
 
         function randomHexColorCode(){
@@ -957,56 +939,6 @@
                     }
                 }
             }, false);
-
-            // $.ajax({
-            //     type: "get",
-            //     data: {},
-            //     cache: false,
-            //     url: "{{config('app.url')}}/api/report/dashboard/most-located-msisdn/"+by,
-            //     dataType: "json",
-            //     success: function (response, status) {
-            //         if(status == 'success' && response.status == 0){
-            //             let datas = response.data;
-
-            //             const colors = [];
-            //             for(let a=0;a<datas.length;a++){
-            //                 colors.push(randomHexColorCode());
-            //             }
-
-            //             let totalCount = 0;
-            //             datas.forEach((a) => {
-            //                 totalCount += parseInt(a.count);
-            //             });
-
-            //             $('#table-top-10-located-msisdn').html('');
-            //             let content = '';
-            //             for(let a=0;a<datas.length;a++){
-            //                 let data = datas[a];    
-            //                 let field = null;
-
-            //                 if(by == 'city'){
-            //                     field = data.city;
-            //                 }
-
-            //                 let percent = (data.count / totalCount) * 100;
-
-            //                 let rowContent = rowTemplate
-            //                     .replaceAll('@city', field)
-            //                     .replaceAll('@percent', percent.toFixed(2))
-            //                     .replaceAll('@color', colors[a])
-            //                     ;
-
-            //                 content += rowContent;
-            //             }
-            //             $('#table-top-10-located-msisdn').html(content);
-            //         }else{
-            //             alert(response.message);
-            //         }
-            //     },
-            //     error: ajaxErrorHandler,
-            //     complete: function() {
-            //     },
-            // });
         }
 
         function getVectorMapData(){
@@ -1067,62 +999,6 @@
                     }
                 },
             }, false);
-
-            // $.ajax({
-            //     type: "post",
-            //     data: {},
-            //     cache: false,
-            //     url: "{{config('app.url')}}/api/report/dashboard/map-visualization",
-            //     dataType: "json",
-            //     success: function (response, status) {
-            //         if(status == 'success' && response.status == 0){
-            //             const datas = response.data;
-            //             const regionData = {
-            //                 values: {},
-            //                 attribute: 'fill'
-            //             };
-            //             const regionValuesData = {};
-            //             const colors = [];
-            //             for(let a=0;a<datas.length;a++){
-            //                 colors.push(randomHexColorCode());
-            //             }
-
-            //             mapData.total = 0;
-            //             let mapDataValues = {};
-            //             for(let a=0;a<datas.length;a++){
-            //                 let loopData = datas[a];
-            //                 let matchedDatas = provinceMap.filter((b) => b.name.toLowerCase() == loopData.province.toLowerCase());
-            //                 if(matchedDatas.length > 0){
-            //                     let matchedData = matchedDatas[0];
-            //                     regionValuesData[matchedData.region_id] = colors[a];
-            //                     mapDataValues[matchedData.region_id] = parseInt(loopData.count);
-            //                     mapData.total += parseInt(loopData.count);
-            //                 }
-            //             }
-            //             mapData.values = mapDataValues;
-
-            //             // let region = mapInstance.series.regions[0];
-            //             /* Reset the scale min & max, allow recomputation. */ 
-            //             // region.params.min = min;
-            //             // region.params.max = max;
-            //             // region.setValues(regionData);
-            //             // region.values = regionData;
-
-            //             // let mapInst = $('#world_map_marker_1').vectorMap('get', 'mapObject');
-            //             // mapInst.clearSelectedRegions();
-            //             // mapInst.series.regions[0].clear(); //clear the array values
-            //             // mapInst.setSelectedRegions([code]);
-            //             // mapInst.series.regions[0].values = regionValuesData;
-
-            //             mapInstance.series.regions[0].setValues(regionValuesData);
-            //         }else{
-            //             alert(response.message);
-            //         }
-            //     },
-            //     error: ajaxErrorHandler,
-            //     complete: function() {
-            //     },
-            // });
         }
 	</script>
 @endsection
