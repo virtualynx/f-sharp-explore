@@ -280,27 +280,10 @@ Data Leak
                         }
                         $("#tbodyDataLeak").append(content);
                     } else {
-                        $.toast().reset('all');
-                        $.toast({
-                            heading: 'Opps! somthing wents wrong',
-                            text: 'Data tidak ditemukan',
-                            position: 'top-right',
-                            loaderBg: '#fec107',
-                            icon: 'error',
-                            hideAfter: false
-                        });
+                        myAlert('Data tidak ditemukan', 'warning');
                     }
                 } else {
-                    $.toast().reset('all');
-                    $.toast({
-                        heading: 'Opps! somthing wents wrong',
-                        text: 'Data tidak ditemukan',
-                        position: 'top-right',
-                        loaderBg: '#fec107',
-                        icon: 'error',
-                        hideAfter: false
-                    });
-                    //alert('Data tidak ditemukan');
+                    myAlert(response.message, 'error');
                 }
 
                 $(".preloader-it").hide();
@@ -331,16 +314,7 @@ Data Leak
                 if (status == 'success' && response.status == 0) {
                     setDataNikLeak(response.data);
                 } else {
-                    $.toast().reset('all');
-                    $.toast({
-                        heading: 'Opps! somthing wents wrong',
-                        text: response.message,
-                        position: 'top-right',
-                        loaderBg: '#fec107',
-                        icon: 'error',
-                        hideAfter: false
-                    });
-                    // alert(response.message);
+                    myAlert(response.message, 'error');
                 }
             },
             error: ajaxErrorHandler,
