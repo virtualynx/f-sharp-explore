@@ -146,7 +146,7 @@
     @yield('page-template')
 
 	<!-- JavaScript -->
-    <script src="{{asset('js/ajax-error-handler.js')}}"></script>
+    <script src="{{asset('dist/js/ajax-error-handler.js')}}"></script>
 	
     <!-- jQuery -->
     <script src="{{asset('vendors/bower_components/jquery/dist/jquery.min.js')}}"></script>
