@@ -79,28 +79,15 @@ Search By NKK
         let nkk = $('[name="inputNKK"]').val();
 
         if(!nkk){
-            $.toast().reset('all');
-            $.toast({
-                heading: 'Warning',
-                text: 'NKK harus diisi',
-                position: 'top-right',
-                loaderBg: '#fec107',
-                icon: 'error',
-                hideAfter: false
-            });
+            myAlert('NKK harus diisi', 'warning');
             return;
         }
 
-        $(".preloader-it").show();
-
-        $.ajax({
-            type: "post",
+        post({
             data: {
                 nkk: nkk
             },
-            cache: false,
             url: "{{config('app.url')}}/api/e-ktp/search_by_nkk",
-            dataType: "json",
             success: function(response, status) {
                 var content = "";
                 var dataArr = response.data;
@@ -131,13 +118,7 @@ Search By NKK
                 } else {
                     myAlert('Data tidak ditemukan', 'warning');
                 }
-
-                $(".preloader-it").hide();
             },
-            error: ajaxErrorHandler,
-            complete: function() {
-                $(".preloader-it").hide();
-            }
         });
     }
 
@@ -154,17 +135,14 @@ Search By NKK
     }
 
     function setData(dataArr, tanggalLahir) {
-        $.ajax({
-            type: "post",
+        post({
             data: {
                 dob: tanggalLahir,
                 type: "nkk"
             },
             // data: $('[name="search_by_nik_form"]').serialize(),
-            cache: false,
             // url: "{{config('app.url')}}/api/e-ktp/search-by-nik",
             url: "{{config('app.url')}}/api/e-ktp/search_by_dob",
-            dataType: "json",
             success: function(response, status) {
 
                 var dataArrZodiac = response.data;
@@ -337,24 +315,10 @@ Search By NKK
                     }
                     $("#resultsNKK").append(content);
                 } else {
-                    $.toast().reset('all');
-                    $.toast({
-                        heading: 'Opps! somthing wents wrong',
-                        text: response.message,
-                        position: 'top-right',
-                        loaderBg: '#fec107',
-                        icon: 'error',
-                        hideAfter: false
-                    });
-                    // alert(response.message);
+                    myAlert(response.message, 'error');
                 }
             },
-            error: ajaxErrorHandler,
-            complete: function() {
-                $(".preloader-it").hide();
-            },
         });
-
     }
 </script>
 @endsection

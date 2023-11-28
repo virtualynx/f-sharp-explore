@@ -170,15 +170,10 @@
         function searchMsisdn(){
             let msisdn = $('[name="msisdn"]').val();
 
-            $(".preloader-it").show();
-
-            $.ajax({
-                type: "post",
+            post({
                 data: {msisdns: msisdn.split(',').map(item=>item.trim())},
-                cache: false,
                 // url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn",
                 url: "{{route('api_locate_number')}}",
-                dataType: "json",
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
                         let datas = response.data;
@@ -238,24 +233,12 @@
 
                                 let message = messages.join('; ');
 
-                                $.toast().reset('all');
-                                $.toast({
-                                    heading: 'Opps! something wents wrong',
-                                    text: message,
-                                    position: 'top-right',
-                                    loaderBg: '#fec107',
-                                    icon: 'error',
-                                    hideAfter: false
-                                });
+                                myAlert(message, 'error');
                             }
                         }
                     }else{
-                        alert(response.message);
+                        myAlert(response.message, 'error');
                     }
-                },
-                error: ajaxErrorHandler,
-                complete: function() {
-                    $(".preloader-it").hide();
                 },
             });
         }
