@@ -11,6 +11,8 @@ function myAlert(message, type = 'info', position = 'top-right'){
         hideAfter: 5000
     };
 
+    type = type.toLowerCase();
+
     if(type === 'info'){
         toastObj.bgColor = '#1cc3d9';
     }else if(type === 'error'){

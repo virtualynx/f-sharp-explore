@@ -254,30 +254,17 @@ Cek Kendaraan
         var nomorkendaraan = document.getElementById("vehicleNumber").value;
 
         if(!valueType || !nomorkendaraan){
-            $.toast().reset('all');
-            $.toast({
-                heading: 'Warning',
-                text: 'Tipe dan Nomor Pencarian harus diisi',
-                position: 'top-right',
-                loaderBg: '#fec107',
-                icon: 'error',
-                hideAfter: false
-            });
+            myAlert('Tipe dan Nomor Pencarian harus diisi', 'warning');
             return;
         }
 
-        $(".preloader-it").show();
-
-        $.ajax({
-            type: "post",
+        post({
             data: {
                 type: valueType,
                 nopol: nomorkendaraan
             },
-            cache: false,
             // url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
             url: "{{config('app.url')}}/api/transportasi/tracking_kendaraan",
-            dataType: "json",
             success: function(response, status) {
                 console.log("isi response " + JSON.stringify(response));
                 if (status == 'success' && response.message == "success") {
@@ -286,35 +273,11 @@ Cek Kendaraan
                     if (datas.length > 0) {
                         setDataKendaraan(datas[0], valueType);
                     }else{
-                        // alert('Data tidak ditemukan');
-                        
-                        $.toast().reset('all');
-                        $.toast({
-                            heading: 'No Data',
-                            text: 'Data tidak ditemukan',
-                            position: 'top-right',
-                            loaderBg: '#fec107',
-                            icon: 'error',
-                            hideAfter: false
-                        });
+                        myAlert('Data tidak ditemukan', 'warning');
                     }
                 } else {
-                    // alert(response.message);
-                        
-                    $.toast().reset('all');
-                    $.toast({
-                        heading: 'Opps! something wents wrong',
-                        text: response.message,
-                        position: 'top-right',
-                        loaderBg: '#fec107',
-                        icon: 'error',
-                        hideAfter: false
-                    });
+                    myAlert(response.message, 'error');
                 }
-            },
-            error: ajaxErrorHandler,
-            complete: function() {
-                $(".preloader-it").hide();
             },
         });
     }

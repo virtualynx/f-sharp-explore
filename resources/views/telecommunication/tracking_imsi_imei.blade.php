@@ -116,30 +116,17 @@ Cek IMSI / IMEI
         var nomorimsi = document.getElementById("imsiNumber").value;
 
         if(!valueType || !nomorimsi){
-            $.toast().reset('all');
-            $.toast({
-                heading: 'Warning',
-                text: 'Tipe dan Nomor IMEI/IMSI harus diisi',
-                position: 'top-right',
-                loaderBg: '#fec107',
-                icon: 'error',
-                hideAfter: false
-            });
+            myAlert('Tipe dan Nomor IMEI/IMSI harus diisi', 'warning');
             return;
         }
 
-        $(".preloader-it").show();
-
-        $.ajax({
-            type: "post",
+        post({
             data: {
                 type: valueType,
                 value: nomorimsi
             },
-            cache: false,
             // url: "{{config('app.url')}}/api/telecommunication/tracking-msisdn/"+msisdn,
             url: "{{config('app.url')}}/api/telecommunication/track_imsi_imei",
-            dataType: "json",
             success: function(response, status) {
                 console.log("isi response " + JSON.stringify(response));
                 if (status == 'success' && response.message == "success") {
@@ -161,34 +148,11 @@ Cek IMSI / IMEI
                         }
                         $("#tbodyImsi").append(content);
                     } else {
-                        $.toast().reset('all');
-                        $.toast({
-                            heading: 'No Data',
-                            text: 'Data tidak ditemukan',
-                            position: 'top-right',
-                            loaderBg: '#fec107',
-                            icon: 'error',
-                            hideAfter: false
-                        });
+                        myAlert('Data tidak ditemukan', 'warning');
                     }
-
-
                 } else {
-                    // alert(response.message);
-                    $.toast().reset('all');
-                    $.toast({
-                        heading: 'Opps! somthing wents wrong',
-                        text: response.message,
-                        position: 'top-right',
-                        loaderBg: '#fec107',
-                        icon: 'error',
-                        hideAfter: false
-                    });
+                    myAlert(response.message, 'error');
                 }
-            },
-            error: ajaxErrorHandler,
-            complete: function() {
-                $(".preloader-it").hide();
             },
         });
     }
