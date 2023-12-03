@@ -15,8 +15,11 @@ class ReportingApi extends _Controller{
         $this->service = $service;
     }
 
-    public function search_statistic_by($by){
-        $datas = $this->service->getSearchStatisticBy($by);
+    public function search_statistic_by(Request $request, string $by){
+        $params = $request->all();
+        $province_id = empty($params['province_id'])? '': $params['province_id'];
+        $city_id = empty($params['city_id'])? '': $params['city_id'];
+        $datas = $this->service->getSearchStatisticBy($by, $province_id, $city_id);
 
         return new ApiResponse($datas);
     }

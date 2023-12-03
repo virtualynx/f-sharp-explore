@@ -180,6 +180,7 @@
 	<!-- my custom scripts -->
 	<script src="{{asset('dist/js/my-alert.js')}}"></script>
 	<script src="{{asset('dist/js/my-ajax.js')}}"></script>
+	<script src="{{asset('dist/js/my-util.js')}}"></script>
 	
 	<!-- Init JavaScript -->
 	<script src="{{asset('dist/js/init.js')}}"></script>
