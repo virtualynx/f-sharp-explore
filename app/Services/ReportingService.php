@@ -16,27 +16,17 @@ class ReportingService
     {
     }
 
-    public function getSearchStatisticBy(string $by)
+    public function getSearchStatisticBy(string $by, string $province_id, string $city_id)
     {
         if (
             $by == StatisticByEnum::OPERATOR->value
             || $by == StatisticByEnum::HANDSET->value
-            || $by == StatisticByEnum::PROVINCE->value
-            || $by == StatisticByEnum::CITY->value
-            || $by == StatisticByEnum::DISTRICT->value
-            
         ) {
             $column = 'unknown';
             if ($by == StatisticByEnum::OPERATOR->value) {
                 $column = 'operator';
             } else if ($by == StatisticByEnum::HANDSET->value) {
                 $column = 'phone';
-            } else if ($by == StatisticByEnum::PROVINCE->value) {
-                $column = 'province';
-            } else if ($by == StatisticByEnum::CITY->value) {
-                $column = 'city';
-            } else if ($by == StatisticByEnum::DISTRICT->value) {
-                $column = 'district';
             }
 
             $datas = SearchLogLocateMsisdn::select(
@@ -62,12 +52,21 @@ class ReportingService
                 //     from search_logs_dukcapil 
                 //     group by dob
                 // ');
-                $raws = SearchLogDukcapil::select(
+
+                $queryable = SearchLogDukcapil::select(
                     "dob",
                     DB::raw("count(1) as count")
                 )
-                    ->groupBy('dob')
-                    ->get();
+                ->groupBy('dob');
+
+                if(!empty($city_id)){
+                    $city_id = str_replace('.','',$city_id);
+                    $queryable = $queryable->where('nik', 'like', '%' . $city_id . '%');
+                }else if(!empty($province_id)){
+                    $queryable = $queryable->where('nik', 'like', '%' . $province_id . '%');
+                }
+
+                $raws = $queryable->get();
 
                 $generationMapsRaw = GenerationMap::get();
                 $generationMaps = [];
@@ -117,12 +116,20 @@ class ReportingService
                     $column = 'gender';
                 }
 
-                $raws = SearchLogDukcapil::select(
+                $queryable = SearchLogDukcapil::select(
                     $column,
                     DB::raw("count(1) as count")
                 )
-                    ->groupBy($column)
-                    ->get();
+                ->groupBy($column);
+
+                if(!empty($city_id)){
+                    $city_id = str_replace('.','',$city_id);
+                    $queryable = $queryable->where('nik', 'like', $city_id . '%');
+                }else if(!empty($province_id)){
+                    $queryable = $queryable->where('nik', 'like', $province_id . '%');
+                }
+
+                $raws = $queryable->get();
 
                 $datas = $raws->toArray();
             }

@@ -30,6 +30,16 @@
                             <option value='{{App\Enums\StatisticByEnum::HANDSET->value}}'>Handset</option>
                         </select>
                     </div>	
+                    {{-- <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select id="select_stat_msisdn_by_province" class="selectpicker" data-style="form-control">
+                            <option selected value=''>All Province</option>
+                        </select>
+                    </div>
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select id="select_stat_msisdn_by_city" class="selectpicker" data-style="form-control">
+                            <option selected value=''>All City</option>
+                        </select>
+                    </div> --}}
                     <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
                         <i id="link_refresh_chart_msisdn" class="zmdi zmdi-replay"></i>
                     </a>
@@ -100,7 +110,17 @@
                             <option value='{{App\Enums\StatisticByEnum::CITY->value}}'>City</option>
                             <option value='{{App\Enums\StatisticByEnum::DISTRICT->value}}'>District</option>
                         </select>
-                    </div>	
+                    </div>
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select id="select_stat_dukcapil_by_province" class="selectpicker" data-style="form-control">
+                            <option selected value=''>All Province</option>
+                        </select>
+                    </div>
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                        <select id="select_stat_dukcapil_by_city" class="selectpicker" data-style="form-control">
+                            <option selected value=''>All City</option>
+                        </select>
+                    </div>
                     <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
                         <i id="link_refresh_chart_dukcapil" class="zmdi zmdi-replay"></i>
                     </a>
@@ -374,11 +394,19 @@
             $('#select_stat_dukcapil_by').change(function(e){
                 var by = $(e.target).val();
 
-                getSearchStatisticBy(by);
+                // getSearchStatisticBy(by);
+                selectStatDukcapilChanged();
             });
 
-            getSearchStatisticBy('{{App\Enums\StatisticByEnum::OPERATOR->value}}');
-            getSearchStatisticBy('{{App\Enums\StatisticByEnum::GENDER->value}}');
+            populateStatDukcapilProvinces();
+
+            $('#select_stat_dukcapil_by_province').change(function(e){
+                selectStatDukcapilProvinceChanged();
+            });
+
+            $('#select_stat_dukcapil_by_city').change(function(e){
+                selectStatDukcapilCityChanged();
+            });
 
             getTop10City('city');
             
@@ -731,7 +759,99 @@
             }
         };
 
-        function getSearchStatisticBy(by){
+        function selectStatDukcapilProvinceChanged(){
+            let province = $('#select_stat_dukcapil_by_province').val();
+
+            if(province != ''){
+                populateStatDukcapilCities(province);
+            }else{
+                $('#select_stat_dukcapil_by_city').val('');
+                $('#select_stat_dukcapil_by_city').selectpicker('refresh')
+                $('#select_stat_dukcapil_by_city').hide();
+            }
+            selectStatDukcapilChanged();
+        }
+        
+        function selectStatDukcapilCityChanged(){
+            selectStatDukcapilChanged();
+        }
+
+        function selectStatDukcapilChanged(){
+            let by = $('#select_stat_dukcapil_by').val();
+            let province = $('#select_stat_dukcapil_by_province').val();
+            let city = $('#select_stat_dukcapil_by_city').val();
+
+            getSearchStatisticBy(by, province, city);
+        }
+
+        function populateStatDukcapilProvinces(){
+            get({
+                url: "{{config('app.url')}}/api/wilayah/provinces",
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        const optionProvinceTemplate = `
+                            <option value="<value>"><text></option>
+                        `;
+                        
+                        // let content = '<option value="">All Province</option>';
+                        $("#select_stat_dukcapil_by_province").empty();
+                        $('#select_stat_dukcapil_by_province').append('<option value="">All Province</option>');
+                        response.data.forEach((a) => {
+                            // content += optionProvinceTemplate
+                            //     .replaceAll('<value>', a.id)
+                            //     .replaceAll('<text>', a.name)
+                            //     ;
+
+                            $('#select_stat_dukcapil_by_province').append(
+                                optionProvinceTemplate
+                                .replaceAll('<value>', a.id)
+                                .replaceAll('<text>', a.name)
+                            );
+                        });
+                        // $('#select_stat_dukcapil_by_province').html(content);
+                        $("#select_stat_dukcapil_by_province").selectpicker("refresh");
+                    }else{
+                        myAlert(response.message, 'error');
+                    }
+                }
+            }, false);
+        }
+
+        function populateStatDukcapilCities(province_id){
+            get({
+                url: "{{config('app.url')}}/api/wilayah/cities/"+province_id,
+                success: function (response, status) {
+                    if(status == 'success' && response.status == 0){
+                        const optionCityTemplate = `
+                            <option value="<value>"><text></option>
+                        `;
+                        
+                        // let content = '<option value="">All City</option>';
+                        $("#select_stat_dukcapil_by_city").empty();
+                        $('#select_stat_dukcapil_by_city').append('<option value="">All City</option>');
+                        response.data.forEach((a) => {
+                            // content += optionCityTemplate
+                            //     .replaceAll('<value>', a.id)
+                            //     .replaceAll('<text>', a.name)
+                            //     ;
+
+                            $('#select_stat_dukcapil_by_city').append(
+                                optionCityTemplate
+                                .replaceAll('<value>', a.id)
+                                .replaceAll('<text>', a.name)
+                            );
+                        });
+                        // $('#select_stat_dukcapil_by_city').html(content);
+                        $("#select_stat_dukcapil_by_city").selectpicker("refresh");
+                        $('#select_stat_dukcapil_by_city').show();
+                    }else{
+                        myAlert(response.message, 'error');
+                    }
+                }
+            }, false);
+        }
+
+        function getSearchStatisticBy(by, province_id = '', city_id = ''){
             if(by == '{{App\Enums\StatisticByEnum::OPERATOR->value}}'){
                 $('#link_refresh_chart_msisdn').trigger('click');
             } else if (by == '{{App\Enums\StatisticByEnum::PROVINCE->value}}') {
@@ -745,7 +865,7 @@
             }
 
             get({
-                url: "{{config('app.url')}}/api/report/search-statistic/"+by,
+                url: "{{config('app.url')}}/api/report/search-statistic/"+by+"?province_id="+province_id+"&city_id="+city_id,
                 success: function (response, status) {
                     if(status == 'success' && response.status == 0){
                         updateCharts(by, response.data);
@@ -754,11 +874,6 @@
                     }
                 }
             }, false);
-        }
-
-        function randomHexColorCode(){
-            let n = (Math.random() * 0xfffff * 1000000).toString(16);
-            return '#' + n.slice(0, 6);
         }
 
         function updateCharts(by, datas){
