@@ -204,7 +204,7 @@
                                 }
                             });
 
-                            if(successDatas > 0){
+                            if(successDatas.length > 0){
                                 $([document.documentElement, document.body]).animate({
                                     scrollTop: $("#map").offset().top
                                 }, 150);
