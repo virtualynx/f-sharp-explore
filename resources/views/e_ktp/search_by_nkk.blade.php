@@ -175,6 +175,7 @@ Search By NKK
             url: "{{config('app.url')}}/api/e-ktp/search_by_dob",
             dataType: "json",
             success: function(response, status) {
+                
 
                 var dataArrZodiac = response.data;
                 if (status == 'success' && response.status == 0) {
