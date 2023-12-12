@@ -11,11 +11,15 @@ return [
     ],
     'key' => [
         'general' => env('API_KEY_GENERAL'),
+        'binderbyte' => env('API_KEY_BINDERBYTE'),
+        'goapi' => env('API_KEY_GOAPI'),
     ],
     'base_uri' => [
         'general' => env('API_BASE_URI_GENERAL'),
         'kujang' => env('API_BASE_URI_KUJANG'),
         'geocoding' => env('API_BASE_URI_BDC'),
+        'binderbyte' => env('API_BASE_URI_BINDERBYTE'),
+        'goapi' => env('API_BASE_URI_GOAPI'),
     ],
     'uri' => [
         'general' => [

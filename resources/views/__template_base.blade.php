@@ -144,9 +144,6 @@
 	<!-- /Preloader -->
 
     @yield('page-template')
-
-	<!-- JavaScript -->
-    <script src="{{asset('js/ajax-error-handler.js')}}"></script>
 	
     <!-- jQuery -->
     <script src="{{asset('vendors/bower_components/jquery/dist/jquery.min.js')}}"></script>
@@ -179,6 +176,11 @@
 	
 	<!-- Toast JavaScript -->
 	<script src="{{asset('vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js')}}"></script>
+
+	<!-- my custom scripts -->
+	<script src="{{asset('dist/js/my-alert.js')}}"></script>
+	<script src="{{asset('dist/js/my-ajax.js')}}"></script>
+	<script src="{{asset('dist/js/my-util.js')}}"></script>
 	
 	<!-- Init JavaScript -->
 	<script src="{{asset('dist/js/init.js')}}"></script>

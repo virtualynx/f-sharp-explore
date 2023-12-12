@@ -59,3 +59,8 @@ Route::prefix('/dataleak')->group(function() {
     Route::post('/gmail_leak', 'Api\DataLeakApi@gmail_leak');
     Route::post('/sosmed_leak', 'Api\DataLeakApi@sosmed_leak');
 });
+
+Route::prefix('/wilayah')->group(function() {
+    Route::get('/provinces', 'Api\WilayahApi@provinces');
+    Route::get('/cities/{province_id}', 'Api\WilayahApi@cities');
+});
