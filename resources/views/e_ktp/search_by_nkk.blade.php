@@ -156,163 +156,191 @@ Search By NKK
                             displayDiv = "block";
                         }
                         content += '<div class="panel-body pt-5" style="display:' + displayDiv + ';" id="subresultnkk' + i + '">'
-                        content += '<div class="row">'
-                        content += '<div class="col-md-3">'
-                        content += '<div class="item-big">'
-                        content += '<div class="carousel slide">'
-                        content += '<div class="carousel-inner">'
-                        content += '<div class="item active"><img id="photoNKK' + i + '" name="photoNKK' + i + '"  src="' + imageView + '" alt="Image Personal Dukcapil"></div>'
+                            content += '<div class="row">'
+                                content += '<div class="col-md-3">'
+                                    content += '<div class="item-big mb-10">'
+                                        content += '<div class="carousel slide">'
+                                            content += '<div class="carousel-inner">'
+                                                content += '<div class="item active"><img id="photoNKK' + i + '" name="photoNKK' + i + '"  src="' + imageView + '" alt="Image Personal Dukcapil"></div>'
+                                            content += '</div>'
+                                        content += "</div>"
+                                    content += "</div>"
+                                content += "</div>"
+                                content += '<div class="col-md-9">'
+                                    content += '<div class="row">'
+                                        content += '<div class="col-md-6">'
+                                            content += '<div class="table-wrap">'
+                                                content += '<div class="table-responsive-2 mb-0">'
+                                                    content += '<table class="table table-hover mb-0">'
+                                                        content += "<tbody>"
+                                                            content += "<tr>"
+                                                                content += '<td class="border-none pl-0 w-heading50"><span class="txt-dark weight-500">NIK</span></td>'
+                                                                content += '<td class="border-none pl-0" name="td-nik">' + dataArr[i].NIK + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Nama</span></td>'
+                                                                content += '<td class="pl-0" name="td-name">' + dataArr[i].NAMA_LGKP + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Tempat/Tgl Lahir</span></td>'
+                                                                content += '<td class="pl-0" name="td-ttl">' + dataArr[i].TMPT_LHR + ', ' + dataArr[i].TGL_LHR + ' </td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Jenis Kelamin</span></td>'
+                                                                content += '<td class="pl-0" name="td-sex">' + dataArr[i].JENIS_KLMIN + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Agama</span></td>'
+                                                                content += '<td class="pl-0" name="td-religion">' + dataArr[i].AGAMA + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Status Perkawinan</span></td>'
+                                                                content += '<td class="pl-0" name="td-marital">' + dataArr[i].STAT_KWN + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Golongan Darah</span></td>'
+                                                                content += '<td class="pl-0" name="td-bloodtype">' + dataArr[i].GOL_DARAH + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td colspan="2" class="p-0"></td>'
+                                                            content += "</tr>"
+                                                        content += "</tbody>"
+                                                    content += "</table>"
+                                                content += "</div>"
+                                            content += "</div>"
+                                        content += "</div>"
+                                        content += '<div class="col-md-6">'
+                                            content += '<div class="table-wrap">'
+                                                content += '<div class="table-responsive-2 mb-0">'
+                                                    content += '<table class="table table-hover mb-0">'
+                                                        content += "<tbody>"
+                                                            content += " <tr>"
+                                                                content += '<td class="pl-0 border-none w-heading50"><span class="txt-dark weight-500">Nomor KK</span></td>'
+                                                                content += '<td class="pl-0 border-none" name="td-nkk">' + dataArr[i].NKK + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Ayah</span></td>'
+                                                                content += '<td class="pl-0" name="td-father">' + dataArr[i].NAMA_LGKP_AYAH + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Ibu</span></td>'
+                                                                content += '<td class="pl-0" name="td-mother">' + dataArr[i].NAMA_LGKP_IBU + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Pekerjaan</span></td>'
+                                                                content += '<td class="pl-0" name="td-job">' + dataArr[i].JENIS_PKRJN + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">Pendidikan Terakhir</span></td>'
+                                                                content += '<td class="pl-0" name="td-lastedu">' + dataArr[i].PDDK_AKH + '</td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 w-heading50"><span class="txt-dark weight-500">RT / RW</span></td>'
+                                                                content += '<td class="pl-0" name="td-rt-rw">' + dataArr[i].NO_RT + ' / ' + dataArr[i].NO_RW + ' </td>'
+                                                            content += "</tr>"
+                                                            content += "<tr>"
+                                                                content += '<td colspan="2" class="p-0"></td>'
+                                                            content += "</tr>"
+                                                        content += "</tbody>"
+                                                    content += "</table>"
+                                                content += "</div>"
+                                            content += "</div>"
+                                        content += "</div>"
+                                        content += '<div class="col-md-12">'
+                                            content += '<div class="table-wrap">'
+                                                content += '<div class="table-responsive-2 mb-0">'
+                                                    content += '<table class="table table-hover mb-0">'
+                                                        content += "<tbody>"
+                                                            content += "<tr>"
+                                                                content += '<td class="pl-0 border-none w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Alamat</span></td>'
+                                                                content += '<td class="pl-0 border-none" name="td-address">' + dataArr[i].ALAMAT + '</td>'
+                                                            content += "</tr>"
+                                                            content += '<div class="card-body" id="bodyZodiac" name="bodyZodiac">'
+                                                                content += "<tr>"
+                                                                    content += '<td class="pl-0 w-heading24"><span class="txt-dark weight-500">Zodiac</span></td>'
+                                                                    content += '<td class="pl-0" name="td-zodiac">' + dataArrZodiac[i][0].Zodiak.zodiak + '</td>'
+                                                                content += "</tr>"
+                                                                content += "<tr>"
+                                                                    content += '<td class="pl-0 w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Profil</span></td>'
+                                                                    content += '<td class="pl-0" name="td-profil">' + dataArrZodiac[i][0].Zodiak.profil + '</td>'
+                                                                content += "</tr>"
+                                                                content += "<tr>"
+                                                                    content += '<td class="pl-0 w-heading24"><span class="txt-dark weight-500">Weton</span></td>'
+                                                                    content += '<td class="pl-0" name="td-weton">' + dataArrZodiac[i][0].Weton.weton + '</td>'
+                                                                content += "</tr>"
+                                                                content += "<tr>"
+                                                                    content += '<td class="pl-0 w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Karakter Hari</span></td>'
+                                                                    content += '<td class="pl-0" name="td-karakter">' + dataArrZodiac[i][0].Weton.karakter_hari + '</td>'
+                                                                content += "</tr>"
+                                                            content += "</div>"
+                                                            content += "<tr>"
+                                                                content += '<td colspan="2"></td>'
+                                                            content += "</tr>"
+                                                        content += "</tbody>"
+                                                    content += "</table>"
+                                                content += "</div>"
+                                            content += "</div>"
+                                        content += "</div>"
+                                    content += "</div>"
+                                content += "</div>"
+                            content += "</div>"
+                            content += '<div class="row pt-30">'
+                                content += '<div class="col-md-12 text-center">'
+                                    content += '<ul class="pagination" id="paginationNkk' + i + '">'
+                                        for (var j = 0; j < dataArr.length; j++) {
+                                            var urutan = j + 1;
+                                            content += '<li><a href="#" onclick="showPagesNkk(' + j + ',' + dataArr.length + ')">' + urutan + '</a></li>'
+                                        }
+                                    content += "</ul>"
+                                content += "</div>"
+                            content += "</div>"
                         content += '</div>'
-                        content += "</div>"
-                        content += "</div>"
-                        content += "</div>"
-                        content += '<div class="col-md-9">'
-                        content += '<div class="row">'
-                        content += '<div class="col-md-6">'
-                        content += '<div class="table-wrap">'
-                        content += '<div class="table-responsive mb-0">'
-                        content += '<table class="table table-hover mb-0">'
-                        content += "<tbody>"
-                        content += "<tr>"
-                        content += '<td class="border-none pl-0" width="50%"><span class="txt-dark weight-500">NIK</span></td>'
-                        content += '<td class="border-none pl-0" name="td-nik">' + dataArr[i].NIK + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Nama</span></td>'
-                        content += '<td class="pl-0" name="td-name">' + dataArr[i].NAMA_LGKP + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Tempat/Tgl Lahir</span></td>'
-                        content += '<td class="pl-0" name="td-ttl">' + dataArr[i].TMPT_LHR + ', ' + dataArr[i].TGL_LHR + ' </td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Jenis Kelamin</span></td>'
-                        content += '<td class="pl-0" name="td-sex">' + dataArr[i].JENIS_KLMIN + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Agama</span></td>'
-                        content += '<td class="pl-0" name="td-religion">' + dataArr[i].AGAMA + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%" style="vertical-align: top;"><span class="txt-dark weight-500">Alamat</span></td>'
-                        content += '<td class="pl-0" name="td-address">' + dataArr[i].ALAMAT + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">RT / RW</span></td>'
-                        content += '<td class="pl-0" name="td-rt-rw">' + dataArr[i].NO_RT + ' / ' + dataArr[i].NO_RW + ' </td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td colspan="2" class="pa-0"></td>'
-                        content += "</tr>"
-                        content += "</tbody>"
-                        content += "</table>"
-                        content += "</div>"
-                        content += "</div>"
-                        content += "</div>"
-                        content += '<div class="col-md-6">'
-                        content += '<div class="table-wrap">'
-                        content += '<div class="table-responsive">'
-                        content += '<table class="table table-hover mb-0">'
-                        content += "<tbody>"
-                        content += " <tr>"
-                        content += '<td class="pl-0 border-none" width="50%"><span class="txt-dark weight-500">Nomor KK</span></td>'
-                        content += '<td class="pl-0 border-none" name="td-nkk">' + dataArr[i].NKK + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Ayah</span></td>'
-                        content += '<td class="pl-0" name="td-father">' + dataArr[i].NAMA_LGKP_AYAH + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Ibu</span></td>'
-                        content += '<td class="pl-0" name="td-mother">' + dataArr[i].NAMA_LGKP_IBU + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Status Perkawinan</span></td>'
-                        content += '<td class="pl-0" name="td-marital">' + dataArr[i].STAT_KWN + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Pekerjaan</span></td>'
-                        content += '<td class="pl-0" name="td-job">' + dataArr[i].JENIS_PKRJN + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Pendidikan Terakhir</span></td>'
-                        content += '<td class="pl-0" name="td-lastedu">' + dataArr[i].PDDK_AKH + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td class="pl-0" width="50%"><span class="txt-dark weight-500">Golongan Darah</span></td>'
-                        content += '<td class="pl-0" name="td-bloodtype">' + dataArr[i].GOL_DARAH + '</td>'
-                        content += "</tr>"
-                        content += "<tr>"
-                        content += '<td colspan="2"></td>'
-                        content += "</tr>"
-                        content += "</tbody>"
-                        content += "</table>"
-                        content += "</div>"
-                        content += "</div>"
-                        content += "</div>"
-                        content += "</div>"
-                        content += "</br>"
-                        content += '<div class="row">'
-                        content += '<div class="col-lg-12">'
-                        content += '<div class="card mb-4">'
-                        content += '<div class="card-body" id="bodyZodiac" name="bodyZodiac">'
-                        content += '<div class="row">'
-                        content += '<div class="col-sm-3">'
-                        content += '<p class="mb-0"><span class="txt-dark weight-500">Zodiac</span></p>'
-                        content += '</div>'
-                        content += '<div class="col-sm-9">'
-                        content += '<p class="text-muted mb-0">' + dataArrZodiac[i][0].Zodiak.zodiak + '</p>'
-                        content += '</div>'
-                        content += '</div>'
-                        content += '<hr style="border-top:1px solid #dedede;">'
-                        content += '<div class="row">'
-                        content += '<div class="col-sm-3">'
-                        content += '<p class="mb-0"><span class="txt-dark weight-500">Profil</span></p>'
-                        content += '</div>'
-                        content += '<div class="col-sm-9">'
-                        content += '<p class="text-muted mb-0">' + dataArrZodiac[i][0].Zodiak.profil + '</p>'
-                        content += '</div>'
-                        content += '</div>'
-                        content += '<hr style="border-top:1px solid #dedede;">'
-                        content += '<div class="row">'
-                        content += '<div class="col-sm-3">'
-                        content += '<p class="mb-0"><span class="txt-dark weight-500">Weton</span></p>'
-                        content += '</div>'
-                        content += '<div class="col-sm-9">'
-                        content += '<p class="text-muted mb-0">' + dataArrZodiac[i][0].Weton.weton + '</p>'
-                        content += '</div>'
-                        content += '</div>'
-                        content += '<hr style="border-top:1px solid #dedede;">'
-                        content += '<div class="row">'
-                        content += '<div class="col-sm-3">'
-                        content += '<p class="mb-0"><span class="txt-dark weight-500">Karakter Hari</span></p>'
-                        content += '</div>'
-                        content += '<div class="col-sm-9">'
-                        content += '<p class="text-muted mb-0">' + dataArrZodiac[i][0].Weton.karakter_hari + '</p>'
-                        content += '</div>'
-                        content += '</div>'
-                        content += '<hr style="border-top:1px solid #dedede;">'
-                        content += '</div>'
-                        content += '</div>'
-                        content += '</div>'
-                        content += '</div>'
-                        content += "</div>"
-                        content += "</div>"
 
-
-
-
-                        content += '<div class="row pt-30">'
-                        content += '<div class="col-md-12 text-center">'
-                        content += '<ul class="pagination" id="paginationNkk' + i + '">'
-                        for (var j = 0; j < dataArr.length; j++) {
-                            var urutan = j + 1;
-                            content += '<li><a href="#" onclick="showPagesNkk(' + j + ',' + dataArr.length + ')">' + urutan + '</a></li>'
-                        }
-                        content += "</ul>"
-                        content += "</div>"
-                        content += "</div>"
-                        content += "</div>"
+                        // content += "</br>"
+                        // content += '<div class="row">'
+                        //     content += '<div class="col-lg-12">'
+                        //         content += '<div class="card mb-4">'
+                        //             content += '<div class="card-body" id="bodyZodiac" name="bodyZodiac">'
+                        //                 content += '<div class="row">'
+                        //                     content += '<div class="col-sm-3">'
+                        //                         content += '<p class="mb-0"><span class="txt-dark weight-500">Zodiac</span></p>'
+                        //                     content += '</div>'
+                        //                     content += '<div class="col-sm-9">'
+                        //                         content += '<p class="text-muted mb-0">' + dataArrZodiac[i][0].Zodiak.zodiak + '</p>'
+                        //                     content += '</div>'
+                        //                 content += '</div>'
+                        //                 content += '<hr style="border-top:1px solid #dedede;">'
+                        //                 content += '<div class="row">'
+                        //                     content += '<div class="col-sm-3">'
+                        //                         content += '<p class="mb-0"><span class="txt-dark weight-500">Profil</span></p>'
+                        //                     content += '</div>'
+                        //                     content += '<div class="col-sm-9">'
+                        //                         content += '<p class="text-muted mb-0">' + dataArrZodiac[i][0].Zodiak.profil + '</p>'
+                        //                     content += '</div>'
+                        //                 content += '</div>'
+                        //                 content += '<hr style="border-top:1px solid #dedede;">'
+                        //                 content += '<div class="row">'
+                        //                     content += '<div class="col-sm-3">'
+                        //                         content += '<p class="mb-0"><span class="txt-dark weight-500">Weton</span></p>'
+                        //                     content += '</div>'
+                        //                     content += '<div class="col-sm-9">'
+                        //                         content += '<p class="text-muted mb-0">' + dataArrZodiac[i][0].Weton.weton + '</p>'
+                        //                     content += '</div>'
+                        //                 content += '</div>'
+                        //                 content += '<hr style="border-top:1px solid #dedede;">'
+                        //                 content += '<div class="row">'
+                        //                     content += '<div class="col-sm-3">'
+                        //                         content += '<p class="mb-0"><span class="txt-dark weight-500">Karakter Hari</span></p>'
+                        //                     content += '</div>'
+                        //                     content += '<div class="col-sm-9">'
+                        //                         content += '<p class="text-muted mb-0">' + dataArrZodiac[i][0].Weton.karakter_hari + '</p>'
+                        //                     content += '</div>'
+                        //                 content += '</div>'
+                        //                 content += '<hr style="border-top:1px solid #dedede;">'
+                        //             content += '</div>'
+                        //         content += '</div>'
+                        //     content += '</div>'
+                        // content += '</div>'
                     }
                     $("#resultsNKK").append(content);
                 } else {
