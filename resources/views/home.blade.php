@@ -52,8 +52,8 @@
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                     <!-- THE PIE CHART-->
-                    <div id="e_chart_msisdn" class="" style="height:221px;"></div>
-                    <div id="chart_detail_msisdn">
+                    <div id="e_chart_msisdn" class="" style="height:220px;"></div>
+                    <div class="pie-dashboard-nicescroll-bar" id="chart_detail_msisdn">
                         <hr class="light-grey-hr row mt-10 mb-15"/>
                         <div class="label-chatrs">
                             <div class="">
@@ -99,7 +99,16 @@
                     <h6 class="panel-title txt-dark">Most Searched On Dukcapil</h6>
                 </div>
                 <div class="pull-right">
-                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                    <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
+                        <i id="link_refresh_chart_dukcapil" class="zmdi zmdi-replay"></i>
+                    </a>
+                    <a href="#" class="pull-left inline-block full-screen" style="top: 3px;">
+                        <i class="zmdi zmdi-fullscreen"></i>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+                <div class="pull-right">
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mt-15 mr-15">
                         <select id="select_stat_dukcapil_by" class="selectpicker" data-style="form-control">
                             <option selected value='{{App\Enums\StatisticByEnum::GENDER->value}}'>Gender</option>
                             <option value='{{App\Enums\StatisticByEnum::GENERATION->value}}'>Generations (Age)</option>
@@ -111,30 +120,23 @@
                             <option value='{{App\Enums\StatisticByEnum::DISTRICT->value}}'>District</option>
                         </select>
                     </div>
-                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mt-15 mr-15">
                         <select id="select_stat_dukcapil_by_province" class="selectpicker" data-style="form-control">
                             <option selected value=''>All Province</option>
                         </select>
                     </div>
-                    <div class="pull-left form-group mb-0 sm-bootstrap-select mr-15">
+                    <div class="pull-left form-group mb-0 sm-bootstrap-select mt-15">
                         <select id="select_stat_dukcapil_by_city" class="selectpicker" data-style="form-control">
                             <option selected value=''>All City</option>
                         </select>
                     </div>
-                    <a href="#" class="pull-left inline-block refresh mr-15" style="top: 3px;">
-                        <i id="link_refresh_chart_dukcapil" class="zmdi zmdi-replay"></i>
-                    </a>
-                    <a href="#" class="pull-left inline-block full-screen" style="top: 3px;">
-                        <i class="zmdi zmdi-fullscreen"></i>
-                    </a>
                 </div>
-                <div class="clearfix"></div>
             </div>
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                     <!-- THE PIE CHART-->
-                    <div id="e_chart_dukcapil" class="" style="height:257px;"></div>
-                    <div id="chart_detail_dukcapil">
+                    <div id="e_chart_dukcapil" class="" style="height:223px;"></div>
+                    <div class="pie-dashboard-nicescroll-bar" id="chart_detail_dukcapil">
                         <hr class="light-grey-hr row mt-20 mb-15"/>
                         <div class="label-chatrs">
                             <div class="">
@@ -184,7 +186,7 @@
             <div class="panel-wrapper collapse in">
                 <div class="panel-body row pa-0">
                     <div class="table-wrap">
-                        <div class="table-responsive">
+                        <div class="table-responsive table-dashboard-nicescroll-bar">
                           <table class="table table-hover mb-0">
                             <thead>
                                   <tr>
@@ -327,7 +329,7 @@
             </div>
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
-                    <div id="world_map_marker_1" style="height: 385px"></div>
+                    <div id="world_map_marker_1" style="height: 387px"></div>
                 </div>
             </div>
         </div>
@@ -530,6 +532,10 @@
 
                 getVectorMapData();
 			}
+
+            /* slim scrol cards */
+            $('.pie-dashboard-nicescroll-bar').slimscroll({height:'200px',size: '4px',color: '#878787',disableFadeOut : true,borderRadius:0,size:'4px',alwaysVisible:false});
+	        $('.table-dashboard-nicescroll-bar').slimscroll({height:'430px',size: '4px',color: '#878787',disableFadeOut : true,borderRadius:0,size:'4px',alwaysVisible:false});
 		});
 
         var eChartMsisdn;
