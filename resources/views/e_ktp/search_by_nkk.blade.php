@@ -144,6 +144,7 @@ Search By NKK
             // url: "{{config('app.url')}}/api/e-ktp/search-by-nik",
             url: "{{config('app.url')}}/api/e-ktp/search_by_dob",
             success: function(response, status) {
+                
 
                 var dataArrZodiac = response.data;
                 if (status == 'success' && response.status == 0) {
