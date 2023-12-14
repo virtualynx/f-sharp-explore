@@ -154,15 +154,11 @@ Search By NIK
                                 <div class="col-md-12">
                                     <div class="table-wrap">
                                         <div class="table-responsive-2 mb-0">
-                                            <table class="table table-hover mb-0">
+                                            <table class="table table-hover mb-0" id="bodyZodiac" name="bodyZodiac">
                                                 <tbody>
                                                     <tr>
                                                         <td class="pl-0 border-none w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Alamat</span></td>
                                                         <td class="pl-0 border-none" name="td-address">[No Data]</td>
-                                                    </tr>
-                                                    <div id="bodyZodiac" name="bodyZodiac"></div>
-                                                    <tr>
-                                                        <td colspan="2"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -317,20 +313,23 @@ Search By NIK
                         var titles = ["Zodiac", "Profil", "Weton", "Karakter Hari"];
                         for (var i = 0; i < dataArrRes.length; i++) {
                             content += '<tr>'
-                            content += '<td class="pl-0 w-heading24"><span class="txt-dark weight-500">Zodiac</span></td>'
-                            content += '<td class="pl-0" name="td-zodiac">'+dataArrRes[i][0].Zodiak.zodiak+'</td>'
+                                content += '<td class="pl-0 w-heading24"><span class="txt-dark weight-500">Zodiac</span></td>'
+                                content += '<td class="pl-0" name="td-zodiac">'+dataArrRes[i][0].Zodiak.zodiak+'</td>'
                             content += '</tr>'
                             content += '<tr>'
-                            content += '<td class="pl-0 w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Profil</span></td>'
-                            content += '<td class="pl-0" name="td-profil">'+dataArrRes[i][0].Zodiak.profil+'</td>'
+                                content += '<td class="pl-0 w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Profil</span></td>'
+                                content += '<td class="pl-0" name="td-profil">'+dataArrRes[i][0].Zodiak.profil+'</td>'
                             content += '</tr>'
                             content += '<tr>'
-                            content += '<td class="pl-0 w-heading24"><span class="txt-dark weight-500">Weton</span></td>'
-                            content += '<td class="pl-0" name="td-weton">'+dataArrRes[i][0].Weton.weton+'</td>'
+                                content += '<td class="pl-0 w-heading24"><span class="txt-dark weight-500">Weton</span></td>'
+                                content += '<td class="pl-0" name="td-weton">'+dataArrRes[i][0].Weton.weton+'</td>'
                             content += '</tr>'
                             content += '<tr>'
-                            content += '<td class="pl-0 w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Karakter Hari</span></td>'
-                            content += '<td class="pl-0" name="td-karakter">'+dataArrRes[i][0].Weton.karakter_hari+'</td>'
+                                content += '<td class="pl-0 w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Karakter Hari</span></td>'
+                                content += '<td class="pl-0" name="td-karakter">'+dataArrRes[i][0].Weton.karakter_hari+'</td>'
+                            content += '</tr>'
+                            content += '<tr>'
+                                content += '<td colspan="2"></td>'
                             content += '</tr>'
                             // content += '<div class="row">'
                             // content += '<div class="col-sm-3">'
@@ -378,7 +377,7 @@ Search By NIK
                             // content += '<hr style="border-top:1px solid #dedede;">'
                         }
                        
-                        $("#bodyZodiac").append(content);
+                        $("#bodyZodiac > tbody").append(content);
 
                     } else {
                         myAlert(response.message, 'error');
