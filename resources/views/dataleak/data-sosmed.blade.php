@@ -20,31 +20,31 @@ Data Media Social
     <div class="col-sm-12">
         <div class="panel panel-default card-view">
             <div class="panel-wrapper collapse in">
-                <div class="panel-body">
+                <div class="panel-body mb-20">
                     <div class="row">
                         <div class="col-sm-12 p-0 m-0">
                             <form>
                                 {{ csrf_field() }}
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Username</label>
+                                        <label for="inputSosmedLeak" class="txt-dark weight-500">Username</label>
                                         <input type="text" name="inputSosmedLeak" id="inputSosmedLeak" class="form-control" placeholder="Enter ...">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>Max Sites</label>
+                                        <label for="inputSosmedSites" class="txt-dark weight-500">Max Sites</label>
                                         <input type="number" pattern="^[0-9]*$" name="inputSosmedSites" id="inputSosmedSites" class="form-control" placeholder="Enter ...">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 p-0 m-0">
                                     <div class="form-group">
                                         <label></label>
                                         <span class="input-group-btn">
-                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text">Search</span></button>
+                                            <button type="button" class="btn btn-danger btn-icon left-icon" onclick="searchSosmedLeak()"><i class="fa fa-search"></i><span class="btn-text"> Search</span></button>
                                         </span>
                                     </div>
-                                </div>
+								</div>
                             </form>
                         </div>
                     </div>
