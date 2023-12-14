@@ -61,7 +61,7 @@ Search By NIK
                 <div class="panel-body pt-5">
                     <div class="row mb-50">
                         <div class="col-md-3">
-                            <div class="item-big">
+                            <div class="item-big mb-10">
                                 <div class="carousel slide">
                                     <div class="carousel-inner">
                                         <div class="item active"><img name="photo" src="{{asset('dist/img/gallery/mock1.jpg')}}" alt="Image Personal Dukcapil" width="100%"></div>
@@ -74,39 +74,39 @@ Search By NIK
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="table-wrap">
-                                        <div class="table-responsive mb-0">
+                                        <div class="table-responsive-2 mb-0">
                                             <table class="table table-hover mb-0">
                                                 <tbody>
                                                     <tr>
-                                                        <td class="border-none pl-0" width="50%"><span class="txt-dark weight-500">NIK</span></td>
+                                                        <td class="border-none pl-0 w-heading50" width="50%"><span class="txt-dark weight-500">NIK</span></td>
                                                         <td class="border-none pl-0" name="td-nik">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Nama</span></td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Nama</span></td>
                                                         <td class="pl-0" name="td-name">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Tempat/Tgl Lahir</span></td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Tempat/Tgl Lahir</span></td>
                                                         <td class="pl-0" name="td-ttl">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Jenis Kelamin</span></td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Jenis Kelamin</span></td>
                                                         <td class="pl-0" name="td-sex">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Agama</span></td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Agama</span></td>
                                                         <td class="pl-0" name="td-religion">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%" style="vertical-align: top;"><span class="txt-dark weight-500">Alamat</span></td>
-                                                        <td class="pl-0" name="td-address">[No Data]</td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Status Perkawinan</span></td>
+                                                        <td class="pl-0" name="td-marital">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">RT / RW</span></td>
-                                                        <td class="pl-0" name="td-rt-rw">[No Data]</td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Golongan Darah</span></td>
+                                                        <td class="pl-0" name="td-bloodtype">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="2" class="pa-0"></td>
+                                                        <td colspan="2" class="p-0"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -115,37 +115,52 @@ Search By NIK
                                 </div>
                                 <div class="col-md-6">
                                     <div class="table-wrap">
-                                        <div class="table-responsive">
+                                        <div class="table-responsive-2 mb-0">
                                             <table class="table table-hover mb-0">
                                                 <tbody>
                                                     <tr>
-                                                        <td class="pl-0 border-none" width="50%"><span class="txt-dark weight-500">Nomor KK</span></td>
+                                                        <td class="pl-0 border-none w-heading50"><span class="txt-dark weight-500">Nomor KK</span></td>
                                                         <td class="pl-0 border-none" name="td-nkk">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Ayah</span></td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Ayah</span></td>
                                                         <td class="pl-0" name="td-father">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Ibu</span></td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Ibu</span></td>
                                                         <td class="pl-0" name="td-mother">[No Data]</td>
                                                     </tr>
+                                                    
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Status Perkawinan</span></td>
-                                                        <td class="pl-0" name="td-marital">[No Data]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Pekerjaan</span></td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Pekerjaan</span></td>
                                                         <td class="pl-0" name="td-job">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Pendidikan Terakhir</span></td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">Pendidikan Terakhir</span></td>
                                                         <td class="pl-0" name="td-lastedu">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="pl-0" width="50%"><span class="txt-dark weight-500">Golongan Darah</span></td>
-                                                        <td class="pl-0" name="td-bloodtype">[No Data]</td>
+                                                        <td class="pl-0 w-heading50"><span class="txt-dark weight-500">RT / RW</span></td>
+                                                        <td class="pl-0" name="td-rt-rw">[No Data]</td>
                                                     </tr>
+                                                    <tr>
+                                                        <td colspan="2" class="p-0"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="table-wrap">
+                                        <div class="table-responsive-2 mb-0">
+                                            <table class="table table-hover mb-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="pl-0 border-none w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Alamat</span></td>
+                                                        <td class="pl-0 border-none" name="td-address">[No Data]</td>
+                                                    </tr>
+                                                    <div id="bodyZodiac" name="bodyZodiac"></div>
                                                     <tr>
                                                         <td colspan="2"></td>
                                                     </tr>
@@ -155,12 +170,12 @@ Search By NIK
                                     </div>
                                 </div>
                             </div>
-                            <br />
+                            {{-- <br />
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card mb-4">
                                         <div class="card-body" id="bodyZodiac" name="bodyZodiac">
-                                            <!-- <div class="row">
+                                            <div class="row">
                                                 <div class="col-sm-3">
                                                     <p class="mb-0"><span class="txt-dark weight-500">Zodiac</span></p>
                                                 </div>
@@ -195,11 +210,11 @@ Search By NIK
                                                     <p class="text-muted mb-0" name="td-weton-karakterhari">[No Data]</p>
                                                 </div>
                                             </div>
-                                            <hr style="border-top:1px solid #dedede;"> -->
+                                            <hr style="border-top:1px solid #dedede;">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -301,50 +316,66 @@ Search By NIK
                         var content = "";
                         var titles = ["Zodiac", "Profil", "Weton", "Karakter Hari"];
                         for (var i = 0; i < dataArrRes.length; i++) {
-                            content += '<div class="row">'
-                            content += '<div class="col-sm-3">'
-                            content += '<p class="mb-0"><span class="txt-dark weight-500">Zodiac</span></p>'
-                            content += '</div>'
-                            content += '<div class="col-sm-9">'
-                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Zodiak.zodiak+'</p>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '<hr style="border-top:1px solid #dedede;">'
-                            content += ' <div class="row">'
-                            content += '<div class="col-sm-3">'
-                            content += '<p class="mb-0"><span class="txt-dark weight-500">Profil</span></p>'
-                            content += '</div>'
-                            content += '<div class="col-sm-9">'
-                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Zodiak.profil+'</p>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '<hr style="border-top:1px solid #dedede;">'
-                            content += ' <div class="row">'
-                            content += '<div class="col-sm-3">'
-                            content += '<p class="mb-0"><span class="txt-dark weight-500">Weton</span></p>'
-                            content += '</div>'
-                            content += '<div class="col-sm-9">'
-                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Weton.weton+'</p>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '<hr style="border-top:1px solid #dedede;">'
-                            content += ' <div class="row">'
-                            content += '<div class="col-sm-3">'
-                            content += '<p class="mb-0"><span class="txt-dark weight-500">Karakter Hari</span></p>'
-                            content += '</div>'
-                            content += '<div class="col-sm-9">'
-                            content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Weton.karakter_hari+'</p>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '</div>'
-                            content += '<hr style="border-top:1px solid #dedede;">'
+                            content += '<tr>'
+                            content += '<td class="pl-0 w-heading24"><span class="txt-dark weight-500">Zodiac</span></td>'
+                            content += '<td class="pl-0" name="td-zodiac">'+dataArrRes[i][0].Zodiak.zodiak+'</td>'
+                            content += '</tr>'
+                            content += '<tr>'
+                            content += '<td class="pl-0 w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Profil</span></td>'
+                            content += '<td class="pl-0" name="td-profil">'+dataArrRes[i][0].Zodiak.profil+'</td>'
+                            content += '</tr>'
+                            content += '<tr>'
+                            content += '<td class="pl-0 w-heading24"><span class="txt-dark weight-500">Weton</span></td>'
+                            content += '<td class="pl-0" name="td-weton">'+dataArrRes[i][0].Weton.weton+'</td>'
+                            content += '</tr>'
+                            content += '<tr>'
+                            content += '<td class="pl-0 w-heading24" style="vertical-align: top;"><span class="txt-dark weight-500">Karakter Hari</span></td>'
+                            content += '<td class="pl-0" name="td-karakter">'+dataArrRes[i][0].Weton.karakter_hari+'</td>'
+                            content += '</tr>'
+                            // content += '<div class="row">'
+                            // content += '<div class="col-sm-3">'
+                            // content += '<p class="mb-0"><span class="txt-dark weight-500">Zodiac</span></p>'
+                            // content += '</div>'
+                            // content += '<div class="col-sm-9">'
+                            // content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Zodiak.zodiak+'</p>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '<hr style="border-top:1px solid #dedede;">'
+                            // content += ' <div class="row">'
+                            // content += '<div class="col-sm-3">'
+                            // content += '<p class="mb-0"><span class="txt-dark weight-500">Profil</span></p>'
+                            // content += '</div>'
+                            // content += '<div class="col-sm-9">'
+                            // content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Zodiak.profil+'</p>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '<hr style="border-top:1px solid #dedede;">'
+                            // content += ' <div class="row">'
+                            // content += '<div class="col-sm-3">'
+                            // content += '<p class="mb-0"><span class="txt-dark weight-500">Weton</span></p>'
+                            // content += '</div>'
+                            // content += '<div class="col-sm-9">'
+                            // content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Weton.weton+'</p>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '<hr style="border-top:1px solid #dedede;">'
+                            // content += ' <div class="row">'
+                            // content += '<div class="col-sm-3">'
+                            // content += '<p class="mb-0"><span class="txt-dark weight-500">Karakter Hari</span></p>'
+                            // content += '</div>'
+                            // content += '<div class="col-sm-9">'
+                            // content += '<p class="text-muted mb-0" name="td-zodiac">'+dataArrRes[i][0].Weton.karakter_hari+'</p>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '</div>'
+                            // content += '<hr style="border-top:1px solid #dedede;">'
                         }
                        
                         $("#bodyZodiac").append(content);

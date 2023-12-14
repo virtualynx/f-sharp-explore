@@ -329,7 +329,7 @@
             </div>
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
-                    <div id="world_map_marker_1" style="height: 387px"></div>
+                    <div id="world_map_marker_1" style="height: 390px"></div>
                 </div>
             </div>
         </div>
