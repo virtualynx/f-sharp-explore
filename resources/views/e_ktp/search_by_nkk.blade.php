@@ -202,7 +202,7 @@ Search By NKK
                                                                 content += '<td class="pl-0" name="td-bloodtype">' + dataArr[i].GOL_DARAH + '</td>'
                                                             content += "</tr>"
                                                             content += "<tr>"
-                                                                content += '<td colspan="2" class="p-0"></td>'
+                                                                content += '<td colspan="2" class="pa-0"></td>'
                                                             content += "</tr>"
                                                         content += "</tbody>"
                                                     content += "</table>"
@@ -239,7 +239,7 @@ Search By NKK
                                                                 content += '<td class="pl-0" name="td-rt-rw">' + dataArr[i].NO_RT + ' / ' + dataArr[i].NO_RW + ' </td>'
                                                             content += "</tr>"
                                                             content += "<tr>"
-                                                                content += '<td colspan="2" class="p-0"></td>'
+                                                                content += '<td colspan="2" class="pa-0"></td>'
                                                             content += "</tr>"
                                                         content += "</tbody>"
                                                     content += "</table>"

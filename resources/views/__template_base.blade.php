@@ -26,7 +26,7 @@
 	@yield('page-head')
 	
 	<!-- Custom CSS -->
-	<link href="{{asset('dist/css/style_v_1_2.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('dist/css/style_v_1_3.css')}}" rel="stylesheet" type="text/css">
 
 	<style type="text/css"> 
 		.lds-spinner,

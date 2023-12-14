@@ -106,7 +106,7 @@ Search By NIK
                                                         <td class="pl-0" name="td-bloodtype">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="2" class="p-0"></td>
+                                                        <td colspan="2" class="pa-0"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -144,7 +144,7 @@ Search By NIK
                                                         <td class="pl-0" name="td-rt-rw">[No Data]</td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="2" class="p-0"></td>
+                                                        <td colspan="2" class="pa-0"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
