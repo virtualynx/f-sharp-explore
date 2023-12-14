@@ -25,19 +25,19 @@ Data Media Social
                         <div class="col-sm-12 p-0 m-0">
                             <form>
                                 {{ csrf_field() }}
-                                <div class="col-sm-4">
+                                <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="inputSosmedLeak" class="txt-dark weight-500">Username</label>
                                         <input type="text" name="inputSosmedLeak" id="inputSosmedLeak" class="form-control" placeholder="Enter ...">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="inputSosmedSites" class="txt-dark weight-500">Max Sites</label>
                                         <input type="number" pattern="^[0-9]*$" name="inputSosmedSites" id="inputSosmedSites" class="form-control" placeholder="Enter ...">
                                     </div>
                                 </div>
-                                <div class="col-sm-4 p-0 m-0">
+                                <div class="col-sm-2 p-0 m-0">
                                     <div class="form-group">
                                         <label></label>
                                         <span class="input-group-btn">
